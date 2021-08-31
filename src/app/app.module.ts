@@ -1,0 +1,90 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from "@angular/forms";
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { MaterialModule } from './material/material.module';
+import { LoginComponent } from './component/login/login.component';
+import { HeaderComponent } from './component/header/header.component';
+import { MenuComponent } from './component/menu/menu.component';
+import { FeaturesComponent } from './component/features/features/features.component';
+import { AddemployeeComponent } from './component/employee/addemployee/addemployee.component';
+import { ListemployeeComponent } from './component/employee/listemployee/listemployee.component';
+import { SearchemployeeComponent } from './component/employee/searchemployee/searchemployee.component';
+import { NewcontractComponent } from './component/contract/newcontract/newcontract.component';
+import { AllcontractsComponent } from './component/contract/allcontracts/allcontracts.component';
+import { NewcontractService } from './services/contracts/newcontract.service';
+import { ApplyleaveComponent } from './component/Leaves/applyleave/applyleave.component';
+import { LeavebalenceComponent } from './component/Leaves/leavebalence/leavebalence.component';
+import { MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MY_DATE_FORMATS } from './common/dateformat';
+import { UploadDirective } from './directives/upload.directive';
+import { UploadComponent } from './common/upload/upload.component';
+import { ProgressComponent } from './common/progress/progress.component';
+import { AddDependantComponent } from './component/modules/dialog-box/add-dependant/add-dependant.component';
+import { FormsModule } from '@angular/forms';
+import { DeleteDependantComponent } from './component/modules/dialog-box/delete-dependant/delete-dependant.component';
+import { EditDependantComponent } from './component/modules/dialog-box/edit-dependant/edit-dependant.component';
+import { DependantComponent } from './component/modules/dependant/dependant.component';
+import { FileUploadModule } from '@iplab/ngx-file-upload';
+import { MessageComponent } from './common/message/message.component';
+import { NewAssetComponent } from './component/assets/new-asset/new-asset.component';
+import { AllAssetsComponent } from './component/assets/all-assets/all-assets.component';
+import { AssignAssetsComponent } from './component/assets/assign-assets/assign-assets.component';
+import { EmpNameComponent } from './common/emp-name/emp-name.component';
+import { UpdateAssetsComponent } from './component/assets/update-assets/update-assets.component';
+import { AssetHistoryComponent } from './component/assets/asset-history/asset-history.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MonthWiseComponent} from "./component/timesheet/month-wise/month-wise.component";
+import {YearWiseComponent} from "./component/timesheet/year-wise/year-wise.component";
+import { HomeComponent } from './component/home/home.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    HeaderComponent,
+    MenuComponent,
+    FeaturesComponent,
+    AddemployeeComponent,
+    ListemployeeComponent,
+    SearchemployeeComponent,
+    NewcontractComponent,
+    AllcontractsComponent,
+    ApplyleaveComponent,
+    LeavebalenceComponent,
+    UploadDirective,
+    UploadComponent,
+    ProgressComponent,
+    AddDependantComponent,
+    DeleteDependantComponent,
+    EditDependantComponent,
+    DependantComponent,
+    MessageComponent,
+    NewAssetComponent,
+    AllAssetsComponent,
+    AssignAssetsComponent,
+    EmpNameComponent,
+    UpdateAssetsComponent,
+    MonthWiseComponent,
+    YearWiseComponent,
+    HomeComponent,
+    AssetHistoryComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    HttpClientModule,
+    FormsModule,FileUploadModule,MatButtonToggleModule
+  ],
+  providers: [NewcontractService,
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }

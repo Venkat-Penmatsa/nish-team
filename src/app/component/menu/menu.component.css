@@ -1,0 +1,55 @@
+.twistie-separator {
+    flex: 1 1 0%;
+  }
+
+  .routeIcon {
+    margin-right: 10px;
+    font-size: 16pt;
+    color: white;
+  }
+  
+  .menu-item-text {
+    font-size: 10pt;
+    color: white;
+  }
+
+  .menu-twistie {
+    font-size: 10pt;
+    height: 12px;
+    width: 12px;
+    color: white;
+  }
+
+  .mat-list-item.active {
+    background-color: #397591;
+  }
+
+  .menu-list-item {
+    background-color: #15293f;
+    font-family: "Open sans", Sans-serif;
+    padding: 0;
+    margin: 0;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+   #menu a:active {
+    background-color: #397591;
+    color:#397591;
+  }
+  #menu a:focus , #menu a:hover {
+    color:#397591;
+    background-color:#397591;
+  }
+
+.main-menu {
+    border-radius: 5 px;
+    box-shadow: 1cm;
+    height:100%;
+    width:100%;
+    border-radius: 10px;
+    border-bottom-left-radius: 30px;
+}
+ 
+
+  

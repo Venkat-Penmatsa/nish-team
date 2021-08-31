@@ -1,0 +1,67 @@
+<form [formGroup]="monthlyForm">
+  <div class="row">
+    <div class="col">
+      <mat-form-field style="padding: 20px 0 0 20px;">
+        <mat-label>Search Employee with ID *</mat-label>
+        <input (input)="hasError = false; monthlyForm.invalid? employeeData = null: employeeData" formControlName="employeeNumber" matInput>
+      </mat-form-field>
+      <button (click)="getMonthlyTimesheet(f.employeeNumber.value, date)" [disabled]="monthlyForm.invalid"
+              mat-icon-button>
+        <mat-icon>search</mat-icon>
+      </button>
+      <div *ngIf="monthlyForm.invalid|| hasError" style="padding: 0 20px">
+        <mat-error *ngIf="(f.employeeNumber.touched || f.employeeNumber.dirty) && f.employeeNumber.errors?.required">
+          Employee Number is required
+        </mat-error>
+        <mat-error *ngIf="(f.employeeNumber.touched || f.employeeNumber.dirty) && f.employeeNumber.errors?.pattern">
+          Employee
+          Number should contain alphanumeric characters
+        </mat-error>
+        <mat-error *ngIf="hasError">No record found for {{f.employeeNumber.value}}</mat-error>
+      </div>
+    </div>
+  </div>
+</form>
+
+<!--*ngIf="employeeData !== null" -->
+<div id="monthlyTimesheet" *ngIf="employeeData !== null" class="main-container">
+  <div class="row">
+    <div class="col-10">
+      <div class="flex-container flex-center" style="margin: 20px 0 40px 0">
+        <button
+          (click)="previousMonth()"
+          class="iconsSize ml-1 my-auto"
+          mat-icon-button>
+          <mat-icon>
+            chevron_left
+          </mat-icon>
+        </button>
+        <button
+          (click)="nextMonth()"
+          class="iconsSize ml-1 my-auto"
+          mat-icon-button>
+          <mat-icon>
+            chevron_right
+          </mat-icon>
+        </button>
+        <h5 class="icon-font">{{date.format('MMMM ')}}{{date.format('YYYY ')}}</h5>
+      </div>
+      <div *ngFor="let calendarItem of calendar; let i = index">
+        <div class="flex-container">
+          <div *ngFor="let day of calendarItem" [class.weekend]="day.isWeekend" [ngClass]="day.className"
+               class="calendar-days position-relative">
+            <div *ngIf="i === 0" class="weekday-title">{{day.dayName}}</div>
+            <p>{{day.day}}<br>
+              {{day.employeeData}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-2 m-auto ">
+      <div *ngFor="let leave of leaveList" class="d-flex">
+        <div [ngClass]="leave.className" class="square"></div>
+        <p class="pl-10">{{leave.name}}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="login-background">
+ <!-- <div>
+    <img alt="nish-logo" src="./assets/images/nishtechlogo.png" width="200px" height="200px">
+  </div>-->
+  <div class="container">
+    <h2  style="text-align:right">Login</h2>
+    <form [formGroup]="loginForm">
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>UserName</mat-label>
+          <input matInput placeholder="name" type="text"  formControlName="userName">
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput placeholder="password" type="password" formControlName="password">
+        </mat-form-field>
+      </p>
+      <button mat-raised-button color="primary" (click)="onButtonClick()">Log in</button>
+    </form>
+  </div>
+</div>
+
+

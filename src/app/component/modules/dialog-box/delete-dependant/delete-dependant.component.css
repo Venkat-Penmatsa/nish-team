@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .container > * {
+    width: 100%;
+  }
+  
+
+  .label {
+    color: #4a148c; 
+    font-size: 15px; 
+    font-family: 'Signika', sans-serif; 
+  }

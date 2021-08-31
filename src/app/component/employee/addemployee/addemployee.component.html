@@ -1,0 +1,371 @@
+<div class="main-content">
+    <div>
+        <p *ngIf="successFlag">New Employee created successfully !! Employee id is {{ employeeId }}</p>
+    </div>
+    <form [formGroup]="empCreationForm">
+        <div class="row">
+            <div class="col" formGroupName="empBasicInfo">
+                <mat-form-field style="padding: 20px">
+                    <mat-label>Search Employee with ID *</mat-label>
+                    <input matInput formControlName="empId" (change)="searchEmployee($event)" />
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="main-container">
+            <mat-accordion>
+                <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+                    <mat-expansion-panel-header class="expansion-panel">
+                        <mat-panel-title class="panel-title">
+                            Employee Basic info
+                        </mat-panel-title>
+                        <mat-panel-description class="panel-desc">
+                            Fill Employee name , age , ...
+                            <mat-icon>account_circle</mat-icon>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    &nbsp;&nbsp;
+                    <div formGroupName="empBasicInfo">
+                        <div class="row no-gutters">
+                            <div class="col-3">
+                                <mat-form-field class="form-col">
+                                    <mat-label>First Name *</mat-label>
+                                    <input matInput placeholder="Name" formControlName="firstName">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-auto">
+                                <mat-form-field class="form-col">
+                                    <mat-label>Last Name *</mat-label>
+                                    <input matInput placeholder="Name" formControlName="lastName">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-auto">
+                                <mat-form-field class="form-col">
+                                    <mat-label>Sex </mat-label>
+                                    <select matNativeControl required formControlName="sex">
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-auto">
+                                <mat-form-field class="form-col">
+                                    <mat-label>Date of Birth *</mat-label>
+                                    <input matInput [matDatepicker]="dob" name="dob" formControlName="dob"
+                                        [max]="dobFilter">
+                                    <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+                                    <mat-datepicker #dob></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div class="col">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Social Security Number</mat-label>
+                                    <input matInput placeholder="text" formControlName="ssn">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <mat-form-field class="form-col">
+                                    <mat-label>Email *</mat-label>
+                                    <input matInput placeholder="email" formControlName="email">
+                                </mat-form-field>
+                            </div>
+                            <div class="col">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Mobile *</mat-label>
+                                    <input matInput placeholder="mobile" formControlName="mobile">
+                                </mat-form-field>
+                            </div>
+                            <div class="col">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Landline</mat-label>
+                                    <input matInput placeholder="mobile" formControlName="landline">
+                                </mat-form-field>
+                            </div>
+                            <div class="col">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Passport Number</mat-label>
+                                    <input matInput placeholder="text" formControlName="passportId">
+                                </mat-form-field>
+                            </div>
+                            <div class="col">
+                                <mat-form-field>
+                                    <mat-label>Onbarding Status</mat-label>
+                                    <select matNativeControl required formControlName="onboardingStatus">
+                                        <option value="onGoing">On Going</option>
+                                        <option value="active">Active</option>
+                                        <option value="inActive">InActive</option>
+                                    </select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <mat-form-field>
+                                    <mat-label>Date of Joining</mat-label>
+                                    <input matInput [matDatepicker]="onboardingDate"
+                                        [matDatepickerFilter]="dateOfJoiningFilter" formControlName="onboardingDate">
+                                    <mat-datepicker-toggle matSuffix [for]="onboardingDate"></mat-datepicker-toggle>
+                                    <mat-datepicker #onboardingDate></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div class="col">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Bank Acc Number</mat-label>
+                                    <input matInput placeholder="text" formControlName="ibannumber">
+                                </mat-form-field>
+                            </div>
+                            <div class="col">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Bank Bic Code</mat-label>
+                                    <input matInput placeholder="text" formControlName="bicCode">
+                                </mat-form-field>
+                            </div>
+                            <div class="col">
+                                <mat-form-field>
+                                    <mat-label>Entity </mat-label>
+                                    <select matNativeControl required formControlName="entity">
+                                        <option value="nishtech">NISH Technologies</option>
+                                        <option value="nish">NISH Tech</option>
+                                    </select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Emergency Contact Name</mat-label>
+                                    <input matInput placeholder="name" formControlName="emergencyContactPerson">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Emergency Contact Number</mat-label>
+                                    <input matInput placeholder="mobile" type="text"
+                                        formControlName="emergencyContactNumber">
+                                </mat-form-field>
+                            </div>
+                            <div class="col">
+                                <section class="example-section">
+                                    <mat-checkbox #marriageCheckbox
+                                        (change)="enableDependentSection(marriageCheckbox.checked)"
+                                        class="example-margin">
+                                        Martial Status *</mat-checkbox>
+                                </section>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div formGroupName="empBasicInfo" *ngIf="showMarriageSectionFlag">
+                        <div class="address">
+                            <app-dependant [savedEmployeeDependant]="savedEmpDependants" [empId]="empId"
+                                (employeeDependant)="dependantSubmitted($event)">
+                            </app-dependant>
+                        </div>
+                    </div>
+                    <mat-action-row>
+                        <button mat-button color="primary" (click)="employeeDetailsValidation()">Next</button>
+                    </mat-action-row>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+                    <!-- [disabled]="!empCreationForm.get('empBasicInfo')?.valid" -->
+                    <mat-expansion-panel-header class="expansion-panel">
+                        <mat-panel-title class="panel-title">
+                            Employee Address Details
+                        </mat-panel-title>
+                        <mat-panel-description class="panel-desc">
+                            Fill the Employee Residence Address
+                            <mat-icon>date_range</mat-icon>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    &nbsp;&nbsp;
+                    <div formGroupName="employeeAddress">
+                        <div class="address">
+                            <div class="address-header"> Address Section </div>
+                            <div class="row no-gutters">
+                                <div class="col">
+                                    <mat-form-field class="form-col">
+                                        <mat-label>Door-NO & Appartment Details</mat-label>
+                                        <textarea matInput formControlName="currentAddress1"></textarea>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col">
+                                    <mat-form-field class="form-col">
+                                        <mat-label>Street And Post Box</mat-label>
+                                        <textarea matInput formControlName="currentAddress2"></textarea>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row no-gutters">
+                                <div class="col">
+                                    <mat-form-field class="form-col">
+                                        <mat-label>City</mat-label>
+                                        <input matInput formControlName="currentCity">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>State</mat-label>
+                                        <input matInput formControlName="currentState">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Country</mat-label>
+                                        <input matInput formControlName="currentCountry">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Postal Code</mat-label>
+                                        <input matInput #postalCode maxlength="5" formControlName="currentPincode">
+                                        <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col">
+                                    <!-- <label>isPermanetAddress</label>
+                            <input type="text" formControlName="currentPermanetFlag"> -->
+                                    <section class="example-section">
+                                        <mat-checkbox #currentPermanetFlag formControlName="currentPermanetFlag"
+                                            (change)="disablePermananetAddressSection(currentPermanetFlag.checked)"
+                                            class="example-margin">isCurrentAndPermanentAddressSame</mat-checkbox>
+                                    </section>
+                                </div>
+                                <div>
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput formControlName="addressId">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    &nbsp;&nbsp;
+                    <div formGroupName="employeeAddress" *ngIf="disablePermanentSectionFlag">
+                        <div class="address">
+                            <div class="address-header">Permanent Address Section </div>
+                            <div class="row no-gutters">
+                                <div class="col">
+                                    <mat-form-field class="form-col">
+                                        <mat-label>Door-NO & Appartment Details</mat-label>
+                                        <textarea matInput formControlName="permanentAddress1"></textarea>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col">
+                                    <mat-form-field class="form-col">
+                                        <mat-label>Street And Post Box</mat-label>
+                                        <textarea matInput formControlName="permanentAddress2"></textarea>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row no-gutters">
+                                <div class="col">
+                                    <mat-form-field class="form-col">
+                                        <mat-label>City</mat-label>
+                                        <input matInput formControlName="permanentAddcity">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col">
+                                    <mat-form-field class="form-col">
+                                        <mat-label>State</mat-label>
+                                        <input matInput formControlName="permanentAddstate">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col">
+                                    <mat-form-field class="form-col">
+                                        <mat-label>Country</mat-label>
+                                        <input matInput formControlName="permanentAddcountry">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col">
+                                    <mat-form-field class="form-col">
+                                        <mat-label>Postal Code</mat-label>
+                                        <input matInput #postalCode maxlength="5" formControlName="permanentAddpincode">
+                                        <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <mat-action-row>
+                        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                        <button mat-button color="primary" (click)="addressDetailsValidation()">Next</button>
+                    </mat-action-row>
+                </mat-expansion-panel>
+                <!-- [disabled]="!this.empCreationForm.get('currentAddress')?.valid" -->
+                <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+                    <mat-expansion-panel-header class="expansion-panel">
+                        <mat-panel-title class="panel-title">
+                            Employee Skillset
+                        </mat-panel-title>
+                        <mat-panel-description class="panel-desc">
+                            Skillset of the employee
+                            <mat-icon>date_range</mat-icon>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    &nbsp;&nbsp;
+                    <div formGroupName="skillset">
+                        <mat-form-field class="example-chip-list">
+                            <mat-label>SkillSet</mat-label>
+                            <mat-chip-list #chipList aria-label="Select Technologies">
+                                <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable"
+                                    (removed)="remove(fruit)">
+                                    {{fruit}}
+                                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                </mat-chip>
+                                <input placeholder="Select Technologies..." #fruitInput [formControl]="fruitCtrl"
+                                    formControlName="skillset" [matAutocomplete]="auto" [matChipInputFor]="chipList"
+                                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                    (matChipInputTokenEnd)="add($event)">
+                            </mat-chip-list>
+                            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                                <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+                                    {{fruit}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+                    <mat-action-row>
+                        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                        <button mat-button color="primary" (click)="nextStep()">Next</button>
+                    </mat-action-row>
+                </mat-expansion-panel>
+                <!-- [disabled]="!this.empCreationForm.get('skillset')?.valid" -->
+
+                <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+                    <mat-expansion-panel-header class="expansion-panel">
+                        <mat-panel-title class="panel-title">
+                            Employee Documents
+                        </mat-panel-title>
+                        <mat-panel-description class="panel-desc">
+                            Upload all the Employee signed and compliance documentss
+                            <mat-icon>date_range</mat-icon>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    &nbsp;&nbsp;
+                    <div *ngIf="!uploadDocuments" class="panel-title">
+                        <h1> Documents can be uploaded once employee id is created </h1>
+                    </div>
+                    <div>
+                        <div *ngIf="uploadDocuments">
+                            <app-upload>
+
+                            </app-upload>
+                        </div>
+                    </div>
+                    <mat-action-row>
+                        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                        <button mat-button color="primary" (click)="nextStep()">End</button>
+                    </mat-action-row>
+                </mat-expansion-panel>
+            </mat-accordion>
+            &nbsp;&nbsp;
+            <div style="text-align: center">
+                <button class="btn btn-primary"
+                    [disabled]="!empCreationForm.get('empBasicInfo')?.valid && !empCreationForm.get('employeeAddress')?.valid"
+                    (click)="onSubmit()" type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

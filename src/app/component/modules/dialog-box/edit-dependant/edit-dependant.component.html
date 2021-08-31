@@ -1,0 +1,57 @@
+<div class="container">
+  
+    <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+
+      <div class="form">
+        <mat-form-field color="accent">
+          <select matNativeControl required placeholder="Dependant" name="dependant" [(ngModel)]="data.dependant">
+            <option value="spouse">Spouse</option>
+            <option value="childern">Childern</option>
+          </select>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+    <!--Textarea for demo purposes-->
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #input class="form-control" placeholder="First Name" [(ngModel)]="data.firstName"
+          name="firstName" required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <!--Contains mat-hint for characters count and has maxLengt set-->
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="Last Name" [(ngModel)]="data.lastName"
+          name="lastName" maxlength="10" required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <select matNativeControl required placeholder="Sex" name="sex" [(ngModel)]="data.sex">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <mat-label>Date of Birth *</mat-label>
+        <input matInput [matDatepicker]="dob" name="dob" [(ngModel)]="data.dob">
+        <mat-datepicker-toggle matSuffix [for]="dob" name="dob" ></mat-datepicker-toggle>
+        <mat-datepicker #dob></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+      <div mat-dialog-actions>
+        <button mat-button [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="stopEdit()">Save</button>
+        <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+      </div>
+    </form>
+  </div>
+  

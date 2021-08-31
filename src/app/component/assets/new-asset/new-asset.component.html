@@ -1,0 +1,151 @@
+<div class="assets-container">
+    <div>
+        <p *ngIf="successFlag">New Asset created successfully !! Asset id is {{ assetId }}</p>
+    </div>
+    <form [formGroup]="assetsForm">
+        <div class="section">
+            <div class="row">
+                <h1 class="title"> New Asset - {{ assetType }} </h1>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Select Asset Type </mat-label>
+                        <select matNativeControl required [(ngModel)]="selectedAsset"
+                            (change)="onSelectionChange($event)" formControlName="assetType">
+                            <option *ngFor="let asset of assetsList" [value]="asset.name">{{ asset.name }}</option>
+                        </select>
+                    </mat-form-field>
+                </div>
+                <div class="col-6" style="width: 80%;">
+                    <app-emp-name (empName)="empNameSelected($event)">
+                    </app-emp-name>
+                </div>
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Employee Assign Date *</mat-label>
+                        <input matInput [matDatepicker]="empAssignedDate" formControlName="empAssignedDate">
+                        <mat-datepicker-toggle matSuffix [for]="empAssignedDate"></mat-datepicker-toggle>
+                        <mat-datepicker #empAssignedDate></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <mat-form-field class="form-col" style="width: 80%;">
+                        <mat-label>Comments *</mat-label>
+                        <textarea matInput formControlName="comments"></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="col" *ngIf="selectedAsset === 'SIM'">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Mobile Number *</mat-label>
+                        <input matInput formControlName="mobileNumber">
+                    </mat-form-field>
+                </div>
+                <div class="col" *ngIf="selectedAsset === 'Fuel Card'">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Fuel Card *</mat-label>
+                        <input matInput formControlName="fuelCard">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        &nbsp;&nbsp;
+        <div class="section" formGroupName="assetCar" *ngIf="selectedAsset === 'Car'">
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Model *</mat-label>
+                        <input matInput formControlName="model">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Make *</mat-label>
+                        <input matInput formControlName="make">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Registration Number *</mat-label>
+                        <input matInput formControlName="number">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Color *</mat-label>
+                        <input matInput formControlName="color">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Chasis Number *</mat-label>
+                        <input matInput formControlName="chasisNumber">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Status </mat-label>
+                        <select matNativeControl required formControlName="status">
+                            <option value="active">Active</option>
+                            <option value="inActive">In Active</option>
+                        </select>
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Carbon Emission *</mat-label>
+                        <input matInput formControlName="carbonEmission">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Catalogue Price *</mat-label>
+                        <input matInput formControlName="cataloguePrice">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Category </mat-label>
+                        <select matNativeControl required formControlName="assetCategory">
+                            <option value="leased">Leased</option>
+                            <option value="own">Own</option>
+                        </select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div class="section" formGroupName="assetElectronic"
+            *ngIf="(selectedAsset === 'Laptop' || selectedAsset === 'Desktop' || selectedAsset === 'Mobile' )">
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Model *</mat-label>
+                        <input matInput formControlName="electronicModel">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Serial Number *</mat-label>
+                        <input matInput formControlName="electronicSerialNumber">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Price *</mat-label>
+                        <input matInput formControlName="electronicPrice">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </form>
+    &nbsp;&nbsp;
+    <div style="text-align: center">
+        <button class="btn btn-primary" (click)="onSubmit()" type="submit">Create Asset</button>
+    </div>
+</div>

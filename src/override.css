@@ -1,0 +1,21 @@
+/*
+.mat-drawer{
+  overflow-y: unset !important;
+}
+
+.mat-drawer-inner-container{
+  overflow: unset !important;
+}
+*/
+
+.mat-drawer-inner-container::-webkit-scrollbar {
+  display: none;
+}
+.mat-header-cell{
+  color: #315379 !important;
+  text-transform: uppercase !important;
+}
+
+.mat-header-row{
+  background-color: #a3bfdd !important;
+}

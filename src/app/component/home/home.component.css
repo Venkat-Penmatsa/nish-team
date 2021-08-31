@@ -1,0 +1,15 @@
+.home-title{
+  font-size: 35px; font-weight: 500; padding: 0 0 50px 0
+}
+
+.home-container{
+  display: flex;
+  justify-content: center;
+  align-items: center; margin: 110px
+}
+
+.home-description{
+  font-size: 18px;
+  line-height: 25px;
+  text-align: justify;
+}

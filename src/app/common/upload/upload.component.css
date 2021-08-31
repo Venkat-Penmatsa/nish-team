@@ -1,0 +1,10 @@
+.img-upload .img-container {
+  display: flex;
+  width: 100%;
+  background-color: white;
+}
+.img-upload .img-container img {
+  width: 100%;
+  border: 1px solid #ddd;
+  background-color:white;
+}

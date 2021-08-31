@@ -1,0 +1,13 @@
+{
+  "sickLeave": ["01-08-2021"],
+  "publicHoliday": ["02-08-2021"],
+  "authorisedAbsence": ["05-08-2021"],
+  "maternityLeave": ["03-08-2021"],
+  "parentalLeave": ["04-08-2021"],
+  "holiday": ["11-08-2021"],
+  "rttAdv": ["09-08-2021"],
+  "overtime": ["12-08-2021"],
+  "unauthorisedAbsence": ["13-08-2021"],
+  "forceMajeure": ["14-08-2021"],
+  "other": ["18-08-2021"]
+}

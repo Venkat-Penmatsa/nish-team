@@ -1,0 +1,91 @@
+<div class="section">
+
+    <div>
+        Sticky Columns:
+        <mat-button-toggle-group multiple [value]="['assetId', 'assetType']"
+                                 #stickyColumns="matButtonToggleGroup"
+                                 class="example-sticky-toggle-group">
+          <mat-button-toggle value="assetId"> Asset ID </mat-button-toggle>
+          <mat-button-toggle value="assetType"> Asset Type </mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+
+
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+
+
+             <ng-container matColumnDef="assetId">
+                <th mat-header-cell *matHeaderCellDef> Asset ID </th>
+                <td mat-cell *matCellDef="let element"> {{element.assetId}} </td>
+            </ng-container>
+
+              <ng-container matColumnDef="assetType">
+                <th mat-header-cell *matHeaderCellDef> Asset Type </th>
+                <td mat-cell *matCellDef="let element"> {{element.assetType}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="assetAssignedToEmp">
+                <th mat-header-cell *matHeaderCellDef> Assigned To </th>
+                <td mat-cell *matCellDef="let element"> {{element.assetAssignedToEmp}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="empAssignedDate">
+                <th mat-header-cell *matHeaderCellDef> Start Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.empAssignedDate}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="empEndDate">
+                <th mat-header-cell *matHeaderCellDef> End Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.empEndDate}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> Status </th>
+                <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="mobileNumber">
+                <th mat-header-cell *matHeaderCellDef> Mobile Number </th>
+                <td mat-cell *matCellDef="let element"> {{element.mobileNumber}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="car">
+                <th mat-header-cell *matHeaderCellDef> Car </th>
+                <td mat-cell *matCellDef="let element"> {{element.car}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="electronicDevice">
+                <th mat-header-cell *matHeaderCellDef> Electronic Device </th>
+                <td mat-cell *matCellDef="let element"> {{element.electronicDevice}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef> Status </th>
+                <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+            </ng-container>
+            
+
+            <ng-container matColumnDef="fuelCard">
+                <th mat-header-cell *matHeaderCellDef> Fuel Card </th>
+                <td mat-cell *matCellDef="let element"> {{element.fuelCard}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="comments">
+                <th mat-header-cell *matHeaderCellDef> Price </th>
+                <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+            aria-label="Select page of periodic elements">
+        </mat-paginator>
+    </div>
+</div>

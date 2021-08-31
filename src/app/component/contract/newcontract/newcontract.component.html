@@ -1,0 +1,108 @@
+<div>
+    <p *ngIf="successFlag">New contract created successfully !! Contract id is {{ nishContractId }}</p>
+</div>
+
+<div class="container-fluid">
+    <h2>Contract Creation Form</h2>
+    <form [formGroup]="newContractForm" (ngSubmit)="onSubmit()">
+        <div>
+            <table class="example-full-width" cellspacing="0">
+                <tr>
+                    <td>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Employee Id</mat-label>
+                            <input matInput formControlName="employeeId">
+                        </mat-form-field>
+                    </td>
+
+                    <td>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Contract Id</mat-label>
+                            <input matInput formControlName="contractId">
+                        </mat-form-field>
+                    </td>
+
+                    <td>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Contract Status</mat-label>
+                            <select matNativeControl required formControlName="contractStatus">
+                                <option value="confirmed">Confimed</option>
+                                <option value="inprogress">InProgress</option>
+                                <option value="closed">Closed</option>
+                            </select>
+                        </mat-form-field>
+
+                    </td>
+                    <td>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Client Name</mat-label>
+                            <input matInput formControlName="clientName">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Contract Company Name</mat-label>
+                            <input matInput formControlName="contractCompanyName">
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>SubContract Company Name1</mat-label>
+                            <input matInput formControlName="subContractCompany1">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>SubContract Company Name2</mat-label>
+                            <input matInput formControlName="subContractCompany2">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>SubContract Company Name3</mat-label>
+                            <input matInput formControlName="subContractCompany3">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Billing Rate</mat-label>
+                            <input matInput placeholder="Rate in Euros" formControlName="billingRate">
+                        </mat-form-field>
+                    </td>
+
+                    <td>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Contract Start Date</mat-label>
+                            <input matInput [matDatepicker]="contractStartDate" formControlName="contractStartDate">
+                            <mat-datepicker-toggle matSuffix [for]="contractStartDate"></mat-datepicker-toggle>
+                            <mat-datepicker #contractStartDate></mat-datepicker>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Contract End Date</mat-label>
+                            <input matInput [matDatepicker]="contractEndDate" formControlName="contractEndDate">
+                            <mat-datepicker-toggle matSuffix [for]="contractEndDate"></mat-datepicker-toggle>
+                            <mat-datepicker #contractEndDate></mat-datepicker>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>comments</mat-label>
+                            <input matInput formControlName="comments">
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="btn btn-primary"  type="submit">Create Contract</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,43 @@
+
+<mat-sidenav-container fullscreen>
+    <mat-sidenav #sidenav mode="side" [opened]="opened" class="side-menu">
+      <button id="close" mat-icon-button *ngIf="sidenav.opened" (click)="sidenav.toggle()" class="menu-button side-menu-close">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-nav-list (click)="goToHome()">
+        <img class="nish-logo side-menu-logo" alt="nish-logo" src="./assets/images/nishtechlogo.png">
+      </mat-nav-list>
+      <mat-nav-list>
+        <app-menu *ngFor="let item of menu" [item]="item"></app-menu>
+      </mat-nav-list>
+    </mat-sidenav>
+  <mat-toolbar class="toolbar sticky">
+    <button mat-icon-button *ngIf="!sidenav.opened" (click)="sidenav.toggle()" class="menu-button">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div class="col-3" *ngIf="!sidenav.opened" >
+      <img class="nish-logo side-menu-logo" alt="nish-logo" src="./assets/images/nishtechlogo.png">
+    </div>
+    <div  [ngClass]="sidenav.opened?'col-9':'col-6'">
+      <h2 [ngClass]="sidenav.opened? 'text-center':'header-padding' " style = "font-family:Lucida Sans Typewriter, Lucida Console, Monaco,Bitstream Vera Sans Mono, monospace; color: white; font-size: 50px; align-items: center;align-content: center;padding-top: 10px"> NISH ADMIN</h2>
+    </div>
+    <div class="col-3" style="float: right">
+      <button style="font-size: 14px;
+    color: white; margin: 0" mat-button [matMenuTriggerFor]="menuI" >Hello,{{shared.loggedUsername}}</button>
+      <!-- #enddocregion mat-menu-trigger-for -->
+      <mat-menu #menuI="matMenu">
+        <p mat-menu-item>Role: {{shared.userRole}}</p>
+        <a mat-menu-item (click)="logout()" style="text-decoration: none">Logout</a>
+      </mat-menu>
+
+      <!--<p style="font-size: 14px;
+    color: white; margin: 0">Hello, {{shared.loggedUsername}}</p>
+      <p style="font-size: 14px;
+    color: white; margin: 0">Role: {{shared.userRole}}</p>-->
+    </div>
+    <!--<app-header></app-header>-->
+  </mat-toolbar>
+  <div class="">
+    <router-outlet></router-outlet>
+  </div>
+  </mat-sidenav-container>

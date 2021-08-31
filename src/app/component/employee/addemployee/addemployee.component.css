@@ -1,0 +1,69 @@
+
+.div1{
+	border: 10px;
+    border-color:#FFFFFF;
+    border-style: solid;
+    border-width:thin;
+}
+
+p {
+    font-size: 1.5rem;
+    color: green;
+    font-family: Helvetica, Arial, sans-serif;
+  }
+  .form-col{
+      width:90%
+  }
+  .mat-label {
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+  .address {
+    border-radius: 25px;
+    border: 1px solid #4a148c;
+    padding: 20px;
+  }
+  .permanent-address {
+
+    outline: 2px solid black;
+    padding: 10px;
+    text-align: center;
+  }
+  .main-content {
+      background-color: white;
+  }
+  .main-container {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .expansion-panel {
+    background-color: #e3f2fd ;
+    border-bottom: 1px solid #4a148c;
+  }
+
+  .panel-title {
+    color: #4a148c; 
+    font-size: 17px; 
+    font-family: 'Signika', sans-serif;
+    padding-bottom: 10px;
+  }
+
+  .panel-desc{
+    color: #4a148c; 
+    font-size: 15px; 
+    font-family: 'Signika', sans-serif; 
+    padding-bottom: 10px;
+    text-align: right;
+  }
+
+  .address-header {
+    color: #4a148c; 
+    font-size: 15px; 
+    font-family: 'Signika', sans-serif; 
+    padding-bottom: 10px;
+    text-align: center;
+  }
+
+  .onboardingDate {
+    color: #4a148c; 
+  }

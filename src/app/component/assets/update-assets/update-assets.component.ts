@@ -1,0 +1,194 @@
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { AssetsType } from 'src/app/constants/assetsType';
+import { map, startWith } from 'rxjs/operators';
+import { AssetsService } from 'src/app/services/assets.service';
+
+@Component({
+  selector: 'app-update-assets',
+  templateUrl: './update-assets.component.html',
+  styleUrls: ['./update-assets.component.css']
+})
+export class UpdateAssetsComponent implements OnInit {
+
+
+  assetsList = AssetsType;
+  selectUpdateCategory: string;
+  selectedAsset: string;
+  selectedAssetDescription: string;
+  employeeName: any[] = [];
+  assetType;
+  disableBtn = false;
+  assetId: any;
+  successFlag = false;
+  empName: any;
+  filterEmpName: string;
+  constructor(private fb: FormBuilder, private assetsService: AssetsService) {
+
+  }
+
+  ngOnInit(): void {
+
+  }
+
+  updateCarAsset() {
+
+    const formData: any = this.updateAssetForm.value;
+
+    const carAsset = {
+      assetId: formData.assetId,
+      comments: formData.assetCar.assetComments,
+      model: formData.assetCar.model,
+      make: formData.assetCar.make,
+      number: formData.assetCar.number,
+      color: formData.assetCar.color,
+      chasisNumber: formData.assetCar.chasisNumber,
+      carbonEmission: formData.assetCar.carbonEmission,
+      carStatus: formData.assetCar.carStatus,
+      cataloguePrice: formData.assetCar.cataloguePrice,
+      assetCategory: formData.assetCar.assetCategory,
+    }
+    this.assetsService.updateCarAsset(carAsset).subscribe(res => {
+      console.log(res);
+      this.successFlag = true;
+    })
+  }
+
+  updateElectronicAsset() {
+
+    const formData: any = this.updateAssetForm.value;
+
+    const electronucAsset = {
+      assetId: formData.assetId,
+      electronicModel: formData.assetElectronic.electronicModel,
+      electronicSerialNumber: formData.assetElectronic.electronicSerialNumber,
+      electronicPrice: formData.assetElectronic.electronicPrice,
+      comments: formData.assetElectronic.assetComments
+    }
+    this.assetsService.updateElectronicAsset(electronucAsset).subscribe(res => {
+      console.log(res);
+      this.successFlag = true;
+    })
+  }
+
+  assignAsset() {
+
+    const formData: any = this.updateAssetForm.value;
+
+    const assignAsset = {
+      assetId: formData.assetId,
+      empAssignedDate: formData.empAssignedDate,
+      currentEmpEndDate: formData.currentEmpEndDate,
+      newEmpAssignedDate: formData.newEmpAssignedDate,
+      comments: formData.comments,
+      assetAssignedToEmp: this.empName,
+      status: formData.status,
+      empAssetId: formData.empAssetId
+    }
+    this.assetsService.assignAsset(assignAsset).subscribe(res => {
+      console.log(res);
+      this.successFlag = true;
+    })
+  }
+
+  searchAsset($event: Event) {
+    const searchAssetId = ($event.target as HTMLTextAreaElement).value;
+    if (searchAssetId != "") {
+      // this.updateAssetForm.reset();
+      this.assetsService.fetchAsset(searchAssetId).subscribe(res => {
+        console.log("data ==========> " + res);
+        this.assetType = res.assetType;
+        this.filterEmpName = res.assetAssignedToEmp
+        this.updateAssetForm.patchValue({
+          assetId: res.assetId,
+          empAssignedDate: new Date(res.empAssignedDate),
+          comments: res.empCommnets,
+          mobileNumber: res.mobileNumber,
+          fuelCard: res.fuelCard,
+          empAssetId: res.empAssetId,
+          assetCar: {
+            model: res.model,
+            make: res.make,
+            number: res.number,
+            color: res.color,
+            chasisNumber: res.chasisNumber,
+            carbonEmission: res.carbonEmission,
+            carStatus: res.carStatus,
+            cataloguePrice: res.cataloguePrice,
+            assetCategory: res.assetCategory
+          },
+          assetElectronic: {
+            electronicModel: res.electronicModel,
+            electronicSerialNumber: res.electronicSerialNumber,
+            electronicPrice: res.electronicPrice
+            
+          }
+        });
+
+        console.log("this.updateAssetForm ==========> " + this.updateAssetForm);
+      })
+    }
+  }
+
+  onSelectionChange(event: any) {
+    let asset = event.target.value;
+    this.assetType = asset;
+  }
+
+  empNameSelected(emp: any) {
+    this.empName = emp;
+  }
+
+  onSubmit() {
+
+    console.log(this.updateAssetForm.value);
+    this.updateAssetForm.patchValue({
+      assetAssignedToEmp: this.empName
+    })
+    const assetJson = JSON.stringify(this.updateAssetForm.value);
+    console.log('assetJson ' + assetJson);
+    const headers = { 'Content-type': 'application/json' };
+
+    this.assetsService.createAsset(assetJson)
+      .subscribe(data => {
+        console.log("data ==========> " + data);
+        let serviceResponse = data;
+        this.assetId = data.assetId;
+        this.successFlag = true;
+      })
+  }
+
+  updateAssetForm = this.fb.group({
+    assetId: ['', Validators.required],
+    updateCategory: ['', Validators.required],
+    empAssignedDate: ['', Validators.required],
+    currentEmpEndDate: ['', Validators.required],
+    newEmpAssignedDate: ['', Validators.required],
+    empAssetId: ['', Validators.required],
+    status: ['', Validators.required],
+    comments: [''],
+    mobileNumber: ['', Validators.required],
+    fuelCard: ['', Validators.required],
+    assetCar: this.fb.group({
+      model: ['', Validators.required],
+      make: ['', Validators.required],
+      number: ['', Validators.required],
+      color: ['', Validators.required],
+      chasisNumber: ['', Validators.required],
+      carbonEmission: [],
+      carStatus: ['', Validators.required],
+      cataloguePrice: ['', Validators.required],
+      assetCategory: ['', Validators.required],
+      assetComments:[]
+    }
+    ),
+    assetElectronic: this.fb.group({
+      electronicModel: ['', Validators.required],
+      electronicSerialNumber: ['', Validators.required],
+      electronicPrice: ['', Validators.required],
+      assetComments:[]
+    }
+    )
+  });
+
+}

@@ -1,0 +1,43 @@
+<div>
+  <p>Listing All Employees...</p>
+</div>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="employeeId">
+      <th mat-header-cell *matHeaderCellDef>Employee Id</th>
+      <td mat-cell *matCellDef="let element"> {{element.employeeId}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="contractId">
+      <th mat-header-cell *matHeaderCellDef> Contract Id</th>
+      <td mat-cell *matCellDef="let element"> {{element.contractId}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="employeeName">
+      <th mat-header-cell *matHeaderCellDef> Employee Name</th>
+      <td mat-cell *matCellDef="let element"> {{element.employeeName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="clientName">
+      <th mat-header-cell *matHeaderCellDef> Client Name</th>
+      <td mat-cell *matCellDef="let element"> {{element.clientName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="contractStartDate">
+      <th mat-header-cell *matHeaderCellDef> Contract StartDate </th>
+      <td mat-cell *matCellDef="let element"> {{element.contractStartDate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="employeeStatus">
+      <th mat-header-cell *matHeaderCellDef> Employee Status </th>
+      <td mat-cell *matCellDef="let element"> {{element.employeeStatus}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

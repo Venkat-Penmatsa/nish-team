@@ -1,0 +1,17 @@
+.assets-container {
+
+    padding: 20px;
+}
+main {
+    min-height: 800px;
+    padding-top: 200px;
+    display: flex;
+    justify-content: center;
+    background: hsl(0, 0%, 20%);
+  }
+  #divider {
+    height: 2px;
+    width: 80%;
+    background: blue;
+    background: linear-gradient(90deg, hsl(0, 0%, 20%), hsl(0, 0%, 70%), hsl(0, 0%, 20%));
+  }

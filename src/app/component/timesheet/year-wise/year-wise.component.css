@@ -1,0 +1,32 @@
+#divList {
+  flex-wrap: wrap;
+  display: flex;
+  margin: 30px 100px;
+}
+#divContent {
+  flex: 1 0 20%;
+}
+
+button:focus{
+  outline: unset !important;
+}
+
+
+.main-content {
+  background-color: white;
+}
+.main-container {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+#yearly-timesheet .mat-icon-button{
+  width: 20px !important;
+}
+
+.icon-font{
+  font-size: 15px !important;
+  margin-bottom: 0 !important;
+  padding: 10px !important;
+  font-weight: 500 !important;
+}
