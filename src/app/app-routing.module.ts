@@ -21,6 +21,9 @@ import {MonthWiseComponent} from "./component/timesheet/month-wise/month-wise.co
 import {YearWiseComponent} from "./component/timesheet/year-wise/year-wise.component";
 import {HomeComponent} from "./component/home/home.component";
 import {AuthGuard} from "./services/authguard";
+import { ListusersComponent } from './component/userManagement/listusers/listusers.component';
+import { UserComponent } from './component/userManagement/user/user.component';
+import { ManageUserComponent } from './component/userManagement/manage-user/manage-user.component';
 
 
 
@@ -52,7 +55,9 @@ const routes: Routes = [
       { path: 'assets/allAssets', component: AllAssetsComponent },
       { path: 'assets/updateAssets', component: UpdateAssetsComponent },
       { path: 'assets/assetHistory', component: AssetHistoryComponent },
-      
+      { path: 'user/manageUser', component: ManageUserComponent },
+      { path: 'user/usersList', component: ListusersComponent },
+      { path: 'user/newUser', component: UserComponent },
     ]
   }
 ];

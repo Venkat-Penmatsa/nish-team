@@ -11,9 +11,9 @@ export class TimesheetService {
   constructor(private http: HttpClient) {
   }
 
-  fetchMonthlyTimesheet(employeeNo: string, month: string) {
+  fetchMonthlyTimesheet(employeeNo: string, month: any) {
     const url = '../assets/json/monthly_' + employeeNo + '.json';
-    return this.http.get(url).pipe(catchError(this.errorHandler));
+    return this.http.get("http://localhost:8091/timesheet/monthly/"+employeeNo+"/"+month).pipe(catchError(this.errorHandler));
   }
 
   fetchYearlyTimesheet(employeeNo: string, year: string) {

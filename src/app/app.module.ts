@@ -40,6 +40,12 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MonthWiseComponent} from "./component/timesheet/month-wise/month-wise.component";
 import {YearWiseComponent} from "./component/timesheet/year-wise/year-wise.component";
 import { HomeComponent } from './component/home/home.component';
+import { UserComponent } from './component/userManagement/user/user.component';
+import { ListusersComponent } from './component/userManagement/listusers/listusers.component';
+import { EmpReportsComponent } from './component/employee/emp-reports/emp-reports.component';
+import { AssetReportsComponent } from './component/assets/asset-reports/asset-reports.component';
+import { LeaveReportsComponent } from './component/Leaves/leave-reports/leave-reports.component';
+import { ManageUserComponent } from './component/userManagement/manage-user/manage-user.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +77,13 @@ import { HomeComponent } from './component/home/home.component';
     MonthWiseComponent,
     YearWiseComponent,
     HomeComponent,
-    AssetHistoryComponent
+    AssetHistoryComponent,
+    UserComponent,
+    ListusersComponent,
+    EmpReportsComponent,
+    AssetReportsComponent,
+    LeaveReportsComponent,
+    ManageUserComponent
   ],
   imports: [
     BrowserModule,

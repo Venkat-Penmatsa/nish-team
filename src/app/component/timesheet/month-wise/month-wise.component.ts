@@ -1,9 +1,9 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import * as moment from 'moment';
-import {HttpClient} from '@angular/common/http';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {leaveClassNameType} from '../../../constants/leaveClassNameType';
-import {TimesheetService} from "../../../services/timesheet.service";
+import { HttpClient } from '@angular/common/http';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { leaveClassNameType } from '../../../constants/leaveClassNameType';
+import { TimesheetService } from "../../../services/timesheet.service";
 
 interface CalendarItem {
   day: string;
@@ -110,10 +110,12 @@ export class MonthWiseComponent implements OnInit {
   }
 
   getMonthlyTimesheet(employeeNumber: any, moment: moment.Moment) {
+    console.log('moment ' + moment);
     this.employeeData = null;
     this.hasError = false;
     const url = '../assets/json/monthly_' + employeeNumber + '.json';
-    this.service.fetchMonthlyTimesheet(employeeNumber, moment.format('MMMM ')).subscribe(
+    //this.service.fetchMonthlyTimesheet(employeeNumber, moment.format('MMMM ')).subscribe(
+    this.service.fetchMonthlyTimesheet(employeeNumber, moment.format("DD-MM-yyyy")).subscribe(
       data => {
         this.date = moment;
         this.employeeData = data;
@@ -132,13 +134,18 @@ export class MonthWiseComponent implements OnInit {
     const date = data.format('DD-MM-YYYY');
     const keys = Object.keys(montlyJson);
     keys.forEach(a => {
-      if (montlyJson[a].includes(date)) {
-        leave = {
-          className: a,
-          data: this.leaveList
-            .filter(obj => obj.key === a)
-            .map(obj => obj.code)[0]
-        };
+      console.log("aaaaaaaaa  " + a);
+      if (a != "numberOfWorkingDays" && a != "numberOfLeaves"
+        && a != "numberOfDaysWorked" && a != "numberOfCompDays") {
+          console.log("montlyJson[a]  " + montlyJson[a]);
+        if (montlyJson[a].includes(date)) {
+          leave = {
+            className: a,
+            data: this.leaveList
+              .filter(obj => obj.key === a)
+              .map(obj => obj.code)[0]
+          };
+        }
       }
     });
     return leave;
