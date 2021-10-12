@@ -46,6 +46,7 @@ import { EmpReportsComponent } from './component/employee/emp-reports/emp-report
 import { AssetReportsComponent } from './component/assets/asset-reports/asset-reports.component';
 import { LeaveReportsComponent } from './component/Leaves/leave-reports/leave-reports.component';
 import { ManageUserComponent } from './component/userManagement/manage-user/manage-user.component';
+import { UpdateleavesComponent } from './component/Leaves/updateleaves/updateleaves.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { ManageUserComponent } from './component/userManagement/manage-user/mana
     EmpReportsComponent,
     AssetReportsComponent,
     LeaveReportsComponent,
-    ManageUserComponent
+    ManageUserComponent,
+    UpdateleavesComponent
   ],
   imports: [
     BrowserModule,

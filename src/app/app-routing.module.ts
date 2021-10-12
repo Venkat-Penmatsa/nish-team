@@ -24,6 +24,7 @@ import {AuthGuard} from "./services/authguard";
 import { ListusersComponent } from './component/userManagement/listusers/listusers.component';
 import { UserComponent } from './component/userManagement/user/user.component';
 import { ManageUserComponent } from './component/userManagement/manage-user/manage-user.component';
+import { UpdateleavesComponent } from './component/Leaves/updateleaves/updateleaves.component';
 
 
 
@@ -47,6 +48,7 @@ const routes: Routes = [
       { path: 'contracts/allContracts', component: AllcontractsComponent },
       { path: 'hr/applyLeaves', component: ApplyleaveComponent },
       { path: 'hr/leavesBalence', component: LeavebalenceComponent },
+      { path: 'hr/updateLeaves', component: UpdateleavesComponent },
       { path: 'hr/monthlyTimesheet', component: MonthWiseComponent },
       { path: 'hr/yearlyTimesheet', component: YearWiseComponent },
       { path: 'upload', component: UploadComponent },
@@ -58,6 +60,8 @@ const routes: Routes = [
       { path: 'user/manageUser', component: ManageUserComponent },
       { path: 'user/usersList', component: ListusersComponent },
       { path: 'user/newUser', component: UserComponent },
+      
+      
     ]
   }
 ];

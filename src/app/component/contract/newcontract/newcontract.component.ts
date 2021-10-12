@@ -14,6 +14,7 @@ export class NewcontractComponent implements OnInit {
 
   public nishContractId: number;
   public successFlag: Boolean = false;
+  empName:any;
 
   constructor(private fb: FormBuilder, private newcontractService: NewcontractService, private http: HttpClient) {
 
@@ -27,8 +28,15 @@ export class NewcontractComponent implements OnInit {
 
   }
 
+  empNameSelected(emp:any){
+    this.empName = emp;
+  }
+
   onSubmit() {
     console.log(this.newContractForm.value);
+    this.newContractForm.patchValue({
+      employeeId:this.empName
+    })
     const body = JSON.stringify(this.newContractForm.value);
     console.log("String..." + body)
 

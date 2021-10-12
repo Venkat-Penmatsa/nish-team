@@ -139,7 +139,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
   
   .sickLeave{
-    background-color: #FFF0F5 !important;
+    background-color: #960404 !important;
     opacity: 0.5;
   }
   .publicHoliday{
@@ -151,7 +151,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     opacity: 0.5;
   }
   .maternityLeave{
-    background-color: #E0FFFF !important;
+    background-color: #1e65a8 !important;
     opacity: 0.5;
   }
   .parentalLeave{
@@ -220,3 +220,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin: auto;
   }
   
+
+  .page-layout-container {
+    border-radius: 20px;
+    border: 1px solid #4a148c;
+    padding: 20px;
+    margin:20px;
+    align-content: center;
+    flex-wrap: wrap;
+  }
