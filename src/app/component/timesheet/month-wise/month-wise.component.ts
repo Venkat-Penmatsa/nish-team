@@ -30,6 +30,9 @@ export class MonthWiseComponent implements OnInit {
   monthlyForm: FormGroup;
   validPattern = '^[a-zA-Z0-9]+$';
   leaveList = leaveClassNameType;
+  numberOfWorkingDays;
+  numberOfLeaves;
+  numberOfDaysWorked;
 
   constructor(public fb: FormBuilder, private service: TimesheetService) {
     this.monthlyForm = this.fb.group({
@@ -119,6 +122,9 @@ export class MonthWiseComponent implements OnInit {
       data => {
         this.date = moment;
         this.employeeData = data;
+        this.numberOfWorkingDays = this.employeeData.numberOfWorkingDays;
+        this.numberOfLeaves=this.employeeData.numberOfLeaves;
+        this.numberOfDaysWorked=this.employeeData.numberOfDaysWorked;
         this.calendar = this.createCalendar(this.date);
       }, error => {
         this.hasError = true;
@@ -134,9 +140,8 @@ export class MonthWiseComponent implements OnInit {
     const date = data.format('DD-MM-YYYY');
     const keys = Object.keys(montlyJson);
     keys.forEach(a => {
-      console.log("aaaaaaaaa  " + a);
       if (a != "numberOfWorkingDays" && a != "numberOfLeaves"
-        && a != "numberOfDaysWorked" && a != "numberOfCompDays") {
+        && a != "numberOfDaysWorked" && a != "numberOfCompDays" && !(montlyJson[a] >= 0)) {
           console.log("montlyJson[a]  " + montlyJson[a]);
         if (montlyJson[a].includes(date)) {
           leave = {

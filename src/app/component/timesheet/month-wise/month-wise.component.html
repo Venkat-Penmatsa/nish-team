@@ -26,6 +26,18 @@
 <!--*ngIf="employeeData !== null" -->
 <div id="monthlyTimesheet" *ngIf="employeeData !== null" class="main-container">
   <div class="row">
+    <div class="col">
+      Working Days = {{numberOfWorkingDays}}
+    </div>
+    <div class="col">
+      Leaves = {{numberOfLeaves}}
+    </div>
+    <div class="col">
+      Days worked = {{numberOfDaysWorked}}
+    </div>
+  </div>
+
+  <div class="row">
     <div class="col-10">
       <div class="flex-container flex-center" style="margin: 20px 0 40px 0">
         <button
@@ -61,6 +73,7 @@
       <div *ngFor="let leave of leaveList" class="d-flex">
         <div [ngClass]="leave.className" class="square"></div>
         <p class="pl-10">{{leave.name}}</p>
+        <p class="pl-10">{{0}}</p>
       </div>
     </div>
   </div>

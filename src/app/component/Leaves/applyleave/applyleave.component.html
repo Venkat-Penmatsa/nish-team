@@ -1,88 +1,110 @@
-<div>
-    <p>Employee Leave Balence Report </p>
-</div>
+<div id="applyLeaves" class="page-layout-container">
+    <div class="row">
+        <div class="col-6" style="width: 80%;">
+            <app-emp-name [filterEmpName]="filterEmpName" (empName)="empNameSelected($event)">
+            </app-emp-name>
+        </div>
 
-<div class="mat-elevation-z8">
-
-
-    <mat-form-field class="example-full-width">
-        <mat-label>Employee Id</mat-label>
-        <input matInput (change)="onChangeEvent($event)" type="">
-    </mat-form-field>
-
-
-    <table mat-table [dataSource]="dataSource">
-
-        <ng-container matColumnDef="employeeId">
-            <th mat-header-cell *matHeaderCellDef>Employee Id</th>
-            <td mat-cell *matCellDef="let element"> {{element.employeeId}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="sickLeaves">
-            <th mat-header-cell *matHeaderCellDef> Sick Leaves</th>
-            <td mat-cell *matCellDef="let element"> {{element.sickLeaves}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="recuparationLeaves">
-            <th mat-header-cell *matHeaderCellDef> Recuparation Leaves </th>
-            <td mat-cell *matCellDef="let element"> {{element.recuparationLeaves}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="forwardedLeaves">
-            <th mat-header-cell *matHeaderCellDef> Forwarded Leaves </th>
-            <td mat-cell *matCellDef="let element"> {{element.forwardedLeaves}} </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-    </table>
-
-    <div>
-        <form [formGroup]="leaveForm" (ngSubmit)="onSubmit()">
-            <table class="example-full-width" cellspacing="0">
-                <tr>
-                    <td>
-                        <mat-form-field appearance="fill">
-                            <mat-label>Leave Type</mat-label>
-                            <select matNativeControl required formControlName="leaveType">
-                                <option value="confirmed">Recuparation Leaves</option>
-                                <option value="inprogress">Sick Leaves</option>
-                                <option value="closed">Forwarded Leaves</option>
-                            </select>
-                        </mat-form-field>
-
-                    </td>
-                    <td>
-                        <mat-form-field appearance="fill">
-                            <mat-label>Leave From Date</mat-label>
-                            <input matInput [matDatepicker]="leaveStartDate" formControlName="leaveStartDate">
-                            <mat-datepicker-toggle matSuffix [for]="leaveStartDate"></mat-datepicker-toggle>
-                            <mat-datepicker #leaveStartDate></mat-datepicker>
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field appearance="fill">
-                            <mat-label>Leave End Date</mat-label>
-                            <input matInput [matDatepicker]="leaveEndDate" formControlName="leaveEndDate">
-                            <mat-datepicker-toggle matSuffix [for]="leaveEndDate"></mat-datepicker-toggle>
-                            <mat-datepicker #leaveEndDate></mat-datepicker>
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Comments</mat-label>
-                            <input matInput placeholder="comments" formControlName="comments">
-                        </mat-form-field>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button class="btn btn-primary" type="submit">Apply Leave</button>
-                    </td>
-                </tr>
-            </table>
-        </form>
     </div>
+    <div *ngIf="showleaves">
+        <div>
+            <p *ngIf="message">{{ messageDesc }}</p>
+        </div>
+        <div class="row">
+            <div class="col-5" class="page-layout-container">
+                <div *ngFor="let leave of leaveList" class="d-flex">
+                    <div [ngClass]="leave.className" class="square"></div>
+                    <p class="pl-10">{{leave.name}}</p>
+                    <p class="pl-10">{{leave.value}}</p>
+                </div>
+            </div>
+            <div class="col-6">
+                <form [formGroup]="leaveForm">
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field>
+                                <mat-label>leaveType </mat-label>
+                                <select matNativeControl required formControlName="leaveType">
+                                    <option value="SL">Sick leave</option>
+                                    <option value="RTT">Rtt/ADV days</option>
+                                    <option value="OT">Overtime</option>
+                                    <option value="UA">Unauthorised absence</option>
+                                    <option value="FM">Force majeure</option>
+                                    <option value="O">Other</option>
+                                    <option value="PL">Parental leave</option>
+                                    <option value="AA">Authorised absence</option>
+                                    <option value="ML">Maternity leave</option>
+                                </select>
+                            </mat-form-field>
+                            <div style="padding: 0 20px">
+                                <mat-error *ngIf="hasError && f.leaveType.errors?.required">
+                                    Leave Type is Mandatory
+                                </mat-error>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <mat-form-field>
+                                <mat-label>Leave Start Date</mat-label>
+                                <input matInput [matDatepicker]="leaveStartDate" required
+                                    (dateChange)="dateValidation($event)" [matDatepickerFilter]="dateFilter"
+                                    formControlName="leaveStartDate">
+                                <mat-datepicker-toggle matSuffix [for]="leaveStartDate"></mat-datepicker-toggle>
+                                <mat-datepicker #leaveStartDate (selectedChanged)="dateValidation($event)">
+                                </mat-datepicker>
+                            </mat-form-field>
+                            <div style="padding: 0 20px">
+                                <mat-error *ngIf="hasError && f.leaveStartDate.errors?.required">
+                                    Leave Start Date is Mandatory
+                                </mat-error>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field>
+                                <mat-label>Leave End Date</mat-label>
+                                <input matInput [matDatepicker]="leaveEndDate" required
+                                    (dateChange)="dateValidation($event)" [matDatepickerFilter]="dateFilter"
+                                    formControlName="leaveEndDate">
+                                <mat-datepicker-toggle matSuffix [for]="leaveEndDate"></mat-datepicker-toggle>
+                                <mat-datepicker #leaveEndDate></mat-datepicker>
+                            </mat-form-field>
+                            <div style="padding: 0 20px">
+                                <mat-error *ngIf="hasError && f.leaveEndDate.errors?.required">
+                                    Leave End Date is Mandatory
+                                </mat-error>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <section>
+                                <mat-checkbox #halfDay placeholder="halfDay" (change)="disableEndDate(halfDay.checked)">
+                                    HalfDay *</mat-checkbox>
+                            </section>
+                        </div>
+                    </div>
 
+                    <div class="row">
+
+                        <div class="col">
+                            <mat-form-field>
+                                <mat-label>Total Leaves </mat-label>
+                                <input matInput type="number" min="0" max="100" [readonly]="true"
+                                    formControlName="numberOfDays">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-6">
+                            <mat-form-field class="form-col" style="width: 80%;">
+                                <mat-label>Comments</mat-label>
+                                <textarea matInput formControlName="comments"></textarea>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </form>
+                <div style="text-align: center">
+                    <button class="btn btn-primary" (click)="submitLeave()" type="submit">Submit Leave Request</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>

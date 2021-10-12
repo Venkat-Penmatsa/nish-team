@@ -46,7 +46,7 @@ export let menu: NavItem[] = [
     ]
   },
   {
-    displayName: 'Contracts',
+    displayName: 'Finance',
     iconName: 'business',
     route: 'contracts',
     role:['All','Admin','HR','Finance'],
@@ -59,7 +59,7 @@ export let menu: NavItem[] = [
       },
       {
         displayName: 'All Contracts',
-        iconName: 'business_center',
+        iconName: 'list',
         route: 'contracts/allContracts',
         role:['All','Admin','HR','Finance'],
       },
@@ -90,9 +90,9 @@ export let menu: NavItem[] = [
         role:['All','Admin','HR','Finance'],
       },
       {
-        displayName: 'Fill Timesheet',
+        displayName: 'Update Leaves',
         iconName: 'timer',
-        route: 'hr/timesheet',
+        route: 'hr/updateLeaves',
         role:['All','Admin','HR','Finance'],
       },
       {
@@ -117,31 +117,31 @@ export let menu: NavItem[] = [
   },
   {
     displayName: 'Assets',
-    iconName: 'manage_accounts',
+    iconName: 'web_asset',
     route: 'assets',
     role:['All','Admin','HR','Finance'],
     children: [
       {
         displayName: 'New Asset',
-        iconName: 'person_off',
+        iconName: 'add',
         route: 'assets/newAsset',
         role:['All','Admin','HR','Finance'],
       },
       {
         displayName: 'All Assets',
-        iconName: 'person_off',
+        iconName: 'list',
         route: 'assets/allAssets',
         role:['All','Admin','HR','Finance'],
       },
       {
         displayName: 'Update Asset',
-        iconName: 'timer',
+        iconName: 'security_update_good',
         route: 'assets/updateAssets',
         role:['All','Admin','HR','Finance'],
       },
       {
         displayName: 'Asset History',
-        iconName: 'list_alt',
+        iconName: 'history',
         route: 'assets/assetHistory',
         role:['All','Admin','HR','Finance'],
       }
@@ -149,25 +149,25 @@ export let menu: NavItem[] = [
   },
   {
     displayName: 'User Management',
-    iconName: 'manage_accounts',
+    iconName: 'settings',
     route: 'user',
     role:['All','Admin'],
     children: [
       {
         displayName: 'Create New User',
-        iconName: 'person_off',
+        iconName: 'person_add',
         route: 'user/newUser',
         role:['All','Admin'],
       },
       {
         displayName: 'Users List',
-        iconName: 'person_off',
+        iconName: 'people',
         route: 'user/usersList',
         role:['All','Admin'],
       },
       {
         displayName: 'Manage User',
-        iconName: 'person_off',
+        iconName: 'people',
         route: 'user/manageUser',
         role:['All','Admin'],
       }
