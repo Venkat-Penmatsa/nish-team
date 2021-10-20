@@ -25,6 +25,7 @@ import { ListusersComponent } from './component/userManagement/listusers/listuse
 import { UserComponent } from './component/userManagement/user/user.component';
 import { ManageUserComponent } from './component/userManagement/manage-user/manage-user.component';
 import { UpdateleavesComponent } from './component/Leaves/updateleaves/updateleaves.component';
+import { ManageEmployeeComponent } from './component/employee/manage-employee/manage-employee.component';
 
 
 
@@ -42,8 +43,7 @@ const routes: Routes = [
       {path: 'home', component: HomeComponent},
       { path: 'employee/NewEmployee', component: AddemployeeComponent },
       { path: 'employee/allEmployees', component: ListemployeeComponent },
-      { path: 'employee/searchEmployee', component: SearchemployeeComponent },
-      { path: 'employee/NewEmployee', component: AddemployeeComponent },
+      { path: 'employee/empManagement', component: ManageEmployeeComponent },
       { path: 'contracts/newContract', component: NewcontractComponent },
       { path: 'contracts/allContracts', component: AllcontractsComponent },
       { path: 'hr/applyLeaves', component: ApplyleaveComponent },
