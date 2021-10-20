@@ -26,9 +26,9 @@ export let menu: NavItem[] = [
         role:['All','Admin','HR','Finance'],
       },
       {
-        displayName: 'Search Employee',
+        displayName: 'Employees Upload',
         iconName: 'person_search',
-        route: 'employee/searchEmployee',
+        route: 'employee/empManagement',
         role:['All','Admin','HR','Finance'],
       },
       {

@@ -47,6 +47,7 @@ import { AssetReportsComponent } from './component/assets/asset-reports/asset-re
 import { LeaveReportsComponent } from './component/Leaves/leave-reports/leave-reports.component';
 import { ManageUserComponent } from './component/userManagement/manage-user/manage-user.component';
 import { UpdateleavesComponent } from './component/Leaves/updateleaves/updateleaves.component';
+import { ManageEmployeeComponent } from './component/employee/manage-employee/manage-employee.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { UpdateleavesComponent } from './component/Leaves/updateleaves/updatelea
     AssetReportsComponent,
     LeaveReportsComponent,
     ManageUserComponent,
-    UpdateleavesComponent
+    UpdateleavesComponent,
+    ManageEmployeeComponent
   ],
   imports: [
     BrowserModule,
