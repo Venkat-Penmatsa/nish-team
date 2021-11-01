@@ -19,12 +19,13 @@ import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { MY_DATE_FORMATS } from '../common/dateformat';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatSelectModule} from '@angular/material/select';
 
 const MaterialComponents = [MatButtonModule, MatInputModule, MatFormFieldModule,
   MatMenuModule, MatToolbarModule, MatSidenavModule, MatListModule, MatIconModule,
   MatExpansionModule, MatDatepickerModule, MatNativeDateModule,MatPaginatorModule,
   MatTableModule, MatChipsModule, MatAutocompleteModule, MatCheckboxModule, 
-  MatIconModule,MatDialogModule, MatSnackBarModule];
+  MatIconModule,MatDialogModule, MatSnackBarModule,MatSelectModule];
 
 @NgModule({
 

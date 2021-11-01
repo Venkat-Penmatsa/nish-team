@@ -4,6 +4,12 @@
   </div>
 
   <div class="mat-elevation-z8">
+
+    <mat-form-field appearance="standard">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="search with Contract id, name,.." #input>
+    </mat-form-field>
+
     <table mat-table [dataSource]="dataSource">
 
       <ng-container matColumnDef="employeeId">

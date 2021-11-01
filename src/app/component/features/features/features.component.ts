@@ -38,7 +38,7 @@ export class FeaturesComponent implements OnDestroy {
    //this.user = localStorage.getItem("userDetails");
    this.user = JSON.parse(localStorage.getItem("userDetails")|| '{}') as User;
    this.shared.userRole = this.user.role;
-   this.shared.loggedUsername = this.user.empId;
+   this.shared.loggedUsername = this.user.empName;
   }
 
   ngOnDestroy() {

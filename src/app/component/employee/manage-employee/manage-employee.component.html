@@ -1,25 +1,28 @@
-<div class="row mt-3">
-    <div class="col-md-6">
-        <file-upload [control]="fileUploadControl"></file-upload>
-    </div>
-    <div>
-        <div class="row mb-3">
-            <div class="col-md-3">
-                <mat-label>Document Name </mat-label>
-            </div>
-            <div class="col-md-9">
-                <div class="file-list" *ngIf="fileUploadControl.value.length > 0">
-                    <div class="file-item" *ngFor="let file of fileUploadControl.value"
-                        (click)="fileUploadControl.removeFile(file)">
-                        {{ file.name }}
+<div class="page-layout-container">
+    <h1 class="heading"> Upload Employee Details </h1>
+    <div class="row mt-3">
+        <div class="col-md-6">
+            <file-upload [control]="fileUploadControl"></file-upload>
+        </div>
+        <div>
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <mat-label>Document Name </mat-label>
+                </div>
+                <div class="col-md-9">
+                    <div class="file-list" *ngIf="fileUploadControl.value.length > 0">
+                        <div class="file-item" *ngFor="let file of fileUploadControl.value"
+                            (click)="fileUploadControl.removeFile(file)">
+                            {{ file.name }}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row mt-4">
-            <div class="col text-right">
-              <button (click)="upload()" type="submit">Upload</button>
+            <div class="row mt-4">
+                <div class="col text-right">
+                    <button (click)="upload()" type="submit">Upload</button>
+                </div>
             </div>
-          </div>
+        </div>
     </div>
 </div>

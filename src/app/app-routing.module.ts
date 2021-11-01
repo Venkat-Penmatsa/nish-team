@@ -26,6 +26,10 @@ import { UserComponent } from './component/userManagement/user/user.component';
 import { ManageUserComponent } from './component/userManagement/manage-user/manage-user.component';
 import { UpdateleavesComponent } from './component/Leaves/updateleaves/updateleaves.component';
 import { ManageEmployeeComponent } from './component/employee/manage-employee/manage-employee.component';
+import { AllEmpMonthlyLeaveReportComponent } from './component/timesheet/all-emp-monthly-leave-report/all-emp-monthly-leave-report.component';
+import { EmployeeOfferComponent } from './component/finance/employee-offer/employee-offer.component';
+import { MonthlyEmpReportComponent } from './component/finance/monthly-emp-report/monthly-emp-report.component';
+import { YearlyEmpReportComponent } from './component/finance/yearly-emp-report/yearly-emp-report.component';
 
 
 
@@ -46,11 +50,15 @@ const routes: Routes = [
       { path: 'employee/empManagement', component: ManageEmployeeComponent },
       { path: 'contracts/newContract', component: NewcontractComponent },
       { path: 'contracts/allContracts', component: AllcontractsComponent },
+      { path: 'finance/empOffer', component: EmployeeOfferComponent },
+      { path: 'finance/employeesMonthlyReport', component: MonthlyEmpReportComponent },
+      { path: 'finance/empYearlyReport', component: YearlyEmpReportComponent },
       { path: 'hr/applyLeaves', component: ApplyleaveComponent },
       { path: 'hr/leavesBalence', component: LeavebalenceComponent },
       { path: 'hr/updateLeaves', component: UpdateleavesComponent },
       { path: 'hr/monthlyTimesheet', component: MonthWiseComponent },
       { path: 'hr/yearlyTimesheet', component: YearWiseComponent },
+      { path: 'hr/generateMontlyTimeSheetReports', component: AllEmpMonthlyLeaveReportComponent },
       { path: 'upload', component: UploadComponent },
       { path: 'assets/newAsset', component: NewAssetComponent },
       { path: 'dependent', component: DependantComponent },

@@ -64,6 +64,18 @@ export let menu: NavItem[] = [
         role:['All','Admin','HR','Finance'],
       },
       {
+        displayName: 'Employee Outlay',
+        iconName: 'list',
+        route: 'finance/empOffer',
+        role:['All','Admin','HR','Finance'],
+      },
+      {
+        displayName: 'Employee Yearly Report',
+        iconName: 'list',
+        route: 'finance/empYearlyReport',
+        role:['All','Admin','HR','Finance'],
+      },
+      {
         displayName: 'Reports',
         iconName: 'list_alt',
         route: 'contracts/reports',
@@ -105,6 +117,12 @@ export let menu: NavItem[] = [
         displayName: 'Yearly Timesheet',
         iconName: 'timer',
         route: 'hr/yearlyTimesheet',
+        role:['All','Admin','HR','Finance'],
+      },
+      {
+        displayName: 'Monthly TimeSheet Report',
+        iconName: 'list_alt',
+        route: 'hr/generateMontlyTimeSheetReports',
         role:['All','Admin','HR','Finance'],
       },
       {

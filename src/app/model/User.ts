@@ -4,6 +4,6 @@ export class User {
     empId: string;
     lastLogin: Date;
     userActive: string;
-    
+    empName: string;
 
 }

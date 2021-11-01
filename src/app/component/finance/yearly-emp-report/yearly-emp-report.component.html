@@ -1,0 +1,120 @@
+<div class="page-layout-container ">
+    <div class="row">
+        <h1 class="title"> Monthly TimeSheet Report </h1>
+    </div>
+
+    <div class="row">
+        <div class="col-6" style="width: 80%;">
+            <app-emp-name (empName)="empNameSelected($event)">
+            </app-emp-name>
+        </div>
+        <div class="col">
+            <mat-form-field>
+                <mat-label>Select Year for generating report</mat-label>
+                <input matInput [matDatepicker]="leaveEndDate" required (dateChange)="fetchMonthlyReport($event)">
+                <mat-datepicker-toggle matSuffix [for]="leaveEndDate"></mat-datepicker-toggle>
+                <mat-datepicker #leaveEndDate></mat-datepicker>
+            </mat-form-field>
+        </div>
+    </div>
+    &nbsp;&nbsp;
+    <div class="section">
+
+        <div class="row">
+            <h1 class="title"> Monthly Revenues </h1>
+        </div>
+
+        <table mat-table [dataSource]="dataSource">
+
+            <ng-container matColumnDef="leavemonth">
+                <th mat-header-cell *matHeaderCellDef>Month</th>
+                <td mat-cell *matCellDef="let element"> {{element.leavemonth}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="totalworkingdays">
+                <th mat-header-cell *matHeaderCellDef> Working Days</th>
+                <td mat-cell *matCellDef="let element"> {{element.totalworkingdays}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="totalleaves">
+                <th mat-header-cell *matHeaderCellDef> Leaves </th>
+                <td mat-cell *matCellDef="let element"> {{element.totalleaves}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="totalholidays">
+                <th mat-header-cell *matHeaderCellDef> Holidays</th>
+                <td mat-cell *matCellDef="let element"> {{element.totalholidays}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="billingrate">
+                <th mat-header-cell *matHeaderCellDef> Billing Rate </th>
+                <td mat-cell *matCellDef="let element"> {{element.billingrate}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="exceptedbillpermonth">
+                <th mat-header-cell *matHeaderCellDef> Excepted Revenue </th>
+                <td mat-cell *matCellDef="let element"> {{element.exceptedbillpermonth}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actualbillpermonth">
+                <th mat-header-cell *matHeaderCellDef> Actual Revenue</th>
+                <td mat-cell *matCellDef="let element"> {{element.actualbillpermonth}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+    &nbsp;&nbsp;
+    <div class="section">
+        <div class="row">
+            <h1 class="title">Summary </h1>
+        </div>
+        <form [formGroup]="employeeYearlyReport">
+            <div class="row">
+                <div class="col">
+                    <mat-form-field style="width :100%">
+                        <mat-label>(A)Emp common expenses per Year </mat-label>
+                        <input matInput type="number" [readonly]="true" formControlName="empYearlyExpenses">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field style="width :100%">
+                        <mat-label>(B)Emp Expenses per Month</mat-label>
+                        <input matInput type="number" [readonly]="true" formControlName="expensesPerMonth">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field style="width :100%">
+                        <mat-label>(C = A + B*No of Months)Total Expense on Employee</mat-label>
+                        <input matInput type="number" [readonly]="true" formControlName="totalExpOnEmp">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field style="width :100%">
+                        <mat-label>E=sum(Actual Revenue) Total Generated Revenue </mat-label>
+                        <input matInput type="number" [readonly]="true" formControlName="totalGeneratedRevenue">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field style="width :100%">
+                        <mat-label>F=sum(Expected Revenue)Total Expected Revenue</mat-label>
+                        <input matInput type="number" [readonly]="true" formControlName="totalExpectedRevenue">
+                    </mat-form-field>
+                </div>
+                <div class="col" style="width :100%">
+                    <mat-form-field>
+                        <mat-label>Margin(E-C/100) </mat-label>
+                        <input matInput type="number" [readonly]="true" formControlName="margin">
+                    </mat-form-field>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+</div>

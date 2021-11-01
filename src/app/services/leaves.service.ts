@@ -11,13 +11,10 @@ export class LeavesService {
 
   }
 
-
-
   fetchEmpLeaves(empId: string): Observable<any> {
     const headers = { 'Content-type': 'application/json' };
     return this.http.get('http://localhost:8091/leaves/empLeavesBalence/' + empId, { headers })
   }
-
 
   fetchAllEmpLeaves(): Observable<any> {
     const headers = { 'Content-type': 'application/json' };
@@ -29,14 +26,19 @@ export class LeavesService {
     return this.http.post('http://localhost:8091/leaves/updateEmpLeaves', assetJson, { headers })
   }
 
-  calculateLeaves(assetJson: any): Observable<any> {
+  calculateLeaves(startDate: any, endDate: any): Observable<any> {
     const headers = { 'Content-type': 'application/json' };
-    return this.http.post('http://localhost:8091/leaves/calculateLeaves/', assetJson, { headers })
+    return this.http.get('http://localhost:8091/leaves/calculateLeaves/'+startDate+'/'+endDate,  { headers })
   }
 
   applyLeaves(assetJson: any): Observable<any> {
     const headers = { 'Content-type': 'application/json' };
     return this.http.post('http://localhost:8091/leaves/applyEmpLeave/', assetJson, { headers })
+  }
+
+  fetchAllEmpLeavesMonthlyReport(date:any): Observable<any> {
+    const headers = { 'Content-type': 'application/json' };
+    return this.http.get('http://localhost:8091/timesheet/monthly/'+date, { headers })
   }
 
 }

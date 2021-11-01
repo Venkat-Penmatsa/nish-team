@@ -1,13 +1,12 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
-import { MatTableDataSource } from '@angular/material/table';
 import moment from 'moment';
 import { Moment } from 'moment';
 import { User } from 'src/app/model/User';
 import { LeavesService } from 'src/app/services/leaves.service';
 import { leaveClassNameType } from '../../../constants/leaveClassNameType';
+
 
 @Component({
   selector: 'app-applyleave',
@@ -29,9 +28,10 @@ export class ApplyleaveComponent implements OnInit {
   message = false;
   messageDesc = "";
   user: User;
+  leaveStartDate = moment();
+  leaveEndDate = moment();
 
-
-  constructor(private http: HttpClient, private fb: FormBuilder, private leavesService: LeavesService) {
+  constructor(private fb: FormBuilder, private leavesService: LeavesService) {
 
   }
 
@@ -72,19 +72,14 @@ export class ApplyleaveComponent implements OnInit {
 
     if (this.selectedStartDate && this.selectedEndDate) {
 
+      this.leaveStartDate = this.leaveForm.value.leaveStartDate;
+      this.leaveEndDate = this.leaveForm.value.leaveEndDate;
 
-      console.log('dates......')
+      let startDate = moment(this.leaveForm.value.leaveStartDate).format("DD-MM-YYYY");
+      let endDate = moment(this.leaveForm.value.leaveEndDate).format("DD-MM-YYYY");
 
-      const calculateLeaves = {
-        startDay: this.selectedStartDate,
-        endDay: this.selectedEndDate
-      }
-
-      const leavesjson = JSON.stringify(calculateLeaves);
-
-      this.leavesService.calculateLeaves(leavesjson).subscribe(res => {
+      this.leavesService.calculateLeaves(startDate, endDate).subscribe(res => {
         console.log("data ==========> " + res.numberOfDays);
-
         this.leaveForm.patchValue({ numberOfDays: res.numberOfDays });
       });
 
@@ -114,8 +109,8 @@ export class ApplyleaveComponent implements OnInit {
         const applyLeave = {
           employeeId: this.empName,
           leaveType: this.leaveForm.value.leaveType,
-          startDate: this.leaveForm.value.leaveStartDate,
-          endDate: this.leaveForm.value.leaveEndDate,
+          startDate: moment(this.leaveForm.value.leaveStartDate).format("DD-MM-YYYY"),
+          endDate:  moment(this.leaveForm.value.leaveEndDate).format("DD-MM-YYYY"),
           leaveAppliedBy: this.user.empId,
           halfDay: this.leaveForm.value.halfDay,
           numberOfDays: this.leaveForm.value.numberOfDays,

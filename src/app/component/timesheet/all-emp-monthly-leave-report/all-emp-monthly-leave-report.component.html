@@ -1,0 +1,108 @@
+<div class="page-layout-container ">
+    <div class="row">
+      <h1 class="title"> Monthly TimeSheet Report </h1>
+    </div>
+<!--
+    <div class="col-md-auto">
+        <mat-form-field appearance="fill">
+            <mat-label>Select Month and Year to generate Timesheet</mat-label>
+            <input matInput [matDatepicker]="dp" [formControl]="date" required  (dateChange)="fetchMonthlyReport($event)">
+            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+            <mat-datepicker #dp
+                            startView="multi-year"
+                            (yearSelected)="chosenYearHandler($event)"
+                            (monthSelected)="chosenMonthHandler($event, dp)"
+                            panelClass="example-month-picker">
+            </mat-datepicker>
+          </mat-form-field>
+    </div>-->
+
+    <div class="col-md-auto">
+        <mat-form-field>
+            <mat-label>Select Month for generating report</mat-label>
+            <input matInput [matDatepicker]="leaveEndDate" required
+                (dateChange)="fetchMonthlyReport($event)"
+                >
+            <mat-datepicker-toggle matSuffix [for]="leaveEndDate"></mat-datepicker-toggle>
+            <mat-datepicker #leaveEndDate></mat-datepicker>
+        </mat-form-field>
+    </div>
+
+  
+    <div class="mat-elevation-z8">
+  
+      <mat-form-field appearance="standard">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="search with Employee Name" #input>
+      </mat-form-field>
+  
+      <table mat-table [dataSource]="dataSource">
+  
+        <ng-container matColumnDef="employeeid">
+          <th mat-header-cell *matHeaderCellDef>Employee Name</th>
+          <td mat-cell *matCellDef="let element"> {{element.employeeid}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="totalsickleaves">
+          <th mat-header-cell *matHeaderCellDef> Sick Leaves</th>
+          <td mat-cell *matCellDef="let element"> {{element.totalsickleaves}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="totalauthorisedabsence">
+          <th mat-header-cell *matHeaderCellDef> Auth Absence </th>
+          <td mat-cell *matCellDef="let element"> {{element.totalauthorisedabsence}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="totalmaternityleaves">
+          <th mat-header-cell *matHeaderCellDef> Maternity </th>
+          <td mat-cell *matCellDef="let element"> {{element.totalmaternityleaves}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="totalpaternityleaves">
+          <th mat-header-cell *matHeaderCellDef> Paternity  </th>
+          <td mat-cell *matCellDef="let element"> {{element.totalpaternityleaves}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="totalrttadvleaves">
+          <th mat-header-cell *matHeaderCellDef> RTT Adv  </th>
+          <td mat-cell *matCellDef="let element"> {{element.totalrttadvleaves}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="totalovertimeleaves">
+          <th mat-header-cell *matHeaderCellDef> Overtime  </th>
+          <td mat-cell *matCellDef="let element"> {{element.totalovertimeleaves}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="totalunauthabsleaves">
+          <th mat-header-cell *matHeaderCellDef> Unauth Absence </th>
+          <td mat-cell *matCellDef="let element"> {{element.totalunauthabsleaves}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="totalforcedmajeureleaves">
+          <th mat-header-cell *matHeaderCellDef> Forced Majeure </th>
+          <td mat-cell *matCellDef="let element"> {{element.totalforcedmajeureleaves}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="totalotherleaves">
+            <th mat-header-cell *matHeaderCellDef> Other </th>
+            <td mat-cell *matCellDef="let element"> {{element.totalotherleaves}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="workingdays">
+            <th mat-header-cell *matHeaderCellDef> Total Working Days </th>
+            <td mat-cell *matCellDef="let element"> {{element.workingdays}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="totalleaves">
+            <th mat-header-cell *matHeaderCellDef> Total Leaves </th>
+            <td mat-cell *matCellDef="let element"> {{element.totalleaves}} </td>
+          </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+  
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+  
+  </div>

@@ -1,7 +1,7 @@
 table {
-  width: 100%;
+  max-width: 100%;
+  overflow: auto;
 }
-
 
 p {
   font-size: 1.5rem;
@@ -9,3 +9,17 @@ p {
   font-family: Helvetica, Arial, sans-serif;
 }
 
+.tab-col {
+  padding: 2px;
+  align-content: flex;
+  text-align: center;
+  width: 100px;
+}
+
+.tab-basic-col {
+  width: 100px;
+}
+
+.row-emp {
+  background-color: red;
+}

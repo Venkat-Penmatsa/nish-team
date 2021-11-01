@@ -1,8 +1,10 @@
-import {HttpClient} from '@angular/common/http';
-import {AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
-import {EmployeesList} from 'src/app/model/EmployeesList';
+import { HttpClient } from '@angular/common/http';
+import { AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { EmployeesList } from 'src/app/model/EmployeesList';
+import { EmployeeService } from 'src/app/services/employee.service';
+import { HistoryDetails } from '../../assets/all-assets/all-assets.component';
 
 
 @Component({
@@ -14,18 +16,27 @@ import {EmployeesList} from 'src/app/model/EmployeesList';
 export class ListemployeeComponent implements AfterViewInit, OnInit {
 
   displayedColumns: string[] = ['employeeId',
+    'empName',
     'contractId',
-    'employeeName',
-    'clientName',
+    'nishContractId',
     'contractStartDate',
-    'employeeStatus'];
+    'contractEndDate',
+    'contractStatus',
+    'clientName',
+    'subCont',
+    'email',
+    'mobile',
+    'onBoardingDate',
+    'onBoardingStatus',
+  'dateOfBirth',
+'skills'];
 
-  empList: EmployeesList[] = [];
-  dataSource = new MatTableDataSource();
+  allEmployeesList: AllEmployeesList[] = [];
+  dataSource = new MatTableDataSource<AllEmployeesList>(this.allEmployeesList);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private http: HttpClient) {
+  constructor(private employeeService: EmployeeService) {
 
   }
 
@@ -35,38 +46,62 @@ export class ListemployeeComponent implements AfterViewInit, OnInit {
 
   ngOnInit(): void {
 
-
-    console.log("String...")
-
-    const headers = { 'Content-type': 'application/json' };
-
-    this.http.get<EmployeesList[]>('http://localhost:8091/employee/listEmployees', { headers })
-      .subscribe((data: EmployeesList[]) => {
-        console.log("data ==========> " + data);
-        console.log("********empList ***************** " + this.empList);
-        data.forEach((obj => {
-          let emp: EmployeesList = {
-            employeeId: obj.employeeId,
-            contractId: obj.contractId,
-            employeeName: obj.employeeName,
-            clientName: obj.clientName,
-            contractStartDate: this.convertDate(obj.contractStartDate),
-            //contractStartDate: obj.contractStartDate,
-            employeeStatus: obj.employeeStatus
-          }
-          this.empList.push(emp);
-        }
-        ))
-        this.dataSource.data = this.empList;
+    console.log("String...");
+    this.employeeService.listAllEmployeeName().subscribe(res => {
+      console.log(res);
+      res.forEach(e => {
+        this.allEmployeesList.push(new AllEmployeesList(e.employeeId,
+          e.empName,
+          e.contractId,
+          e.nishContractId,
+          e.contractStartDate,
+          e.contractEndDate,
+          e.contractStatus,
+          e.clientName,
+          e.subCont,
+          e.email,
+          e.mobile,
+          e.onBoardingDate,
+          e.onBoardingStatus,
+          e.dateOfBirth,
+          e.skills));
       })
-
+      this.dataSource = new MatTableDataSource<AllEmployeesList>(this.allEmployeesList);
+      this.dataSource.paginator = this.paginator;
+    });
 
   }
 
-  convertDate(toDate : any){
-      return toDate[0] + '-' + toDate[1] + '-' + toDate[2];
-      //return new Date(toDate[0]-toDate[1]-toDate[2]);
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  convertDate(toDate: any) {
+    return toDate[0] + '-' + toDate[1] + '-' + toDate[2];
+    //return new Date(toDate[0]-toDate[1]-toDate[2]);
+  }
+
+}
+
+
+export class AllEmployeesList {
+  constructor(
+    private employeeId: string,
+    private empName: string,
+    private contractId: string,
+    private nishContractId: string,
+    private contractStartDate: string,
+    private contractEndDate: string,
+    private contractStatus: string,
+    private clientName: string,
+    private subCont: string,
+    private email: string,
+    private mobile: string,
+    private onBoardingDate: string,
+    private onBoardingStatus: string,
+    private dateOfBirth: string,
+    private skills: string
+  ) { }
 }
 

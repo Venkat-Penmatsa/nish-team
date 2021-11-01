@@ -11,6 +11,7 @@ import { EmployeeDependents } from 'src/app/model/EmployeeDependents';
 import { ResidenceAddress } from 'src/app/model/ResidenceAddress';
 import * as _moment from 'moment';
 import { Moment } from 'moment';
+import { skills } from 'src/app/constants/skills';
 
 const moment = _moment;
 
@@ -32,66 +33,22 @@ export class AddemployeeComponent implements OnInit {
   selectable = true;
   removable = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  fruitCtrl = new FormControl();
-  filteredFruits: Observable<string[]>;
-  fruits: string[] = ['JAVA'];
-  allFruits: string[] = ['Microservices', 'Testing', 'cloud Engineer', 'Devops Engineer', 'dotnet framework'];
   dob: Date;
   empDependants: EmployeeDependents[] = [];
   savedEmpDependants : EmployeeDependents[] = [];
   employee: Employee = new Employee();
   empId ="";
-  @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
+  skillsetList: string[] =skills;
+  skillset: FormControl = new FormControl();
+
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
   @ViewChild('marriageCheckbox') marriageCheckbox: ElementRef;
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
-    this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
-      startWith(null),
-      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
+
   }
-  add(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
-
-    // Add our fruit
-    if ((value || '').trim()) {
-      this.fruits.push(value.trim());
-    }
-
-    // Reset the input value
-    if (input) {
-      input.value = '';
-    }
-
-    this.fruitCtrl.setValue(null);
-  }
-
-  remove(fruit: string): void {
-    const index = this.fruits.indexOf(fruit);
-
-    if (index >= 0) {
-      this.fruits.splice(index, 1);
-    }
-  }
-
-  selected(event: MatAutocompleteSelectedEvent): void {
-    this.fruits.push(event.option.viewValue);
-    this.fruitInput.nativeElement.value = '';
-    this.fruitCtrl.setValue(null);
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
-  }
-
+ 
   ngOnInit(): void {
-
-    let martialFlag = this.empCreationForm.controls['empBasicInfo'].value.martialStatus;
-    console.log('flag.........' + martialFlag);
-
 
   }
 
@@ -144,12 +101,12 @@ export class AddemployeeComponent implements OnInit {
     console.log(this.empCreationForm.value);
     this.employee = Object.assign({}, this.empCreationForm.value);
     this.employee.employeeDependents = this.empDependants;
+
     const empJson = JSON.stringify(this.employee);
     console.log('empJson ' +empJson);
-    console.log('dob ' + this.dob);
     const headers = { 'Content-type': 'application/json' };
 
-    this.http.post<EmployeeResponse>('http://localhost:8091/employee/createEmployee', empJson, { headers })
+    this.http.post<EmployeeResponse>('http://localhost:8091/employee/createEmployee', this.employee, { headers })
       .subscribe(data => {
         console.log("data ==========> " + data);
         this.employeeId = data.employeeId;
@@ -173,7 +130,8 @@ export class AddemployeeComponent implements OnInit {
         this.employee = data;
         this.empCreationForm.patchValue({
           empBasicInfo: this.employee.empBasicInfo,
-          employeeAddress: this.employee.employeeAddress
+          employeeAddress: this.employee.employeeAddress,
+          skillset: this.employee.skillset
         });
         this.empCreationForm.patchValue({
           empBasicInfo : {
@@ -248,9 +206,7 @@ export class AddemployeeComponent implements OnInit {
     )
   });
 
-
 }
-
 
 interface EmployeeResponse {
   employeeId: number;
