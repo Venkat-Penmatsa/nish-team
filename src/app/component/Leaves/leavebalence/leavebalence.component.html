@@ -1,28 +1,75 @@
-<div>
-    <p>Employees Leave Balence  Report </p>
+<div class="page-layout-container ">
+  <div class="row">
+    <h1 class="title"> Employees Leaves Balence </h1>
 </div>
+
 
 <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource">
   
       <ng-container matColumnDef="employeeId">
-        <th mat-header-cell *matHeaderCellDef>Employee Id</th>
+        <th mat-header-cell *matHeaderCellDef>Employee</th>
         <td mat-cell *matCellDef="let element"> {{element.employeeId}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="sickLeaves">
+      <ng-container matColumnDef="sickLeave">
         <th mat-header-cell *matHeaderCellDef> Sick Leaves</th>
-        <td mat-cell *matCellDef="let element"> {{element.sickLeaves}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.sickLeave}} </td>
       </ng-container>
   
-      <ng-container matColumnDef="recuparationLeaves">
-        <th mat-header-cell *matHeaderCellDef> Recuparation Leaves </th>
-        <td mat-cell *matCellDef="let element"> {{element.recuparationLeaves}} </td>
+      <ng-container matColumnDef="authorisedAbsence">
+        <th mat-header-cell *matHeaderCellDef> Authorised Absence </th>
+        <td mat-cell *matCellDef="let element"> {{element.authorisedAbsence}} </td>
       </ng-container>
   
-      <ng-container matColumnDef="forwardedLeaves">
+      <ng-container matColumnDef="rttAdv">
+        <th mat-header-cell *matHeaderCellDef> RTT Advance  </th>
+        <td mat-cell *matCellDef="let element"> {{element.rttAdv}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="overtime">
+        <th mat-header-cell *matHeaderCellDef> Over Time </th>
+        <td mat-cell *matCellDef="let element"> {{element.overtime}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="unauthorisedAbsence">
+        <th mat-header-cell *matHeaderCellDef> Unauthorised Absence </th>
+        <td mat-cell *matCellDef="let element"> {{element.unauthorisedAbsence}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="forceMajeure">
+        <th mat-header-cell *matHeaderCellDef> Force Majeure </th>
+        <td mat-cell *matCellDef="let element"> {{element.forceMajeure}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="other">
+        <th mat-header-cell *matHeaderCellDef> Other Leaves </th>
+        <td mat-cell *matCellDef="let element"> {{element.other}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="forwardedLeave">
         <th mat-header-cell *matHeaderCellDef> Forwarded Leaves </th>
-        <td mat-cell *matCellDef="let element"> {{element.forwardedLeaves}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.forwardedLeave}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="totalleavebalence">
+        <th mat-header-cell *matHeaderCellDef> Total leaves</th>
+        <td mat-cell *matCellDef="let element"> {{element.totalleavebalence}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="lastUpdateDate">
+        <th mat-header-cell *matHeaderCellDef> Last Updated Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.lastUpdateDate}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="updatedBy">
+        <th mat-header-cell *matHeaderCellDef> Updated By </th>
+        <td mat-cell *matCellDef="let element"> {{element.updatedBy}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="comments">
+        <th mat-header-cell *matHeaderCellDef> Comments </th>
+        <td mat-cell *matCellDef="let element"> {{element.comments}} </td>
       </ng-container>
       
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -32,3 +79,4 @@
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </div>
 
+</div>

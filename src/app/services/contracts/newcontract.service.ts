@@ -1,25 +1,19 @@
+import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NewcontractService {
 
-  private REST_API_SERVER = "http://localhost:8091/contract/newContract";
+  private baseUrl = 'http://localhost:8091';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  // public createNewContractRequest() {
-  //   return this.httpClient.get(this.REST_API_SERVER);
-  // }
-
-
-  // public   createNewContractRequest(String:Person): Observable<any> {
-  //   const headers = { 'content-type': 'application/json'}  
-  //   const body=JSON.stringify(person);
-  //   console.log(body)
-  //   return this.http.post(this.baseURL + 'people', body,{'headers':headers})
-  // }
+  listAllContracts(): Observable<any> {
+    const headers = { 'Content-type': 'application/json' };
+    return this.http.get(`${this.baseUrl}/contract/listContracts`, { headers })
+  }
 
 }

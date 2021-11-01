@@ -10,13 +10,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     padding : 20px;
   }
 
+  .heading {
+    color: #4a148c; 
+    font-size: 5px; 
+    font-family: 'Signika', sans-serif;
+    padding : 0px;
+  }
+
   .section {
     border-radius: 25px;
     border: 1px solid #4a148c;
     padding: 20px;
   }
-
-
         
   .divider {								/* minor cosmetics */
       display: table; 
@@ -229,3 +234,5 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     align-content: center;
     flex-wrap: wrap;
   }
+  
+  

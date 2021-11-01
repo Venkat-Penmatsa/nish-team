@@ -1,8 +1,10 @@
 
 import { HttpClient } from '@angular/common/http';
-import {AfterViewInit, Component, ViewChild, OnInit, ViewEncapsulation} from '@angular/core';
+import { AfterViewInit, Component, ViewChild, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { NewcontractService } from 'src/app/services/contracts/newcontract.service';
+import { AllEmployeesList } from '../../employee/listemployee/listemployee.component';
 import { Contract } from '../contract';
 
 @Component({
@@ -27,7 +29,8 @@ export class AllcontractsComponent implements AfterViewInit, OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private http: HttpClient) {
+
+  constructor(private newcontractService: NewcontractService) {
 
   }
 
@@ -37,18 +40,18 @@ export class AllcontractsComponent implements AfterViewInit, OnInit {
 
   ngOnInit(): void {
 
-
     console.log("String...")
 
-    const headers = { 'Content-type': 'application/json' };
+    this.newcontractService.listAllContracts().subscribe(res => {
+      console.log(res);
+      this.dataSource.data = res;
+      this.dataSource.paginator = this.paginator;
+    });
+  }
 
-    this.http.get('http://localhost:8091/contract/listContracts', { headers })
-      .subscribe((data: any) => {
-        console.log("data ==========> " + data);
-        this.dataSource.data = data;
-      })
-
-
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }

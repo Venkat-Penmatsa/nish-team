@@ -48,6 +48,10 @@ import { LeaveReportsComponent } from './component/Leaves/leave-reports/leave-re
 import { ManageUserComponent } from './component/userManagement/manage-user/manage-user.component';
 import { UpdateleavesComponent } from './component/Leaves/updateleaves/updateleaves.component';
 import { ManageEmployeeComponent } from './component/employee/manage-employee/manage-employee.component';
+import { AllEmpMonthlyLeaveReportComponent } from './component/timesheet/all-emp-monthly-leave-report/all-emp-monthly-leave-report.component';
+import { MonthlyEmpReportComponent } from './component/finance/monthly-emp-report/monthly-emp-report.component';
+import { YearlyEmpReportComponent } from './component/finance/yearly-emp-report/yearly-emp-report.component';
+import { EmployeeOfferComponent } from './component/finance/employee-offer/employee-offer.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +91,11 @@ import { ManageEmployeeComponent } from './component/employee/manage-employee/ma
     LeaveReportsComponent,
     ManageUserComponent,
     UpdateleavesComponent,
-    ManageEmployeeComponent
+    ManageEmployeeComponent,
+    AllEmpMonthlyLeaveReportComponent,
+    MonthlyEmpReportComponent,
+    YearlyEmpReportComponent,
+    EmployeeOfferComponent
   ],
   imports: [
     BrowserModule,

@@ -304,26 +304,19 @@
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     &nbsp;&nbsp;
-                    <div formGroupName="skillset">
-                        <mat-form-field class="example-chip-list">
-                            <mat-label>SkillSet</mat-label>
-                            <mat-chip-list #chipList aria-label="Select Technologies">
-                                <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable"
-                                    (removed)="remove(fruit)">
-                                    {{fruit}}
-                                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                                </mat-chip>
-                                <input placeholder="Select Technologies..." #fruitInput [formControl]="fruitCtrl"
-                                    formControlName="skillset" [matAutocomplete]="auto" [matChipInputFor]="chipList"
-                                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                                    (matChipInputTokenEnd)="add($event)">
-                            </mat-chip-list>
-                            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-                                <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
-                                    {{fruit}}
-                                </mat-option>
-                            </mat-autocomplete>
-                        </mat-form-field>
+                    <div class="row">
+                        <div class="col-10">
+                            <div formGroupName="skillset" style="width: 100%;">
+                                <mat-form-field style="width: 100%;">
+                                    <mat-label >Skillset</mat-label>
+                                    <mat-select formControlName="skillset" multiple >
+                                        <mat-option *ngFor="let skillsetval of skillsetList" [value]="skillsetval">
+                                            {{skillsetval}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
                     </div>
                     <mat-action-row>
                         <button mat-button color="warn" (click)="prevStep()">Previous</button>

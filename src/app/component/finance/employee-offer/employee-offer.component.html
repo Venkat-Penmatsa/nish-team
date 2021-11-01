@@ -1,0 +1,173 @@
+<div class="page-layout-container">
+    <h1 class="heading"> Employee Expenses </h1>
+    <div>
+        <p *ngIf="successFlag">Employee {{ empName }} Expenses updated successfully</p>
+    </div>
+    <form [formGroup]="employeeExpenses">
+        <div>
+            <div class="row">
+                <div class="col-6" style="width: 80%;">
+                    <app-emp-name (empName)="empNameSelected($event)">
+                    </app-emp-name>
+                </div>
+                <div class="col">
+                    <div style="text-align: center">
+                        <button class="btn btn-primary" (click)="fetchEmpExpenses()" type="submit">Fetch Employee Expenses</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field >
+                        <mat-label>Total Expenses Per Month </mat-label>
+                        <input matInput type="number" [readonly]="true" formControlName="totalExpPerMOnth">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field >
+                        <mat-label>Total Common Year Expenses</mat-label>
+                        <input matInput type="number" [readonly]="true"  formControlName="totalYearExpenses">
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <mat-form-field class="form-col" style="width: 80%;">
+                        <mat-label>Comments *</mat-label>
+                        <textarea matInput formControlName="comments"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field hidden="true"  >
+                        <mat-label>Employee Exp Id *</mat-label>
+                        <input matInput formControlName="empExpId">
+                    </mat-form-field>
+            </div> 
+            </div>
+        </div>
+        &nbsp;&nbsp;
+        <div class="section" formGroupName="sal">
+            <h1 class="heading"> Salary Per Month </h1>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Gross Salary *</mat-label>
+                        <input matInput  type="number" (change)="calculateExpenses()" formControlName="grossSal">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field  >
+                        <mat-label>Net salary *</mat-label>
+                        <input matInput  type="number" formControlName="netSal">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field  >
+                        <mat-label>NSSO *</mat-label>
+                        <input matInput  type="number" formControlName="nsso">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field  >
+                        <mat-label>Advance Levy *</mat-label>
+                        <input matInput  type="number" formControlName="advanceLevy">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field  >
+                        <mat-label>Special Social Security Contribution *</mat-label>
+                        <input matInput type="number" formControlName="sssContribution">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field  >
+                        <mat-label>Meal Contribution *</mat-label>
+                        <input matInput type="number" formControlName="mealContribution">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field  >
+                        <mat-label>Season Ticket Allowance *</mat-label>
+                        <input matInput type="number" formControlName="seasonTicketAllowance">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field  >
+                        <mat-label>Reimbursed Expenses *</mat-label>
+                        <input matInput type="number" formControlName="reimbursedExpenses">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field  >
+                        <mat-label>Other Expenses *</mat-label>
+                        <input matInput type="number" formControlName="othersal">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        &nbsp;&nbsp;
+        <div class="section" formGroupName="generalExpenses">
+            <h1 class="heading"> Common Expenses per Month</h1>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field  >
+                        <mat-label>Aduitor Fee *</mat-label>
+                        <input matInput type="number" formControlName="aduitorFee">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field  >
+                        <mat-label>SB works Fee *</mat-label>
+                        <input matInput type="number" formControlName="sdworksFee">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field  >
+                        <mat-label>sodexo Fee *</mat-label>
+                        <input matInput type="number" formControlName="sodexoFee">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field  >
+                        <mat-label>DKV Insurance Fee *</mat-label>
+                        <input matInput type="number" formControlName="dkvinsurance">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field  >
+                        <mat-label>Other General Expenses *</mat-label>
+                        <input matInput type="number" formControlName="othersGeneralExp">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        &nbsp;&nbsp;
+        <div class="section" formGroupName="yearExpenses">
+            <h1 class="heading"> Common Expenses per Year</h1>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field  >
+                        <mat-label>Eco Coupons *</mat-label>
+                        <input matInput type="number" (change)="calculateExpenses()" formControlName="ecoCoupons">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field  >
+                        <mat-label>Other Yearly Exp *</mat-label>
+                        <input matInput type="number" (change)="calculateExpenses()" formControlName="otherYearExp">
+                    </mat-form-field>
+                </div>   
+            </div>
+        </div>
+    </form>
+    &nbsp;&nbsp;
+    <div style="text-align: center">
+        <button class="btn btn-primary" (click)="onSubmit()" type="submit">Update Expense</button>
+    </div>
+</div>
