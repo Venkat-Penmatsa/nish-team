@@ -19,6 +19,7 @@ export class NewAssetComponent implements OnInit {
   disableBtn = false;
   assetId : any;
   successFlag = false;
+  description: string;
   empName:any;
   constructor(private fb: FormBuilder, private assetsService: AssetsService) {
 
@@ -53,6 +54,12 @@ export class NewAssetComponent implements OnInit {
         let serviceResponse = data;
         this.assetId = data.assetId;
         this.successFlag = true;
+
+        if(data.responseStatus == "Failure") {
+          this.description = data.errorDescription;
+        }else{
+          this.description = "New Asset created successfully !! Asset id is " + data.assetId;
+        }
       })
   }
 

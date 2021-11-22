@@ -23,6 +23,7 @@ export class UpdateAssetsComponent implements OnInit {
   successFlag = false;
   empName: any;
   filterEmpName: string;
+  description: string;
   constructor(private fb: FormBuilder, private assetsService: AssetsService) {
 
   }
@@ -68,6 +69,13 @@ export class UpdateAssetsComponent implements OnInit {
     this.assetsService.updateElectronicAsset(electronucAsset).subscribe(res => {
       console.log(res);
       this.successFlag = true;
+
+      if (res.responseStatus == "Failure") {
+        this.description = res.errorDescription;
+      } else {
+        this.description = res.assetId;
+      }
+
     })
   }
 
@@ -88,6 +96,13 @@ export class UpdateAssetsComponent implements OnInit {
     this.assetsService.assignAsset(assignAsset).subscribe(res => {
       console.log(res);
       this.successFlag = true;
+
+      if (res.responseStatus == "Failure") {
+        this.description = res.errorDescription;
+      } else {
+        this.description = res.assetId;
+      }
+
     })
   }
 
@@ -121,7 +136,7 @@ export class UpdateAssetsComponent implements OnInit {
             electronicModel: res.electronicModel,
             electronicSerialNumber: res.electronicSerialNumber,
             electronicPrice: res.electronicPrice
-            
+
           }
         });
 
@@ -155,6 +170,13 @@ export class UpdateAssetsComponent implements OnInit {
         let serviceResponse = data;
         this.assetId = data.assetId;
         this.successFlag = true;
+
+        if (data.responseStatus == "Failure") {
+          this.description = data.errorDescription;
+        } else {
+          this.description = data.assetId;
+        }
+
       })
   }
 
@@ -179,14 +201,14 @@ export class UpdateAssetsComponent implements OnInit {
       carStatus: ['', Validators.required],
       cataloguePrice: ['', Validators.required],
       assetCategory: ['', Validators.required],
-      assetComments:[]
+      assetComments: []
     }
     ),
     assetElectronic: this.fb.group({
       electronicModel: ['', Validators.required],
       electronicSerialNumber: ['', Validators.required],
       electronicPrice: ['', Validators.required],
-      assetComments:[]
+      assetComments: []
     }
     )
   });

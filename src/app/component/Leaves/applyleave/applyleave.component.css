@@ -8,3 +8,13 @@ table {
     color: green;
     font-family: Helvetica, Arial, sans-serif;
   }
+
+  .leave-bal {
+    color: #0072ff;
+    font-size: 1rem;
+    padding-left: 10px !important;
+  }
+
+  .leave-text {
+    width: 80px;
+  }

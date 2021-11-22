@@ -11,12 +11,11 @@ export class FileUploadService {
 
   constructor(private http: HttpClient) { }
 
-  upload(file: File): Observable<HttpEvent<any>> {
+  upload(file: File, fileName: string): Observable<HttpEvent<any>> {
     const formData: FormData = new FormData();
+    formData.append('file', file, fileName);
 
-    formData.append('file', file);
-
-    const req = new HttpRequest('POST', `${this.baseUrl}/files/upload`, formData, {
+    const req = new HttpRequest('POST', `${this.baseUrl}/files/upload`, formData,  {
       reportProgress: true,
       responseType: 'json'
     });
@@ -29,7 +28,7 @@ export class FileUploadService {
     const formData: FormData = new FormData();
     formData.append('file', file);
 
-    const req = new HttpRequest('POST', `${this.baseUrl}/`+endPoint, formData, {
+    const req = new HttpRequest('POST', `${this.baseUrl}/` + endPoint, formData, {
       reportProgress: true,
       responseType: 'json'
     });

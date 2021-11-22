@@ -24,8 +24,6 @@
         <mat-form-field>
           <select matNativeControl required [(ngModel)]="selectedOption">
             <option *ngFor="let document of documentsList" [value]="document.code">{{ document.name }}</option>
-            <!-- <option value="inProgress">Contract</option>
-            <option value="completed">Car</option> -->
           </select>
         </mat-form-field>
       </div>

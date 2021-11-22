@@ -1,6 +1,6 @@
 <div class="page-layout-container ">
     <div class="row">
-        <h1 class="title"> Create New Contract </h1>
+        <h1 class="title"> Manage Contract </h1>
     </div>
     <div>
         <p *ngIf="successFlag">New Contract created successfully !! Contract id is {{ nishContractId }}</p>
@@ -8,13 +8,21 @@
     <form [formGroup]="newContractForm">
         <div>
             <div class="row">
+                <div class="col-6">
+                    <mat-form-field style="padding: 20px">
+                        <mat-label>Search with NISH Contract ID *</mat-label>
+                        <input matInput formControlName="nishContractId" (change)="searchContractId($event)" />
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-6" style="width: 80%;">
-                    <app-emp-name (empName)="empNameSelected($event)">
+                    <app-emp-name [filterEmpName]="filterEmpName" (empName)="empNameSelected($event)">
                     </app-emp-name>
                 </div>
                 <div class="col">
                     <mat-form-field class="example-full-width">
-                        <mat-label>Contract Id</mat-label>
+                        <mat-label>Client Contract Id</mat-label>
                         <input matInput formControlName="contractId">
                     </mat-form-field>
                 </div>
@@ -58,12 +66,6 @@
             <div class="row">
                 <div class="col">
                     <mat-form-field class="field-style">
-                        <mat-label>SubContract Company Name3</mat-label>
-                        <input matInput formControlName="subContractCompany3">
-                    </mat-form-field>
-                </div>
-                <div class="col">
-                    <mat-form-field class="field-style">
                         <mat-label>Billing Rate</mat-label>
                         <input matInput placeholder="Rate in Euros" formControlName="billingRate">
                     </mat-form-field>
@@ -84,9 +86,7 @@
                         <mat-datepicker #contractEndDate></mat-datepicker>
                     </mat-form-field>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-6">
+                <div class="col">
                     <mat-form-field class="form-col" style="width: 80%;">
                         <mat-label>Comments *</mat-label>
                         <textarea matInput formControlName="comments"></textarea>
@@ -97,6 +97,6 @@
     </form>
     &nbsp;&nbsp;
     <div style="text-align: center">
-        <button class="btn btn-primary" (click)="onSubmit()" type="submit">Create Contract</button>
+        <button class="btn btn-primary" (click)="onSubmit()" type="submit">Manage Contract</button>
     </div>
 </div>

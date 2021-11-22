@@ -20,12 +20,6 @@
             <div class="row">
                 <div class="col">
                     <mat-form-field>
-                        <mat-label>Sick Leaves *</mat-label>
-                        <input matInput type="number" min="0" max="100" formControlName="sickLeave">
-                    </mat-form-field>
-                </div>
-                <div class="col">
-                    <mat-form-field>
                         <mat-label>RTT Adv Leaves *</mat-label>
                         <input matInput type="number" min="0" max="100" formControlName="rttAdv">
                     </mat-form-field>
@@ -34,26 +28,6 @@
                     <mat-form-field>
                         <mat-label>Authorised Absence *</mat-label>
                         <input matInput type="number" min="0" max="100" formControlName="authorisedAbsence">
-                    </mat-form-field>
-                </div>
-                <div class="col">
-                    <mat-form-field>
-                        <mat-label>Forwarded Leaves *</mat-label>
-                        <input matInput type="number" min="0" max="100" formControlName="forwardedLeave">
-                    </mat-form-field>
-                </div>
-                <div class="col">
-                    <mat-form-field>
-                        <mat-label>Forced Majeure *</mat-label>
-                        <input matInput type="number" min="0" max="100" formControlName="forceMajeure">
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <mat-form-field>
-                        <mat-label>Compensation Leaves *</mat-label>
-                        <input matInput type="number" min="0" max="100" formControlName="compensationLeave">
                     </mat-form-field>
                 </div>
                 <div class="col">
@@ -68,6 +42,8 @@
                         <input matInput type="number" min="0" max="100" formControlName="parentalLeave">
                     </mat-form-field>
                 </div>
+            </div>
+            <div class="row">
                 <div class="col">
                     <mat-form-field>
                         <mat-label>Maternity Leaves *</mat-label>
@@ -80,14 +56,14 @@
                         <input matInput type="number" min="0" max="100" formControlName="totalleavebalence">
                     </mat-form-field>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-6">
                     <mat-form-field class="form-col" style="width: 80%;">
                         <mat-label>Comments*</mat-label>
                         <textarea matInput formControlName="comments"></textarea>
                     </mat-form-field>
                 </div>
+            </div>
+            <div class="row">
                 <div class="col">
                     <mat-form-field [hidden]="true">
                         <mat-label>Leave Balence Id*</mat-label>

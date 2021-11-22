@@ -30,6 +30,7 @@ import { AllEmpMonthlyLeaveReportComponent } from './component/timesheet/all-emp
 import { EmployeeOfferComponent } from './component/finance/employee-offer/employee-offer.component';
 import { MonthlyEmpReportComponent } from './component/finance/monthly-emp-report/monthly-emp-report.component';
 import { YearlyEmpReportComponent } from './component/finance/yearly-emp-report/yearly-emp-report.component';
+import { LeavescalculatebatchComponent } from './component/Leaves/leavescalculatebatch/leavescalculatebatch.component';
 
 
 
@@ -59,6 +60,7 @@ const routes: Routes = [
       { path: 'hr/monthlyTimesheet', component: MonthWiseComponent },
       { path: 'hr/yearlyTimesheet', component: YearWiseComponent },
       { path: 'hr/generateMontlyTimeSheetReports', component: AllEmpMonthlyLeaveReportComponent },
+      { path: 'hr/batchJob', component: LeavescalculatebatchComponent },
       { path: 'upload', component: UploadComponent },
       { path: 'assets/newAsset', component: NewAssetComponent },
       { path: 'dependent', component: DependantComponent },

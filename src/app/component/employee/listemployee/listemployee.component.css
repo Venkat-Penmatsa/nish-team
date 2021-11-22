@@ -23,3 +23,15 @@ p {
 .row-emp {
   background-color: red;
 }
+
+
+.employee-table-col{
+  width: 500PX !important;
+}
+
+
+td.mat-cell.cdk-cell.cdk-column-skills.mat-column-skills {
+  height: 5px !important;
+  color:blue;
+  width: 30px !important;
+}

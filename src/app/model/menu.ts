@@ -14,7 +14,7 @@ export let menu: NavItem[] = [
     role:['All'],
     children: [
       {
-        displayName: 'New Employee',
+        displayName: 'Manage Employees',
         iconName: 'person',
         route: 'employee/NewEmployee',
         role:['All','Admin','HR','Finance'],
@@ -32,12 +32,6 @@ export let menu: NavItem[] = [
         role:['All','Admin','HR','Finance'],
       },
       {
-        displayName: 'Skills',
-        iconName: 'engineering',
-        route: 'employee/skills',
-        role:['All','Admin','HR','Finance'],
-      },
-      {
         displayName: 'Reports',
         iconName: 'list_alt',
         route: 'employee/reports',
@@ -52,7 +46,7 @@ export let menu: NavItem[] = [
     role:['All','Admin','HR','Finance'],
     children: [
       {
-        displayName: 'New Contract',
+        displayName: 'Manage Contracts',
         iconName: 'add_business',
         route: 'contracts/newContract',
         role:['All','Admin','HR','Finance'],
@@ -96,7 +90,7 @@ export let menu: NavItem[] = [
         role:['All','Admin','HR','Finance'],
       },
       {
-        displayName: 'Leaves Balence',
+        displayName: 'Monthly Leaves Report',
         iconName: 'person_off',
         route: 'hr/leavesBalence',
         role:['All','Admin','HR','Finance'],
@@ -109,7 +103,7 @@ export let menu: NavItem[] = [
       },
       {
         displayName: 'Monthly Timesheet',
-        iconName: 'timer',
+        iconName: 'calendar_view_month',
         route: 'hr/monthlyTimesheet',
         role:['All','Admin','HR','Finance'],
       },
@@ -126,9 +120,9 @@ export let menu: NavItem[] = [
         role:['All','Admin','HR','Finance'],
       },
       {
-        displayName: 'Report',
+        displayName: 'Leaves Generation Batch',
         iconName: 'list_alt',
-        route: 'hr/generateReports',
+        route: 'hr/batchJob',
         role:['All','Admin','HR','Finance'],
       }
     ]

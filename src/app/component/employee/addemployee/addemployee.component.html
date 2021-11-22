@@ -1,14 +1,21 @@
-<div class="main-content">
+<div class="page-layout-container">
     <div>
         <p *ngIf="successFlag">New Employee created successfully !! Employee id is {{ employeeId }}</p>
     </div>
     <form [formGroup]="empCreationForm">
         <div class="row">
-            <div class="col" formGroupName="empBasicInfo">
+            <div class="col-6" formGroupName="empBasicInfo">
                 <mat-form-field style="padding: 20px">
                     <mat-label>Search Employee with ID *</mat-label>
                     <input matInput formControlName="empId" (change)="searchEmployee($event)" />
                 </mat-form-field>
+            </div>
+            <div class="col">
+                <div *ngIf=retrievedImage>
+                    <img class="emp-image"
+                        
+                        [src]="retrievedImage" >
+                </div>
             </div>
         </div>
         <div class="main-container">
@@ -150,7 +157,7 @@
                                 <section class="example-section">
                                     <mat-checkbox #martialStatus formControlName="martialStatus"
                                         (change)="enableDependentSection(martialStatus.checked)">
-                                        Martial Status *</mat-checkbox>
+                                        Family Status *</mat-checkbox>
                                 </section>
                             </div>
                         </div>
@@ -224,8 +231,6 @@
                                     </mat-form-field>
                                 </div>
                                 <div class="col">
-                                    <!-- <label>isPermanetAddress</label>
-                            <input type="text" formControlName="currentPermanetFlag"> -->
                                     <section class="example-section">
                                         <mat-checkbox #currentPermanetFlag formControlName="currentPermanetFlag"
                                             (change)="disablePermananetAddressSection(currentPermanetFlag.checked)"
@@ -233,7 +238,7 @@
                                     </section>
                                 </div>
                                 <div>
-                                    <mat-form-field class="example-full-width">
+                                    <mat-form-field class="example-full-width" hidden="true">
                                         <input matInput formControlName="addressId">
                                     </mat-form-field>
                                 </div>
@@ -308,8 +313,8 @@
                         <div class="col-10">
                             <div formGroupName="skillset" style="width: 100%;">
                                 <mat-form-field style="width: 100%;">
-                                    <mat-label >Skillset</mat-label>
-                                    <mat-select formControlName="skillset" multiple >
+                                    <mat-label>Skillset</mat-label>
+                                    <mat-select formControlName="skillset" multiple>
                                         <mat-option *ngFor="let skillsetval of skillsetList" [value]="skillsetval">
                                             {{skillsetval}}
                                         </mat-option>
@@ -341,7 +346,7 @@
                     </div>
                     <div>
                         <div *ngIf="uploadDocuments">
-                            <app-upload>
+                            <app-upload [fileList]="fileList" [uniqueId]="empId">
 
                             </app-upload>
                         </div>

@@ -1,11 +1,11 @@
 <div class="page-layout-container">
     <div>
-        <p *ngIf="successFlag">New Asset created successfully !! Asset id is {{ assetId }}</p>
+        <p *ngIf="successFlag"></p>
     </div>
     <form [formGroup]="assetsForm">
         <div>
             <div class="row">
-                <h1 class="title"> New Asset - {{ assetType }} </h1>
+                <h1 class="title"> {{ description }} </h1>
             </div>
             <div class="row">
                 <div class="col">

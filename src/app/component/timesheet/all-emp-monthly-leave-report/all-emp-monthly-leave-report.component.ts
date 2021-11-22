@@ -80,7 +80,7 @@ export class AllEmpMonthlyLeaveReportComponent implements OnInit {
 
   fetchMonthlyReport(event){
 
-    console.log("String...");
+    this.allEmployeesTimeSheetReport =[];
     let selectedDate = moment(event.value).format("DD-MM-YYYY");
     this.leavesService.fetchAllEmpLeavesMonthlyReport(selectedDate).subscribe(res => {
 
