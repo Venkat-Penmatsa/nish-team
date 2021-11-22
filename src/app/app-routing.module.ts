@@ -31,6 +31,7 @@ import { EmployeeOfferComponent } from './component/finance/employee-offer/emplo
 import { MonthlyEmpReportComponent } from './component/finance/monthly-emp-report/monthly-emp-report.component';
 import { YearlyEmpReportComponent } from './component/finance/yearly-emp-report/yearly-emp-report.component';
 import { LeavescalculatebatchComponent } from './component/Leaves/leavescalculatebatch/leavescalculatebatch.component';
+import { EmpOfferSimulationComponent } from './component/finance/emp-offer-simulation/emp-offer-simulation.component';
 
 
 
@@ -54,6 +55,7 @@ const routes: Routes = [
       { path: 'finance/empOffer', component: EmployeeOfferComponent },
       { path: 'finance/employeesMonthlyReport', component: MonthlyEmpReportComponent },
       { path: 'finance/empYearlyReport', component: YearlyEmpReportComponent },
+      { path: 'finance/simulation', component: EmpOfferSimulationComponent },
       { path: 'hr/applyLeaves', component: ApplyleaveComponent },
       { path: 'hr/leavesBalence', component: LeavebalenceComponent },
       { path: 'hr/updateLeaves', component: UpdateleavesComponent },
