@@ -1,0 +1,137 @@
+import { AfterViewInit, Component, ViewChild, OnInit, ViewEncapsulation } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { LeavesService } from 'src/app/services/leaves.service';
+import * as _moment from 'moment';
+import moment from 'moment';
+import { User } from 'src/app/model/User';
+
+@Component({
+  selector: 'app-leavescalculatebatch',
+  templateUrl: './leavescalculatebatch.component.html',
+  styleUrls: ['./leavescalculatebatch.component.css']
+})
+export class LeavescalculatebatchComponent implements OnInit {
+
+  displayedColumns: string[] = ['batchJobName',
+    'batchYear',
+    'batchMonth',
+    'executionDate',
+    'status',
+    'batchTriggeredBy',
+    'comments'
+  ];
+  batchJobList: BatchJob[] = [];
+  dataSource = new MatTableDataSource<BatchJob>(this.batchJobList);
+  message = false;
+  messageDesc = "";
+  user: User;
+  selectedMonth: string;
+  selectedYear: string;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  constructor(private leavesService: LeavesService) {
+
+  }
+
+  ngOnInit(): void {
+    this.fetchExecutedBatchJobs();
+  }
+
+  triggerSOYLeaves() {
+    this.user = JSON.parse(localStorage.getItem("userDetails") || '{}') as User;
+    let selectedDate = moment(this.selectedYear).format("DD-MM-YYYY");
+    this.leavesService.triggerSOYLeaves(selectedDate, this.user.empName).subscribe(res => {
+      console.log(res)
+      this.message = true;
+      this.messageDesc = res.responseStatus + " " + res.errorDescription;
+      this.fetchExecutedBatchJobs();
+    });
+  }
+
+  triggerRTTLeaves() {
+
+    this.user = JSON.parse(localStorage.getItem("userDetails") || '{}') as User;
+    let selectedDate = moment(this.selectedMonth).format("DD-MM-YYYY");
+    this.leavesService.triggerRTTLeaves(selectedDate, this.user.empName).subscribe(res => {
+      console.log(res)
+      this.message = true;
+      this.messageDesc = res.responseStatus + " " + res.errorDescription;
+      this.fetchExecutedBatchJobs();
+    });
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
+  fetechYearJobStatus(event) {
+    let selectedDate = moment(event.value).format("DD-MM-YYYY");
+    console.log(selectedDate);
+    const status = this.batchService(selectedDate, 'YEAR_START_LEAVES')
+  }
+
+
+  fetchMonthlyReport(event) {
+    let selectedDate = moment(event.value).format("DD-MM-YYYY");
+    const status = this.batchService(selectedDate, 'RTT_MONTH_LEAVES');
+  }
+
+
+  batchService(selectedDate: any, batchName: string) {
+    this.leavesService.fetchYearBatchJobStatus(batchName, selectedDate).subscribe(res => {
+      console.log(res)
+      if (res.status == 'NOT_EXECUTED' && batchName == 'YEAR_START_LEAVES') {
+        let button = <HTMLButtonElement>document.getElementById('yearButton');
+        button.disabled = false;
+      } else if (res.status == 'NOT_EXECUTED' && batchName == 'RTT_MONTH_LEAVES') {
+        let button = <HTMLButtonElement>document.getElementById('monthButton');
+        button.disabled = false;
+      } else {
+        this.message = true;
+        this.messageDesc = res.batchJobName + " Batch Job Already Executed for the Period " + res.batchMonth + "-" + res.batchYear + " On  " + res.executionDate;
+      }
+    });
+  }
+
+  fetchExecutedBatchJobs() {
+    this.batchJobList = [];
+    this.leavesService.fetchBatchJobs().subscribe(res => {
+      console.log(res)
+      res.forEach(e => {
+        this.batchJobList.push(new BatchJob(e.batchJobName,
+          e.executionDate,
+          e.status,
+          e.batchYear,
+          e.batchMonth,
+          e.comments,
+          e.responseStatus,
+          e.errorDescription,
+          e.errorCode,
+          e.batchTriggeredBy
+        ));
+      })
+      this.dataSource = new MatTableDataSource<BatchJob>(this.batchJobList);
+      this.dataSource.paginator = this.paginator;
+    });
+  }
+
+
+}
+
+export class BatchJob {
+  constructor(
+    private batchJobName: string,
+    private executionDate: Date,
+    private status: string,
+    private batchYear: string,
+    private batchMonth: string,
+    private comments: string,
+    private responseStatus: string,
+    private errorDescription: string,
+    private errorCode: string,
+    private batchTriggeredBy: string
+  ) { }
+}
+

@@ -52,6 +52,9 @@ import { AllEmpMonthlyLeaveReportComponent } from './component/timesheet/all-emp
 import { MonthlyEmpReportComponent } from './component/finance/monthly-emp-report/monthly-emp-report.component';
 import { YearlyEmpReportComponent } from './component/finance/yearly-emp-report/yearly-emp-report.component';
 import { EmployeeOfferComponent } from './component/finance/employee-offer/employee-offer.component';
+import { LeavescalculatebatchComponent } from './component/Leaves/leavescalculatebatch/leavescalculatebatch.component';
+import { EmpOfferSimulationComponent } from './component/finance/emp-offer-simulation/emp-offer-simulation.component';
+
 
 @NgModule({
   declarations: [
@@ -95,7 +98,9 @@ import { EmployeeOfferComponent } from './component/finance/employee-offer/emplo
     AllEmpMonthlyLeaveReportComponent,
     MonthlyEmpReportComponent,
     YearlyEmpReportComponent,
-    EmployeeOfferComponent
+    EmployeeOfferComponent,
+    LeavescalculatebatchComponent,
+    EmpOfferSimulationComponent
   ],
   imports: [
     BrowserModule,

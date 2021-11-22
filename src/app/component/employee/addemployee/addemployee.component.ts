@@ -1,14 +1,9 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
-import { MatChipInputEvent } from '@angular/material/chips';
-import { Observable } from 'rxjs/internal/Observable';
-import { map, startWith } from 'rxjs/operators';
 import { Employee } from 'src/app/model/Employee';
 import { EmployeeDependents } from 'src/app/model/EmployeeDependents';
-import { ResidenceAddress } from 'src/app/model/ResidenceAddress';
 import * as _moment from 'moment';
 import { Moment } from 'moment';
 import { skills } from 'src/app/constants/skills';
@@ -40,9 +35,12 @@ export class AddemployeeComponent implements OnInit {
   empId ="";
   skillsetList: string[] =skills;
   skillset: FormControl = new FormControl();
+  fileList = 'employee';
+  retrievedImage: any;
+  base64Data: any;
 
-  @ViewChild('auto') matAutocomplete: MatAutocomplete;
   @ViewChild('marriageCheckbox') marriageCheckbox: ElementRef;
+
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
 
@@ -117,8 +115,12 @@ export class AddemployeeComponent implements OnInit {
 
   }
 
+  public handleMissingImage(event: Event) {
+    (event.target as HTMLImageElement).style.display = 'none';
+  }
+
   searchEmployee($event: Event){
-    
+    this.successFlag = false;
     const empId = ($event.target as HTMLTextAreaElement).value;
     if(empId!=""){
       this.empCreationForm.reset();
@@ -144,10 +146,14 @@ export class AddemployeeComponent implements OnInit {
         this.empId = this.employee.empBasicInfo.empId;
         if(this.savedEmpDependants != null && this.savedEmpDependants.length > 0) {
           this.showMarriageSectionFlag = true;
-          this.marriageCheckbox['checked'] = true;
+          //this.marriageCheckbox['checked'] = true;
          // this.dob = new Date(this.employee.empBasicInfo.dob);
         }
         this.uploadDocuments = true;
+        this.disablePermanentSectionFlag = !this.employee.employeeAddress.currentPermanetFlag;
+
+        this.base64Data = this.employee.empImage;
+        this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
       })
 
     }

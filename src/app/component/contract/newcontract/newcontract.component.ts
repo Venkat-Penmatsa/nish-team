@@ -1,8 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
 import { NewcontractService } from 'src/app/services/contracts/newcontract.service';
 
 @Component({
@@ -14,28 +12,52 @@ export class NewcontractComponent implements OnInit {
 
   public nishContractId: number;
   public successFlag: Boolean = false;
-  empName:any;
-
+  empName: any;
+  contract: any;
+  filterEmpName: string;
   constructor(private fb: FormBuilder, private newcontractService: NewcontractService, private http: HttpClient) {
-
   }
 
   ngOnInit(): void {
 
   }
 
-  createNewcontract() {
-
+  empNameSelected(emp: any) {
+    this.empName = emp;
   }
 
-  empNameSelected(emp:any){
-    this.empName = emp;
+  searchContractId($event: Event) {
+    this.successFlag = false;
+    const contractID = ($event.target as HTMLTextAreaElement).value;
+    if (contractID != "") {
+      this.newcontractService.fetchContractInfo(contractID).subscribe(res => {
+        console.log(res);
+        this.contract = res;
+        this.newContractForm.patchValue({
+          nishContractId: this.contract.nishContractId,
+          employeeId: this.contract.employeeId,
+          contractId: this.contract.contractId,
+          contractStatus: this.contract.contractStatus,
+          clientName: this.contract.clientName,
+          contractCompanyName: this.contract.contractCompanyName,
+          subContractCompany1: this.contract.subContractCompany1,
+          subContractCompany2: this.contract.subContractCompany2,
+          subContractCompany3: this.contract.subContractCompany3,
+          billingRate: this.contract.billingRate,
+          contractStartDate: this.contract.contractStartDate,
+          contractEndDate: this.contract.contractEndDate,
+          comments: this.contract.comments
+        });
+        this.filterEmpName = this.contract.employeeId;
+        this.newContractForm.controls['billingRate'].disable();
+      });
+    }
   }
 
   onSubmit() {
     console.log(this.newContractForm.value);
     this.newContractForm.patchValue({
-      employeeId:this.empName
+      employeeId: this.empName
     })
     const body = JSON.stringify(this.newContractForm.value);
     console.log("String..." + body)
@@ -50,12 +72,10 @@ export class NewcontractComponent implements OnInit {
       })
     this.successFlag = true;
     console.log("nishContractId..." + this.nishContractId)
-
   }
 
-
   newContractForm = this.fb.group({
-
+    nishContractId: [''],
     employeeId: ['', Validators.required],
     contractId: [''],
     contractStatus: [''],

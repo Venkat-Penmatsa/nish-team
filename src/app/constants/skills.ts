@@ -1,7 +1,7 @@
-export let skills =  ['Java', 'Spring Boot' , 'Spring Cloud', 'Cloud', 'OpenShift', 'Kubernetus', 
+export let skills =  ['Java', 'Spring Boot' , 'Spring Cloud', 'Cloud', 'OpenShift', 'Kubernetus', 'MicroServices',
                     'Junit', 'Agile', 'DevOps', 'DevOps Tools', 'TeamCity', 'Jenkins', 'Angular', 'React', 
-                    'Manual Testing', 'Automation Testing', 'Selinium','RPA','MainFrame','Project Management', 
+                    'Manual Testing', 'Automation Testing', 'Selinium','RPA','MainFrame','ERP Tools',
                     'Full Stack Java Developer','Test Engineer','SAP','DotNet','CI-CD Tools','Apache KAFKA',
                     'Big Data Analytics','Machine Learning','Python','PL/SQL','DBA','ORACLE Tools','IBM Tools',
-                    'Google Cloud','Amazon Web Services','Cloud Tools','Microsoft Tools','Block Chain',
-                    'Cyber Security','Artificial Intelligence','IOT','Others'];
+                    'Google Cloud','Amazon Web Services','Cloud Tools','Microsoft Tools','Block Chain','UNIX','LINUX',
+                    'Cyber Security','Artificial Intelligence','IOT','Project Management', 'Others'];

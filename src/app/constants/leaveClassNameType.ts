@@ -12,3 +12,9 @@ export let leaveClassNameType: Array<any> = [
   {name: 'Other', className: 'other', key: 'other', code: 'O', value:''},
   {name: 'Compensation Leave', className: 'compensationLeave', key: 'compensationLeave', code: 'CL', value:''}
 ];
+
+
+export let leaveBalence: Array<any> = [
+  {name: 'Authorised absence', className: 'authorisedAbsence', key: 'authorisedAbsence', code: 'AA', value:''},
+  {name: 'Rtt/ADV days', className: 'rttAdv', key: 'rttAdv', code: 'RTT', value:''}
+];

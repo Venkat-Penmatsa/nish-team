@@ -6,7 +6,7 @@ export class EmployeeAddress {
     currentState: string;
     currentCountry: string;
     currentPincode: string;
-    currentPermanetFlag: string;
+    currentPermanetFlag: boolean;
     permanentAddress1: string;
     permanentAddress2: string;
     permanentAddcity: string;

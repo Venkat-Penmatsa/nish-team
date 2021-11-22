@@ -5,7 +5,7 @@ import moment from 'moment';
 import { Moment } from 'moment';
 import { User } from 'src/app/model/User';
 import { LeavesService } from 'src/app/services/leaves.service';
-import { leaveClassNameType } from '../../../constants/leaveClassNameType';
+import { leaveBalence, leaveClassNameType } from '../../../constants/leaveClassNameType';
 
 
 @Component({
@@ -17,7 +17,7 @@ import { leaveClassNameType } from '../../../constants/leaveClassNameType';
 export class ApplyleaveComponent implements OnInit {
 
 
-  leaveList = leaveClassNameType;
+  leaveList = leaveBalence;
   filterEmpName: string;
   empName: any;
   showleaves = false;
@@ -119,12 +119,19 @@ export class ApplyleaveComponent implements OnInit {
         const leavesjson = JSON.stringify(applyLeave);
         this.leavesService.applyLeaves(leavesjson).subscribe(res => {
           console.log(res)
-          if (res.leaveId != null) {
-            this.message = true;
-            this.messageDesc = "Leave applied successfully";
-            this.fetchLeaveBalence();
-            this.leaveForm.reset();
-          }
+          
+            if(res.responseStatus == 'failed'){
+              this.message = true;
+              this.messageDesc = res.errorDescription;
+            } 
+            
+            if (res.leaveId != null)  {
+              this.message = true;
+              this.messageDesc = "Leave applied successfully";
+              this.fetchLeaveBalence();
+              this.leaveForm.reset();
+            }
+          
         });
 
       }

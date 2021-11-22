@@ -11,11 +11,11 @@
             <p *ngIf="message">{{ messageDesc }}</p>
         </div>
         <div class="row">
-            <div class="col-5" class="page-layout-container">
+            <div class="col-4">
+                <p> Leave Balence</p>
                 <div *ngFor="let leave of leaveList" class="d-flex">
-                    <div [ngClass]="leave.className" class="square"></div>
-                    <p class="pl-10">{{leave.name}}</p>
-                    <p class="pl-10">{{leave.value}}</p>
+                    <p class="leave-bal"> {{leave.name}}</p>
+                    <p class="leave-bal"> : {{leave.value}}</p>
                 </div>
             </div>
             <div class="col-6">

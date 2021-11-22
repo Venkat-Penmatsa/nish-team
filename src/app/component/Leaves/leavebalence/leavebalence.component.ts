@@ -2,6 +2,8 @@ import { AfterViewInit, Component, ViewChild, OnInit, ViewEncapsulation } from '
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { LeavesService } from 'src/app/services/leaves.service';
+import * as _moment from 'moment';
+import moment from 'moment';
 
 @Component({
   selector: 'app-leavebalence',
@@ -11,18 +13,15 @@ import { LeavesService } from 'src/app/services/leaves.service';
 })
 export class LeavebalenceComponent implements AfterViewInit, OnInit {
 
-  displayedColumns: string[] = ['employeeId',
-    'sickLeave',
-    'authorisedAbsence',
-    'rttAdv',
-    'overtime',
-    'unauthorisedAbsence',
-    'forceMajeure',
-    'other',
-    'forwardedLeave',
-    'totalleavebalence',
-    'lastUpdateDate',
-    'updatedBy',
+  displayedColumns: string[] = ['leaveId',
+    'employeeId',
+    'leaveType',
+    'startDate',
+    'endDate',
+    'status',
+    'leaveAppliedBy',
+    'leaveAppliedDate',
+    'numberOfDays',
     'comments'
   ];
   empLeavesBalenceList: EmpLeavesBalence[] = [];
@@ -38,29 +37,21 @@ export class LeavebalenceComponent implements AfterViewInit, OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  ngOnInit(): void {
-
-    this.leavesService.fetchAllEmpLeaves().subscribe(res => {
+  fetchMonthlyReport(event){
+    this.empLeavesBalenceList = [];
+    let selectedDate = moment(event.value).format("DD-MM-YYYY");
+    this.leavesService.fetchAllEmpLeaves(selectedDate).subscribe(res => {
       console.log(res)
       res.forEach(e => {
-        this.empLeavesBalenceList.push(new EmpLeavesBalence(e.leavebalenceid,
-          e.leaveyear,
+        this.empLeavesBalenceList.push(new EmpLeavesBalence(e.leaveId,
           e.employeeId,
-          e.sickLeave,
-          e.authorisedAbsence,
-          e.maternityLeave,
-          e.parentalLeave,
-          e.holiday,
-          e.rttAdv,
-          e.overtime,
-          e.unauthorisedAbsence,
-          e.forceMajeure,
-          e.other,
-          e.compensationLeave,
-          e.forwardedLeave,
-          e.totalleavebalence,
-          e.lastUpdateDate,
-          e.updatedBy,
+          e.leaveType,
+          e.startDate,
+          e.endDate,
+          e.status,
+          e.leaveAppliedBy,
+          e.leaveAppliedDate,
+          e.numberOfDays,
           e.comments
         ));
       })
@@ -69,28 +60,24 @@ export class LeavebalenceComponent implements AfterViewInit, OnInit {
     });
   }
 
+  ngOnInit(): void {
+
+ 
+  }
+
 }
 
 export class EmpLeavesBalence {
   constructor(
-    private leavebalenceid: string,
-    private leaveyear: string,
+    private leaveId: string,
     private employeeId: string,
-    private sickLeave: string,
-    private authorisedAbsence: string,
-    private maternityLeave: string,
-    private parentalLeave: string,
-    private holiday: string,
-    private rttAdv: string,
-    private overtime: string,
-    private unauthorisedAbsence: string,
-    private forceMajeure: string,
-    private other: string,
-    private compensationLeave: string,
-    private forwardedLeave: string,
-    private totalleavebalence: string,
-    private lastUpdateDate: string,
-    private updatedBy: string,
-    private comments: string,
+    private leaveType: string,
+    private startDate: string,
+    private endDate: string,
+    private status: string,
+    private leaveAppliedBy: string,
+    private leaveAppliedDate: string,
+    private numberOfDays: string,
+    private comments: string
   ) { }
 }
