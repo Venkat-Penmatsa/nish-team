@@ -1,1 +1,133 @@
-<p>emp-offer-simulation works!</p>
+<div class="page-layout-container ">
+    <div class="row">
+        <h1 class="title"> Offer Simulation Form </h1>
+    </div>
+    <form [formGroup]="simulationForm">
+
+        <div class="row">
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>Daily Rate *</mat-label>
+                    <input matInput type="number" (change)="calculateYearBilling()" min="0" max="1000" formControlName="dailyRate">
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>Year Billing(Rate X 220 Days) *</mat-label>
+                    <input matInput type="number" readonly="true" min="0" max="1000" formControlName="yearBilling">
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>Gross Per Month(A) *</mat-label>
+                    <input matInput type="number" min="0" max="5000"  (change)="calculateGross()"  formControlName="grossPerMonth">
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>Tax on Gross(B = A*33%) *</mat-label>
+                    <input matInput type="number" min="0" readonly="true" formControlName="grossTax">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>Car(D) *</mat-label>
+                    <input matInput type="number" min="0" formControlName="car">
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>Insurance(C) *</mat-label>
+                    <input matInput type="number" min="0" formControlName="insurance">
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>Fuel Card(E) *</mat-label>
+                    <input matInput type="number" min="0" formControlName="fuelCard">
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>Car Insurance(F) *</mat-label>
+                    <input matInput type="number" min="0" formControlName="carInsurance">
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>Meal Voucher(G) *</mat-label>
+                    <input matInput type="number" min="0" formControlName="mealVoucher">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row">
+           
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>Laptop(H) *</mat-label>
+                    <input matInput type="number" min="0" formControlName="laptop">
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>Mobile(I) *</mat-label>
+                    <input matInput type="number" min="0" formControlName="mobile">
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>Bonus(L) *</mat-label>
+                    <input matInput type="number" min="0" formControlName="bonus">
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>Gross Per year(J=Sum(A+B)-13.92) *</mat-label>
+                    <input matInput type="number" min="0" formControlName="grossPerYear">
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>Rest(K = Sum(C-G)*12) *</mat-label>
+                    <input matInput type="number" min="0" formControlName="rest">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row">
+           
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>Mobile(I) *</mat-label>
+                    <input matInput type="number" min="0" formControlName="mobile">
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>CTC Per year(Sum(H,I,J,K,L)) *</mat-label>
+                    <input matInput type="number" readonly="true" min="0" formControlName="ctc">
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>Margin(CTC - Year Billing) *</mat-label>
+                    <input matInput type="number" readonly="true" min="0" formControlName="margin">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">      
+        </div>
+    </form>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="row" style="color: red">
+        <p> *Calculation will be performed on change on Daily bill rate and Employee Gross salary per Month</p>
+    </div>
+    <div class="row" style="color: red">
+        <p> *Please fill all editable fields with 0 or any other value</p>
+    </div>
+</div>

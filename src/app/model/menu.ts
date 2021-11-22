@@ -70,9 +70,9 @@ export let menu: NavItem[] = [
         role:['All','Admin','HR','Finance'],
       },
       {
-        displayName: 'Reports',
+        displayName: 'Simulation',
         iconName: 'list_alt',
-        route: 'contracts/reports',
+        route: 'finance/simulation',
         role:['All','Admin','HR','Finance'],
       }
     ]

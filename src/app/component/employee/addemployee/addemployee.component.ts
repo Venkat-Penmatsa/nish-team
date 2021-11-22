@@ -163,46 +163,6 @@ export class AddemployeeComponent implements OnInit {
 
     }
   }
-
-  searchEmployee($event: Event){
-    this.successFlag = false;
-    const empId = ($event.target as HTMLTextAreaElement).value;
-    if(empId!=""){
-      this.empCreationForm.reset();
-      this.savedEmpDependants = [];
-      console.log(' Employee to be identified. ' + ($event.target as HTMLTextAreaElement).value);
-      this.http.get<Employee>('http://localhost:8091/employee/getEmployeeById/'+empId,)
-      .subscribe(data => {
-        console.log("data ==========> " + data);
-        this.employee = data;
-        this.empCreationForm.patchValue({
-          empBasicInfo: this.employee.empBasicInfo,
-          employeeAddress: this.employee.employeeAddress,
-          skillset: this.employee.skillset
-        });
-        this.empCreationForm.patchValue({
-          empBasicInfo : {
-            //dob :  moment(this.employee.empBasicInfo.dob, "DD/MM/YYYY"),
-            dob : new Date(this.employee.empBasicInfo.dob),
-            onboardingDate : new Date(this.employee.empBasicInfo.onboardingDate)
-          }
-        });
-        this.savedEmpDependants  = this.employee.employeeDependents;
-        this.empId = this.employee.empBasicInfo.empId;
-        if(this.savedEmpDependants != null && this.savedEmpDependants.length > 0) {
-          this.showMarriageSectionFlag = true;
-          //this.marriageCheckbox['checked'] = true;
-         // this.dob = new Date(this.employee.empBasicInfo.dob);
-        }
-        this.uploadDocuments = true;
-        this.disablePermanentSectionFlag = !this.employee.employeeAddress.currentPermanetFlag;
-
-        this.base64Data = this.employee.empImage;
-        this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
-      })
-
-    }
-  }
  
   dobFilter =  new Date();
 
