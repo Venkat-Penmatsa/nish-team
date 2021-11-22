@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { NavItem } from 'src/app/model/nav-item';
 import { NavService } from 'src/app/services/navigation.service.spec';
+import { User } from 'src/app/model/User';
 
 
 @Component({
@@ -25,9 +26,9 @@ import { NavService } from 'src/app/services/navigation.service.spec';
 export class MenuComponent implements OnInit {
 
   expanded: boolean = false;
-
+  user: User;
   @HostBinding('attr.aria-expanded') ariaExpanded = this.expanded;
-  @Input() item: NavItem; 
+  @Input() item: NavItem;
   @Input() depth: number;
 
 
@@ -48,15 +49,17 @@ export class MenuComponent implements OnInit {
   }
 
   onItemSelected(item: NavItem) {
-    if (!item.children || !item.children.length) {
-      this.router.navigate([item.route]);
-    }
-
-    if (item.children && item.children.length) {
-      this.expanded = !this.expanded;
+    console.log('menu...');
+    this.user = JSON.parse(localStorage.getItem("userDetails") || '{}') as User;
+    if (!(this.user.role == 'hr' && item.displayName == 'Finance')) {
+      if (!item.children || !item.children.length) {
+        this.router.navigate([item.route]);
+      }
+      if (item.children && item.children.length) {
+        this.expanded = !this.expanded;
+      }
     }
   }
-
 
 }
 

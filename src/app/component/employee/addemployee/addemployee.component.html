@@ -4,17 +4,18 @@
     </div>
     <form [formGroup]="empCreationForm">
         <div class="row">
-            <div class="col-6" formGroupName="empBasicInfo">
-                <mat-form-field style="padding: 20px">
-                    <mat-label>Search Employee with ID *</mat-label>
-                    <input matInput formControlName="empId" (change)="searchEmployee($event)" />
-                </mat-form-field>
+            <div class="col">
+                <app-emp-name [filterEmpName]="filterEmpName" (empName)="empNameSelected($event)">
+                </app-emp-name>
+            </div>
+            <div class="col">
+                <div style="text-align: center">
+                    <button class="btn btn-primary" (click)="searchEmployees()" type="submit">Search Employee</button>
+                </div>
             </div>
             <div class="col">
                 <div *ngIf=retrievedImage>
-                    <img class="emp-image"
-                        
-                        [src]="retrievedImage" >
+                    <img class="emp-image" [src]="retrievedImage">
                 </div>
             </div>
         </div>

@@ -5,7 +5,6 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Employee } from 'src/app/model/Employee';
 import { EmployeeDependents } from 'src/app/model/EmployeeDependents';
 import * as _moment from 'moment';
-import { Moment } from 'moment';
 import { skills } from 'src/app/constants/skills';
 
 const moment = _moment;
@@ -38,6 +37,8 @@ export class AddemployeeComponent implements OnInit {
   fileList = 'employee';
   retrievedImage: any;
   base64Data: any;
+  filterEmpName: string;
+  empName: any;
 
   @ViewChild('marriageCheckbox') marriageCheckbox: ElementRef;
 
@@ -69,6 +70,10 @@ export class AddemployeeComponent implements OnInit {
     }
   }
 
+  empNameSelected(emp: any) {
+    this.empName = emp;
+  }
+
 
   disablePermananetAddressSection(status: any) {
     if (status) {
@@ -94,8 +99,9 @@ export class AddemployeeComponent implements OnInit {
     console.log(status);
     this.showMarriageSectionFlag = status;
   }
-  onSubmit() {
 
+
+  onSubmit() {
     console.log(this.empCreationForm.value);
     this.employee = Object.assign({}, this.empCreationForm.value);
     this.employee.employeeDependents = this.empDependants;
@@ -117,6 +123,45 @@ export class AddemployeeComponent implements OnInit {
 
   public handleMissingImage(event: Event) {
     (event.target as HTMLImageElement).style.display = 'none';
+  }
+
+  searchEmployees(){
+    this.successFlag = false;
+    if(this.empName!=""){
+      const emparr = this.empName.split("-");
+      this.empCreationForm.reset();
+      this.savedEmpDependants = [];
+      this.http.get<Employee>('http://localhost:8091/employee/getEmployeeById/'+emparr[0])
+      .subscribe(data => {
+        console.log("data ==========> " + data);
+        this.employee = data;
+        this.empCreationForm.patchValue({
+          empBasicInfo: this.employee.empBasicInfo,
+          employeeAddress: this.employee.employeeAddress,
+          skillset: this.employee.skillset
+        });
+        this.empCreationForm.patchValue({
+          empBasicInfo : {
+            //dob :  moment(this.employee.empBasicInfo.dob, "DD/MM/YYYY"),
+            dob : new Date(this.employee.empBasicInfo.dob),
+            onboardingDate : new Date(this.employee.empBasicInfo.onboardingDate)
+          }
+        });
+        this.savedEmpDependants  = this.employee.employeeDependents;
+        this.empId = this.employee.empBasicInfo.empId;
+        if(this.savedEmpDependants != null && this.savedEmpDependants.length > 0) {
+          this.showMarriageSectionFlag = true;
+          //this.marriageCheckbox['checked'] = true;
+         // this.dob = new Date(this.employee.empBasicInfo.dob);
+        }
+        this.uploadDocuments = true;
+        this.disablePermanentSectionFlag = !this.employee.employeeAddress.currentPermanetFlag;
+
+        this.base64Data = this.employee.empImage;
+        this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+      })
+
+    }
   }
 
   searchEmployee($event: Event){
