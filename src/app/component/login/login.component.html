@@ -5,6 +5,7 @@
   <div class="container">
     <h2  style="text-align:right">Login</h2>
     <form [formGroup]="loginForm">
+      <p style="text-align:center; color:red"> {{errorMessage}} </p>
       <p>
         <mat-form-field appearance="outline">
           <mat-label>UserName</mat-label>

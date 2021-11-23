@@ -27,6 +27,7 @@
       <!-- #enddocregion mat-menu-trigger-for -->
       <mat-menu #menuI="matMenu">
         <p mat-menu-item>Role: {{shared.userRole}}</p>
+        <a mat-menu-item (click)="changePwd()" style="text-decoration: none">Change Password</a>
         <a mat-menu-item (click)="logout()" style="text-decoration: none">Logout</a>
       </mat-menu>
 

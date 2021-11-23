@@ -54,6 +54,7 @@ import { YearlyEmpReportComponent } from './component/finance/yearly-emp-report/
 import { EmployeeOfferComponent } from './component/finance/employee-offer/employee-offer.component';
 import { LeavescalculatebatchComponent } from './component/Leaves/leavescalculatebatch/leavescalculatebatch.component';
 import { EmpOfferSimulationComponent } from './component/finance/emp-offer-simulation/emp-offer-simulation.component';
+import { PasswordResetComponent } from './component/features/password-reset/password-reset.component';
 
 
 @NgModule({
@@ -100,7 +101,8 @@ import { EmpOfferSimulationComponent } from './component/finance/emp-offer-simul
     YearlyEmpReportComponent,
     EmployeeOfferComponent,
     LeavescalculatebatchComponent,
-    EmpOfferSimulationComponent
+    EmpOfferSimulationComponent,
+    PasswordResetComponent
   ],
   imports: [
     BrowserModule,

@@ -69,7 +69,7 @@ export class EmpOfferSimulationComponent implements OnInit {
 
       const yearBilling =  this.simulationForm.get('yearBilling')?.value;
 
-      const margin = (yearBilling-ctc);
+      const margin = Math.round(yearBilling-ctc);
 
       this.simulationForm.patchValue({
         grossPerYear: grossPerYear,

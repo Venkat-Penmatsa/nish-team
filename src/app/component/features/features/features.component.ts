@@ -1,10 +1,10 @@
-import {Component, HostListener, OnDestroy, ViewEncapsulation} from '@angular/core';
-import {Subscription} from 'rxjs';
-import {MediaChange, MediaObserver} from '@angular/flex-layout';
-import {NavItem} from 'src/app/model/nav-item';
-import {menu} from 'src/app/model/menu';
-import {Router} from "@angular/router";
-import {SharedService} from "../../../services/shared.service";
+import { Component, HostListener, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { MediaChange, MediaObserver } from '@angular/flex-layout';
+import { NavItem } from 'src/app/model/nav-item';
+import { menu } from 'src/app/model/menu';
+import { Router } from "@angular/router";
+import { SharedService } from "../../../services/shared.service";
 import { User } from 'src/app/model/User';
 
 @Component({
@@ -18,7 +18,7 @@ export class FeaturesComponent implements OnDestroy {
   private mediaWatcher: Subscription;
   public menu: NavItem[] = menu;
   headerSticky = false;
-  user:User;
+  user: User;
 
   constructor(private media: MediaObserver, private router: Router, public shared: SharedService) {
     this.mediaWatcher = this.media.media$.subscribe((mediaChange: MediaChange) => {
@@ -35,28 +35,31 @@ export class FeaturesComponent implements OnDestroy {
   }
 
   ngOnInit(): void {
-   //this.user = localStorage.getItem("userDetails");
-   this.user = JSON.parse(localStorage.getItem("userDetails")|| '{}') as User;
-   this.shared.userRole = this.user.role;
-   this.shared.loggedUsername = this.user.empName;
+    //this.user = localStorage.getItem("userDetails");
+    this.user = JSON.parse(localStorage.getItem("userDetails") || '{}') as User;
+    this.shared.userRole = this.user.role;
+    this.shared.loggedUsername = this.user.empName;
   }
 
   ngOnDestroy() {
     this.mediaWatcher.unsubscribe();
   }
 
-  goToHome(){
+  goToHome() {
     this.router.navigateByUrl('/home');
   }
 
-  logout(){
+  logout() {
     this.shared.isLoggedIn = false;
     this.shared.userRole = '';
-    this.shared.loggedUsername ='';
+    this.shared.loggedUsername = '';
     localStorage.removeItem('currentUser');
     localStorage.removeItem('userDetails');
     this.router.navigateByUrl('/login');
   }
 
+  changePwd() {
+    this.router.navigate(['/changepwd'])
+  }
 
 }

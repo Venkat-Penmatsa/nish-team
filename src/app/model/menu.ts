@@ -166,7 +166,7 @@ export let menu: NavItem[] = [
     role:['All','Admin'],
     children: [
       {
-        displayName: 'Create New User',
+        displayName: 'Manage User',
         iconName: 'person_add',
         route: 'user/newUser',
         role:['All','Admin'],
@@ -175,12 +175,6 @@ export let menu: NavItem[] = [
         displayName: 'Users List',
         iconName: 'people',
         route: 'user/usersList',
-        role:['All','Admin'],
-      },
-      {
-        displayName: 'Manage User',
-        iconName: 'people',
-        route: 'user/manageUser',
         role:['All','Admin'],
       }
     ]
