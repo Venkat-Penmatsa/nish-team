@@ -51,7 +51,7 @@ export class MenuComponent implements OnInit {
   onItemSelected(item: NavItem) {
     console.log('menu...');
     this.user = JSON.parse(localStorage.getItem("userDetails") || '{}') as User;
-    if (!(this.user.role == 'hr' && item.displayName == 'Finance')) {
+    if (!(this.user.role == 'hr' && (item.displayName == 'Finance' || item.displayName == 'User Management'))) {
       if (!item.children || !item.children.length) {
         this.router.navigate([item.route]);
       }

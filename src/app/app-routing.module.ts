@@ -32,6 +32,7 @@ import { MonthlyEmpReportComponent } from './component/finance/monthly-emp-repor
 import { YearlyEmpReportComponent } from './component/finance/yearly-emp-report/yearly-emp-report.component';
 import { LeavescalculatebatchComponent } from './component/Leaves/leavescalculatebatch/leavescalculatebatch.component';
 import { EmpOfferSimulationComponent } from './component/finance/emp-offer-simulation/emp-offer-simulation.component';
+import { PasswordResetComponent } from './component/features/password-reset/password-reset.component';
 
 
 
@@ -72,7 +73,7 @@ const routes: Routes = [
       { path: 'user/manageUser', component: ManageUserComponent },
       { path: 'user/usersList', component: ListusersComponent },
       { path: 'user/newUser', component: UserComponent },
-      
+      { path: 'changepwd', component: PasswordResetComponent },
       
     ]
   }
