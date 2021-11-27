@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
 import { SharedService } from "../../services/shared.service";
 import { AuthenticationService } from "../../services/authentication.service";
+import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-login',
@@ -26,6 +27,8 @@ export class LoginComponent implements OnInit {
 
   onButtonClick() {
     if (this.loginForm.valid) {
+      const salt = bcrypt.genSaltSync(10);
+      let pass = bcrypt.hashSync(this.loginForm.value.password, salt); //this.loginForm.get('password')?.value)
       let res = this.authenticate.login(this.loginForm.get('userName')?.value, this.loginForm.get('password')?.value);
       res.subscribe(data => {
         console.log("response is " + data);
