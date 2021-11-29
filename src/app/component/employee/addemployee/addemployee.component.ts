@@ -6,6 +6,7 @@ import { Employee } from 'src/app/model/Employee';
 import { EmployeeDependents } from 'src/app/model/EmployeeDependents';
 import * as _moment from 'moment';
 import { skills } from 'src/app/constants/skills';
+import { EmployeeService } from 'src/app/services/employee.service';
 
 const moment = _moment;
 
@@ -16,7 +17,7 @@ const moment = _moment;
 })
 export class AddemployeeComponent implements OnInit {
 
- 
+
   public employeeId: number;
   public successFlag: Boolean = false;
   showMarriageSectionFlag = false;
@@ -29,10 +30,10 @@ export class AddemployeeComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   dob: Date;
   empDependants: EmployeeDependents[] = [];
-  savedEmpDependants : EmployeeDependents[] = [];
+  savedEmpDependants: EmployeeDependents[] = [];
   employee: Employee = new Employee();
-  empId ="";
-  skillsetList: string[] =skills;
+  empId = "";
+  skillsetList: string[] = skills;
   skillset: FormControl = new FormControl();
   fileList = 'employee';
   retrievedImage: any;
@@ -43,10 +44,10 @@ export class AddemployeeComponent implements OnInit {
   @ViewChild('marriageCheckbox') marriageCheckbox: ElementRef;
 
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private employeeService: EmployeeService) {
 
   }
- 
+
   ngOnInit(): void {
 
   }
@@ -91,7 +92,7 @@ export class AddemployeeComponent implements OnInit {
     this.step--;
   }
 
-  dependantSubmitted(dependant : EmployeeDependents[]) {
+  dependantSubmitted(dependant: EmployeeDependents[]) {
     this.empDependants = dependant;
   }
 
@@ -107,10 +108,10 @@ export class AddemployeeComponent implements OnInit {
     this.employee.employeeDependents = this.empDependants;
 
     const empJson = JSON.stringify(this.employee);
-    console.log('empJson ' +empJson);
+    console.log('empJson ' + empJson);
     const headers = { 'Content-type': 'application/json' };
 
-    this.http.post<EmployeeResponse>('http://localhost:8091/employee/createEmployee', this.employee, { headers })
+    this.employeeService.createEmployee(this.employee)
       .subscribe(data => {
         console.log("data ==========> " + data);
         this.employeeId = data.employeeId;
@@ -125,51 +126,51 @@ export class AddemployeeComponent implements OnInit {
     (event.target as HTMLImageElement).style.display = 'none';
   }
 
-  searchEmployees(){
+  searchEmployees() {
     this.successFlag = false;
-    if(this.empName!=""){
+    if (this.empName != "") {
       const emparr = this.empName.split("-");
       this.empCreationForm.reset();
       this.savedEmpDependants = [];
-      this.http.get<Employee>('http://localhost:8091/employee/getEmployeeById/'+emparr[0])
-      .subscribe(data => {
-        console.log("data ==========> " + data);
-        this.employee = data;
-        this.empCreationForm.patchValue({
-          empBasicInfo: this.employee.empBasicInfo,
-          employeeAddress: this.employee.employeeAddress,
-          skillset: this.employee.skillset
-        });
-        this.empCreationForm.patchValue({
-          empBasicInfo : {
-            //dob :  moment(this.employee.empBasicInfo.dob, "DD/MM/YYYY"),
-            dob : new Date(this.employee.empBasicInfo.dob),
-            onboardingDate : new Date(this.employee.empBasicInfo.onboardingDate)
+      this.employeeService.fetchEmployeeById(emparr[0])
+        .subscribe(data => {
+          console.log("data ==========> " + data);
+          this.employee = data;
+          this.empCreationForm.patchValue({
+            empBasicInfo: this.employee.empBasicInfo,
+            employeeAddress: this.employee.employeeAddress,
+            skillset: this.employee.skillset
+          });
+          this.empCreationForm.patchValue({
+            empBasicInfo: {
+              //dob :  moment(this.employee.empBasicInfo.dob, "DD/MM/YYYY"),
+              dob: new Date(this.employee.empBasicInfo.dob),
+              onboardingDate: new Date(this.employee.empBasicInfo.onboardingDate)
+            }
+          });
+          this.savedEmpDependants = this.employee.employeeDependents;
+          this.empId = this.employee.empBasicInfo.empId;
+          if (this.savedEmpDependants != null && this.savedEmpDependants.length > 0) {
+            this.showMarriageSectionFlag = true;
+            //this.marriageCheckbox['checked'] = true;
+            // this.dob = new Date(this.employee.empBasicInfo.dob);
           }
-        });
-        this.savedEmpDependants  = this.employee.employeeDependents;
-        this.empId = this.employee.empBasicInfo.empId;
-        if(this.savedEmpDependants != null && this.savedEmpDependants.length > 0) {
-          this.showMarriageSectionFlag = true;
-          //this.marriageCheckbox['checked'] = true;
-         // this.dob = new Date(this.employee.empBasicInfo.dob);
-        }
-        this.uploadDocuments = true;
-        this.disablePermanentSectionFlag = !this.employee.employeeAddress.currentPermanetFlag;
+          this.uploadDocuments = true;
+          this.disablePermanentSectionFlag = !this.employee.employeeAddress.currentPermanetFlag;
 
-        this.base64Data = this.employee.empImage;
-        this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
-      })
+          this.base64Data = this.employee.empImage;
+          this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+        })
 
     }
   }
- 
-  dobFilter =  new Date();
 
-  dateOfJoiningFilter=(d: Date | null): boolean => {
+  dobFilter = new Date();
+
+  dateOfJoiningFilter = (d: Date | null): boolean => {
     const day = (d || new Date()).getDay();
     return day !== 0 && day !== 6;
-  } 
+  }
 
   empCreationForm = this.fb.group({
 
@@ -195,7 +196,7 @@ export class AddemployeeComponent implements OnInit {
     }
     ),
     employeeAddress: this.fb.group({
-      addressId:[],
+      addressId: [],
       currentAddress1: ['', Validators.required],
       currentAddress2: [],
       currentCity: ['', Validators.required],

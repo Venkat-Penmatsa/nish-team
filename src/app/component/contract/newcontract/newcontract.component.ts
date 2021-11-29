@@ -64,7 +64,7 @@ export class NewcontractComponent implements OnInit {
 
     const headers = { 'Content-type': 'application/json' };
 
-    this.http.post<ContractResponse>('http://localhost:8091/contract/newContract', body, { headers })
+    this.newcontractService.createContract(body)
       .subscribe(data => {
         console.log("data ==========> " + data);
         this.nishContractId = data.nishContractId;
