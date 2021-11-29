@@ -1,28 +1,33 @@
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {catchError} from "rxjs/operators";
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { catchError } from "rxjs/operators";
+import { HostNameServiceService } from './host-name-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TimesheetService {
 
-  constructor(private http: HttpClient) {
+
+  private baseUrl = 'http://localhost:8091';
+
+  constructor(private http: HttpClient, private hostNameServiceService: HostNameServiceService) {
+    this.baseUrl = hostNameServiceService.getHostname();
   }
 
   fetchEmployeeExpenses(employeeNo: string) {
-    return this.http.get("http://localhost:8091/finance/getEmpExpenses/"+employeeNo).pipe(catchError(this.errorHandler));
+    return this.http.get(`${this.baseUrl}/finance/getEmpExpenses/` + employeeNo).pipe(catchError(this.errorHandler));
   }
 
   updateEmployeeExpenses(empExpenses: any) {
     const headers = { 'Content-type': 'application/json' };
-    return this.http.post("http://localhost:8091/finance/empExpenses/", empExpenses, { headers }).pipe(catchError(this.errorHandler));
+    return this.http.post(`${this.baseUrl}/finance/empExpenses/`, empExpenses, { headers }).pipe(catchError(this.errorHandler));
   }
 
   fetchMonthlyTimesheet(employeeNo: string, month: any) {
     const url = '../assets/json/monthly_' + employeeNo + '.json';
-    return this.http.get("http://localhost:8091/timesheet/monthly/"+employeeNo+"/"+month).pipe(catchError(this.errorHandler));
+    return this.http.get(`${this.baseUrl}/timesheet/monthly/` + employeeNo + "/" + month).pipe(catchError(this.errorHandler));
   }
 
   fetchYearlyTimesheet(employeeNo: string, year: string) {
@@ -31,7 +36,7 @@ export class TimesheetService {
   }
 
   generateEmpRevenueReport(employeeNo: string, year: string) {
-    return this.http.get("http://localhost:8091/finance/generateEmpRevenueReport/"+employeeNo+"/"+year).pipe(catchError(this.errorHandler));
+    return this.http.get(`${this.baseUrl}/finance/generateEmpRevenueReport/` + employeeNo + "/" + year).pipe(catchError(this.errorHandler));
   }
 
   errorHandler(error: HttpErrorResponse) {

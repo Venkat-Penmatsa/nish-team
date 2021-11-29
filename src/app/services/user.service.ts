@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { HostNameServiceService } from './host-name-service.service';
 
 
 @Injectable({
@@ -8,20 +9,23 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
-  constructor(private http: HttpClient) {
 
+  private baseUrl = 'http://localhost:8091';
+
+  constructor(private http: HttpClient, private hostNameServiceService: HostNameServiceService) {
+    this.baseUrl = hostNameServiceService.getHostname();
   }
 
   createNewUser(assetJson: any): Observable<any> {
     const headers = { 'Content-type': 'application/json' };
-    return this.http.post('http://localhost:8091/user/createUser', assetJson, { headers })
+    return this.http.post(`${this.baseUrl}/user/createUser`, assetJson, { headers })
   }
 
 
   fetchUsersList(): Observable<any> {
     const headers = { 'Content-type': 'application/json' };
-    return this.http.get('http://localhost:8091/user/listUsers' , { headers })
+    return this.http.get(`${this.baseUrl}/user/listUsers`, { headers })
   }
 
-  
+
 }
