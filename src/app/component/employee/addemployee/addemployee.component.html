@@ -156,7 +156,7 @@
                             </div>
                             <div class="col">
                                 <section class="example-section">
-                                    <mat-checkbox #martialStatus formControlName="martialStatus"
+                                    <mat-checkbox #martialStatus [checked]="martialStatusChecked" formControlName="martialStatus"
                                         (change)="enableDependentSection(martialStatus.checked)">
                                         Family Status *</mat-checkbox>
                                 </section>

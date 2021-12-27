@@ -2,6 +2,11 @@
     <div class="row">
       <h1 class="title"> Monthly TimeSheet Report </h1>
     </div>
+
+    <div>
+      <p *ngIf="message">{{ messageDesc }}</p>
+  </div>
+  
 <!--
     <div class="col-md-auto">
         <mat-form-field appearance="fill">

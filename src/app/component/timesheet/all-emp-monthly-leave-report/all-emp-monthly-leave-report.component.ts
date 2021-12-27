@@ -37,6 +37,8 @@ export const MY_FORMATS = {
 })
 export class AllEmpMonthlyLeaveReportComponent implements OnInit {
   date = new FormControl(moment());
+  message = false;
+  messageDesc = "";
 
   chosenYearHandler(normalizedYear: Moment) {
     const ctrlValue = this.date.value;
@@ -79,13 +81,19 @@ export class AllEmpMonthlyLeaveReportComponent implements OnInit {
   }
 
   fetchMonthlyReport(event){
-
     this.allEmployeesTimeSheetReport =[];
+    this.dataSource = new MatTableDataSource<AllEmployeesTimeSheetReport>(this.allEmployeesTimeSheetReport);
     let selectedDate = moment(event.value).format("DD-MM-YYYY");
     this.leavesService.fetchAllEmpLeavesMonthlyReport(selectedDate).subscribe(res => {
 
-      console.log(res);
-      res.forEach(e => {
+      if(res.validationMessage!=""){
+        this.message = true;
+        this.messageDesc = res.validationMessage;
+      }
+
+      var empTimesheet = res.monthlyTimeSheetReport;
+      console.log(empTimesheet);
+      empTimesheet.forEach(e => {
         this.allEmployeesTimeSheetReport.push(new AllEmployeesTimeSheetReport(e.employeeid,
           e.totalsickleaves,
           e.totalauthorisedabsence,

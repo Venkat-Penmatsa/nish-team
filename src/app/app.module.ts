@@ -12,7 +12,6 @@ import { MenuComponent } from './component/menu/menu.component';
 import { FeaturesComponent } from './component/features/features/features.component';
 import { AddemployeeComponent } from './component/employee/addemployee/addemployee.component';
 import { ListemployeeComponent } from './component/employee/listemployee/listemployee.component';
-import { SearchemployeeComponent } from './component/employee/searchemployee/searchemployee.component';
 import { NewcontractComponent } from './component/contract/newcontract/newcontract.component';
 import { AllcontractsComponent } from './component/contract/allcontracts/allcontracts.component';
 import { NewcontractService } from './services/contracts/newcontract.service';
@@ -49,13 +48,13 @@ import { ManageUserComponent } from './component/userManagement/manage-user/mana
 import { UpdateleavesComponent } from './component/Leaves/updateleaves/updateleaves.component';
 import { ManageEmployeeComponent } from './component/employee/manage-employee/manage-employee.component';
 import { AllEmpMonthlyLeaveReportComponent } from './component/timesheet/all-emp-monthly-leave-report/all-emp-monthly-leave-report.component';
-import { MonthlyEmpReportComponent } from './component/finance/monthly-emp-report/monthly-emp-report.component';
 import { YearlyEmpReportComponent } from './component/finance/yearly-emp-report/yearly-emp-report.component';
 import { EmployeeOfferComponent } from './component/finance/employee-offer/employee-offer.component';
 import { LeavescalculatebatchComponent } from './component/Leaves/leavescalculatebatch/leavescalculatebatch.component';
 import { EmpOfferSimulationComponent } from './component/finance/emp-offer-simulation/emp-offer-simulation.component';
 import { PasswordResetComponent } from './component/features/password-reset/password-reset.component';
-
+import { MatMomentDateModule,MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -66,7 +65,6 @@ import { PasswordResetComponent } from './component/features/password-reset/pass
     FeaturesComponent,
     AddemployeeComponent,
     ListemployeeComponent,
-    SearchemployeeComponent,
     NewcontractComponent,
     AllcontractsComponent,
     ApplyleaveComponent,
@@ -97,7 +95,6 @@ import { PasswordResetComponent } from './component/features/password-reset/pass
     UpdateleavesComponent,
     ManageEmployeeComponent,
     AllEmpMonthlyLeaveReportComponent,
-    MonthlyEmpReportComponent,
     YearlyEmpReportComponent,
     EmployeeOfferComponent,
     LeavescalculatebatchComponent,
@@ -111,10 +108,12 @@ import { PasswordResetComponent } from './component/features/password-reset/pass
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    FormsModule,FileUploadModule,MatButtonToggleModule
+    FormsModule,FileUploadModule,MatButtonToggleModule,
+    MatDatepickerModule, MatMomentDateModule
   ],
-  providers: [NewcontractService,
-    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } }
   ],
   bootstrap: [AppComponent]
 })

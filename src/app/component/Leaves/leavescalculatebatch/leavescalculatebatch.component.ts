@@ -28,6 +28,7 @@ export class LeavescalculatebatchComponent implements OnInit {
   user: User;
   selectedMonth: string;
   selectedYear: string;
+  selectedFreezeMonth: Date;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -62,6 +63,17 @@ export class LeavescalculatebatchComponent implements OnInit {
     });
   }
 
+  freezeTimeSheetJob() {
+    this.user = JSON.parse(localStorage.getItem("userDetails") || '{}') as User;
+    let selectedDate = moment(this.selectedFreezeMonth).format("DD-MM-YYYY");
+    this.leavesService.freezeTimeSheetJob(selectedDate, this.user.empName).subscribe(res => {
+      console.log(res)
+      this.message = true;
+      this.messageDesc = res.responseStatus + " " + res.errorDescription;
+      this.fetchExecutedBatchJobs();
+    });
+  }
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
@@ -78,6 +90,11 @@ export class LeavescalculatebatchComponent implements OnInit {
     const status = this.batchService(selectedDate, 'RTT_MONTH_LEAVES');
   }
 
+  fetchFreezeTimeSheetReport(event) {
+    let selectedDate = moment(event.value).format("DD-MM-YYYY");
+    const status = this.batchService(selectedDate, 'FREEZE_TIMESHEET');
+  }
+
 
   batchService(selectedDate: any, batchName: string) {
     this.leavesService.fetchYearBatchJobStatus(batchName, selectedDate).subscribe(res => {
@@ -87,6 +104,9 @@ export class LeavescalculatebatchComponent implements OnInit {
         button.disabled = false;
       } else if (res.status == 'NOT_EXECUTED' && batchName == 'RTT_MONTH_LEAVES') {
         let button = <HTMLButtonElement>document.getElementById('monthButton');
+        button.disabled = false;
+      } else if (res.status == 'NOT_EXECUTED' && batchName == 'FREEZE_TIMESHEET') {
+        let button = <HTMLButtonElement>document.getElementById('timeSheetFreezeButton');
         button.disabled = false;
       } else {
         this.message = true;

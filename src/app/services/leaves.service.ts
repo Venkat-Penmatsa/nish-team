@@ -60,6 +60,11 @@ export class LeavesService {
     return this.http.get(`${this.baseUrl}/leaves/calculateRTTLeaves/` + date + '/' + user, { headers })
   }
 
+  freezeTimeSheetJob(date: any, user: string): Observable<any> {
+    const headers = { 'Content-type': 'application/json' };
+    return this.http.get(`${this.baseUrl}/batchJob/freezeTimeSheet/` + date + '/' + user, { headers })
+  }
+
   triggerSOYLeaves(date: any, user: string): Observable<any> {
     const headers = { 'Content-type': 'application/json' };
     return this.http.get(`${this.baseUrl}/leaves/leavesSOYearJob/` + date + '/' + user, { headers })

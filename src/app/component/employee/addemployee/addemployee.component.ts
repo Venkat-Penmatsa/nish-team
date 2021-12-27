@@ -7,6 +7,7 @@ import { EmployeeDependents } from 'src/app/model/EmployeeDependents';
 import * as _moment from 'moment';
 import { skills } from 'src/app/constants/skills';
 import { EmployeeService } from 'src/app/services/employee.service';
+import { Moment } from 'moment';
 
 const moment = _moment;
 
@@ -40,6 +41,7 @@ export class AddemployeeComponent implements OnInit {
   base64Data: any;
   filterEmpName: string;
   empName: any;
+  martialStatusChecked: boolean = false;
 
   @ViewChild('marriageCheckbox') marriageCheckbox: ElementRef;
 
@@ -106,7 +108,9 @@ export class AddemployeeComponent implements OnInit {
     console.log(this.empCreationForm.value);
     this.employee = Object.assign({}, this.empCreationForm.value);
     this.employee.employeeDependents = this.empDependants;
-
+    let dsd = this.empCreationForm.get('empBasicInfo.dob');
+    this.employee.empBasicInfo.dob = dsd?.value;
+   
     const empJson = JSON.stringify(this.employee);
     console.log('empJson ' + empJson);
     const headers = { 'Content-type': 'application/json' };
@@ -141,19 +145,11 @@ export class AddemployeeComponent implements OnInit {
             employeeAddress: this.employee.employeeAddress,
             skillset: this.employee.skillset
           });
-          this.empCreationForm.patchValue({
-            empBasicInfo: {
-              //dob :  moment(this.employee.empBasicInfo.dob, "DD/MM/YYYY"),
-              dob: new Date(this.employee.empBasicInfo.dob),
-              onboardingDate: new Date(this.employee.empBasicInfo.onboardingDate)
-            }
-          });
           this.savedEmpDependants = this.employee.employeeDependents;
           this.empId = this.employee.empBasicInfo.empId;
           if (this.savedEmpDependants != null && this.savedEmpDependants.length > 0) {
             this.showMarriageSectionFlag = true;
-            //this.marriageCheckbox['checked'] = true;
-            // this.dob = new Date(this.employee.empBasicInfo.dob);
+            this.martialStatusChecked = true;
           }
           this.uploadDocuments = true;
           this.disablePermanentSectionFlag = !this.employee.employeeAddress.currentPermanetFlag;
@@ -167,10 +163,10 @@ export class AddemployeeComponent implements OnInit {
 
   dobFilter = new Date();
 
-  dateOfJoiningFilter = (d: Date | null): boolean => {
-    const day = (d || new Date()).getDay();
+  dateOfJoiningFilter = (m: Moment | null): boolean => {
+    const day = (m || moment()).day();
     return day !== 0 && day !== 6;
-  }
+  } 
 
   empCreationForm = this.fb.group({
 
