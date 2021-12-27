@@ -2,9 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { EmployeesList } from 'src/app/model/EmployeesList';
 import { EmployeeService } from 'src/app/services/employee.service';
-import { HistoryDetails } from '../../assets/all-assets/all-assets.component';
+
 
 
 @Component({

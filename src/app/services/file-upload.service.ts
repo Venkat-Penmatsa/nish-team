@@ -7,10 +7,10 @@ import { HostNameServiceService } from './host-name-service.service';
   providedIn: 'root'
 })
 export class FileUploadService {
-  
+
   private baseUrl = 'http://localhost:8091';
 
-  constructor(private http: HttpClient, private hostNameServiceService: HostNameServiceService) { 
+  constructor(private http: HttpClient, private hostNameServiceService: HostNameServiceService) {
     this.baseUrl = hostNameServiceService.getHostname();
   }
 
@@ -19,7 +19,7 @@ export class FileUploadService {
     const formData: FormData = new FormData();
     formData.append('file', file, fileName);
 
-    const req = new HttpRequest('POST', `${this.baseUrl}/files/upload`, formData,  {
+    const req = new HttpRequest('POST', `${this.baseUrl}/files/upload`, formData, {
       reportProgress: true,
       responseType: 'json'
     });
@@ -32,7 +32,7 @@ export class FileUploadService {
     const formData: FormData = new FormData();
     formData.append('file', file);
 
-    const req = new HttpRequest('POST', `${this.baseUrl}/` + endPoint, formData, {
+    const req = new HttpRequest('POST', `${this.baseUrl}/` + 'batchUpload/' + endPoint, formData, {
       reportProgress: true,
       responseType: 'json'
     });

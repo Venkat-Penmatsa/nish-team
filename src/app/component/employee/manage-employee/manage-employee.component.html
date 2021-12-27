@@ -1,5 +1,5 @@
 <div class="page-layout-container">
-    <h1 class="heading"> Upload Employee Details </h1>
+    <h1 class="heading"> Batch Upload </h1>
     <div class="row mt-3">
         <div class="col-md-6">
             <file-upload [control]="fileUploadControl"></file-upload>
@@ -16,6 +16,18 @@
                             {{ file.name }}
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <mat-label>Document Type </mat-label>
+                </div>
+                <div class="col-md-9">
+                    <mat-form-field>
+                        <select matNativeControl required [(ngModel)]="selectedOption">
+                          <option *ngFor="let document of documentsList" [value]="document.code">{{ document.name }}</option>
+                        </select>
+                      </mat-form-field>
                 </div>
             </div>
             <div class="row mt-4">

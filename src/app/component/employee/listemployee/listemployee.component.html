@@ -2,7 +2,7 @@
   <div class="row">
     <h1 class="title"> All Employees </h1>
   </div>
-  <div class="example-container mat-elevation-z8">
+  <div class="table-responsive">
     <mat-form-field appearance="standard">
       <mat-label>Filter</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="search with Employee id, name,.." #input>
@@ -87,12 +87,12 @@
 
       <ng-container matColumnDef="skills">
       <th mat-header-cell *matHeaderCellDef > Skills </th>
-        <td mat-cell  *matCellDef="let element" style="width: 200px"> {{element.skills}} </td>
+        <td mat-cell  *matCellDef="let element" > {{element.skills}} </td>
         <!-- <mat-header-cell *matHeaderCellDef>Skills</mat-header-cell> class="employee-table-col"
         <mat-cell *matCellDef="let element">{{element.skills}}</mat-cell>  --> 
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'row-emp': row.nishContractId==null}"></tr>
     </table>
 

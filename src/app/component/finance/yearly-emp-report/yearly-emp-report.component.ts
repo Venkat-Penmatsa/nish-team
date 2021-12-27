@@ -57,12 +57,12 @@ export class YearlyEmpReportComponent implements OnInit {
     datepicker.close();
   }
 
-  displayedColumns: string[] = ['leavemonth',
+  displayedColumns: string[] = ['leavemonth','nishContractId','clientContractId',
     'totalworkingdays',
+    'totalBillingdays',
     'totalleaves',
     'totalholidays',
     'billingrate',
-    'exceptedbillpermonth',
     'actualbillpermonth'];
 
   monthlyRevenue: MonthlyReport[] = [];
@@ -94,7 +94,10 @@ export class YearlyEmpReportComponent implements OnInit {
       this.yearlyReport.employeeMonthlyRevenue.forEach(e => {
         this.monthlyRevenue.push(new MonthlyReport(e.leavemonth,
           e.leaveyear,
+          e.nishContractId,
+          e.clientContractId,
           e.totalworkingdays,
+          e.totalBillingdays,
           e.totalleaves,
           e.totalholidays,
           e.billingrate,
@@ -142,7 +145,10 @@ export class MonthlyReport {
   constructor(
     private leavemonth: number,
     private leaveyear: number,
+    private nishContractId: number,
+    private clientContractId: number,
     private totalworkingdays: number,
+    private totalBillingdays: number,
     private totalleaves: number,
     private totalholidays: number,
     private billingrate: number,

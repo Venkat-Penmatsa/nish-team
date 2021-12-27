@@ -39,10 +39,11 @@ export class ApplyleaveComponent implements OnInit {
 
   }
 
-  dateFilter = (d: Date | null): boolean => {
-    const day = (d || new Date()).getDay();
+  dateFilter = (m: Moment | null): boolean => {
+    const day = (m || moment()).day();
     return day !== 0 && day !== 6;
-  }
+  } 
+
 
   empNameSelected(emp: any) {
     this.empName = emp;

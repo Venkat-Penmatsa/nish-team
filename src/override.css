@@ -1,7 +1,8 @@
-
-.mat-drawer-inner-container::-webkit-scrollbar {
-  display: none;
+.mat-column-skills {
+  color:blue;
+  flex: 0 0 50%;
 }
+
 .mat-header-cell{
   color: #315379 !important;
   text-transform: uppercase !important;
@@ -12,7 +13,6 @@ td.mat-cell {
   border: 1px solid #ccc;
   padding: 0 !important;
   min-width: 100px;
-  max-width: 100px;
   white-space: normal;
   word-wrap: break-word;
   height: 2px;
@@ -27,12 +27,7 @@ td.mat-cell {
 table {
   width: auto;
 }
-.example-container {
-  max-width: 100%;
-  overflow: auto;
-  max-width: 100%;
-  overflow: auto;
-}
+
 .mat-table-sticky-border-elem-left {
   border-right: 1px solid #e0e0e0;
 }
@@ -40,3 +35,4 @@ table {
 .mat-input-element {
   caret-color: #3f51b5 !important;
 }
+

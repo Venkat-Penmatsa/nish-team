@@ -59,7 +59,8 @@ export class NewcontractComponent implements OnInit {
     this.newContractForm.patchValue({
       employeeId: this.empName
     })
-    const body = JSON.stringify(this.newContractForm.value);
+    const body = JSON.stringify(this.newContractForm.getRawValue()
+    );
     console.log("String..." + body)
 
     const headers = { 'Content-type': 'application/json' };

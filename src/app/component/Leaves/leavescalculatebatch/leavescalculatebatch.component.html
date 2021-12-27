@@ -37,6 +37,20 @@
     </div>
 
     <div class="row">
+        <div class="col-3" style="width:100%">
+            <mat-form-field>
+                <mat-label>Select Month for Freezing Timesheet</mat-label>
+                <input matInput [matDatepicker]="selectedFreezeMonth"  (dateChange)="fetchFreezeTimeSheetReport($event)">
+                <mat-datepicker-toggle matSuffix [for]="selectedFreezeMonth"></mat-datepicker-toggle>
+                <mat-datepicker #selectedFreezeMonth></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="col-md-auto" style="text-align: center">
+            <button class="btn btn-primary" [disabled]="true" id="timeSheetFreezeButton" (click)="freezeTimeSheetJob()" type="submit">Freeze Timesheet</button>
+        </div>
+    </div>
+
+    <div class="row">
         <h1 class="title"> Executed Batches </h1>
     </div>
     <div class="mat-elevation-z8">

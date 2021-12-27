@@ -93,17 +93,25 @@ export class UpdateAssetsComponent implements OnInit {
       status: formData.status,
       empAssetId: formData.empAssetId
     }
-    this.assetsService.assignAsset(assignAsset).subscribe(res => {
-      console.log(res);
+
+    if (assignAsset.currentEmpEndDate !=="" && assignAsset.newEmpAssignedDate !== "" && assignAsset.assetAssignedToEmp !== "") {
       this.successFlag = true;
+      this.description = "Please select all Mandatory fields";
+    } else {
+      this.assetsService.assignAsset(assignAsset).subscribe(res => {
+        console.log(res);
+        this.successFlag = true;
+  
+        if (res.responseStatus == "Failure") {
+          this.description = res.errorDescription;
+        } else {
+          this.description = res.assetId;
+        }
+  
+      })
+    }
 
-      if (res.responseStatus == "Failure") {
-        this.description = res.errorDescription;
-      } else {
-        this.description = res.assetId;
-      }
-
-    })
+   
   }
 
   searchAsset($event: Event) {

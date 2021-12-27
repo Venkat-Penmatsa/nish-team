@@ -26,15 +26,9 @@ export let menu: NavItem[] = [
         role:['All','Admin','HR','Finance'],
       },
       {
-        displayName: 'Employees Upload',
+        displayName: 'Batch Upload',
         iconName: 'person_search',
         route: 'employee/empManagement',
-        role:['All','Admin','HR','Finance'],
-      },
-      {
-        displayName: 'Reports',
-        iconName: 'list_alt',
-        route: 'employee/reports',
         role:['All','Admin','HR','Finance'],
       }
     ]

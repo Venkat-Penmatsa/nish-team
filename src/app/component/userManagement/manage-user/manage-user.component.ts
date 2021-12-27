@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { AssetsService } from 'src/app/services/assets.service';
-import { HistoryDetails } from '../../assets/all-assets/all-assets.component';
+
 
 @Component({
   selector: 'app-manage-user',

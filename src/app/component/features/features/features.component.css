@@ -6,6 +6,10 @@ mat-sidenav-container, mat-sidenav-content, mat-sidenav {
     width: 220px;
   }
 
+  .mat-drawer-content {
+    overflow:hidden !important;
+  }
+
   .toolbar{
    /* height: 15%;*/
     background :#15293f;

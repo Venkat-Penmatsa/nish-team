@@ -16,28 +16,29 @@ export class AllAssetsComponent implements OnInit,AfterViewInit  {
 
   }
 
-  assetHistryList: HistoryDetails[] = [];
+  allAssets: AllAssets[] = [];
 
   ngOnInit(): void {
 
     this.assetsService.fetchAllAsset().subscribe(res => {
       console.log(res);
       res.forEach(e => {
-        this.assetHistryList.push(new HistoryDetails(e.assetId,e.assetType,e.assetAssignedToEmp, 
+        this.allAssets.push(new AllAssets(e.assetId,e.assetType,e.assetAssignedToEmp, 
           e.empAssignedDate, e.status,e.mobileNumber,
-          e.make+'-'+e.model+'-'+e.number,
+          e.number,
           e.electronicModel, 
-          e.electronicPrice,
+          e.cataloguePrice,
           e.fuelCard,
           e.comments));
 
       })
-      this.dataSource = new MatTableDataSource<HistoryDetails>(this.assetHistryList);
+      this.dataSource = new MatTableDataSource<AllAssets>(this.allAssets);
+      this.dataSource.paginator = this.paginator;
     })
   }
 
   displayedColumns: string[] = ['assetId','assetType','assetAssignedToEmp', 'empAssignedDate',  'status','mobileNumber','car', 'electronicDevice', 'price','fuelCard','comments'];
-  dataSource = new MatTableDataSource<HistoryDetails>(this.assetHistryList);
+  dataSource = new MatTableDataSource<AllAssets>(this.allAssets);
 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -46,10 +47,15 @@ export class AllAssetsComponent implements OnInit,AfterViewInit  {
     this.dataSource.paginator = this.paginator;
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
 }
 
 
-export class HistoryDetails {
+export class AllAssets {
   constructor(
     private assetId: string,
     private assetType: string,

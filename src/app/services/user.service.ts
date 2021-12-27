@@ -21,6 +21,11 @@ export class UserService {
     return this.http.post(`${this.baseUrl}/user/createUser`, assetJson, { headers })
   }
 
+  updateUser(assetJson: any): Observable<any> {
+    const headers = { 'Content-type': 'application/json' };
+    return this.http.post(`${this.baseUrl}/user/updateUser`, assetJson, { headers })
+  }
+
 
   fetchUsersList(): Observable<any> {
     const headers = { 'Content-type': 'application/json' };

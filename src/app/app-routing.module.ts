@@ -5,7 +5,6 @@ import { MenuComponent } from './component/menu/menu.component';
 import { FeaturesComponent } from './component/features/features/features.component';
 import { AddemployeeComponent } from './component/employee/addemployee/addemployee.component';
 import { ListemployeeComponent } from './component/employee/listemployee/listemployee.component';
-import { SearchemployeeComponent } from './component/employee/searchemployee/searchemployee.component';
 import { NewcontractComponent } from './component/contract/newcontract/newcontract.component';
 import { AllcontractsComponent } from './component/contract/allcontracts/allcontracts.component';
 import { ApplyleaveComponent } from './component/Leaves/applyleave/applyleave.component';
@@ -13,7 +12,6 @@ import { LeavebalenceComponent } from './component/Leaves/leavebalence/leavebale
 import { UploadComponent } from './common/upload/upload.component';
 import { DependantComponent } from './component/modules/dependant/dependant.component';
 import { NewAssetComponent } from './component/assets/new-asset/new-asset.component';
-import { AssignAssetsComponent } from './component/assets/assign-assets/assign-assets.component';
 import { AllAssetsComponent } from './component/assets/all-assets/all-assets.component';
 import { UpdateAssetsComponent } from './component/assets/update-assets/update-assets.component';
 import { AssetHistoryComponent } from './component/assets/asset-history/asset-history.component';
@@ -28,14 +26,10 @@ import { UpdateleavesComponent } from './component/Leaves/updateleaves/updatelea
 import { ManageEmployeeComponent } from './component/employee/manage-employee/manage-employee.component';
 import { AllEmpMonthlyLeaveReportComponent } from './component/timesheet/all-emp-monthly-leave-report/all-emp-monthly-leave-report.component';
 import { EmployeeOfferComponent } from './component/finance/employee-offer/employee-offer.component';
-import { MonthlyEmpReportComponent } from './component/finance/monthly-emp-report/monthly-emp-report.component';
 import { YearlyEmpReportComponent } from './component/finance/yearly-emp-report/yearly-emp-report.component';
 import { LeavescalculatebatchComponent } from './component/Leaves/leavescalculatebatch/leavescalculatebatch.component';
 import { EmpOfferSimulationComponent } from './component/finance/emp-offer-simulation/emp-offer-simulation.component';
 import { PasswordResetComponent } from './component/features/password-reset/password-reset.component';
-
-
-
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -54,7 +48,6 @@ const routes: Routes = [
       { path: 'contracts/newContract', component: NewcontractComponent },
       { path: 'contracts/allContracts', component: AllcontractsComponent },
       { path: 'finance/empOffer', component: EmployeeOfferComponent },
-      { path: 'finance/employeesMonthlyReport', component: MonthlyEmpReportComponent },
       { path: 'finance/empYearlyReport', component: YearlyEmpReportComponent },
       { path: 'finance/simulation', component: EmpOfferSimulationComponent },
       { path: 'hr/applyLeaves', component: ApplyleaveComponent },

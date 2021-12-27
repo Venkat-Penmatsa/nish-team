@@ -11,3 +11,12 @@ export let EmployeeDocs = [
     { code: "CP", name: "Assets Pictures" },
     { code: "OO", name: "Others" }
   ];
+
+
+  export let UploadDocs = [
+    { code: "EU", name: "Employees" },
+    { code: "CU", name: "Contracts" },
+    { code: "LU", name: "Leaves" },
+    { code: "AU", name: "Assets" },
+
+  ];
