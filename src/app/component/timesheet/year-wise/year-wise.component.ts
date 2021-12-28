@@ -32,6 +32,9 @@ export class YearWiseComponent implements OnInit {
   authLeaves: string;
   otherLeaves: string;
 
+  empName: any;
+  filterEmpName: string;
+
   constructor(private service: TimesheetService, public fb: FormBuilder) {
     this.yearlyForm = this.fb.group({
       name: new FormControl('', [Validators.required, Validators.pattern(this.validPattern)])});
@@ -42,6 +45,9 @@ export class YearWiseComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  empNameSelected(emp: any) {
+    this.empName = emp;
+  }
 
   createCalendar(year: moment.Moment) {
     const calendar: YearlyCalendarItem[] = [];
@@ -101,12 +107,12 @@ export class YearWiseComponent implements OnInit {
 
   public nextMonth() {
     this.date.add(1, 'years');
-    this.getYearlyTimesheet(this.f.name.value, this.date);
+    this.getYearlyTimesheet(this.date);
   }
 
   public previousMonth() {
     this.date.subtract(1, 'years');
-    this.getYearlyTimesheet(this.f.name.value, this.date);
+    this.getYearlyTimesheet(this.date);
   }
 
   private getEmployeeData(data: moment.Moment, json: any) {
@@ -132,10 +138,12 @@ export class YearWiseComponent implements OnInit {
     return leave;
   }
 
-  getYearlyTimesheet(employeeNumber: any, moment: moment.Moment){
+  getYearlyTimesheet(moment: moment.Moment){
+    console.log("test");
+    let selectedEmp = this.empName.split('-');
     this.employeeData = null;
     this.hasError = false;
-    this.service.fetchYearlyTimesheet(employeeNumber, moment.format('YYYY')).subscribe(
+    this.service.fetchYearlyTimesheet(selectedEmp[0], moment.format('YYYY')).subscribe(
       (data: any) => {
         this.date = moment;
         this.employeeData = data;

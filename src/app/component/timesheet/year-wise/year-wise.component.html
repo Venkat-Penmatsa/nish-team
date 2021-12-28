@@ -1,23 +1,14 @@
 <div class="page-layout-container">
   <form [formGroup]="yearlyForm">
     <div class="row">
+      <div class="col-6" style="padding: 20px 0 0 20px;width: 80%; margin-right: 30px">
+        <app-emp-name [filterEmpName]="filterEmpName" (empName)="empNameSelected($event)" formControlName="name">
+        </app-emp-name>
+      </div>
       <div class="col">
-        <mat-form-field style="padding: 20px 0 0 20px;width: 50%; margin-right: 30px">
-          <mat-label>Search Employee*</mat-label>
-          <input (input)="hasError = false; yearlyForm.invalid? employeeData = null: employeeData"
-            formControlName="name" matInput>
-        </mat-form-field>
-        <button class="btn btn-primary" (click)="getYearlyTimesheet(f.name.value, date)" [disabled]="yearlyForm.invalid">
-          Search Employee
+        <button class="btn btn-primary" (click)="getYearlyTimesheet(date)">
+          Fetch Year Leaves
         </button>
-        <div *ngIf="yearlyForm.invalid || hasError" style="padding: 0 20px">
-          <mat-error *ngIf="(f.name.touched || f.name.dirty) && f.name.errors?.required">Employee Number is required
-          </mat-error>
-          <mat-error *ngIf="(f.name.touched || f.name.dirty) && f.name.errors?.pattern">Employee Number should contain
-            alphanumeric characters
-          </mat-error>
-          <mat-error *ngIf="hasError">No record found for {{f.name.value}}</mat-error>
-        </div>
       </div>
     </div>
   </form>
@@ -29,7 +20,7 @@
         RTT Leaves = {{rttLeaves}}
       </div>
       <div class="col">
-       Auth Leaves = {{authLeaves}}
+        Auth Leaves = {{authLeaves}}
       </div>
       <div class="col">
         Other Leaves = {{otherLeaves}}

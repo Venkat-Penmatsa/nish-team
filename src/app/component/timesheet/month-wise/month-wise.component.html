@@ -1,26 +1,15 @@
 <div class="page-layout-container">
   <form [formGroup]="monthlyForm">
     <div class="row">
+      <div class="col-6" style="padding: 20px 0 0 20px;width: 80%; margin-right: 30px">
+        <app-emp-name [filterEmpName]="filterEmpName" (empName)="empNameSelected($event)" formControlName="name">
+        </app-emp-name>
+      </div>
       <div class="col">
-        <mat-form-field style="padding: 20px 0 0 20px;">
-          <mat-label>Search Employee with ID *</mat-label>
-          <input (input)="hasError = false; monthlyForm.invalid? employeeData = null: employeeData"
-            formControlName="employeeNumber" matInput>
-        </mat-form-field>
-        <button (click)="getMonthlyTimesheet(f.employeeNumber.value, date)" [disabled]="monthlyForm.invalid"
-          mat-icon-button>
-          <mat-icon>search</mat-icon>
+        <button class="btn btn-primary" (click)="getMonthlyTimesheet(date)"  button>
+          Fetch Month Leaves
         </button>
-        <div *ngIf="monthlyForm.invalid|| hasError" style="padding: 0 20px">
-          <mat-error *ngIf="(f.employeeNumber.touched || f.employeeNumber.dirty) && f.employeeNumber.errors?.required">
-            Employee Number is required
-          </mat-error>
-          <mat-error *ngIf="(f.employeeNumber.touched || f.employeeNumber.dirty) && f.employeeNumber.errors?.pattern">
-            Employee
-            Number should contain alphanumeric characters
-          </mat-error>
-          <mat-error *ngIf="hasError">No record found for {{f.employeeNumber.value}}</mat-error>
-        </div>
+        
       </div>
     </div>
   </form>
