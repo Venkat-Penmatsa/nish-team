@@ -1,29 +1,31 @@
 <div class="page-layout-container">
   <form [formGroup]="yearlyForm">
     <div class="row">
+      <div class="col-6" style="padding: 20px 0 0 20px;width: 80%; margin-right: 30px">
+        <app-emp-name [filterEmpName]="filterEmpName" (empName)="empNameSelected($event)" formControlName="name">
+        </app-emp-name>
+      </div>
       <div class="col">
-        <mat-form-field style="padding: 20px 0 0 20px;">
-          <mat-label>Search Employee with ID *</mat-label>
-          <input (input)="hasError = false; yearlyForm.invalid? employeeData = null: employeeData"
-            formControlName="name" matInput>
-        </mat-form-field>
-        <button (click)="getYearlyTimesheet(f.name.value, date)" [disabled]="yearlyForm.invalid" mat-icon-button>
-          <mat-icon>search</mat-icon>
+        <button class="btn btn-primary" (click)="getYearlyTimesheet(date)">
+          Fetch Year Leaves
         </button>
-        <div *ngIf="yearlyForm.invalid || hasError" style="padding: 0 20px">
-          <mat-error *ngIf="(f.name.touched || f.name.dirty) && f.name.errors?.required">Employee Number is required
-          </mat-error>
-          <mat-error *ngIf="(f.name.touched || f.name.dirty) && f.name.errors?.pattern">Employee Number should contain
-            alphanumeric characters
-          </mat-error>
-          <mat-error *ngIf="hasError">No record found for {{f.name.value}}</mat-error>
-        </div>
       </div>
     </div>
   </form>
 
   <!--*ngIf="employeeData !== null" -->
   <div *ngIf="employeeData !== null" class="main-container" id="yearly-timesheet">
+    <div class="row">
+      <div class="col">
+        RTT Leaves = {{rttLeaves}}
+      </div>
+      <div class="col">
+        Auth Leaves = {{authLeaves}}
+      </div>
+      <div class="col">
+        Other Leaves = {{otherLeaves}}
+      </div>
+    </div>
     <div class="row">
       <div class="col-12">
         <div class="flex-container flex-center" style="margin: 20px 0 40px 0">
@@ -57,7 +59,7 @@
     <div class="col-12" id="divList">
       <div *ngFor="let leave of leaveList" class="d-flex" id="divContent">
         <div [ngClass]="leave.className" class="square"></div>
-        <p class="pl-10">{{leave.name}}</p>
+        <p class="pl-10 leaveList">{{leave.name}}</p>
       </div>
     </div>
   </div>

@@ -33,6 +33,8 @@ export class MonthWiseComponent implements OnInit {
   numberOfWorkingDays;
   numberOfLeaves;
   numberOfDaysWorked;
+  empName: any;
+  filterEmpName: string;
 
   constructor(public fb: FormBuilder, private service: TimesheetService) {
     this.monthlyForm = this.fb.group({
@@ -42,6 +44,10 @@ export class MonthWiseComponent implements OnInit {
 
   get f() {
     return this.monthlyForm.controls;
+  }
+
+  empNameSelected(emp: any) {
+    this.empName = emp;
   }
 
   ngOnInit(): void {
@@ -104,21 +110,22 @@ export class MonthWiseComponent implements OnInit {
 
   public nextMonth() {
     this.date.add(1, 'months');
-    this.getMonthlyTimesheet(this.f.employeeNumber.value, this.date);
+    this.getMonthlyTimesheet(this.date);
   }
 
   public previousMonth() {
     this.date.subtract(1, 'months');
-    this.getMonthlyTimesheet(this.f.employeeNumber.value, this.date);
+    this.getMonthlyTimesheet(this.date);
   }
 
-  getMonthlyTimesheet(employeeNumber: any, moment: moment.Moment) {
+  getMonthlyTimesheet( moment: moment.Moment) {
     console.log('moment ' + moment);
     this.employeeData = null;
     this.hasError = false;
-    const url = '../assets/json/monthly_' + employeeNumber + '.json';
+    let selectedEmp = this.empName.split('-');
+    const url = '../assets/json/monthly_' + selectedEmp[0] + '.json';
     //this.service.fetchMonthlyTimesheet(employeeNumber, moment.format('MMMM ')).subscribe(
-    this.service.fetchMonthlyTimesheet(employeeNumber, moment.format("DD-MM-yyyy")).subscribe(
+    this.service.fetchMonthlyTimesheet(selectedEmp[0], moment.format("DD-MM-yyyy")).subscribe(
       data => {
         this.date = moment;
         this.employeeData = data;
