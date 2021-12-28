@@ -28,6 +28,9 @@ export class YearWiseComponent implements OnInit {
   yearlyForm: FormGroup;
   validPattern = '^[a-zA-Z0-9]+$';
   leaveList = leaveClassNameType;
+  rttLeaves: string;
+  authLeaves: string;
+  otherLeaves: string;
 
   constructor(private service: TimesheetService, public fb: FormBuilder) {
     this.yearlyForm = this.fb.group({
@@ -83,9 +86,9 @@ export class YearWiseComponent implements OnInit {
 
   createCalendarItem(data: moment.Moment, className: string) {
     const dayName = data.format('ddd');
-    const month =  data.format('MMM').toLowerCase();
-    const monthlyData = this.employeeData[month];
-    const employeeData = this.getEmployeeData(data, monthlyData);
+    /*const month =  data.format('MMM').toLowerCase();
+    const monthlyData = this.employeeData[month];*/
+    const employeeData = this.getEmployeeData(data, this.employeeData);
     return {
       day: className === 'in-month' ? data.format('DD') : '',
       isWeekend: dayName === 'Sun' || dayName === 'Sat',
@@ -115,7 +118,7 @@ export class YearWiseComponent implements OnInit {
     if (json !== undefined){
       const keys = Object.keys(json);
       keys.forEach(a => {
-        if (json[a].includes(date)) {
+        if (json[a] !== null && json[a].length > 0 && json[a].includes(date)) {
           leave = {
             className: a,
             data: this.leaveList
@@ -133,9 +136,12 @@ export class YearWiseComponent implements OnInit {
     this.employeeData = null;
     this.hasError = false;
     this.service.fetchYearlyTimesheet(employeeNumber, moment.format('YYYY')).subscribe(
-      data => {
+      (data: any) => {
         this.date = moment;
         this.employeeData = data;
+        this.rttLeaves = data.rttAdvLeaves;
+        this.authLeaves = data.authLeaves;
+        this.otherLeaves = data.otherLeaves;
         this.calendar = this.createCalendar(this.date);
       }, error => {
         this.hasError = true;

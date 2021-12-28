@@ -59,7 +59,7 @@
             <div *ngFor="let day of calendarItem" [class.weekend]="day.isWeekend" [ngClass]="day.className"
               class="calendar-days position-relative">
               <div *ngIf="i === 0" class="weekday-title">{{day.dayName}}</div>
-              <p>{{day.day}}<br>
+              <p class="leaveList">{{day.day}}<br>
                 {{day.employeeData}}</p>
             </div>
           </div>
@@ -68,8 +68,8 @@
       <div class="col-2 m-auto ">
         <div *ngFor="let leave of leaveList" class="d-flex">
           <div [ngClass]="leave.className" class="square"></div>
-          <p class="pl-10">{{leave.name}}</p>
-          <p class="pl-10">{{0}}</p>
+          <p class="pl-10 leaveList">{{leave.name}}</p>
+          <p class="pl-10 leaveList">{{0}}</p>
         </div>
       </div>
     </div>
