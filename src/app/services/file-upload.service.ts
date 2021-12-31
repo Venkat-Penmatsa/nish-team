@@ -15,10 +15,13 @@ export class FileUploadService {
   }
 
 
-  upload(file: File, fileName: string): Observable<HttpEvent<any>> {
+  upload(file: File, fileType: string, category: string, user: string, reqType: string): Observable<HttpEvent<any>> {
     const formData: FormData = new FormData();
-    formData.append('file', file, fileName);
-
+    formData.append('file', file);
+    formData.append('fileType', fileType);
+    formData.append('category', category);
+    formData.append('user', user);
+    formData.append('reqType', reqType);
     const req = new HttpRequest('POST', `${this.baseUrl}/files/upload`, formData, {
       reportProgress: true,
       responseType: 'json'
@@ -38,6 +41,22 @@ export class FileUploadService {
     });
 
     return this.http.request(req);
+  }
+
+  
+  fetchAllDocuments(category:string): Observable<any> {
+    const headers = { 'Content-type': 'application/json' };
+    return this.http.get(`${this.baseUrl}/files/fetchAllDocumentList/`+category, { headers })
+  }
+
+  deleteDocument(documentId:string, documentPath:string): Observable<any> {
+    const headers = { 'Content-type': 'application/json' };
+    return this.http.get(`${this.baseUrl}/files/delete/`+documentId+'/'+documentPath, { headers })
+  }
+
+  downloadDocuments(documentPath:string): Observable<any> {
+    const headers = { 'Content-type': 'application/json' };
+    return this.http.get(`${this.baseUrl}/files/download/`+documentPath, {responseType: 'blob'})
   }
 
   getFiles(): Observable<any> {

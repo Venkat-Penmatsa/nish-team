@@ -1,6 +1,5 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef,  OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Employee } from 'src/app/model/Employee';
 import { EmployeeDependents } from 'src/app/model/EmployeeDependents';
@@ -216,8 +215,3 @@ export class AddemployeeComponent implements OnInit {
 
 }
 
-interface EmployeeResponse {
-  employeeId: number;
-  errorCode: string;
-  errorDescription: String;
-}
