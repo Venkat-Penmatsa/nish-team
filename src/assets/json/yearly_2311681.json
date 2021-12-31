@@ -1,0 +1,26 @@
+
+{
+"responseStatus": null,
+"errorCode": null,
+"errorDescription": null,
+"empId": "NISH100027",
+"authLeaves": 0,
+"rttAdvLeaves": 2,
+"otherLeaves": 0,
+"sickLeave": [],
+"publicHoliday": [
+"04-10-2021"
+],
+"authorisedAbsence": [],
+"maternityLeave": [],
+"parentalLeave": [],
+"holiday": null,
+"rttAdv": [
+"27-12-2021",
+"28-12-2021"
+],
+"overtime": [],
+"unauthorisedAbsence": [],
+"forceMajeure": [],
+"other": []
+}
