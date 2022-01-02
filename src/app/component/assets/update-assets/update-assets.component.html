@@ -1,9 +1,9 @@
-<div class="assets-container">
+<div class="page-layout-container">
     <form [formGroup]="updateAssetForm">
         <div>
             <p *ngIf="successFlag">Asset {{ description }} updated successfully</p>
         </div>
-        <div class="section">
+        <div>
             <div class="row">
                 <h1 class="title"> Update Asset - {{ assetType }} </h1>
             </div>
@@ -220,8 +220,15 @@
                     </div>
                 </div>
                 <div style="text-align: center">
-                    <button class="btn btn-primary" (click)="updateElectronicAsset()" type="submit">Update Asset</button>
+                    <button class="btn btn-primary" (click)="updateElectronicAsset()" type="submit">Update
+                        Asset</button>
                 </div>
+            </div>
+            <div
+                *ngIf="selectUpdateCategory === 'updateAsset' && ( assetType === 'Car' ||  assetType === 'Laptop' || assetType === 'Desktop' || assetType === 'Mobile' ) ">
+                <app-upload [fileList]="fileList" [category]="searchAssetId">
+
+                </app-upload>
             </div>
         </div>
     </form>

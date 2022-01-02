@@ -30,6 +30,7 @@ import { YearlyEmpReportComponent } from './component/finance/yearly-emp-report/
 import { LeavescalculatebatchComponent } from './component/Leaves/leavescalculatebatch/leavescalculatebatch.component';
 import { EmpOfferSimulationComponent } from './component/finance/emp-offer-simulation/emp-offer-simulation.component';
 import { PasswordResetComponent } from './component/features/password-reset/password-reset.component';
+import { ManageDocumentsComponent } from './component/documents/manage-documents/manage-documents.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -63,6 +64,7 @@ const routes: Routes = [
       { path: 'assets/allAssets', component: AllAssetsComponent },
       { path: 'assets/updateAssets', component: UpdateAssetsComponent },
       { path: 'assets/assetHistory', component: AssetHistoryComponent },
+      { path: 'document/manageDocuments', component: ManageDocumentsComponent },
       { path: 'user/manageUser', component: ManageUserComponent },
       { path: 'user/usersList', component: ListusersComponent },
       { path: 'user/newUser', component: UserComponent },

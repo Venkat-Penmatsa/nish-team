@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { Observable,of  } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { map, startWith } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
@@ -10,7 +10,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
   templateUrl: './emp-name.component.html',
   styleUrls: ['./emp-name.component.css']
 })
-export class EmpNameComponent implements OnInit , OnChanges {
+export class EmpNameComponent implements OnInit, OnChanges {
 
   employeeName: any[] = [];
   assetType;
@@ -21,9 +21,7 @@ export class EmpNameComponent implements OnInit , OnChanges {
   constructor(private employeeService: EmployeeService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-
-    // this.empList = this.filterEmpList();
-     this.assetAssignedToEmp.setValue(this.filterEmpName);
+    this.assetAssignedToEmp.setValue(this.filterEmpName);
   }
 
   ngOnInit(): void {
@@ -49,7 +47,7 @@ export class EmpNameComponent implements OnInit , OnChanges {
   }
 
   onSelectionChange(event: MatAutocompleteSelectedEvent) {
-     this.empName.emit(event.option.value);
+    this.empName.emit(event.option.value);
   }
 
 }

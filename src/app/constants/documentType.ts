@@ -8,10 +8,15 @@ export let EmployeeDocs = [
   ];
 
   export let AssetsDocs = [
-    { code: "CP", name: "Assets Pictures" },
+    { code: "AP", name: "Asset Pictures" },
+    { code: "AB", name: "Asset Invoice" },
+    { code: "AW", name: "Asset Warrenty" },
     { code: "OO", name: "Others" }
   ];
 
+  export let CategoryDocs = [
+    { code: "OO", name: "Others" }
+  ];
 
   export let UploadDocs = [
     { code: "EU", name: "Employees" },

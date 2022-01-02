@@ -109,7 +109,7 @@ export let menu: NavItem[] = [
       },
       {
         displayName: 'Monthly TimeSheet Report',
-        iconName: 'list_alt',
+        iconName: 'report',
         route: 'hr/generateMontlyTimeSheetReports',
         role:['All','Admin','HR','Finance'],
       },
@@ -150,6 +150,20 @@ export let menu: NavItem[] = [
         iconName: 'history',
         route: 'assets/assetHistory',
         role:['All','Admin','HR','Finance'],
+      }
+    ]
+  },
+  {
+    displayName: 'Documents',
+    iconName: 'file_copy',
+    route: 'document',
+    role:['All','Admin'],
+    children: [
+      {
+        displayName: 'Manage Documents',
+        iconName: 'attach_file',
+        route: 'document/manageDocuments',
+        role:['All','Admin'],
       }
     ]
   },

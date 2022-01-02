@@ -24,6 +24,9 @@ export class UpdateAssetsComponent implements OnInit {
   empName: any;
   filterEmpName: string;
   description: string;
+  fileList = 'assets';
+  searchAssetId:string;
+
   constructor(private fb: FormBuilder, private assetsService: AssetsService) {
 
   }
@@ -115,10 +118,10 @@ export class UpdateAssetsComponent implements OnInit {
   }
 
   searchAsset($event: Event) {
-    const searchAssetId = ($event.target as HTMLTextAreaElement).value;
-    if (searchAssetId != "") {
+    this.searchAssetId = ($event.target as HTMLTextAreaElement).value;
+    if (this.searchAssetId != "") {
       // this.updateAssetForm.reset();
-      this.assetsService.fetchAsset(searchAssetId).subscribe(res => {
+      this.assetsService.fetchAsset(this.searchAssetId).subscribe(res => {
         console.log("data ==========> " + res);
         this.assetType = res.assetType;
         this.filterEmpName = res.assetAssignedToEmp

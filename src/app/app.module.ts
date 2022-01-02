@@ -55,6 +55,7 @@ import { EmpOfferSimulationComponent } from './component/finance/emp-offer-simul
 import { PasswordResetComponent } from './component/features/password-reset/password-reset.component';
 import { MatMomentDateModule,MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { ManageDocumentsComponent } from './component/documents/manage-documents/manage-documents.component';
 
 @NgModule({
   declarations: [
@@ -99,7 +100,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     EmployeeOfferComponent,
     LeavescalculatebatchComponent,
     EmpOfferSimulationComponent,
-    PasswordResetComponent
+    PasswordResetComponent,
+    ManageDocumentsComponent
   ],
   imports: [
     BrowserModule,

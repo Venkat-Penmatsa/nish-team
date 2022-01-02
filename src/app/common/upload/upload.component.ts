@@ -3,7 +3,7 @@ import { ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FileUploadControl, FileUploadValidators } from '@iplab/ngx-file-upload';
 import { Subject } from 'rxjs';
-import { AssetsDocs, EmployeeDocs } from 'src/app/constants/documentType';
+import { AssetsDocs, CategoryDocs, EmployeeDocs } from 'src/app/constants/documentType';
 import { FileUploadService } from 'src/app/services/file-upload.service';
 import { MessageComponent } from '../message/message.component';
 import { MessageService } from '../message/message.service';
@@ -43,25 +43,31 @@ export class UploadComponent implements OnInit {
   documentsList = EmployeeDocs;
   reqType: string;
   user: User;
-  category: string;
-
+  categoryType: string;
+  categoryDesc: string;
   @Input() fileList: string;
-  @Input() uniqueId: string;
+  @Input() category: string;
 
   //@Input() uniqueId: Subject<string>;
 
 
   ngOnChanges(changes: SimpleChanges) {
 
-    this.category = changes.uniqueId.currentValue;
-    this.fetchDocuments(this.category);
+    this.categoryType = changes.category.currentValue;
+    this.fetchDocuments(this.categoryType);
 
-    if (changes.fileList.currentValue = 'employee') {
-      this.documentsList = EmployeeDocs;
+    if (this.categoryType = 'employee') {
+      this.documentsList == EmployeeDocs;
       this.reqType = 'E';
-    } else if (changes.fileList.currentValue = 'assets') {
-      this.documentsList = AssetsDocs;
+      this.categoryDesc ="Employee";
+    } else if (this.categoryType = 'assets') {
+      this.documentsList == AssetsDocs;
       this.reqType = 'A';
+      this.categoryDesc ="Asset";
+    } else {
+      this.documentsList == CategoryDocs;
+      this.categoryDesc =this.categoryType;
+      this.reqType=this.categoryType;
     }
 
   }
@@ -72,6 +78,19 @@ export class UploadComponent implements OnInit {
     console.log('upload files');
     this.dataSource.paginator = this.paginator;
 
+    if (this.fileList == 'employee') {
+      this.documentsList = EmployeeDocs;
+      this.reqType = 'E';
+      this.categoryDesc ="Employee";
+    } else if (this.fileList == 'assets') {
+      this.documentsList = AssetsDocs;
+      this.reqType = 'A';
+      this.categoryDesc ="Asset";
+    } else {
+      this.documentsList == CategoryDocs;
+      this.categoryDesc =this.categoryType;
+      this.reqType=this.categoryType;
+    }
 
 
   }
@@ -82,6 +101,8 @@ export class UploadComponent implements OnInit {
 
   fetchDocuments(category: string) {
     this.filesList = [];
+    this.dataSource = new MatTableDataSource<FilesList>(this.filesList);
+    console.log('fetch documents' + this.fileList);
     this.uploadService.fetchAllDocuments(category).subscribe(res => {
       console.log(res);
       res.forEach(e => {
@@ -96,7 +117,6 @@ export class UploadComponent implements OnInit {
       })
       this.dataSource = new MatTableDataSource<FilesList>(this.filesList);
       this.dataSource.paginator = this.paginator;
-      this.dataSource.data = this.dataSource.data;
     });
 
   }
@@ -109,14 +129,15 @@ export class UploadComponent implements OnInit {
       console.log('has more than one file, cannt be uploaded');
     } else {
       this.currentFile = this.file[0];
-      this.uploadService.upload(this.currentFile, this.selectedOption, this.category, this.user.empId, this.reqType).subscribe(
-        (event: any) => {
-          console.log('response ' + event)
-          this.messageService.openSnackBar('Document uploaded successfully', 'Document')
+      this.uploadService.upload(this.currentFile, this.selectedOption, this.categoryType, this.user.empId, this.reqType).subscribe(
+        (res) => {
+          console.log('response ' + res)
+          this.messageService.openSnackBar('Document uploaded successfully', 'Document');
+          this.fetchDocuments(this.categoryType);
         }
       );
     }
-    this.fetchDocuments(this.category);
+   
   }
 
   applyFilter(event: Event) {
@@ -131,7 +152,7 @@ export class UploadComponent implements OnInit {
       console.log(res);
       this.messageService.openSnackBar('Document deleted successfully', 'Document')
     });
-    this.fetchDocuments(this.category);
+    this.fetchDocuments(this.categoryType);
   }
 
   onDownload(id: string, path: any) {
