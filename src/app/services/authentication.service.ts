@@ -24,6 +24,7 @@ export class AuthenticationService {
   }
 
   public login(username, password): any {
+    console.log('baseUrl .......... '+this.baseUrl);
     localStorage.setItem('currentUser', JSON.stringify(username));
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ":" + password) });
     this.currentUserSubject.next(username);
