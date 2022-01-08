@@ -16,6 +16,7 @@ export class ManageDocumentsComponent implements OnInit {
   selectUpdateCategory: string;
   fileList: string;
   category: string;
+  newSubCategory: string;
   newCategory: string;
   categoryList: any[] = [];
   allDocumentsCatelgory: Observable<any[]>;
@@ -38,6 +39,16 @@ export class ManageDocumentsComponent implements OnInit {
 
     if (category !== "undefined" && category !== "") {
       this.documentService.createDocsCategory(category).subscribe(res => {
+        console.log(res);
+        this.fetchDocsCategory();
+      });
+    }
+  }
+
+  createSubDocsCategory(newSubCategory: string) {
+
+    if (this.category !== "undefined" && this.category !== "" && newSubCategory !== "undefined" && newSubCategory !== "") {
+      this.documentService.createDocsCategory(this.category+'=='+newSubCategory).subscribe(res => {
         console.log(res);
         this.fetchDocsCategory();
       });

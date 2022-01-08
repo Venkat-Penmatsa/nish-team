@@ -16,6 +16,21 @@
         </div>
 
     </div>
+    <div class="row" *ngIf="category">
+        <div class="col">
+            <mat-form-field class="example-full-width">
+                <mat-label>Create new sub Category </mat-label>
+                <input matInput [(ngModel)]="newSubCategory" name='newSubCategory' [value]='newSubCategory'>
+            </mat-form-field>
+        </div>
+
+        <div class="col">
+            <button class="btn btn-primary" (click)="createSubDocsCategory(newSubCategory)" type="submit">Create Sub Category for {{category }}
+                </button>
+        </div>
+
+    </div>
+
 
     <div class="row">
         <div class="col">

@@ -13,7 +13,7 @@ export class HostNameServiceService {
     //return this.document.defaultView.window.location.hostname;
 
     // Or use the location on document.
-    //const url = "http://"+ this.document.location.hostname + ':' + this.document.location.port;
+   // const url = "http://"+ this.document.location.hostname + ':' + this.document.location.port+"/admin-services";
     const url =  'http://localhost:8091';
     return url;
 

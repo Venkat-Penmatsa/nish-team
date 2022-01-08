@@ -54,13 +54,12 @@ export class UploadComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges) {
 
     this.categoryType = changes.category.currentValue;
-    this.fetchDocuments(this.categoryType);
 
-    if (this.categoryType = 'employee') {
+    if (this.categoryType == 'employee') {
       this.documentsList == EmployeeDocs;
       this.reqType = 'E';
       this.categoryDesc ="Employee";
-    } else if (this.categoryType = 'assets') {
+    } else if (this.categoryType == 'assets') {
       this.documentsList == AssetsDocs;
       this.reqType = 'A';
       this.categoryDesc ="Asset";
@@ -69,6 +68,8 @@ export class UploadComponent implements OnInit {
       this.categoryDesc =this.categoryType;
       this.reqType=this.categoryType;
     }
+
+    this.fetchDocuments(this.categoryType);
 
   }
 
@@ -103,7 +104,7 @@ export class UploadComponent implements OnInit {
     this.filesList = [];
     this.dataSource = new MatTableDataSource<FilesList>(this.filesList);
     console.log('fetch documents' + this.fileList);
-    this.uploadService.fetchAllDocuments(category).subscribe(res => {
+    this.uploadService.fetchAllDocuments(category.replace("/","==")).subscribe(res => {
       console.log(res);
       res.forEach(e => {
         this.filesList.push(new FilesList(e.documentId,
