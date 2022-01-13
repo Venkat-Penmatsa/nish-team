@@ -12,7 +12,13 @@
     </mat-form-field>
   </div>
 
-  <div class="mat-elevation-z8">
+  <div class="table-responsive">
+
+    <mat-form-field appearance="standard">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="search with Employee id, name,.." #input>
+    </mat-form-field>
+
     <table mat-table [dataSource]="dataSource">
 
       <ng-container matColumnDef="leaveId">

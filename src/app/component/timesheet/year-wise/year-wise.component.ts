@@ -1,9 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import * as moment from 'moment';
-import {HttpClient} from '@angular/common/http';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {leaveClassNameType} from "../../../constants/leaveClassNameType";
-import {TimesheetService} from "../../../services/timesheet.service";
+import { Component, OnInit } from '@angular/core';
+import * as _moment from 'moment';
+import { default as _rollupMoment, Moment } from 'moment';
+import { HttpClient } from '@angular/common/http';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { leaveClassNameType } from "../../../constants/leaveClassNameType";
+import { TimesheetService } from "../../../services/timesheet.service";
+import {saveAs as importedSaveAs} from "file-saver";
+import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 
 interface YearlyCalendarItem {
   day: string;
@@ -14,10 +18,31 @@ interface YearlyCalendarItem {
   monthName: string;
 }
 
+const moment = _rollupMoment || _moment;
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'YYYY',
+  },
+  display: {
+    dateInput: 'YYYY',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
+
 @Component({
   selector: 'app-year-wise',
   templateUrl: './year-wise.component.html',
-  styleUrls: ['./year-wise.component.css']
+  styleUrls: ['./year-wise.component.css'],
+  providers: [
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+    },
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+  ],
 })
 export class YearWiseComponent implements OnInit {
   hasError = false;
@@ -31,13 +56,14 @@ export class YearWiseComponent implements OnInit {
   rttLeaves: string;
   authLeaves: string;
   otherLeaves: string;
-
+  selectedY = new FormControl(); 
   empName: any;
   filterEmpName: string;
 
   constructor(private service: TimesheetService, public fb: FormBuilder) {
     this.yearlyForm = this.fb.group({
-      name: new FormControl('', [Validators.required, Validators.pattern(this.validPattern)])});
+      name: new FormControl('', [Validators.required, Validators.pattern(this.validPattern)])
+    });
   }
 
   get f() { return this.yearlyForm.controls; }
@@ -75,7 +101,7 @@ export class YearWiseComponent implements OnInit {
         clone.add(1, 'days');
         i++;
       }
-      if (this.date.month() !== 11){
+      if (this.date.month() !== 11) {
         this.date.add(1, 'months');
       }
     }
@@ -100,7 +126,7 @@ export class YearWiseComponent implements OnInit {
       isWeekend: dayName === 'Sun' || dayName === 'Sat',
       isValidDate: className === 'in-month',
       monthName: data.format('MMM'),
-      employeeData:  employeeData.data,
+      employeeData: employeeData.data,
       className: employeeData.className !== '' ? employeeData.className : className,
     };
   }
@@ -121,15 +147,15 @@ export class YearWiseComponent implements OnInit {
       data: ''
     };
     const date = data.format('DD-MM-YYYY');
-    if (json !== undefined){
+    if (json !== undefined) {
       const keys = Object.keys(json);
       keys.forEach(a => {
         if (json[a] !== null && json[a].length > 0 && json[a].includes(date)) {
           leave = {
             className: a,
             data: this.leaveList
-            .filter(obj => obj.key === a)
-            .map(obj => obj.code)[0]
+              .filter(obj => obj.key === a)
+              .map(obj => obj.code)[0]
           };
         }
       });
@@ -138,12 +164,12 @@ export class YearWiseComponent implements OnInit {
     return leave;
   }
 
-  getYearlyTimesheet(moment: moment.Moment){
+  getYearlyTimesheet(moment: moment.Moment) {
     console.log("test");
     let selectedEmp = this.empName.split('-');
     this.employeeData = null;
     this.hasError = false;
-    this.service.fetchYearlyTimesheet(selectedEmp[0], moment.format('YYYY')).subscribe(
+    this.service.fetchYearlyTimesheet(selectedEmp[0], _moment(this.selectedY.value).format('YYYY')).subscribe(
       (data: any) => {
         this.date = moment;
         this.employeeData = data;
@@ -152,6 +178,24 @@ export class YearWiseComponent implements OnInit {
         this.otherLeaves = data.otherLeaves;
         this.calendar = this.createCalendar(this.date);
       }, error => {
+        this.hasError = true;
+      }
+    );
+  }
+
+  downloadYearlyTimesheet(moment: moment.Moment) {
+
+    let selectedEmp = this.empName.split('-');
+    this.employeeData = null;
+    this.hasError = false;
+    this.service.downloadYearlyTimesheet(selectedEmp[0], _moment(this.selectedY.value).format('YYYY')).subscribe(res => {
+      console.log(res);
+      //window.open(res);
+
+      let blob:any = new Blob([res], { type: 'text/json; charset=utf-8' });
+      importedSaveAs(blob, 'LeavesReport.xlsx');
+
+    }, error => {
         this.hasError = true;
       }
     );

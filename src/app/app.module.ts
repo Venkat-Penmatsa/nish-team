@@ -43,7 +43,6 @@ import { UserComponent } from './component/userManagement/user/user.component';
 import { ListusersComponent } from './component/userManagement/listusers/listusers.component';
 import { EmpReportsComponent } from './component/employee/emp-reports/emp-reports.component';
 import { AssetReportsComponent } from './component/assets/asset-reports/asset-reports.component';
-import { LeaveReportsComponent } from './component/Leaves/leave-reports/leave-reports.component';
 import { ManageUserComponent } from './component/userManagement/manage-user/manage-user.component';
 import { UpdateleavesComponent } from './component/Leaves/updateleaves/updateleaves.component';
 import { ManageEmployeeComponent } from './component/employee/manage-employee/manage-employee.component';
@@ -91,7 +90,6 @@ import { ManageDocumentsComponent } from './component/documents/manage-documents
     ListusersComponent,
     EmpReportsComponent,
     AssetReportsComponent,
-    LeaveReportsComponent,
     ManageUserComponent,
     UpdateleavesComponent,
     ManageEmployeeComponent,
