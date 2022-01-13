@@ -54,6 +54,12 @@
         <h1 class="title"> Executed Batches </h1>
     </div>
     <div class="mat-elevation-z8">
+
+        <mat-form-field appearance="standard">
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="search with Batch Name" #input>
+          </mat-form-field>
+
         <table mat-table [dataSource]="dataSource">
 
             <ng-container matColumnDef="batchJobName">

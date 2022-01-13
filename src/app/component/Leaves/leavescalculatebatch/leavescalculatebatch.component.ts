@@ -40,6 +40,11 @@ export class LeavescalculatebatchComponent implements OnInit {
     this.fetchExecutedBatchJobs();
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
   triggerSOYLeaves() {
     this.user = JSON.parse(localStorage.getItem("userDetails") || '{}') as User;
     let selectedDate = moment(this.selectedYear).format("DD-MM-YYYY");

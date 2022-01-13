@@ -19,6 +19,7 @@ export class FeaturesComponent implements OnDestroy {
   public menu: NavItem[] = menu;
   headerSticky = false;
   user: User;
+  roleDesc: string;
 
   constructor(private media: MediaObserver, private router: Router, public shared: SharedService) {
     this.mediaWatcher = this.media.media$.subscribe((mediaChange: MediaChange) => {
@@ -39,6 +40,11 @@ export class FeaturesComponent implements OnDestroy {
     this.user = JSON.parse(localStorage.getItem("userDetails") || '{}') as User;
     this.shared.userRole = this.user.role;
     this.shared.loggedUsername = this.user.empName;
+    if(this.shared.userRole == 'admin') {
+      this.roleDesc = "Full";
+    } else if(this.shared.userRole == 'hr') {
+      this.roleDesc = "EMP,HR,Assets,Documents";
+    }
   }
 
   ngOnDestroy() {

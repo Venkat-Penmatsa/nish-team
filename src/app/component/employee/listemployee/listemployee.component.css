@@ -1,5 +1,13 @@
-.row-emp {
+.row-bench {
   background-color: red;
+}
+
+.row-oneMonth {
+  background-color: #ffc0d0;
+}
+
+.row-twoMonth {
+  background-color: yellow;
 }
 
 

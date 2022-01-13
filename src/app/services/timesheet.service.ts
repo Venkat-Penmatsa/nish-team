@@ -31,10 +31,15 @@ export class TimesheetService {
   }
 
   fetchYearlyTimesheet(employeeNo: string, year: string) {
-   // const url = '../assets/json/yearly_' + employeeNo + '.json';
-   // return this.http.get(url).pipe(catchError(this.errorHandler));
-   const headers = { 'Content-type': 'application/json' };
-   return this.http.get(`${this.baseUrl}/timesheet/yearly/`+ employeeNo + "/" + year,  { headers }).pipe(catchError(this.errorHandler));
+    // const url = '../assets/json/yearly_' + employeeNo + '.json';
+    // return this.http.get(url).pipe(catchError(this.errorHandler));
+    const headers = { 'Content-type': 'application/json' };
+    return this.http.get(`${this.baseUrl}/timesheet/yearly/` + employeeNo + "/" + year, { headers }).pipe(catchError(this.errorHandler));
+  }
+
+  downloadYearlyTimesheet(employeeNo: string, year: any) {
+    const headers = { 'Content-type': 'application/vnd.ms-excel' };
+    return this.http.get(`${this.baseUrl}/timesheet/downloadYearlyReport/` + employeeNo + "/" + year, {responseType: 'blob'}).pipe(catchError(this.errorHandler));
   }
 
   generateEmpRevenueReport(employeeNo: string, year: string) {

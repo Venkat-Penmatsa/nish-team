@@ -54,6 +54,8 @@ export class AllEmpMonthlyLeaveReportComponent implements OnInit {
   }
 
   displayedColumns: string[] = ['employeeid',
+  'workingdays', 'actualWorkingDays', 'totalBillableDays','totalBenchDays',
+    'totalleaves',
     'totalsickleaves',
     'totalauthorisedabsence',
     'totalmaternityleaves',
@@ -62,9 +64,8 @@ export class AllEmpMonthlyLeaveReportComponent implements OnInit {
     'totalovertimeleaves',
     'totalunauthabsleaves',
     'totalforcedmajeureleaves',
-    'totalotherleaves',
-    'workingdays',
-    'totalleaves'];
+    'totalotherleaves'
+    ];
 
   allEmployeesTimeSheetReport: AllEmployeesTimeSheetReport[] = [];
   dataSource = new MatTableDataSource<AllEmployeesTimeSheetReport>(this.allEmployeesTimeSheetReport);
@@ -105,6 +106,9 @@ export class AllEmpMonthlyLeaveReportComponent implements OnInit {
           e.totalforcedmajeureleaves,
           e.totalotherleaves,
           e.workingdays,
+          e.actualWorkingDays,
+          e.totalBillableDays,
+          e.totalBenchDays,
           e.totalleaves));
       })
       this.dataSource = new MatTableDataSource<AllEmployeesTimeSheetReport>(this.allEmployeesTimeSheetReport);
@@ -139,6 +143,9 @@ export class AllEmployeesTimeSheetReport {
     private totalforcedmajeureleaves: number,
     private totalotherleaves: number,
     private workingdays: number,
+    private actualWorkingDays: number,
+    private totalBillableDays: number,
+    private totalBenchDays: number,
     private totalleaves: number
   ) { }
 }
