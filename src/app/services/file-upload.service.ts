@@ -30,6 +30,16 @@ export class FileUploadService {
     return this.http.request(req);
   }
 
+  uploadMultiple(formData: any): Observable<HttpEvent<any>> {
+
+    const req = new HttpRequest('POST', `${this.baseUrl}/files/batchFilesUpload`, formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+
+    return this.http.request(req);
+  }
+
 
   batchUpload(file: File, endPoint: any): Observable<HttpEvent<any>> {
     const formData: FormData = new FormData();
