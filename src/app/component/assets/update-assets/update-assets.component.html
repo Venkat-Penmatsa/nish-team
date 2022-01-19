@@ -27,6 +27,23 @@
             </div>
 
             <div *ngIf="selectUpdateCategory === 'assignEmp'">
+                <div class="row">
+
+                    <div class="col">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Asset Assinged to Employee </mat-label>
+                            <input matInput formControlName="currentEmp"  readonly="true">
+                        </mat-form-field>
+                    </div>
+                    <div class="col">
+                        <mat-form-field>
+                            <mat-label>Current Employee Assign Date *</mat-label>
+                            <input matInput [matDatepicker]="currentEmpAssignedDate" formControlName="empAssignedDate">
+                            <mat-datepicker-toggle matSuffix [for]="currentEmpAssignedDate"></mat-datepicker-toggle>
+                            <mat-datepicker #currentEmpAssignedDate></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    </div>
                 <div class="divider">
                     <span></span>
                     <span>Assign to New Employee</span><span></span>
@@ -35,14 +52,6 @@
                     <div class="col-6" style="width: 80%;">
                         <app-emp-name [filterEmpName]="filterEmpName" (empName)="empNameSelected($event)">
                         </app-emp-name>
-                    </div>
-                    <div class="col">
-                        <mat-form-field>
-                            <mat-label>Employee Assign Date *</mat-label>
-                            <input matInput [matDatepicker]="currentEmpAssignedDate" formControlName="empAssignedDate">
-                            <mat-datepicker-toggle matSuffix [for]="currentEmpAssignedDate"></mat-datepicker-toggle>
-                            <mat-datepicker #currentEmpAssignedDate></mat-datepicker>
-                        </mat-form-field>
                     </div>
                     <div class="col">
                         <mat-form-field>
@@ -185,7 +194,7 @@
             </div>
             <!--  *ngIf="(selectedAsset === 'Laptop' || selectedAsset === 'Desktop' || selectedAsset === 'Mobile' )" -->
             <div formGroupName="assetElectronic"
-                *ngIf="selectUpdateCategory === 'updateAsset' && (assetType === 'Laptop' || assetType === 'Desktop' || assetType === 'Mobile' )">
+                *ngIf="selectUpdateCategory === 'updateAsset' && (assetType === 'Laptop' || assetType === 'Desktop' || assetType === 'Mobile' || selectedAsset === 'Other')">
                 <div class="divider">
                     <span></span>
                     <span>Update {{ assetType }} Details</span><span></span>
@@ -225,7 +234,7 @@
                 </div>
             </div>
             <div
-                *ngIf="selectUpdateCategory === 'updateAsset' && ( assetType === 'Car' ||  assetType === 'Laptop' || assetType === 'Desktop' || assetType === 'Mobile' ) ">
+                *ngIf="selectUpdateCategory === 'updateAsset' && ( assetType === 'Car' ||  assetType === 'Laptop' || assetType === 'Desktop' || assetType === 'Mobile' || selectedAsset === 'Other' ) ">
                 <app-upload [fileList]="fileList" [category]="searchAssetId">
 
                 </app-upload>

@@ -4,5 +4,6 @@ export let AssetsType = [
     { code: "DK", name: "Desktop" },
     { code: "MO", name: "Mobile" },
     { code: "SI", name: "SIM" },
-    { code: "FC", name: "Fuel Card" }
+    { code: "FC", name: "Fuel Card" },
+    { code: "OA", name: "Other" }
   ];
