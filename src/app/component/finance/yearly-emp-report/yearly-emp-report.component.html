@@ -86,40 +86,40 @@
             <div class="row">
                 <div class="col">
                     <mat-form-field style="width :100%">
-                        <mat-label>(A)Emp common expenses per Year </mat-label>
-                        <input matInput type="number" [readonly]="true" formControlName="empYearlyExpenses">
+                        <mat-label>(A)Emp Sal per Month </mat-label>
+                        <input matInput type="number" [readonly]="true" formControlName="salPerMonth">
                     </mat-form-field>
                 </div>
                 <div class="col">
                     <mat-form-field style="width :100%">
-                        <mat-label>(B)Emp Expenses per Month</mat-label>
-                        <input matInput type="number" [readonly]="true" formControlName="expensesPerMonth">
+                        <mat-label>(B)Emp CTC</mat-label>
+                        <input matInput type="number" [readonly]="true" formControlName="employeeCTC">
                     </mat-form-field>
                 </div>
                 <div class="col">
                     <mat-form-field style="width :100%">
-                        <mat-label>(C = A + B*No of Months)Total Expense on Employee</mat-label>
-                        <input matInput type="number" [readonly]="true" formControlName="totalExpOnEmp">
+                        <mat-label>Car Used for Months</mat-label>
+                        <input matInput type="number" [readonly]="true" formControlName="numberOfCarMonth">
                     </mat-form-field>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <mat-form-field style="width :100%">
-                        <mat-label>E=sum(Actual Revenue) Total Generated Revenue </mat-label>
-                        <input matInput type="number" [readonly]="true" formControlName="totalGeneratedRevenue">
+                        <mat-label>(C)Car Expenditure per year</mat-label>
+                        <input matInput type="number" [readonly]="true" formControlName="carExpenditure">
                     </mat-form-field>
                 </div>
                 <div class="col">
                     <mat-form-field style="width :100%">
-                        <mat-label>F=sum(Expected Revenue)Total Expected Revenue</mat-label>
-                        <input matInput type="number" [readonly]="true" formControlName="totalExpectedRevenue">
+                        <mat-label>Total Revenue Generated</mat-label>
+                        <input matInput type="number" [readonly]="true" formControlName="totalRevenueGenerated">
                     </mat-form-field>
                 </div>
                 <div class="col" style="width :100%">
                     <mat-form-field>
-                        <mat-label>Margin(E-C/100) </mat-label>
-                        <input matInput type="number" [readonly]="true" formControlName="margin">
+                        <mat-label>Total Employee Expenditure (B+C) </mat-label>
+                        <input matInput type="number" [readonly]="true" formControlName="totalEmpExpenses">
                     </mat-form-field>
                 </div>
             </div>

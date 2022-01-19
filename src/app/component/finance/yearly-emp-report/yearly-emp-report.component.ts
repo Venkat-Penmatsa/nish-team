@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { LeavesService } from 'src/app/services/leaves.service';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -106,12 +105,12 @@ export class YearlyEmpReportComponent implements OnInit {
       })
 
       this.employeeYearlyReport.patchValue({
-        totalExpectedRevenue:  this.yearlyReport.totalExpectedRevenue,
-        totalGeneratedRevenue:  this.yearlyReport.totalGeneratedRevenue,
-        expensesPerMonth: this.yearlyReport.expensesPerMonth,
-        empYearlyExpenses:  this.yearlyReport.empYearlyExpenses,
-        totalExpOnEmp: this.yearlyReport.totalExpOnEmp,
-        margin:this.yearlyReport.margin,
+        salPerMonth:  this.yearlyReport.salPerMonth,
+        employeeCTC:  this.yearlyReport.employeeCTC,
+        numberOfCarMonth: this.yearlyReport.numberOfCarMonth,
+        carExpenditure:  this.yearlyReport.carExpenditure,
+        totalRevenueGenerated: this.yearlyReport.totalRevenueGenerated,
+        totalEmpExpenses:this.yearlyReport.totalEmpExpenses,
       });
       
       this.dataSource = new MatTableDataSource<MonthlyReport>(this.monthlyRevenue);
@@ -130,12 +129,12 @@ export class YearlyEmpReportComponent implements OnInit {
   }
 
   employeeYearlyReport = this.fb.group({
-    totalExpectedRevenue: ['',],
-    totalGeneratedRevenue: ['',],
-    expensesPerMonth: [''],
-    empYearlyExpenses: [''],
-    totalExpOnEmp:[],
-    margin:[]
+    salPerMonth: ['',],
+    employeeCTC: ['',],
+    numberOfCarMonth: [''],
+    carExpenditure: [''],
+    totalRevenueGenerated:[],
+    totalEmpExpenses:[]
   });
 
 }

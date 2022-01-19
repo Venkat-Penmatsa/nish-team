@@ -25,7 +25,7 @@ export class UpdateAssetsComponent implements OnInit {
   filterEmpName: string;
   description: string;
   fileList = 'assets';
-  searchAssetId:string;
+  searchAssetId: string;
 
   constructor(private fb: FormBuilder, private assetsService: AssetsService) {
 
@@ -97,24 +97,24 @@ export class UpdateAssetsComponent implements OnInit {
       empAssetId: formData.empAssetId
     }
 
-    if (assignAsset.currentEmpEndDate !=="" && assignAsset.newEmpAssignedDate !== "" && assignAsset.assetAssignedToEmp !== "") {
+    if (assignAsset.currentEmpEndDate == "" || assignAsset.newEmpAssignedDate == "" || assignAsset.assetAssignedToEmp == undefined) {
       this.successFlag = true;
       this.description = "Please select all Mandatory fields";
     } else {
       this.assetsService.assignAsset(assignAsset).subscribe(res => {
         console.log(res);
         this.successFlag = true;
-  
+
         if (res.responseStatus == "Failure") {
           this.description = res.errorDescription;
         } else {
           this.description = res.assetId;
         }
-  
+
       })
     }
 
-   
+
   }
 
   searchAsset($event: Event) {
@@ -124,7 +124,7 @@ export class UpdateAssetsComponent implements OnInit {
       this.assetsService.fetchAsset(this.searchAssetId).subscribe(res => {
         console.log("data ==========> " + res);
         this.assetType = res.assetType;
-        this.filterEmpName = res.assetAssignedToEmp
+        //this.filterEmpName = res.assetAssignedToEmp
         this.updateAssetForm.patchValue({
           assetId: res.assetId,
           empAssignedDate: new Date(res.empAssignedDate),
@@ -132,6 +132,7 @@ export class UpdateAssetsComponent implements OnInit {
           mobileNumber: res.mobileNumber,
           fuelCard: res.fuelCard,
           empAssetId: res.empAssetId,
+          currentEmp: res.assetAssignedToEmp,
           assetCar: {
             model: res.model,
             make: res.make,
@@ -197,6 +198,7 @@ export class UpdateAssetsComponent implements OnInit {
     empAssignedDate: ['', Validators.required],
     currentEmpEndDate: ['', Validators.required],
     newEmpAssignedDate: ['', Validators.required],
+    currentEmp: [''],
     empAssetId: ['', Validators.required],
     status: ['', Validators.required],
     comments: [''],
