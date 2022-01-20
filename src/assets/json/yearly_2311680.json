@@ -1,66 +1,44 @@
+
+
 {
-  "aug":{
-    "sickLeave": ["01-08-2021"],
-    "publicHoliday": ["02-08-2021"],
-    "authorisedAbsence": ["05-08-2021"],
-    "maternityLeave": ["03-08-2021"],
-    "parentalLeave": ["04-08-2021"],
-    "holiday": ["11-08-2021"],
-    "rttAdv": ["09-08-2021"],
-    "overtime": ["12-08-2021"],
-    "unauthorisedAbsence": ["13-08-2021"],
-    "forceMajeure": ["14-08-2021"],
-    "other": ["18-08-2021"]
-},"feb":{
-  "sickLeave": ["01-08-2021"],
-  "publicHoliday": ["02-08-2021"],
-  "authorisedAbsence": ["05-08-2021"],
-  "maternityLeave": ["03-08-2021"],
-  "parentalLeave": ["04-08-2021"],
-  "holiday": ["11-08-2021"],
-  "rttAdv": ["09-08-2021"],
-  "overtime": ["12-08-2021"],
-  "unauthorisedAbsence": ["13-08-2021"],
-  "forceMajeure": ["14-08-2021"],
-  "other": ["18-08-2021"]
-},
-  "jan":{
-    "sickLeave": ["01-02-2020"],
-    "publicHoliday": ["02-02-2020"],
-    "authorisedAbsence": ["15-02-2020"],
-    "maternityLeave": ["03-02-2020"],
-    "parentalLeave": ["04-02-2020"],
-    "holiday": ["11-02-2020"],
-    "rttAdv": ["09-02-2020"],
-    "overtime": ["12-02-2020"],
-    "unauthorisedAbsence": ["13-02-2020"],
-    "forceMajeure": ["14-02-2020"],
-    "other": ["18-02-2020"]
-  },
-  "mar":{
-    "sickLeave": ["01-02-2020"],
-    "publicHoliday": ["02-02-2020"],
-    "authorisedAbsence": ["15-02-2020"],
-    "maternityLeave": ["03-02-2020"],
-    "parentalLeave": ["04-02-2020"],
-    "holiday": ["11-02-2020"],
-    "rttAdv": ["09-02-2020"],
-    "overtime": ["12-02-2020"],
-    "unauthorisedAbsence": ["13-02-2020"],
-    "forceMajeure": ["14-02-2020"],
-    "other": ["18-02-2020"]
-  },
-  "jul":{
-    "sickLeave": ["01-02-2020"],
-    "publicHoliday": ["02-02-2020"],
-    "authorisedAbsence": ["15-02-2020"],
-    "maternityLeave": ["03-02-2020"],
-    "parentalLeave": ["04-02-2020"],
-    "holiday": ["11-02-2020"],
-    "rttAdv": ["09-02-2020"],
-    "overtime": ["12-02-2020"],
-    "unauthorisedAbsence": ["13-02-2020"],
-    "forceMajeure": ["14-02-2020"],
-    "other": ["18-02-2020"]
-  }
+"responseStatus": null,
+"errorCode": null,
+"errorDescription": null,
+"empId": "NISH100028",
+"authLeaves": 5,
+"rttAdvLeaves": 3,
+"otherLeaves": 7,
+"sickLeave": [],
+"publicHoliday": [
+"04-10-2021"
+],
+"authorisedAbsence": [
+"01-03-2021",
+"02-03-2021",
+"03-03-2021",
+"04-03-2021",
+"05-03-2021"
+],
+"maternityLeave": [],
+"parentalLeave": [],
+"holiday": null,
+"rttAdv": [
+"18-11-2021",
+"01-09-2021",
+"01-10-2021"
+],
+"overtime": [],
+"unauthorisedAbsence": [
+"01-07-2021"
+],
+"forceMajeure": [
+"01-04-2021"
+],
+"other": [
+"27-12-2021",
+"28-12-2021",
+"29-12-2021",
+"30-12-2021",
+"31-12-2021"
+]
 }
