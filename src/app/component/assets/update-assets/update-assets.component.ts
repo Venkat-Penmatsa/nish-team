@@ -85,7 +85,7 @@ export class UpdateAssetsComponent implements OnInit {
   assignAsset() {
 
     const formData: any = this.updateAssetForm.value;
-
+    this.description = "";
     const assignAsset = {
       assetId: formData.assetId,
       empAssignedDate: formData.empAssignedDate,
@@ -100,21 +100,23 @@ export class UpdateAssetsComponent implements OnInit {
     if (assignAsset.currentEmpEndDate == "" || assignAsset.newEmpAssignedDate == "" || assignAsset.assetAssignedToEmp == undefined) {
       this.successFlag = true;
       this.description = "Please select all Mandatory fields";
-    } else {
+    } else if (assignAsset.currentEmpEndDate < assignAsset.assetAssignedToEmp) {
+      this.successFlag = true;
+      this.description = "Current Emp Asset End Date should not be less than Start date";
+    } else if (assignAsset.newEmpAssignedDate < assignAsset.currentEmpEndDate) {
+      this.successFlag = true;
+      this.description = "New Emp Asset Start Date should not be less than Current Employee End date";
+    }else {
       this.assetsService.assignAsset(assignAsset).subscribe(res => {
         console.log(res);
         this.successFlag = true;
-
         if (res.responseStatus == "Failure") {
           this.description = res.errorDescription;
         } else {
-          this.description = res.assetId;
+          this.description = "Asset " + res.assetId + " Updated Successfully";
         }
-
       })
     }
-
-
   }
 
   searchAsset($event: Event) {
@@ -179,16 +181,13 @@ export class UpdateAssetsComponent implements OnInit {
     this.assetsService.createAsset(assetJson)
       .subscribe(data => {
         console.log("data ==========> " + data);
-        let serviceResponse = data;
         this.assetId = data.assetId;
         this.successFlag = true;
-
         if (data.responseStatus == "Failure") {
           this.description = data.errorDescription;
         } else {
-          this.description = data.assetId;
+          this.description = "Asset " + this.assetId + " Updated Successfully";
         }
-
       })
   }
 
