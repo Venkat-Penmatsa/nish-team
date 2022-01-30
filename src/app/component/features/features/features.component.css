@@ -7,7 +7,7 @@ mat-sidenav-container, mat-sidenav-content, mat-sidenav {
   }
 
   .mat-drawer-content {
-    overflow:hidden !important;
+    overflow-x:hidden !important;
   }
 
   .toolbar{
@@ -39,7 +39,7 @@ mat-sidenav-container, mat-sidenav-content, mat-sidenav {
    /*border-radius: 10px;*/
     background-color: #15293f !important;
     padding: 20px;
-    width: 250px;
+    width: 300px;
 }
 
 :host {

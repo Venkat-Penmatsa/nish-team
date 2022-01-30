@@ -11,7 +11,7 @@ export class AuthenticationService {
   public currentUser: Observable<any>;
   private currentUserSubject: BehaviorSubject<any>;
 
-  private baseUrl = 'http://localhost:8091';
+  private baseUrl = 'https://3.125.8.211:8443/admin-services';
 
   constructor(private router: Router, private httpClient: HttpClient, private hostNameServiceService: HostNameServiceService) {
     this.currentUserSubject = new BehaviorSubject<any>(localStorage.getItem('currentUser'));
@@ -29,6 +29,6 @@ export class AuthenticationService {
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ":" + password) });
     this.currentUserSubject.next(username);
     return this.httpClient.get(`${this.baseUrl}/login/authentication`, { headers });
-    //return this.httpClient.get(this.hostNameServiceService.getHostname() +"http://localhost:8091/login/authentication", {headers});
+    //return this.httpClient.get(this.hostNameServiceService.getHostname() +"https://3.125.8.211:8443/admin-services/login/authentication", {headers});
   }
 }

@@ -10,7 +10,7 @@
             </div>
             <div class="col">
                 <div style="text-align: center">
-                    <button class="btn btn-primary" (click)="searchEmployees()" type="submit">Search Employee</button>
+                    <button mat-button [disabled]="empName === undefined" (click)="searchEmployees()" type="submit">Search Employee</button>
                 </div>
             </div>
             <div class="col">
@@ -172,7 +172,7 @@
                         </div>
                     </div>
                     <mat-action-row>
-                        <button mat-button color="primary" (click)="employeeDetailsValidation()">Next</button>
+                        <button mat-button (click)="employeeDetailsValidation()">Next</button>
                     </mat-action-row>
                 </mat-expansion-panel>
 
@@ -360,7 +360,7 @@
             </mat-accordion>
             &nbsp;&nbsp;
             <div style="text-align: center">
-                <button class="btn btn-primary"
+                <button mat-button
                     [disabled]="!empCreationForm.get('empBasicInfo')?.valid && !empCreationForm.get('employeeAddress')?.valid"
                     (click)="onSubmit()" type="submit">Submit</button>
             </div>

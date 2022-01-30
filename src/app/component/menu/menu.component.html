@@ -1,5 +1,5 @@
 <div id="menu" class="main-menu">
-    <a mat-list-item [ngStyle]="{'padding-left': (depth * 12) + 'px'}" (click)="onItemSelected(item)"
+    <a mat-list-item [ngStyle]="{'padding-left': (depth * 12) + 'px'}" (click)="onItemSelected(item);"
         [ngClass]="{'active': item.route ? router.isActive(item.route, true): false, 'expanded': expanded}"
         class="menu-list-item">
         <mat-icon class="routeIcon">{{item.iconName}}</mat-icon>
@@ -13,5 +13,5 @@
     </a>
 </div>
 <div *ngIf="expanded">
-    <app-menu *ngFor="let child of item.children" [item]="child" [depth]="depth+1"></app-menu>
+    <app-menu *ngFor="let child of item.children" [item]="child" [depth]="depth+1" (closeSide)="closeSide.emit(true)"></app-menu>
 </div>

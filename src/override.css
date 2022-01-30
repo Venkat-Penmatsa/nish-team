@@ -9,9 +9,9 @@
 }
 th.mat-header-cell,
 td.mat-cell {
-  text-align: center;
+  text-align: center !important;
   border: 1px solid #ccc;
-  padding: 0 !important;
+  padding: 10px !important;
   min-width: 100px;
   white-space: normal;
   word-wrap: break-word;
@@ -20,7 +20,7 @@ td.mat-cell {
 }
 
 .mat-header-row{
-  background-color: #a3bfdd !important;
+  background-color: #dfe4e6 !important;
 
 }
 
@@ -36,3 +36,23 @@ table {
   caret-color: #3f51b5 !important;
 }
 
+.mat-elevation-z8{
+  padding: 10px !important;
+  background-color: white;
+}
+
+.mat-table{
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.mat-button{
+color: white !important;
+}
+
+.mat-button[disabled]{
+  background-color: #15293f2b !important;
+  cursor: not-allowed !important;
+color: unset !important;
+}

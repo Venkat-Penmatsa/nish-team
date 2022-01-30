@@ -10,7 +10,7 @@ import { HostNameServiceService } from './host-name-service.service';
 export class TimesheetService {
 
 
-  private baseUrl = 'http://localhost:8091';
+  private baseUrl = 'https://3.125.8.211:8443/admin-services';
 
   constructor(private http: HttpClient, private hostNameServiceService: HostNameServiceService) {
     this.baseUrl = hostNameServiceService.getHostname();
