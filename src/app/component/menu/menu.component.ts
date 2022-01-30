@@ -1,5 +1,5 @@
 
-import { Component, OnInit, ViewEncapsulation, Input, HostBinding } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation, Input, HostBinding, Output, EventEmitter} from '@angular/core';
 import { NavigationService } from 'src/app/services/navigation.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -30,6 +30,7 @@ export class MenuComponent implements OnInit {
   @HostBinding('attr.aria-expanded') ariaExpanded = this.expanded;
   @Input() item: NavItem;
   @Input() depth: number;
+  @Output() closeSide = new EventEmitter<boolean>();
 
 
   constructor(public navService: NavService,
@@ -53,6 +54,7 @@ export class MenuComponent implements OnInit {
     this.user = JSON.parse(localStorage.getItem("userDetails") || '{}') as User;
     if (!(this.user.role == 'hr' && (item.displayName == 'Finance' || item.displayName == 'User Management'))) {
       if (!item.children || !item.children.length) {
+        this.closeSide.emit(true);
         this.router.navigate([item.route]);
       }
       if (item.children && item.children.length) {

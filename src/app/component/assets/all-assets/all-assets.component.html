@@ -4,7 +4,7 @@
         <h1 class="title"> All Assets </h1>
       </div>
 
-    <div class="mat-elevation-z8">
+    <div>
 
         <mat-form-field appearance="standard">
             <mat-label>Filter</mat-label>
@@ -12,7 +12,7 @@
         </mat-form-field>
 
 
-        <table mat-table [dataSource]="dataSource">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
             <ng-container matColumnDef="assetId">
                 <th mat-header-cell *matHeaderCellDef> Asset ID </th>

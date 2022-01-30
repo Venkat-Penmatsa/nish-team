@@ -79,8 +79,8 @@ body {
   }
 
   .calendar-days {
-    width: 150px;
-    height: 90px;
+    width: 100px;
+    height: 60px;
     background: #fff;
     border: 1px solid #ccc;
     padding: 3px;
@@ -255,11 +255,29 @@ body {
     margin:20px;
     align-content: center;
     flex-wrap: wrap;
-    overflow:auto;
-    max-height:600px;
+    overflow-y:auto;
+    overflow-x: hidden;
+  }
+  .mat-drawer-inner-container::-webkit-scrollbar {
+    width: 10px;
   }
 
+  .btn-primary, .btn-primary:hover , .mat-button{
+    color: #fff;
+    background-color: #15293f;
+    border-color: #15293f;
+  }
 
-
+  .upload{
+    overflow: hidden !important;
+    display: block !important;
+    background: #6499b229 !important;
+    padding: 20px 66px 20px 20px !important;
+    min-height: 100px !important;
+    outline: 1px dashed #92b0b3 !important;
+    outline-offset: -10px !important;
+    position: relative !important;
+    border-radius: 10px !important;
+  }
 
 

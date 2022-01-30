@@ -14,7 +14,7 @@ export class HostNameServiceService {
 
     // Or use the location on document.
    // const url = "http://"+ this.document.location.hostname + ':' + this.document.location.port+"/admin-services";
-    const url =  'http://localhost:8091';
+    const url =  'https://3.125.8.211:8443/admin-services';
     return url;
 
   }

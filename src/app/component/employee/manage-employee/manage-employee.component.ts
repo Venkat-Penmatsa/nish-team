@@ -1,17 +1,15 @@
-import { ElementRef } from '@angular/core';
-import { ViewChild } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
-import { FileUploadControl, FileUploadValidators } from '@iplab/ngx-file-upload';
-import { MessageService } from 'src/app/common/message/message.service';
-import { EmployeeDocs, UploadDocs } from 'src/app/constants/documentType';
-import { FileUploadService } from 'src/app/services/file-upload.service';
-
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {FileUploadControl} from '@iplab/ngx-file-upload';
+import {MessageService} from 'src/app/common/message/message.service';
+import {UploadDocs} from 'src/app/constants/documentType';
+import {FileUploadService} from 'src/app/services/file-upload.service';
 
 
 @Component({
   selector: 'app-manage-employee',
   templateUrl: './manage-employee.component.html',
-  styleUrls: ['./manage-employee.component.css']
+  styleUrls: ['./manage-employee.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ManageEmployeeComponent implements OnInit {
 

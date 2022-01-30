@@ -3,14 +3,14 @@
     <h1 class="title"> All Contracts </h1>
   </div>
 
-  <div class="mat-elevation-z8">
+  <div>
 
     <mat-form-field appearance="standard">
       <mat-label>Filter</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="search with Contract id, name,.." #input>
     </mat-form-field>
 
-    <table mat-table [dataSource]="dataSource">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
       <ng-container matColumnDef="employeeId">
         <th mat-header-cell *matHeaderCellDef>Employee Id</th>

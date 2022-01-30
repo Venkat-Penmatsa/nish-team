@@ -56,7 +56,7 @@ export class YearWiseComponent implements OnInit {
   rttLeaves: string;
   authLeaves: string;
   otherLeaves: string;
-  selectedY = new FormControl(); 
+  selectedY = new FormControl();
   empName: any;
   filterEmpName: string;
 
@@ -87,7 +87,7 @@ export class YearWiseComponent implements OnInit {
       const weekdaysShort = moment.weekdaysShort();
 
       const daysBefore = weekdaysShort.indexOf(startOfMonth);
-      const daysAfter = weekdaysShort.length - 1 - weekdaysShort.indexOf(endOfMonth);
+       const daysAfter = weekdaysShort.length - 1 - weekdaysShort.indexOf(endOfMonth);
 
       const clone = startMonth.startOf('months').clone();
 

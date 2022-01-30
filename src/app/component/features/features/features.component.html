@@ -8,7 +8,7 @@
         <img class="nish-logo side-menu-logo" alt="nish-logo" src="./assets/images/nishtechlogo.png">
       </mat-nav-list>
       <mat-nav-list>
-        <app-menu *ngFor="let item of menu" [item]="item"></app-menu>
+        <app-menu *ngFor="let item of menu" [item]="item" (closeSide)="$event ? sidenav.toggle(): ''"></app-menu>
       </mat-nav-list>
     </mat-sidenav>
   <mat-toolbar class="toolbar sticky">

@@ -12,7 +12,7 @@
                 </div>
                 <div class="col">
                     <div style="text-align: center">
-                        <button class="btn btn-primary" (click)="fetchEmpExpenses()" type="submit">Fetch Employee Expenses</button>
+                        <button mat-button (click)="fetchEmpExpenses()" type="submit">Fetch Employee Expenses</button>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                         <mat-label>Employee Exp Id *</mat-label>
                         <input matInput formControlName="empExpId">
                     </mat-form-field>
-            </div> 
+            </div>
             </div>
         </div>
         &nbsp;&nbsp;
@@ -162,12 +162,12 @@
                         <mat-label>Other Yearly Exp *</mat-label>
                         <input matInput type="number" (change)="calculateExpenses()" formControlName="otherYearExp">
                     </mat-form-field>
-                </div>   
+                </div>
             </div>
         </div>
     </form>
     &nbsp;&nbsp;
     <div style="text-align: center">
-        <button class="btn btn-primary" (click)="onSubmit()" type="submit">Update Expense</button>
+        <button mat-button (click)="onSubmit()" type="submit">Update Expense</button>
     </div>
 </div>

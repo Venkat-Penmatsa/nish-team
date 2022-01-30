@@ -6,10 +6,10 @@
         </app-emp-name>
       </div>
       <div class="col">
-        <button class="btn btn-primary" (click)="getMonthlyTimesheet(date)"  button>
+        <button mat-button (click)="getMonthlyTimesheet(date)"  button>
           Fetch Month Leaves
         </button>
-        
+
       </div>
     </div>
   </form>
@@ -29,7 +29,7 @@
     </div>
 
     <div class="row">
-      <div class="col-10">
+      <div class="col-6">
         <div class="flex-container flex-center" style="margin: 20px 0 40px 0">
           <button (click)="previousMonth()" class="iconsSize ml-1 my-auto" mat-icon-button>
             <mat-icon>
@@ -54,7 +54,7 @@
           </div>
         </div>
       </div>
-      <div class="col-2 m-auto ">
+      <div class="col-6 m-auto" style="padding-left: 100px">
         <div *ngFor="let leave of leaveList" class="d-flex">
           <div [ngClass]="leave.className" class="square"></div>
           <p class="pl-10 leaveList">{{leave.name}}</p>

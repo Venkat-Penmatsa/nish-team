@@ -8,7 +8,7 @@ import { HostNameServiceService } from './host-name-service.service';
 })
 export class FileUploadService {
 
-  private baseUrl = 'http://localhost:8091';
+  private baseUrl = 'https://3.125.8.211:8443/admin-services';
 
   constructor(private http: HttpClient, private hostNameServiceService: HostNameServiceService) {
     this.baseUrl = hostNameServiceService.getHostname();
@@ -53,7 +53,7 @@ export class FileUploadService {
     return this.http.request(req);
   }
 
-  
+
   fetchAllDocuments(category:string): Observable<any> {
     const headers = { 'Content-type': 'application/json' };
     return this.http.get(`${this.baseUrl}/files/fetchAllDocumentList/`+category, { headers })

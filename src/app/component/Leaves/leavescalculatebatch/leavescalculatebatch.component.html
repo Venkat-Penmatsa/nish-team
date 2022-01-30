@@ -17,7 +17,7 @@
             </mat-form-field>
         </div>
         <div class="col-md-auto" style="text-align: center">
-            <button class="btn btn-primary" [disabled]="true"  id="yearButton" (click)="triggerSOYLeaves()" type="submit">Generate Start of the Yearly Leaves</button>
+            <button mat-button [disabled]="true"  id="yearButton" (click)="triggerSOYLeaves()" type="submit">Generate Start of the Yearly Leaves</button>
         </div>
     </div>
 
@@ -31,7 +31,7 @@
             </mat-form-field>
         </div>
         <div class="col-md-auto" style="text-align: center">
-            <button class="btn btn-primary" [disabled]="true" id="monthButton" (click)="triggerRTTLeaves()" type="submit">Generate Monthly RTT Adv
+            <button mat-button [disabled]="true" id="monthButton" (click)="triggerRTTLeaves()" type="submit">Generate Monthly RTT Adv
                 Leaves</button>
         </div>
     </div>
@@ -46,21 +46,21 @@
             </mat-form-field>
         </div>
         <div class="col-md-auto" style="text-align: center">
-            <button class="btn btn-primary" [disabled]="true" id="timeSheetFreezeButton" (click)="freezeTimeSheetJob()" type="submit">Freeze Timesheet</button>
+            <button mat-button [disabled]="true" id="timeSheetFreezeButton" (click)="freezeTimeSheetJob()" type="submit">Freeze Timesheet</button>
         </div>
     </div>
 
     <div class="row">
         <h1 class="title"> Executed Batches </h1>
     </div>
-    <div class="mat-elevation-z8">
+    <div>
 
         <mat-form-field appearance="standard">
             <mat-label>Filter</mat-label>
             <input matInput (keyup)="applyFilter($event)" placeholder="search with Batch Name" #input>
           </mat-form-field>
 
-        <table mat-table [dataSource]="dataSource">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
             <ng-container matColumnDef="batchJobName">
                 <th mat-header-cell *matHeaderCellDef>Batch Job Name</th>

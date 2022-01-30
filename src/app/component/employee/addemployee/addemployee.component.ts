@@ -39,7 +39,7 @@ export class AddemployeeComponent implements OnInit {
   retrievedImage: any;
   base64Data: any;
   filterEmpName: string;
-  empName: any;
+  empName: any = undefined;
   martialStatusChecked: boolean = false;
 
   @ViewChild('marriageCheckbox') marriageCheckbox: ElementRef;
@@ -109,7 +109,7 @@ export class AddemployeeComponent implements OnInit {
     this.employee.employeeDependents = this.empDependants;
     let dsd = this.empCreationForm.get('empBasicInfo.dob');
     this.employee.empBasicInfo.dob = dsd?.value;
-   
+
     const empJson = JSON.stringify(this.employee);
     console.log('empJson ' + empJson);
     const headers = { 'Content-type': 'application/json' };
@@ -165,7 +165,7 @@ export class AddemployeeComponent implements OnInit {
   dateOfJoiningFilter = (m: Moment | null): boolean => {
     const day = (m || moment()).day();
     return day !== 0 && day !== 6;
-  } 
+  }
 
   empCreationForm = this.fb.group({
 
