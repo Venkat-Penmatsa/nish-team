@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   onButtonClick() {
     if (this.loginForm.valid) {
-      /*let res = this.authenticate.login(this.loginForm.get('userName')?.value, this.loginForm.get('password')?.value);
+      let res = this.authenticate.login(this.loginForm.get('userName')?.value, this.loginForm.get('password')?.value);
       res.subscribe(data => {
         console.log("response is " + data);
         localStorage.setItem('userDetails', JSON.stringify(data));
@@ -39,8 +39,7 @@ export class LoginComponent implements OnInit {
       }
 
       )
-*/
-      this.router.navigateByUrl('home');
+      //this.router.navigateByUrl('home');
     }
   }
 
