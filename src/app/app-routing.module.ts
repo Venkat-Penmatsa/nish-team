@@ -69,13 +69,13 @@ const routes: Routes = [
       { path: 'user/usersList', component: ListusersComponent },
       { path: 'user/newUser', component: UserComponent },
       { path: 'changepwd', component: PasswordResetComponent },
-      
+
     ]
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
