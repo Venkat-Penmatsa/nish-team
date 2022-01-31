@@ -56,3 +56,7 @@ color: white !important;
   cursor: not-allowed !important;
 color: unset !important;
 }
+
+.mat-toolbar{
+  z-index: 102 !important;
+}
