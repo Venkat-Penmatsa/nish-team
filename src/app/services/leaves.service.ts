@@ -1,5 +1,6 @@
+import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HostNameServiceService } from './host-name-service.service';
 
@@ -8,9 +9,9 @@ import { HostNameServiceService } from './host-name-service.service';
 })
 export class LeavesService {
 
-  private baseUrl = 'https://3.125.8.211:8443/admin-services';
+  private baseUrl = "https://"+ this.document.location.hostname + ':' + this.document.location.port+"/admin-services";
 
-  constructor(private http: HttpClient, private hostNameServiceService: HostNameServiceService) {
+  constructor(private http: HttpClient, private hostNameServiceService: HostNameServiceService,@Inject(DOCUMENT) private document: Document) {
     this.baseUrl = hostNameServiceService.getHostname();
   }
 

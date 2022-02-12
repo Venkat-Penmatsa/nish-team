@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HostNameServiceService } from './host-name-service.service';
+import { DOCUMENT } from '@angular/common';
 
 
 @Injectable({
@@ -12,7 +13,7 @@ export class UserService {
 
   private baseUrl = 'https://3.125.8.211:8443/admin-services';
 
-  constructor(private http: HttpClient, private hostNameServiceService: HostNameServiceService) {
+  constructor(private http: HttpClient, private hostNameServiceService: HostNameServiceService,@Inject(DOCUMENT) private document: Document) {
     this.baseUrl = hostNameServiceService.getHostname();
   }
 

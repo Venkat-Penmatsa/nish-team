@@ -28,24 +28,6 @@ export class AppComponent {
 
 
 
-  // registartionForm = new FormGroup({
-  //   userName: new FormControl('Venkat'),
-  //   password: new FormControl(''),
-  //   confirmPassword: new FormControl(''),
-  //   address : new FormGroup({
-  //     city: new FormControl(''),
-  //     state: new FormControl(''),
-  //     pincode: new FormControl(''),
-  //   })
-  // });
-
-  loadAPIData() {
-    this.registartionForm.patchValue({
-      userName: 'venkat',
-      password: 'test'
-    });
-  }
-
 }
 
 
