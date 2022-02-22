@@ -10,7 +10,8 @@
             </div>
             <div class="col">
                 <div style="text-align: center">
-                    <button mat-button [disabled]="empName === undefined" (click)="searchEmployees()" type="submit">Search Employee</button>
+                    <button mat-button [disabled]="empName === undefined" (click)="searchEmployees()"
+                        type="submit">Search Employee</button>
                 </div>
             </div>
             <div class="col">
@@ -68,6 +69,14 @@
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Social Security Number</mat-label>
                                     <input matInput placeholder="text" formControlName="ssn">
+                                </mat-form-field>
+                            </div>
+                            <div class="col">
+                                <mat-form-field>
+                                    <mat-label>Date of RP Expiry</mat-label>
+                                    <input matInput [matDatepicker]="rpExpiryDate" formControlName="rpExpiryDate">
+                                    <mat-datepicker-toggle matSuffix [for]="rpExpiryDate"></mat-datepicker-toggle>
+                                    <mat-datepicker #rpExpiryDate></mat-datepicker>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -156,7 +165,8 @@
                             </div>
                             <div class="col">
                                 <section class="example-section">
-                                    <mat-checkbox #martialStatus [checked]="martialStatusChecked" formControlName="martialStatus"
+                                    <mat-checkbox #martialStatus [checked]="martialStatusChecked"
+                                        formControlName="martialStatus"
                                         (change)="enableDependentSection(martialStatus.checked)">
                                         Family Status *</mat-checkbox>
                                 </section>
@@ -194,27 +204,27 @@
                             <div class="row no-gutters">
                                 <div class="col">
                                     <mat-form-field class="form-col">
-                                        <mat-label>Door-NO & Appartment Details</mat-label>
+                                        <mat-label>Street name & house/apartment number</mat-label>
                                         <textarea matInput formControlName="currentAddress1"></textarea>
                                     </mat-form-field>
                                 </div>
                                 <div class="col">
                                     <mat-form-field class="form-col">
-                                        <mat-label>Street And Post Box</mat-label>
+                                        <mat-label>Mail box</mat-label>
                                         <textarea matInput formControlName="currentAddress2"></textarea>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col">
+                                    <mat-form-field class="form-col">
+                                        <mat-label>Commune</mat-label>
+                                        <input matInput formControlName="currentCity">
                                     </mat-form-field>
                                 </div>
                             </div>
                             <div class="row no-gutters">
                                 <div class="col">
-                                    <mat-form-field class="form-col">
-                                        <mat-label>City</mat-label>
-                                        <input matInput formControlName="currentCity">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col">
                                     <mat-form-field class="example-full-width">
-                                        <mat-label>State</mat-label>
+                                        <mat-label>City</mat-label>
                                         <input matInput formControlName="currentState">
                                     </mat-form-field>
                                 </div>
@@ -232,11 +242,15 @@
                                     </mat-form-field>
                                 </div>
                                 <div class="col">
-                                    <section class="example-section">
-                                        <mat-checkbox #currentPermanetFlag formControlName="currentPermanetFlag"
-                                            (change)="disablePermananetAddressSection(currentPermanetFlag.checked)"
-                                            class="example-margin">isCurrentAndPermanentAddressSame</mat-checkbox>
-                                    </section>
+                                    <mat-form-field>
+                                        <mat-label>Nationality</mat-label>
+                                        <select matNativeControl required formControlName="nationality" #mySelect
+                                            (change)='onNationalitySelected(mySelect.value)'>
+                                            <option value="Belgium">Belgium</option>
+                                            <option value="India">India</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </mat-form-field>
                                 </div>
                                 <div>
                                     <mat-form-field class="example-full-width" hidden="true">
