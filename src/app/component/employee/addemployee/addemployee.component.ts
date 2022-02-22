@@ -77,8 +77,8 @@ export class AddemployeeComponent implements OnInit {
   }
 
 
-  disablePermananetAddressSection(status: any) {
-    if (status) {
+  onNationalitySelected(country: any) {
+    if (country == "Belgium") {
       this.disablePermanentSectionFlag = false;
     } else {
       this.disablePermanentSectionFlag = true;
@@ -151,8 +151,13 @@ export class AddemployeeComponent implements OnInit {
             this.martialStatusChecked = true;
           }
           this.uploadDocuments = true;
-          this.disablePermanentSectionFlag = !this.employee.employeeAddress.currentPermanetFlag;
 
+          if(this.employee.employeeAddress.nationality == "Belgium"){
+            this.disablePermanentSectionFlag = false;
+          }else {
+            this.disablePermanentSectionFlag = true;
+          }
+          
           this.base64Data = this.employee.empImage;
           this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
         })
@@ -176,6 +181,7 @@ export class AddemployeeComponent implements OnInit {
       sex: ['', Validators.required],
       dob: ['', Validators.required],
       ssn: [],
+      rpExpiryDate:[],
       email: ['', Validators.required],
       mobile: ['', Validators.required],
       landline: [],
@@ -198,7 +204,7 @@ export class AddemployeeComponent implements OnInit {
       currentState: [],
       currentCountry: ['', Validators.required],
       currentPincode: ['', Validators.required],
-      currentPermanetFlag: [],
+      nationality:[],
       permanentAddress1: [],
       permanentAddress2: [],
       permanentAddcity: [],

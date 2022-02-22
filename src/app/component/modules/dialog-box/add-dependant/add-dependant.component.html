@@ -7,7 +7,7 @@
       <mat-form-field color="accent">
         <select matNativeControl required placeholder="Dependant" name="dependant" [(ngModel)]="employeeDependent.dependant">
           <option value="spouse">Spouse</option>
-          <option value="childern">Childern</option>
+          <option value="child">Child</option>
         </select>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
