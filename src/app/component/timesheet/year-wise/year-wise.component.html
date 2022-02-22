@@ -18,6 +18,11 @@
           Fetch Year Leaves
         </button>
       </div>
+      <div class="col" *ngIf="employeeData !== null">
+            <button mat-button (click)="downloadYearlyTimesheet(selectedY.value)">
+              Download Employee Yearly Leaves Report
+            </button>
+      </div>
     </div>
   </form>
 
@@ -25,21 +30,13 @@
   <div *ngIf="employeeData !== null" class="main-container" id="yearly-timesheet">
 
     <div class="row">
-      <div class="col">
-        <button mat-button (click)="downloadYearlyTimesheet(selectedY.value)">
-          Download Employee Yearly Leaves Report
-        </button>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col">
+      <div class="col-2" style="color:#4a148c;font-family: Helvetica, Arial, sans-serif;font-size: 1rem;">
         RTT Leaves = {{rttLeaves}}
       </div>
-      <div class="col">
+      <div class="col-2" style="color:#4a148c;font-family: Helvetica, Arial, sans-serif;font-size: 1rem;">
         Auth Leaves = {{authLeaves}}
       </div>
-      <div class="col">
+      <div class="col-2" style="color:#4a148c;font-family: Helvetica, Arial, sans-serif;font-size: 1rem;">
         Other Leaves = {{otherLeaves}}
       </div>
     </div>

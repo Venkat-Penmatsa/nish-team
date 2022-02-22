@@ -17,13 +17,13 @@
   <!--*ngIf="employeeData !== null" -->
   <div id="monthlyTimesheet" *ngIf="employeeData !== null" class="main-container">
     <div class="row">
-      <div class="col">
+      <div class="col-2" style="color:#4a148c;font-family: Helvetica, Arial, sans-serif;font-size: 1rem;">
         Working Days = {{numberOfWorkingDays}}
       </div>
-      <div class="col">
+      <div class="col-2" style="color:#4a148c;font-family: Helvetica, Arial, sans-serif;font-size: 1rem;">
         Leaves = {{numberOfLeaves}}
       </div>
-      <div class="col">
+      <div class="col-2" style="color:#4a148c;font-family: Helvetica, Arial, sans-serif;font-size: 1rem;">
         Days worked = {{numberOfDaysWorked}}
       </div>
     </div>
@@ -58,7 +58,7 @@
         <div *ngFor="let leave of leaveList" class="d-flex">
           <div [ngClass]="leave.className" class="square"></div>
           <p class="pl-10 leaveList">{{leave.name}}</p>
-          <p class="pl-10 leaveList">{{0}}</p>
+          <!-- <p class="pl-10 leaveList">{{leave.value}}</p> -->
         </div>
       </div>
     </div>
