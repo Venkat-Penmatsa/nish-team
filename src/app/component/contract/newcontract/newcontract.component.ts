@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import * as _moment from 'moment';
+import { Moment } from 'moment';
 import { NewcontractService } from 'src/app/services/contracts/newcontract.service';
-
+const moment = _moment;
 @Component({
   selector: 'app-newcontract',
   templateUrl: './newcontract.component.html',
@@ -20,6 +22,12 @@ export class NewcontractComponent implements OnInit {
 
   ngOnInit(): void {
 
+  }
+
+
+  dateOfJoiningFilter = (m: Moment | null): boolean => {
+    const day = (m || moment()).day();
+    return day !== 0 && day !== 6;
   }
 
   empNameSelected(emp: any) {
