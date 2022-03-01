@@ -26,6 +26,8 @@ export class ListemployeeComponent implements AfterViewInit, OnInit {
     'subCont',
     'email',
     'mobile',
+    'wpExpiryMonths',
+    'rpExpiryDate',
     'onBoardingDate',
     'onBoardingStatus',
   'dateOfBirth',
@@ -62,6 +64,8 @@ export class ListemployeeComponent implements AfterViewInit, OnInit {
           e.subCont,
           e.email,
           e.mobile,
+          e.wpExpiryMonths,
+          e.rpExpiryDate,
           e.onBoardingDate,
           e.onBoardingStatus,
           e.dateOfBirth,
@@ -100,10 +104,11 @@ export class AllEmployeesList {
     private subCont: string,
     private email: string,
     private mobile: string,
+    private wpExpiryMonths: string,
+    private morpExpiryDatebile: string,
     private onBoardingDate: string,
     private onBoardingStatus: string,
     private dateOfBirth: string,
     private skills: string
   ) { }
 }
-

@@ -70,6 +70,16 @@
         <td mat-cell *matCellDef="let element"> {{element.mobile}} </td>
       </ng-container>
 
+      <ng-container matColumnDef="wpExpiryMonths">
+        <th mat-header-cell *matHeaderCellDef> RP Expiry Status</th>
+        <td mat-cell *matCellDef="let element"> {{element.wpExpiryMonths}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="rpExpiryDate">
+        <th mat-header-cell *matHeaderCellDef> RP Expiry Date</th>
+        <td mat-cell *matCellDef="let element"> {{element.rpExpiryDate}} </td>
+      </ng-container>
+
       <ng-container matColumnDef="onBoardingDate">
         <th mat-header-cell *matHeaderCellDef> OnBoarding Date</th>
         <td mat-cell *matCellDef="let element"> {{element.onBoardingDate}} </td>

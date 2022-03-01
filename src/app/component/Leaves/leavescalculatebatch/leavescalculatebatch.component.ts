@@ -29,6 +29,7 @@ export class LeavescalculatebatchComponent implements OnInit {
   selectedMonth: string;
   selectedYear: string;
   selectedFreezeMonth: Date;
+  freezeTimeSheetDate:string;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -70,8 +71,7 @@ export class LeavescalculatebatchComponent implements OnInit {
 
   freezeTimeSheetJob() {
     this.user = JSON.parse(localStorage.getItem("userDetails") || '{}') as User;
-    let selectedDate = moment(this.selectedFreezeMonth).format("DD-MM-YYYY");
-    this.leavesService.freezeTimeSheetJob(selectedDate, this.user.empName).subscribe(res => {
+    this.leavesService.freezeTimeSheetJob(this.freezeTimeSheetDate, this.user.empName).subscribe(res => {
       console.log(res)
       this.message = true;
       this.messageDesc = res.responseStatus + " " + res.errorDescription;
@@ -97,6 +97,7 @@ export class LeavescalculatebatchComponent implements OnInit {
 
   fetchFreezeTimeSheetReport(event) {
     let selectedDate = moment(event.value).format("DD-MM-YYYY");
+    this.freezeTimeSheetDate = selectedDate;
     const status = this.batchService(selectedDate, 'FREEZE_TIMESHEET');
   }
 
