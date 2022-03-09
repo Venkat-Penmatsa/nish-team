@@ -27,7 +27,10 @@ export class ApplyleaveComponent implements OnInit {
   startDate = new Date();
   message = false;
   messageDesc = "";
+  error=false;
+  errorDesc="";
   user: User;
+  halfDay : boolean = false;
   leaveStartDate = moment();
   leaveEndDate = moment();
 
@@ -90,6 +93,7 @@ export class ApplyleaveComponent implements OnInit {
 
   submitLeave() {
     this.message = false;
+    this.error = false;
     let validation = true;
     if (this.leaveForm.valid) {
       const leaveType = this.leaveForm.value.leaveType;
@@ -97,8 +101,8 @@ export class ApplyleaveComponent implements OnInit {
         if (leave.code === leaveType) {
           const numberOfDays = leave.value
           if (this.leaveForm.value.numberOfDays > numberOfDays) {
-            this.message = true;
-            this.messageDesc = "Employee does not have enough Leaves";
+            this.error = true;
+            this.errorDesc = "Employee does not have enough leave balence for the selected Leave Type.";
             validation = false;
             return;
           }
@@ -111,9 +115,9 @@ export class ApplyleaveComponent implements OnInit {
           employeeId: this.empName,
           leaveType: this.leaveForm.value.leaveType,
           startDate: moment(this.leaveForm.value.leaveStartDate).format("DD-MM-YYYY"),
-          endDate:  moment(this.leaveForm.value.leaveEndDate).format("DD-MM-YYYY"),
+          endDate:  moment(this.leaveForm.controls["leaveEndDate"].value).format("DD-MM-YYYY"),
           leaveAppliedBy: this.user.empId,
-          halfDay: this.leaveForm.value.halfDay,
+          halfDay: this.halfDay,
           numberOfDays: this.leaveForm.value.numberOfDays,
           comments: this.leaveForm.value.comments
         }
@@ -122,10 +126,9 @@ export class ApplyleaveComponent implements OnInit {
           console.log(res)
           
             if(res.responseStatus == 'failed'){
-              this.message = true;
-              this.messageDesc = res.errorDescription;
+              this.error = true;
+              this.errorDesc = res.errorDescription;
             } 
-            
             if (res.leaveId != null)  {
               this.message = true;
               this.messageDesc = "Leave applied successfully";
@@ -144,9 +147,18 @@ export class ApplyleaveComponent implements OnInit {
 
   disableEndDate(status: any) {
     console.log(status);
-    this.leaveForm.patchValue({ leaveEndDate: this.leaveForm.value.leaveStartDate });
-    this.leaveForm.controls["leaveEndDate"].disable();
-    this.leaveForm.patchValue({ numberOfDays: 0.5 });
+    if(status){
+      this.leaveForm.patchValue({ leaveEndDate: this.leaveForm.value.leaveStartDate });
+      this.leaveForm.controls["leaveEndDate"].disable();
+      this.leaveForm.patchValue({ numberOfDays: 0.5 });
+      this.halfDay = true;
+    }else {
+      this.leaveForm.patchValue({ leaveEndDate: '' });
+      this.leaveForm.patchValue({ numberOfDays: '' });
+      this.leaveForm.controls["leaveEndDate"].enable();
+      this.halfDay = false;
+    }
+    
   }
 
   get f() {
