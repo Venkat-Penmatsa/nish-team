@@ -1,5 +1,5 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Component, ElementRef,  OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef,  OnChanges,  OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Employee } from 'src/app/model/Employee';
 import { EmployeeDependents } from 'src/app/model/EmployeeDependents';
@@ -7,6 +7,7 @@ import * as _moment from 'moment';
 import { skills } from 'src/app/constants/skills';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { Moment } from 'moment';
+import { LoaderService } from 'src/app/services/loader.service';
 
 const moment = _moment;
 
@@ -15,7 +16,7 @@ const moment = _moment;
   templateUrl: './addemployee.component.html',
   styleUrls: ['./addemployee.component.css']
 })
-export class AddemployeeComponent implements OnInit {
+export class AddemployeeComponent implements OnInit,OnChanges {
 
 
   public employeeId: number;
@@ -41,17 +42,23 @@ export class AddemployeeComponent implements OnInit {
   filterEmpName: string;
   empName: any = undefined;
   martialStatusChecked: boolean = false;
+  loading$:any;
 
   @ViewChild('marriageCheckbox') marriageCheckbox: ElementRef;
 
 
-  constructor(private fb: FormBuilder, private employeeService: EmployeeService) {
+  constructor(private fb: FormBuilder, private employeeService: EmployeeService  , private loader: LoaderService) {
 
   }
 
   ngOnInit(): void {
 
   }
+
+  
+  ngOnChanges(changes: SimpleChanges): void {
+    this.loading$ = this.loader.loading$;
+ }
 
   setStep(index: number) {
     this.step = index;

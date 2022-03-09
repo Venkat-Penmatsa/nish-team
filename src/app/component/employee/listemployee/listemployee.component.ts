@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnChanges, OnInit, SimpleChanges, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { EmployeeService } from 'src/app/services/employee.service';
+import { LoaderService } from 'src/app/services/loader.service';
 
 
 
@@ -12,7 +13,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
   styleUrls: ['./listemployee.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class ListemployeeComponent implements AfterViewInit, OnInit {
+export class ListemployeeComponent implements AfterViewInit, OnInit, OnChanges {
 
   displayedColumns: string[] = ['employeeId',
     'empName',
@@ -35,10 +36,10 @@ export class ListemployeeComponent implements AfterViewInit, OnInit {
 
   allEmployeesList: AllEmployeesList[] = [];
   dataSource = new MatTableDataSource<AllEmployeesList>(this.allEmployeesList);
-
+  loading$:any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private employeeService: EmployeeService) {
+  constructor(private employeeService: EmployeeService , private loader: LoaderService) {
 
   }
 
@@ -46,6 +47,10 @@ export class ListemployeeComponent implements AfterViewInit, OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
+  
+  ngOnChanges(changes: SimpleChanges): void {
+    this.loading$ = this.loader.loading$;
+  }
   ngOnInit(): void {
 
     console.log("String...");
