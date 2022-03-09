@@ -3,9 +3,8 @@
         <h1 class="title"> Employees Leaves Calculation Batches </h1>
     </div>
 
-    <div>
-        <p *ngIf="message">{{ messageDesc }}</p>
-    </div>
+    <div *ngIf="message" class="alert alert-success">{{ messageDesc }}</div>
+    <div *ngIf="error" class="alert alert-danger">{{ errorDesc }}</div>
     <div class="row">
 
         <div class="col-3" style="width:100%">
@@ -51,7 +50,7 @@
     </div>
 
     <div class="row">
-        <h1 class="title"> Executed Batches </h1>
+        <h1 class="title"> Executed Batches Jobs List </h1>
     </div>
     <div>
 

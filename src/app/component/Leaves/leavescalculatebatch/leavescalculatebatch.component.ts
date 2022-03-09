@@ -30,6 +30,8 @@ export class LeavescalculatebatchComponent implements OnInit {
   selectedYear: string;
   selectedFreezeMonth: Date;
   freezeTimeSheetDate:string;
+  error=false;
+  errorDesc="";
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -47,6 +49,7 @@ export class LeavescalculatebatchComponent implements OnInit {
   }
 
   triggerSOYLeaves() {
+    this.message = false;
     this.user = JSON.parse(localStorage.getItem("userDetails") || '{}') as User;
     let selectedDate = moment(this.selectedYear).format("DD-MM-YYYY");
     this.leavesService.triggerSOYLeaves(selectedDate, this.user.empName).subscribe(res => {
@@ -58,7 +61,7 @@ export class LeavescalculatebatchComponent implements OnInit {
   }
 
   triggerRTTLeaves() {
-
+    this.message = false;
     this.user = JSON.parse(localStorage.getItem("userDetails") || '{}') as User;
     let selectedDate = moment(this.selectedMonth).format("DD-MM-YYYY");
     this.leavesService.triggerRTTLeaves(selectedDate, this.user.empName).subscribe(res => {
@@ -70,6 +73,7 @@ export class LeavescalculatebatchComponent implements OnInit {
   }
 
   freezeTimeSheetJob() {
+    this.message = false;
     this.user = JSON.parse(localStorage.getItem("userDetails") || '{}') as User;
     this.leavesService.freezeTimeSheetJob(this.freezeTimeSheetDate, this.user.empName).subscribe(res => {
       console.log(res)
@@ -103,6 +107,7 @@ export class LeavescalculatebatchComponent implements OnInit {
 
 
   batchService(selectedDate: any, batchName: string) {
+    this.error = false;
     this.leavesService.fetchYearBatchJobStatus(batchName, selectedDate).subscribe(res => {
       console.log(res)
       if (res.status == 'NOT_EXECUTED' && batchName == 'YEAR_START_LEAVES') {
@@ -115,8 +120,8 @@ export class LeavescalculatebatchComponent implements OnInit {
         let button = <HTMLButtonElement>document.getElementById('timeSheetFreezeButton');
         button.disabled = false;
       } else {
-        this.message = true;
-        this.messageDesc = res.batchJobName + " Batch Job Already Executed for the Period " + res.batchMonth + "-" + res.batchYear + " On  " + res.executionDate;
+        this.error = true;
+        this.errorDesc = res.batchJobName + " Batch Job Already Executed for the Period " + res.batchMonth + "-" + res.batchYear + " On  " + res.executionDate;
       }
     });
   }

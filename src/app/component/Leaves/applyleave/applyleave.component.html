@@ -6,13 +6,14 @@
         </div>
 
     </div>
+
+        <div *ngIf="message" class="alert alert-success">{{ messageDesc }}</div>
+        <div *ngIf="error" class="alert alert-danger">{{ errorDesc }}</div>
+ 
     <div *ngIf="showleaves">
-        <div>
-            <p *ngIf="message">{{ messageDesc }}</p>
-        </div>
         <div class="row">
             <div class="col-4">
-                <p> Leave Balence</p>
+                <p class="btn btn-primary"> Leave Balence</p>
                 <div *ngFor="let leave of leaveList" class="d-flex">
                     <p class="leave-bal"> {{leave.name}}</p>
                     <p class="leave-bal"> : {{leave.value}}</p>
