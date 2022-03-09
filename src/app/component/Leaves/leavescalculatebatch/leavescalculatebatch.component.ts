@@ -1,17 +1,18 @@
-import { AfterViewInit, Component, ViewChild, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, ViewChild, OnInit, ViewEncapsulation, OnChanges, SimpleChanges } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { LeavesService } from 'src/app/services/leaves.service';
 import * as _moment from 'moment';
 import moment from 'moment';
 import { User } from 'src/app/model/User';
+import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
   selector: 'app-leavescalculatebatch',
   templateUrl: './leavescalculatebatch.component.html',
   styleUrls: ['./leavescalculatebatch.component.css']
 })
-export class LeavescalculatebatchComponent implements OnInit {
+export class LeavescalculatebatchComponent implements OnInit,OnChanges {
 
   displayedColumns: string[] = ['batchJobName',
     'batchYear',
@@ -32,16 +33,21 @@ export class LeavescalculatebatchComponent implements OnInit {
   freezeTimeSheetDate:string;
   error=false;
   errorDesc="";
+  loading$:any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private leavesService: LeavesService) {
+  constructor(private leavesService: LeavesService , private loader: LoaderService) {
 
   }
 
   ngOnInit(): void {
     this.fetchExecutedBatchJobs();
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.loading$ = this.loader.loading$;
+ }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

@@ -1,19 +1,31 @@
-.progress-cont {
-    height: 7px;
-    width: 100%;
-    border-radius: 4px;
-    background-color: #d0d0d0;
-    position: relative;
-  }
 
-.progress {
-    width: 0;
-    height: 100%;
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    border-radius: 4px;
-    background-color: #4c97cb;
-    transition: 0.5s all;
-  }
+.mat-progress-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
+
+.overlay {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  z-index: 2;
+  backdrop-filter: blur(2px);
+}
+
+.content {
+  padding: 16px;
+}
+
+button {
+  margin: 8px;
+}
+
+
+:host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {   
+  stroke: #15293f;
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { LeavesService } from 'src/app/services/leaves.service';
@@ -8,6 +8,8 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import { MatDatepicker } from '@angular/material/datepicker';
 import * as _moment from 'moment';
 import { default as _rollupMoment, Moment } from 'moment';
+import { LoaderService } from 'src/app/services/loader.service';
+import { BehaviorSubject } from 'rxjs';
 
 const moment = _rollupMoment || _moment;
 export const MY_FORMATS = {
@@ -35,10 +37,13 @@ export const MY_FORMATS = {
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
   ],
 })
-export class AllEmpMonthlyLeaveReportComponent implements OnInit {
+export class AllEmpMonthlyLeaveReportComponent implements OnInit, OnChanges {
   date = new FormControl(moment());
   message = false;
   messageDesc = "";
+  loading$:any;
+ // loading$ = new BehaviorSubject<boolean>(false);
+
 
   chosenYearHandler(normalizedYear: Moment) {
     const ctrlValue = this.date.value;
@@ -72,10 +77,14 @@ export class AllEmpMonthlyLeaveReportComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
 
-  constructor(private leavesService: LeavesService) {
+  constructor(private leavesService: LeavesService, public loader: LoaderService) {
 
   }
+  ngOnChanges(changes: SimpleChanges): void {
+     this.loading$ = this.loader.loading$;
+  }
 
+  
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -119,7 +128,8 @@ export class AllEmpMonthlyLeaveReportComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log("String...")
+    console.log("this.loading$..." +this.loading$)
+    this.loading$ = this.loader.loading$;
   }
 
   applyFilter(event: Event) {

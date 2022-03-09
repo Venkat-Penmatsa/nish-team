@@ -7,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./progress.component.css']
 })
 export class ProgressComponent implements OnInit {
-  @Input() progress = 0;
+
+  @Input() loading$;
+
   constructor() { }
 
   ngOnInit(): void {
+
+    console.log("Loader value is "+ this.loading$)
   }
 
 }

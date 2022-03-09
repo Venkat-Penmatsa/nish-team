@@ -1,4 +1,4 @@
-import { ElementRef, Input, SimpleChanges } from '@angular/core';
+import { ElementRef, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FileUploadControl, FileUploadValidators } from '@iplab/ngx-file-upload';
@@ -11,13 +11,14 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { User } from 'src/app/model/User';
 import { saveAs as importedSaveAs } from "file-saver";
+import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
   selector: 'app-upload',
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.css']
 })
-export class UploadComponent implements OnInit {
+export class UploadComponent implements OnInit,OnChanges {
 
   displayedColumns: string[] = ['documentId',
     'category',
@@ -36,6 +37,7 @@ export class UploadComponent implements OnInit {
 
   @ViewChild("fileDropRef", { static: false }) fileDropEl: ElementRef;
 
+  loading$:any;
   public file: File[];
   currentFile: File;
   public fileUploadControl = new FileUploadControl({ listVisible: false });
@@ -71,7 +73,7 @@ export class UploadComponent implements OnInit {
     }
 
     this.fetchDocuments(this.categoryType);
-
+    this.loading$ = this.loader.loading$;
   }
 
   ngOnInit(): void {
@@ -97,7 +99,7 @@ export class UploadComponent implements OnInit {
 
   }
 
-  constructor(private uploadService: FileUploadService, private messageService: MessageService) {
+  constructor(private uploadService: FileUploadService, private messageService: MessageService  , private loader: LoaderService) {
 
   }
 
@@ -122,6 +124,7 @@ export class UploadComponent implements OnInit {
     });
     return "Success";
   }
+
 
   upload() {
     this.uploadFiles().then(this.fetchDocuments(this.categoryType));

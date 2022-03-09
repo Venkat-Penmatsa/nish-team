@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MaterialModule } from './material/material.module';
 import { LoginComponent } from './component/login/login.component';
 import { HeaderComponent } from './component/header/header.component';
@@ -14,7 +14,6 @@ import { AddemployeeComponent } from './component/employee/addemployee/addemploy
 import { ListemployeeComponent } from './component/employee/listemployee/listemployee.component';
 import { NewcontractComponent } from './component/contract/newcontract/newcontract.component';
 import { AllcontractsComponent } from './component/contract/allcontracts/allcontracts.component';
-import { NewcontractService } from './services/contracts/newcontract.service';
 import { ApplyleaveComponent } from './component/Leaves/applyleave/applyleave.component';
 import { LeavebalenceComponent } from './component/Leaves/leavebalence/leavebalence.component';
 import { MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -55,6 +54,8 @@ import { PasswordResetComponent } from './component/features/password-reset/pass
 import { MatMomentDateModule,MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ManageDocumentsComponent } from './component/documents/manage-documents/manage-documents.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { NetworkInterceptorService } from './services/network-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -109,10 +110,11 @@ import { ManageDocumentsComponent } from './component/documents/manage-documents
     MaterialModule,
     HttpClientModule,
     FormsModule,FileUploadModule,MatButtonToggleModule,
-    MatDatepickerModule, MatMomentDateModule
+    MatDatepickerModule, MatMomentDateModule,MatProgressSpinnerModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+    { provide: HTTP_INTERCEPTORS, useClass: NetworkInterceptorService, multi: true },
     { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } }
   ],
   bootstrap: [AppComponent]

@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import * as moment from 'moment';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { leaveClassNameType } from '../../../constants/leaveClassNameType';
 import { TimesheetService } from "../../../services/timesheet.service";
+import { LoaderService } from 'src/app/services/loader.service';
 
 interface CalendarItem {
   day: string;
@@ -21,7 +22,7 @@ interface CalendarItem {
   styleUrls: ['./month-wise.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class MonthWiseComponent implements OnInit {
+export class MonthWiseComponent implements OnInit,OnChanges {
   hasError = false;
   global;
   date = moment();
@@ -35,8 +36,9 @@ export class MonthWiseComponent implements OnInit {
   numberOfDaysWorked;
   empName: any;
   filterEmpName: string;
+  loading$:any;
 
-  constructor(public fb: FormBuilder, private service: TimesheetService) {
+  constructor(public fb: FormBuilder, private service: TimesheetService, private loader: LoaderService) {
     this.monthlyForm = this.fb.group({
       employeeNumber: new FormControl('', [Validators.required, Validators.pattern(this.validPattern)])
     });
@@ -52,6 +54,10 @@ export class MonthWiseComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.loading$ = this.loader.loading$;
+ }
 
   createCalendar(month: moment.Moment) {
     const daysInMonth = month.daysInMonth();

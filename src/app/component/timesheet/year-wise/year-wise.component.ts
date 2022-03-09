@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import * as _moment from 'moment';
 import { default as _rollupMoment, Moment } from 'moment';
 import { HttpClient } from '@angular/common/http';
@@ -8,6 +8,7 @@ import { TimesheetService } from "../../../services/timesheet.service";
 import {saveAs as importedSaveAs} from "file-saver";
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { LoaderService } from 'src/app/services/loader.service';
 
 interface YearlyCalendarItem {
   day: string;
@@ -44,7 +45,7 @@ export const MY_FORMATS = {
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
   ],
 })
-export class YearWiseComponent implements OnInit {
+export class YearWiseComponent implements OnInit, OnChanges {
   hasError = false;
   date = moment();
   calendar: Array<YearlyCalendarItem[]> = [];
@@ -59,8 +60,9 @@ export class YearWiseComponent implements OnInit {
   selectedY = new FormControl();
   empName: any;
   filterEmpName: string;
-
-  constructor(private service: TimesheetService, public fb: FormBuilder) {
+  loading$:any;
+  
+  constructor(private service: TimesheetService, public fb: FormBuilder, private loader: LoaderService) {
     this.yearlyForm = this.fb.group({
       name: new FormControl('', [Validators.required, Validators.pattern(this.validPattern)])
     });
@@ -70,6 +72,10 @@ export class YearWiseComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.loading$ = this.loader.loading$;
+ }
 
   empNameSelected(emp: any) {
     this.empName = emp;
