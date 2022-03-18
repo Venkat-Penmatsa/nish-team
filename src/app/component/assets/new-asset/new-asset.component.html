@@ -1,7 +1,7 @@
 <div class="page-layout-container">
 
     <div *ngIf="successFlag" class="alert alert-success">{{ description }}</div>
-    
+
     <form [formGroup]="assetsForm">
         <div>
             <div class="row">
@@ -56,14 +56,14 @@
             <div class="row">
                 <div class="col">
                     <mat-form-field class="example-full-width">
-                        <mat-label>Model *</mat-label>
-                        <input matInput formControlName="model">
+                        <mat-label>Make *</mat-label>
+                        <input matInput formControlName="make">
                     </mat-form-field>
                 </div>
                 <div class="col">
                     <mat-form-field class="example-full-width">
-                        <mat-label>Make *</mat-label>
-                        <input matInput formControlName="make">
+                        <mat-label>Model *</mat-label>
+                        <input matInput formControlName="model">
                     </mat-form-field>
                 </div>
                 <div class="col">
@@ -112,10 +112,18 @@
                 <div class="col">
                     <mat-form-field class="example-full-width">
                         <mat-label>Category </mat-label>
-                        <select matNativeControl required formControlName="assetCategory">
-                            <option value="leased">Leased</option>
-                            <option value="own">Own</option>
+                        <select matNativeControl required formControlName="assetCategory" [(ngModel)]="assetCategorySelected">
+                            <option value="Leased">Leased</option>
+                            <option value="Own">Own</option>
                         </select>
+                    </mat-form-field>
+                </div>
+                <div class="col" *ngIf="assetCategorySelected === 'Leased'">
+                    <mat-form-field>
+                        <mat-label>Lease End Date *</mat-label>
+                        <input matInput [matDatepicker]="leaseEndDate" formControlName="leaseEndDate">
+                        <mat-datepicker-toggle matSuffix [for]="leaseEndDate"></mat-datepicker-toggle>
+                        <mat-datepicker #leaseEndDate></mat-datepicker>
                     </mat-form-field>
                 </div>
             </div>

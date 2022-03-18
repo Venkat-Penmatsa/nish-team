@@ -58,6 +58,11 @@
                 <td mat-cell *matCellDef="let element"> {{element.car}} </td>
             </ng-container>
 
+            <ng-container matColumnDef="carLeaseEndDate">
+                <th mat-header-cell *matHeaderCellDef> Car Lease End Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.leaseEndDate}} </td>
+            </ng-container>
+
             <ng-container matColumnDef="electronicDevice">
                 <th mat-header-cell *matHeaderCellDef> Electronic Device </th>
                 <td mat-cell *matCellDef="let element"> {{element.electronicDevice}} </td>

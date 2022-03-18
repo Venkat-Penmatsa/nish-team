@@ -26,6 +26,7 @@ export class UpdateAssetsComponent implements OnInit {
   description: string;
   fileList = 'assets';
   searchAssetId: string;
+  assetCategory:any;
 
   constructor(private fb: FormBuilder, private assetsService: AssetsService) {
 
@@ -38,7 +39,7 @@ export class UpdateAssetsComponent implements OnInit {
   updateCarAsset() {
 
     const formData: any = this.updateAssetForm.value;
-
+    this.successFlag = false;
     const carAsset = {
       assetId: formData.assetId,
       comments: formData.assetCar.assetComments,
@@ -51,6 +52,7 @@ export class UpdateAssetsComponent implements OnInit {
       carStatus: formData.assetCar.carStatus,
       cataloguePrice: formData.assetCar.cataloguePrice,
       assetCategory: formData.assetCar.assetCategory,
+      leaseEndDate:formData.assetCar.leaseEndDate
     }
     this.assetsService.updateCarAsset(carAsset).subscribe(res => {
       console.log(res);
@@ -61,7 +63,7 @@ export class UpdateAssetsComponent implements OnInit {
   updateElectronicAsset() {
 
     const formData: any = this.updateAssetForm.value;
-
+    this.successFlag = false;
     const electronucAsset = {
       assetId: formData.assetId,
       electronicModel: formData.assetElectronic.electronicModel,
@@ -83,7 +85,7 @@ export class UpdateAssetsComponent implements OnInit {
   }
 
   assignAsset() {
-
+    this.successFlag = false;
     const formData: any = this.updateAssetForm.value;
     this.description = "";
     const assignAsset = {
@@ -120,6 +122,7 @@ export class UpdateAssetsComponent implements OnInit {
   }
 
   searchAsset($event: Event) {
+    this.successFlag = false;
     this.searchAssetId = ($event.target as HTMLTextAreaElement).value;
     if (this.searchAssetId != "") {
       // this.updateAssetForm.reset();
@@ -144,7 +147,8 @@ export class UpdateAssetsComponent implements OnInit {
             carbonEmission: res.carbonEmission,
             carStatus: res.carStatus,
             cataloguePrice: res.cataloguePrice,
-            assetCategory: res.assetCategory
+            assetCategory: res.assetCategory,
+            leaseEndDate:res.leaseEndDate
           },
           assetElectronic: {
             electronicModel: res.electronicModel,
@@ -153,7 +157,7 @@ export class UpdateAssetsComponent implements OnInit {
 
           }
         });
-
+        this.assetCategory = res.assetCategory;
         console.log("this.updateAssetForm ==========> " + this.updateAssetForm);
       })
     }
@@ -169,7 +173,7 @@ export class UpdateAssetsComponent implements OnInit {
   }
 
   onSubmit() {
-
+    this.successFlag = false;
     console.log(this.updateAssetForm.value);
     this.updateAssetForm.patchValue({
       assetAssignedToEmp: this.empName
@@ -213,6 +217,7 @@ export class UpdateAssetsComponent implements OnInit {
       carStatus: ['', Validators.required],
       cataloguePrice: ['', Validators.required],
       assetCategory: ['', Validators.required],
+      leaseEndDate:[''],
       assetComments: []
     }
     ),

@@ -21,6 +21,7 @@ export class NewAssetComponent implements OnInit {
   successFlag = false;
   description: string;
   empName:any;
+  assetCategorySelected:any;
   constructor(private fb: FormBuilder, private assetsService: AssetsService) {
 
   }
@@ -79,7 +80,8 @@ export class NewAssetComponent implements OnInit {
       carbonEmission: [],
       status: ['', Validators.required],
       cataloguePrice: ['', Validators.required],
-      assetCategory: ['', Validators.required]
+      assetCategory: ['', Validators.required],
+      leaseEndDate:['']
     }
     ),
     assetElectronic: this.fb.group({
