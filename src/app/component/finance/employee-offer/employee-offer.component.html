@@ -1,8 +1,6 @@
 <div class="page-layout-container">
     <h1 class="heading"> Employee Expenses </h1>
-    <div>
-        <p *ngIf="successFlag">Employee {{ empName }} Expenses updated successfully</p>
-    </div>
+    <div *ngIf="successFlag" class="alert alert-success">Employee {{ empName }} Expenses updated successfully</div>
     <form [formGroup]="employeeExpenses">
         <div>
             <div class="row">

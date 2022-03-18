@@ -2,9 +2,9 @@
     <div class="row">
         <h1 class="title"> Manage Contract </h1>
     </div>
-    <div>
-        <p *ngIf="successFlag">New Contract created successfully !! Contract id is {{ nishContractId }}</p>
-    </div>
+
+    <div *ngIf="successFlag" class="alert alert-success">Contract Adminstrated successfully !! Contract id is {{
+        nishContractId }}</div>
     <form [formGroup]="newContractForm">
         <div>
             <div class="row">
@@ -30,9 +30,9 @@
                     <mat-form-field>
                         <mat-label>Contract Status</mat-label>
                         <select matNativeControl required formControlName="contractStatus">
-                            <option value="Confirmed">confimed</option>
-                            <option value="In Progress">inProgress</option>
-                            <option value="Hold">hold</option>
+                            <option value="confirmed">Confirmed</option>
+                            <option value="inProgress">inProgress</option>
+                            <option value="hold">Hold</option>
                         </select>
                     </mat-form-field>
                 </div>
@@ -73,7 +73,8 @@
                 <div class="col">
                     <mat-form-field>
                         <mat-label>Contract Start Date</mat-label>
-                        <input matInput [matDatepicker]="contractStartDate" [matDatepickerFilter]="dateOfJoiningFilter" formControlName="contractStartDate">
+                        <input matInput [matDatepicker]="contractStartDate" [matDatepickerFilter]="dateOfJoiningFilter"
+                            formControlName="contractStartDate">
                         <mat-datepicker-toggle matSuffix [for]="contractStartDate"></mat-datepicker-toggle>
                         <mat-datepicker #contractStartDate></mat-datepicker>
                     </mat-form-field>
@@ -81,7 +82,8 @@
                 <div class="col">
                     <mat-form-field>
                         <mat-label>Contract End Date</mat-label>
-                        <input matInput [matDatepicker]="contractEndDate" [matDatepickerFilter]="dateOfJoiningFilter" formControlName="contractEndDate">
+                        <input matInput [matDatepicker]="contractEndDate" [matDatepickerFilter]="dateOfJoiningFilter"
+                            formControlName="contractEndDate">
                         <mat-datepicker-toggle matSuffix [for]="contractEndDate"></mat-datepicker-toggle>
                         <mat-datepicker #contractEndDate></mat-datepicker>
                     </mat-form-field>

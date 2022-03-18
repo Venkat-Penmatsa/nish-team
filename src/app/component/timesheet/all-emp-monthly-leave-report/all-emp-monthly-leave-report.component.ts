@@ -91,6 +91,7 @@ export class AllEmpMonthlyLeaveReportComponent implements OnInit, OnChanges {
   }
 
   fetchMonthlyReport(event){
+    this.message = false;
     this.allEmployeesTimeSheetReport =[];
     this.dataSource = new MatTableDataSource<AllEmployeesTimeSheetReport>(this.allEmployeesTimeSheetReport);
     let selectedDate = moment(event.value).format("DD-MM-YYYY");
@@ -127,7 +128,7 @@ export class AllEmpMonthlyLeaveReportComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-
+    this.message = false;
     console.log("this.loading$..." +this.loading$)
     this.loading$ = this.loader.loading$;
   }

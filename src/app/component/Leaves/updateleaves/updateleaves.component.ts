@@ -35,7 +35,7 @@ export class UpdateleavesComponent implements OnInit {
 
 
   fetchLeaves() {
-
+    this.successFlag = false;
     if (this.empName != "") {
       this.updateLeavesForm.reset();
       this.leavesService.fetchEmpLeaves(this.empName).subscribe(res => {
@@ -58,10 +58,11 @@ export class UpdateleavesComponent implements OnInit {
   }
 
   UpdateLeaves() {
-
+    this.successFlag = false;
     console.log(this.updateLeavesForm.value);
     this.updateLeavesForm.patchValue({
-      updatedBy: this.user.empId
+      updatedBy: this.user.empId,
+      employeeId: this.empName
     })
     const assetJson = JSON.stringify(this.updateLeavesForm.value);
     console.log('assetJson ' + assetJson);
