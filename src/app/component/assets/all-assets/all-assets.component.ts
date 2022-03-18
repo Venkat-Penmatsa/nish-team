@@ -25,7 +25,7 @@ export class AllAssetsComponent implements OnInit,AfterViewInit  {
       res.forEach(e => {
         this.allAssets.push(new AllAssets(e.assetId,e.assetType,e.assetAssignedToEmp, 
           e.empAssignedDate, e.status,e.mobileNumber,
-          e.number,
+          e.number,e.leaseEndDate,
           e.electronicModel, 
           e.cataloguePrice,
           e.fuelCard,
@@ -37,7 +37,7 @@ export class AllAssetsComponent implements OnInit,AfterViewInit  {
     })
   }
 
-  displayedColumns: string[] = ['assetId','assetType','assetAssignedToEmp', 'empAssignedDate',  'status','mobileNumber','car', 'electronicDevice', 'price','fuelCard','comments'];
+  displayedColumns: string[] = ['assetId','assetType','assetAssignedToEmp', 'empAssignedDate',  'status','mobileNumber','car','carLeaseEndDate', 'electronicDevice', 'price','fuelCard','comments'];
   dataSource = new MatTableDataSource<AllAssets>(this.allAssets);
 
 
@@ -64,6 +64,7 @@ export class AllAssets {
     private status: string,
     private mobileNumber: string,
     private car: string,
+    private leaseEndDate: Date,
     private electronicDevice: string,
     private price: string,
     private fuelCard: string,

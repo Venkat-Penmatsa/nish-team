@@ -1,7 +1,7 @@
 export let leaveClassNameType: Array<any> = [
   {name: 'Sick leave', className: 'sickLeave', key: 'sickLeave', code: 'SL', value:''},
   {name: 'Public holiday', className: 'publicHoliday', key: 'publicHoliday', code: 'PH', value:''},
-  {name: 'Authorised absence', className: 'authorisedAbsence', key: 'authorisedAbsence', code: 'AA', value:''},
+  {name: 'Paid Holiday', className: 'authorisedAbsence', key: 'authorisedAbsence', code: 'AA', value:''},
   {name: 'Maternity leave', className: 'maternityLeave', key: 'maternityLeave', code: 'ML', value:''},
   {name: 'Parental leave', className: 'parentalLeave', key: 'parentalLeave', code: 'PL', value:''},
   {name: 'Holiday', className: 'holiday', key: 'holiday', code: 'H', value:''},
@@ -15,6 +15,6 @@ export let leaveClassNameType: Array<any> = [
 
 
 export let leaveBalence: Array<any> = [
-  {name: 'Authorised absence', className: 'authorisedAbsence', key: 'authorisedAbsence', code: 'AA', value:''},
+  {name: 'Paid Holiday', className: 'authorisedAbsence', key: 'authorisedAbsence', code: 'AA', value:''},
   {name: 'Rtt/ADV days', className: 'rttAdv', key: 'rttAdv', code: 'RTT', value:''}
 ];

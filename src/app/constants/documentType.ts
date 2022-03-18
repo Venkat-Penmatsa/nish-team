@@ -4,6 +4,8 @@ export let EmployeeDocs = [
     { code: "SC", name: "Sodexo Contract" },
     { code: "CC", name: "Car Contract" },
     { code: "PC", name: "Employee Picture"},
+    { code: "MC", name: "Medical Certificate"},
+    { code: "SP", name: "Single Permit"},
     { code: "OO", name: "Others" }
   ];
 

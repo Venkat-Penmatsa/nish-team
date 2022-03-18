@@ -1,4 +1,10 @@
 <div id="applyLeaves" class="page-layout-container">
+
+    <div class="row">
+        <h1 class="title"> Apply Leaves </h1>
+    </div>
+
+
     <div class="row">
         <div class="col-6" style="width: 80%;">
             <app-emp-name [filterEmpName]="filterEmpName" (empName)="empNameSelected($event)">
@@ -13,7 +19,7 @@
     <div *ngIf="showleaves">
         <div class="row">
             <div class="col-4">
-                <p class="btn btn-primary"> Leave Balence</p>
+                <p class="btn btn-primary"> Available Leaves</p>
                 <div *ngFor="let leave of leaveList" class="d-flex">
                     <p class="leave-bal"> {{leave.name}}</p>
                     <p class="leave-bal"> : {{leave.value}}</p>
@@ -33,7 +39,7 @@
                                     <option value="FM">Force majeure</option>
                                     <option value="O">Other</option>
                                     <option value="PL">Parental leave</option>
-                                    <option value="AA">Authorised absence</option>
+                                    <option value="AA">Paid Holiday</option>
                                     <option value="ML">Maternity leave</option>
                                 </select>
                             </mat-form-field>

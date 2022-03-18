@@ -44,6 +44,7 @@ export class AddemployeeComponent implements OnInit,OnChanges {
   martialStatusChecked: boolean = false;
   loading$:any;
 
+
   @ViewChild('marriageCheckbox') marriageCheckbox: ElementRef;
 
 
