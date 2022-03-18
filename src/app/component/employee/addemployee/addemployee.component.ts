@@ -1,5 +1,5 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Component, ElementRef,  OnChanges,  OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Employee } from 'src/app/model/Employee';
 import { EmployeeDependents } from 'src/app/model/EmployeeDependents';
@@ -16,7 +16,7 @@ const moment = _moment;
   templateUrl: './addemployee.component.html',
   styleUrls: ['./addemployee.component.css']
 })
-export class AddemployeeComponent implements OnInit,OnChanges {
+export class AddemployeeComponent implements OnInit, OnChanges {
 
 
   public employeeId: number;
@@ -42,24 +42,24 @@ export class AddemployeeComponent implements OnInit,OnChanges {
   filterEmpName: string;
   empName: any = undefined;
   martialStatusChecked: boolean = false;
-  loading$:any;
+  loading$: any;
 
 
   @ViewChild('marriageCheckbox') marriageCheckbox: ElementRef;
 
 
-  constructor(private fb: FormBuilder, private employeeService: EmployeeService  , private loader: LoaderService) {
+  constructor(private fb: FormBuilder, private employeeService: EmployeeService, private loader: LoaderService) {
 
   }
 
   ngOnInit(): void {
-
+    this.loading$ = this.loader.loading$;
   }
 
-  
+
   ngOnChanges(changes: SimpleChanges): void {
     this.loading$ = this.loader.loading$;
- }
+  }
 
   setStep(index: number) {
     this.step = index;
@@ -160,12 +160,12 @@ export class AddemployeeComponent implements OnInit,OnChanges {
           }
           this.uploadDocuments = true;
 
-          if(this.employee.employeeAddress.nationality == "Belgium"){
+          if (this.employee.employeeAddress.nationality == "Belgium") {
             this.disablePermanentSectionFlag = false;
-          }else {
+          } else {
             this.disablePermanentSectionFlag = true;
           }
-          
+
           this.base64Data = this.employee.empImage;
           this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
         })
@@ -189,7 +189,7 @@ export class AddemployeeComponent implements OnInit,OnChanges {
       sex: ['', Validators.required],
       dob: ['', Validators.required],
       ssn: [],
-      rpExpiryDate:[],
+      rpExpiryDate: [],
       email: ['', Validators.required],
       mobile: ['', Validators.required],
       landline: [],
@@ -212,7 +212,7 @@ export class AddemployeeComponent implements OnInit,OnChanges {
       currentState: [],
       currentCountry: ['', Validators.required],
       currentPincode: ['', Validators.required],
-      nationality:[],
+      nationality: [],
       permanentAddress1: [],
       permanentAddress2: [],
       permanentAddcity: [],
