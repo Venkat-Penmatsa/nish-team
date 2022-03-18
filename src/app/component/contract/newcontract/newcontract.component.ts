@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import * as _moment from 'moment';
 import { Moment } from 'moment';
+import { User } from 'src/app/model/User';
 import { NewcontractService } from 'src/app/services/contracts/newcontract.service';
 const moment = _moment;
 @Component({
@@ -17,6 +18,7 @@ export class NewcontractComponent implements OnInit {
   empName: any;
   contract: any;
   filterEmpName: string;
+  user: User;
   constructor(private fb: FormBuilder, private newcontractService: NewcontractService, private http: HttpClient) {
   }
 
@@ -58,18 +60,21 @@ export class NewcontractComponent implements OnInit {
         });
         this.filterEmpName = this.contract.employeeId;
         this.newContractForm.controls['billingRate'].disable();
+        this.newContractForm.controls['employeeId'].disable();
       });
     }
   }
 
   onSubmit() {
+    this.user = JSON.parse(localStorage.getItem("userDetails") || '{}') as User;
     console.log(this.newContractForm.value);
     this.newContractForm.patchValue({
-      employeeId: this.empName
+      employeeId: this.empName,
+      updatedBy:this.user.empId
     })
     const body = JSON.stringify(this.newContractForm.getRawValue()
     );
-    console.log("String..." + body)
+    console.log("leaves jason" + body)
 
     const headers = { 'Content-type': 'application/json' };
 
@@ -96,7 +101,8 @@ export class NewcontractComponent implements OnInit {
     billingRate: [''],
     contractStartDate: [''],
     contractEndDate: [''],
-    comments: ['']
+    comments: [''],
+    updatedBy: ['']
   });
 
 }

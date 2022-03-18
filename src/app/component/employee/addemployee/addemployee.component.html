@@ -1,7 +1,8 @@
 <div class="page-layout-container">
-    <div>
-        <p *ngIf="successFlag">New Employee created successfully !! Employee id is {{ employeeId }}</p>
-    </div>
+
+    <div *ngIf="successFlag" class="alert alert-success">Employee Adminstrated successfully !! Employee id is {{
+        employeeId }}</div>
+
     <form [formGroup]="empCreationForm">
         <div class="row">
             <div class="col">

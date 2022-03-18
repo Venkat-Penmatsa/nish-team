@@ -57,6 +57,19 @@
         <td mat-cell *matCellDef="let element"> {{element.comments}} </td>
       </ng-container>
 
+
+      <ng-container matColumnDef="contractUpdatedDate">
+        <th mat-header-cell *matHeaderCellDef> Contract Created/Updated Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.updatedDate}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="contractUpdatedBy">
+        <th mat-header-cell *matHeaderCellDef> Contract Created/Updated User </th>
+        <td mat-cell *matCellDef="let element"> {{element.updatedBy}} </td>
+      </ng-container>
+
+
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>

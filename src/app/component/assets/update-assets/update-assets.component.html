@@ -1,8 +1,7 @@
 <div class="page-layout-container">
     <form [formGroup]="updateAssetForm">
-        <div>
-            <p *ngIf="successFlag"> {{ description }} </p>
-        </div>
+
+        <div *ngIf="successFlag" class="alert alert-success">{{ description }}</div>
         <div>
             <div class="row">
                 <h1 class="title"> Update Asset - {{ assetType }} </h1>

@@ -30,7 +30,6 @@ import { FileUploadModule } from '@iplab/ngx-file-upload';
 import { MessageComponent } from './common/message/message.component';
 import { NewAssetComponent } from './component/assets/new-asset/new-asset.component';
 import { AllAssetsComponent } from './component/assets/all-assets/all-assets.component';
-import { AssignAssetsComponent } from './component/assets/assign-assets/assign-assets.component';
 import { EmpNameComponent } from './common/emp-name/emp-name.component';
 import { UpdateAssetsComponent } from './component/assets/update-assets/update-assets.component';
 import { AssetHistoryComponent } from './component/assets/asset-history/asset-history.component';
@@ -40,8 +39,6 @@ import {YearWiseComponent} from "./component/timesheet/year-wise/year-wise.compo
 import { HomeComponent } from './component/home/home.component';
 import { UserComponent } from './component/userManagement/user/user.component';
 import { ListusersComponent } from './component/userManagement/listusers/listusers.component';
-import { EmpReportsComponent } from './component/employee/emp-reports/emp-reports.component';
-import { AssetReportsComponent } from './component/assets/asset-reports/asset-reports.component';
 import { ManageUserComponent } from './component/userManagement/manage-user/manage-user.component';
 import { UpdateleavesComponent } from './component/Leaves/updateleaves/updateleaves.component';
 import { ManageEmployeeComponent } from './component/employee/manage-employee/manage-employee.component';
@@ -80,7 +77,6 @@ import { NetworkInterceptorService } from './services/network-interceptor.servic
     MessageComponent,
     NewAssetComponent,
     AllAssetsComponent,
-    AssignAssetsComponent,
     EmpNameComponent,
     UpdateAssetsComponent,
     MonthWiseComponent,
@@ -89,8 +85,6 @@ import { NetworkInterceptorService } from './services/network-interceptor.servic
     AssetHistoryComponent,
     UserComponent,
     ListusersComponent,
-    EmpReportsComponent,
-    AssetReportsComponent,
     ManageUserComponent,
     UpdateleavesComponent,
     ManageEmployeeComponent,

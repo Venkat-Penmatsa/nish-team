@@ -23,7 +23,9 @@ export class AllcontractsComponent implements AfterViewInit, OnInit {
     'billingRate',
     'contractStartDate',
     'contractEndDate',
-    'comments'];
+    'comments',
+    'contractUpdatedDate',
+    'contractUpdatedBy'];
 
   dataSource = new MatTableDataSource();
 

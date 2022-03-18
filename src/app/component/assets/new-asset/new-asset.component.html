@@ -1,11 +1,11 @@
 <div class="page-layout-container">
-    <div>
-        <p *ngIf="successFlag"></p>
-    </div>
+
+    <div *ngIf="successFlag" class="alert alert-success">{{ description }}</div>
+    
     <form [formGroup]="assetsForm">
         <div>
             <div class="row">
-                <h1 class="title"> {{ description }} </h1>
+                <h1 class="title"> Create New Asset  </h1>
             </div>
             <div class="row">
                 <div class="col">

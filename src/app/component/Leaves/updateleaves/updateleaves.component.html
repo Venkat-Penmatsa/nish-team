@@ -1,7 +1,7 @@
 <div class="page-layout-container">
     <form [formGroup]="updateLeavesForm">
-        <div>
-            <p *ngIf="successFlag">Leaves updated successfully for employee -- {{ empName }} </p>
+
+        <div *ngIf="successFlag" class="alert alert-success">Leaves updated successfully for employee -- {{ empName }}
         </div>
         <div>
             <div class="row">
@@ -51,7 +51,7 @@
                     </mat-form-field>
                 </div>
                 <div class="col">
-                    <mat-form-field >
+                    <mat-form-field>
                         <mat-label>Total Leaves *</mat-label>
                         <input matInput type="number" min="0" max="100" formControlName="totalleavebalence">
                     </mat-form-field>
@@ -67,7 +67,7 @@
                 <div class="col">
                     <mat-form-field [hidden]="true">
                         <mat-label>Leave Balence Id*</mat-label>
-                        <input matInput  formControlName="leavebalenceid">
+                        <input matInput formControlName="leavebalenceid">
                     </mat-form-field>
                 </div>
                 <div class="col">
