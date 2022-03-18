@@ -1,24 +1,9 @@
 <div class="page-layout-container ">
     <div class="row">
-      <h1 class="title"> Monthly TimeSheet Report </h1>
+      <h1 class="title">Employees Monthly TimeSheet Report </h1>
     </div>
 
   <div *ngIf="message" class="alert alert-warning">{{ messageDesc }}</div>
-
-<!--
-    <div class="col-md-auto">
-        <mat-form-field appearance="fill">
-            <mat-label>Select Month and Year to generate Timesheet</mat-label>
-            <input matInput [matDatepicker]="dp" [formControl]="date" required  (dateChange)="fetchMonthlyReport($event)">
-            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-            <mat-datepicker #dp
-                            startView="multi-year"
-                            (yearSelected)="chosenYearHandler($event)"
-                            (monthSelected)="chosenMonthHandler($event, dp)"
-                            panelClass="example-month-picker">
-            </mat-datepicker>
-          </mat-form-field>
-    </div>-->
 
     <div class="col-md-auto">
         <mat-form-field>
