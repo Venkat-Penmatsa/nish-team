@@ -4,6 +4,7 @@
         employeeId }}</div>
 
     <form [formGroup]="empCreationForm">
+        <app-progress [loading$]="loading$"> </app-progress>
         <div class="row">
             <div class="col">
                 <app-emp-name [filterEmpName]="filterEmpName" (empName)="empNameSelected($event)">
@@ -381,5 +382,5 @@
             </div>
         </div>
     </form>
-    <app-progress [loading$]="loading$"> </app-progress>
+
 </div>
