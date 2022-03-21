@@ -113,6 +113,7 @@ export class LeavescalculatebatchComponent implements OnInit,OnChanges {
 
 
   batchService(selectedDate: any, batchName: string) {
+    
     this.error = false;
     this.leavesService.fetchYearBatchJobStatus(batchName, selectedDate).subscribe(res => {
       console.log(res)
