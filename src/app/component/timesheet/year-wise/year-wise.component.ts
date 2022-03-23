@@ -199,7 +199,7 @@ export class YearWiseComponent implements OnInit, OnChanges {
       //window.open(res);
 
       let blob:any = new Blob([res], { type: 'text/json; charset=utf-8' });
-      importedSaveAs(blob, 'LeavesReport.xlsx');
+      importedSaveAs(blob, 'LeavesReport.pdf');
 
     }, error => {
         this.hasError = true;
