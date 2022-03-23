@@ -39,8 +39,8 @@ export class TimesheetService {
   }
 
   downloadYearlyTimesheet(employeeNo: string, year: any) {
-    const headers = { 'Content-type': 'application/vnd.ms-excel' };
-    return this.http.get(`${this.baseUrl}/timesheet/downloadYearlyReport/` + employeeNo + "/" + year, {responseType: 'blob'}).pipe(catchError(this.errorHandler));
+    const headers = { 'Content-type': 'application/pdf' };
+    return this.http.get(`${this.baseUrl}/timesheet/downloadEmpYearlyReport/` + employeeNo + "/" + year, {responseType: 'blob'}).pipe(catchError(this.errorHandler));
   }
 
   generateEmpRevenueReport(employeeNo: string, year: string) {
