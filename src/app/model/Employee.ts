@@ -14,4 +14,6 @@ export class Employee {
     skillset: Skillset;
 
     empImage:any;
+
+    updatedBy:string;
 }

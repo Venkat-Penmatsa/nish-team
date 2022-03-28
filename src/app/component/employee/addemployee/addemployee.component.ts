@@ -8,6 +8,7 @@ import { skills } from 'src/app/constants/skills';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { Moment } from 'moment';
 import { LoaderService } from 'src/app/services/loader.service';
+import { User } from 'src/app/model/User';
 
 const moment = _moment;
 
@@ -43,8 +44,9 @@ export class AddemployeeComponent implements OnInit, OnChanges {
   empName: any = undefined;
   martialStatusChecked: boolean = false;
   loading$: any;
-
-
+  onboardingStatus: any;
+  user: User;
+  
   @ViewChild('marriageCheckbox') marriageCheckbox: ElementRef;
 
 
@@ -112,11 +114,15 @@ export class AddemployeeComponent implements OnInit, OnChanges {
 
 
   onSubmit() {
+
+    this.user = JSON.parse(localStorage.getItem("userDetails") || '{}') as User;
+    
     console.log(this.empCreationForm.value);
     this.employee = Object.assign({}, this.empCreationForm.value);
     this.employee.employeeDependents = this.empDependants;
     let dsd = this.empCreationForm.get('empBasicInfo.dob');
     this.employee.empBasicInfo.dob = dsd?.value;
+    this.employee.updatedBy = this.user.empId;
 
     const empJson = JSON.stringify(this.employee);
     console.log('empJson ' + empJson);
@@ -129,7 +135,12 @@ export class AddemployeeComponent implements OnInit, OnChanges {
         //this.nishContractId = data.nishContractId;
       })
     this.successFlag = true;
-    console.log("employeeId..." + this.employeeId)
+    console.log("employeeId..." + this.employeeId);
+    window.scroll({ 
+      top: 0, 
+      left: 0, 
+      behavior: 'smooth' 
+    });
 
   }
 
@@ -201,7 +212,8 @@ export class AddemployeeComponent implements OnInit, OnChanges {
       martialStatus: [''],
       emergencyContactPerson: [],
       emergencyContactNumber: [],
-      entity: []
+      entity: [],
+      empLastDate: []
     }
     ),
     employeeAddress: this.fb.group({
@@ -224,7 +236,8 @@ export class AddemployeeComponent implements OnInit, OnChanges {
     skillset: this.fb.group({
       skillset: ['', Validators.required]
     }
-    )
+    ),
+    updatedBy: []
   });
 
 }

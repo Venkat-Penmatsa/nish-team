@@ -73,6 +73,17 @@
                                     <input matInput placeholder="text" formControlName="ssn">
                                 </mat-form-field>
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <mat-form-field>
+                                    <mat-label>Date of Joining</mat-label>
+                                    <input matInput [matDatepicker]="onboardingDate"
+                                        [matDatepickerFilter]="dateOfJoiningFilter" formControlName="onboardingDate">
+                                    <mat-datepicker-toggle matSuffix [for]="onboardingDate"></mat-datepicker-toggle>
+                                    <mat-datepicker #onboardingDate></mat-datepicker>
+                                </mat-form-field>
+                            </div>
                             <div class="col">
                                 <mat-form-field>
                                     <mat-label>Date of RP Expiry</mat-label>
@@ -81,8 +92,24 @@
                                     <mat-datepicker #rpExpiryDate></mat-datepicker>
                                 </mat-form-field>
                             </div>
-                        </div>
-                        <div class="row">
+                            <div class="col">
+                                <mat-form-field>
+                                    <mat-label>Onbarding Status</mat-label>
+                                    <select matNativeControl required formControlName="onboardingStatus" [(ngModel)]="onboardingStatus">
+                                        <option value="onGoing">On Going</option>
+                                        <option value="active">Active</option>
+                                        <option value="inActive">InActive</option>
+                                    </select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col"  *ngIf="onboardingStatus === 'inActive'">
+                                <mat-form-field>
+                                    <mat-label>Employee last Day</mat-label>
+                                    <input matInput [matDatepicker]="empLastDate" formControlName="empLastDate">
+                                    <mat-datepicker-toggle matSuffix [for]="empLastDate"></mat-datepicker-toggle>
+                                    <mat-datepicker #empLastDate></mat-datepicker>
+                                </mat-form-field>
+                            </div>
                             <div class="col-3">
                                 <mat-form-field class="form-col">
                                     <mat-label>Email *</mat-label>
@@ -107,27 +134,7 @@
                                     <input matInput placeholder="text" formControlName="passportId">
                                 </mat-form-field>
                             </div>
-                            <div class="col">
-                                <mat-form-field>
-                                    <mat-label>Onbarding Status</mat-label>
-                                    <select matNativeControl required formControlName="onboardingStatus">
-                                        <option value="onGoing">On Going</option>
-                                        <option value="active">Active</option>
-                                        <option value="inActive">InActive</option>
-                                    </select>
-                                </mat-form-field>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <mat-form-field>
-                                    <mat-label>Date of Joining</mat-label>
-                                    <input matInput [matDatepicker]="onboardingDate"
-                                        [matDatepickerFilter]="dateOfJoiningFilter" formControlName="onboardingDate">
-                                    <mat-datepicker-toggle matSuffix [for]="onboardingDate"></mat-datepicker-toggle>
-                                    <mat-datepicker #onboardingDate></mat-datepicker>
-                                </mat-form-field>
-                            </div>
+
                             <div class="col">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Bank Acc Number</mat-label>
@@ -140,6 +147,9 @@
                                     <input matInput placeholder="text" formControlName="bicCode">
                                 </mat-form-field>
                             </div>
+                        </div>
+                        <div class="row">
+
                             <div class="col">
                                 <mat-form-field>
                                     <mat-label>Entity </mat-label>
@@ -155,9 +165,6 @@
                                     <input matInput placeholder="name" formControlName="emergencyContactPerson">
                                 </mat-form-field>
                             </div>
-                        </div>
-                        <div class="row">
-
                             <div class="col">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Emergency Contact Number</mat-label>
@@ -174,7 +181,6 @@
                                 </section>
                             </div>
                         </div>
-
                     </div>
                     <div formGroupName="empBasicInfo" *ngIf="showMarriageSectionFlag">
                         <div class="address">

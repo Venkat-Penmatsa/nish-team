@@ -18,5 +18,5 @@ export class EmployeeBasicInfo {
     martialStatus: string;
     emergencyContactNumber: number;
     emergencyContactPerson: string;
-
+    empLastDate: Date;
 }
