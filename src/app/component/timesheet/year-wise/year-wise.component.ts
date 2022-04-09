@@ -1,7 +1,6 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import * as _moment from 'moment';
 import { default as _rollupMoment, Moment } from 'moment';
-import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { leaveClassNameType } from "../../../constants/leaveClassNameType";
 import { TimesheetService } from "../../../services/timesheet.service";
@@ -199,7 +198,7 @@ export class YearWiseComponent implements OnInit, OnChanges {
       //window.open(res);
 
       let blob:any = new Blob([res], { type: 'text/json; charset=utf-8' });
-      importedSaveAs(blob, 'LeavesReport.pdf');
+      importedSaveAs(blob, selectedEmp+'-LeavesReport.pdf');
 
     }, error => {
         this.hasError = true;

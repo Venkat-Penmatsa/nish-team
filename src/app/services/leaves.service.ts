@@ -9,12 +9,16 @@ import { HostNameServiceService } from './host-name-service.service';
 })
 export class LeavesService {
 
-  private baseUrl = "https://"+ this.document.location.hostname + ':' + this.document.location.port+"/admin-services";
+  private baseUrl = "https://" + this.document.location.hostname + ':' + this.document.location.port + "/admin-services";
 
-  constructor(private http: HttpClient, private hostNameServiceService: HostNameServiceService,@Inject(DOCUMENT) private document: Document) {
+  constructor(private http: HttpClient, private hostNameServiceService: HostNameServiceService, @Inject(DOCUMENT) private document: Document) {
     this.baseUrl = hostNameServiceService.getHostname();
   }
 
+  deleteLeave(leaveId: any) {
+    const headers = { 'Content-type': 'application/json' };
+    return this.http.delete(`${this.baseUrl}/leaves/deleteLeave/` + leaveId, { headers })
+  }
 
   fetchEmpLeaves(empId: string): Observable<any> {
     const headers = { 'Content-type': 'application/json' };
@@ -70,5 +74,6 @@ export class LeavesService {
     const headers = { 'Content-type': 'application/json' };
     return this.http.get(`${this.baseUrl}/leaves/leavesSOYearJob/` + date + '/' + user, { headers })
   }
+
 
 }

@@ -9,7 +9,8 @@ import { MatDatepicker } from '@angular/material/datepicker';
 import * as _moment from 'moment';
 import { default as _rollupMoment, Moment } from 'moment';
 import { LoaderService } from 'src/app/services/loader.service';
-import { BehaviorSubject } from 'rxjs';
+import { saveAs as importedSaveAs } from "file-saver";
+import { TimesheetService } from 'src/app/services/timesheet.service';
 
 const moment = _rollupMoment || _moment;
 export const MY_FORMATS = {
@@ -41,8 +42,9 @@ export class AllEmpMonthlyLeaveReportComponent implements OnInit, OnChanges {
   date = new FormControl(moment());
   message = false;
   messageDesc = "";
-  loading$:any;
- // loading$ = new BehaviorSubject<boolean>(false);
+  loading$: any;
+  selectedDate: any;
+  // loading$ = new BehaviorSubject<boolean>(false);
 
 
   chosenYearHandler(normalizedYear: Moment) {
@@ -59,7 +61,7 @@ export class AllEmpMonthlyLeaveReportComponent implements OnInit, OnChanges {
   }
 
   displayedColumns: string[] = ['employeeid',
-  'workingdays', 'actualWorkingDays', 'totalBillableDays','totalBenchDays',
+    'workingdays', 'actualWorkingDays', 'totalBillableDays', 'totalBenchDays',
     'totalleaves',
     'totalsickleaves',
     'totalauthorisedabsence',
@@ -70,34 +72,34 @@ export class AllEmpMonthlyLeaveReportComponent implements OnInit, OnChanges {
     'totalunauthabsleaves',
     'totalforcedmajeureleaves',
     'totalotherleaves'
-    ];
+  ];
 
   allEmployeesTimeSheetReport: AllEmployeesTimeSheetReport[] = [];
   dataSource = new MatTableDataSource<AllEmployeesTimeSheetReport>(this.allEmployeesTimeSheetReport);
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
 
-  constructor(private leavesService: LeavesService, public loader: LoaderService) {
+  constructor(private leavesService: LeavesService, public loader: LoaderService, public timesheetService: TimesheetService) {
 
   }
   ngOnChanges(changes: SimpleChanges): void {
-     this.loading$ = this.loader.loading$;
+    this.loading$ = this.loader.loading$;
   }
 
-  
+
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
 
-  fetchMonthlyReport(event){
+  fetchMonthlyReport(event) {
     this.message = false;
-    this.allEmployeesTimeSheetReport =[];
+    this.allEmployeesTimeSheetReport = [];
     this.dataSource = new MatTableDataSource<AllEmployeesTimeSheetReport>(this.allEmployeesTimeSheetReport);
-    let selectedDate = moment(event.value).format("DD-MM-YYYY");
-    this.leavesService.fetchAllEmpLeavesMonthlyReport(selectedDate).subscribe(res => {
+    this.selectedDate = moment(event.value).format("DD-MM-YYYY");
+    this.leavesService.fetchAllEmpLeavesMonthlyReport(this.selectedDate).subscribe(res => {
 
-      if(res.validationMessage!=""){
+      if (res.validationMessage != "") {
         this.message = true;
         this.messageDesc = res.validationMessage;
       }
@@ -129,13 +131,25 @@ export class AllEmpMonthlyLeaveReportComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.message = false;
-    console.log("this.loading$..." +this.loading$)
+    console.log("this.loading$..." + this.loading$)
     this.loading$ = this.loader.loading$;
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  monthlyTimeSheet() {
+
+    this.timesheetService.downloadMonthlyTimeSheet(this.selectedDate).subscribe(res => {
+      console.log(res);
+
+      let blob: any = new Blob([res], { type: 'text/json; charset=utf-8' });
+      importedSaveAs(blob, this.selectedDate + '-MonthlyTimeSheet.xls');
+
+    }
+    );
   }
 
 }
