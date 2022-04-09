@@ -47,6 +47,11 @@ export class TimesheetService {
     return this.http.get(`${this.baseUrl}/finance/generateEmpRevenueReport/` + employeeNo + "/" + year).pipe(catchError(this.errorHandler));
   }
 
+  downloadMonthlyTimeSheet(date: any): Observable<any> {
+    //const headers = { 'Content-type': 'application/json' };
+    return this.http.get(`${this.baseUrl}/timesheet/downloadMonthlyTimeSheet/` + date,{responseType: 'blob'}).pipe(catchError(this.errorHandler));
+  }
+
   errorHandler(error: HttpErrorResponse) {
     return Observable.throw(error.message || "server error.");
   }

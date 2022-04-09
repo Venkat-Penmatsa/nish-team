@@ -22,11 +22,12 @@ export class LeavebalenceComponent implements AfterViewInit, OnInit {
     'leaveAppliedBy',
     'leaveAppliedDate',
     'numberOfDays',
-    'comments'
+    'comments',
+    'actions'
   ];
   empLeavesBalenceList: EmpLeavesBalence[] = [];
   dataSource = new MatTableDataSource<EmpLeavesBalence>(this.empLeavesBalenceList);
-
+  selectedDate: any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private leavesService: LeavesService) {
@@ -37,9 +38,14 @@ export class LeavebalenceComponent implements AfterViewInit, OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  fetchMonthlyReport(event){
+  fetchMonthlyReport(event) {
     this.empLeavesBalenceList = [];
-    let selectedDate = moment(event.value).format("DD-MM-YYYY");
+    this.selectedDate = moment(event.value).format("DD-MM-YYYY");
+    this.callMonthlyLeaves(this.selectedDate);
+
+  }
+
+  callMonthlyLeaves(selectedDate: any) {
     this.leavesService.fetchAllEmpLeaves(selectedDate).subscribe(res => {
       console.log(res)
       res.forEach(e => {
@@ -65,9 +71,24 @@ export class LeavebalenceComponent implements AfterViewInit, OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  deleteLeave(leaveRequest: any) {
+
+    console.log("selected leave request is " + leaveRequest);
+
+    this.leavesService.deleteLeave(leaveRequest.leaveId).subscribe(res => {
+      console.log("response from service  " + res);
+      let deleteLeaveRes: any = res;
+      if (deleteLeaveRes.responseStatus == "success") {
+        this.empLeavesBalenceList = [];
+        this.callMonthlyLeaves(this.selectedDate);
+      }
+    });
+
+  }
+
   ngOnInit(): void {
 
- 
+
   }
 
 }
