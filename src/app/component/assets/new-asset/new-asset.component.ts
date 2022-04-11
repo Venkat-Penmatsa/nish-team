@@ -60,6 +60,7 @@ export class NewAssetComponent implements OnInit {
           this.description = data.errorDescription;
         }else{
           this.description = "New Asset created successfully !! Asset id is " + data.assetId;
+          this.assetsForm.reset();
         }
       })
   }
