@@ -53,6 +53,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ManageDocumentsComponent } from './component/documents/manage-documents/manage-documents.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { NetworkInterceptorService } from './services/network-interceptor.service';
+import { DisplayTasksComponent } from './component/tasks/display-tasks/display-tasks.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import { NetworkInterceptorService } from './services/network-interceptor.servic
     LeavescalculatebatchComponent,
     EmpOfferSimulationComponent,
     PasswordResetComponent,
-    ManageDocumentsComponent
+    ManageDocumentsComponent,
+    DisplayTasksComponent
   ],
   imports: [
     BrowserModule,

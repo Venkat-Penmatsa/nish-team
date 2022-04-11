@@ -1,0 +1,30 @@
+<!-- <div class="container">
+    <h2 class="title">Check List</h2>
+    <mat-list>
+        <mat-list-item *ngFor="let country of countries">
+            <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" matListAvatar alt="">
+            <div matLine>{{ country.name }}</div>
+            <div matLine>Population: {{ country.population }}</div>
+            <div matLine>Area : {{ country.area }}</div>
+            <div matLine>{{ country.description }}</div>
+        </mat-list-item>
+    </mat-list>
+</div> -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <img [src]="'./assets/images/notification.png'">
+        </div>
+        <div class="col">
+            <h2 class="title">CHECK LIST</h2>
+        </div>
+    </div>
+    <mat-list>
+        <mat-list-item *ngFor="let task of tasks">
+            <img [src]="'./assets/images/' + task.taskImage" matListAvatar alt="">
+            <div matLine>{{ task.taskType }}</div>
+            <div  matLine>{{ task.taskDescription }}</div>
+        </mat-list-item>
+    </mat-list>
+</div>

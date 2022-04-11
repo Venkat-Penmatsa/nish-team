@@ -31,6 +31,7 @@ import { LeavescalculatebatchComponent } from './component/Leaves/leavescalculat
 import { EmpOfferSimulationComponent } from './component/finance/emp-offer-simulation/emp-offer-simulation.component';
 import { PasswordResetComponent } from './component/features/password-reset/password-reset.component';
 import { ManageDocumentsComponent } from './component/documents/manage-documents/manage-documents.component';
+import { DisplayTasksComponent } from './component/tasks/display-tasks/display-tasks.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -42,7 +43,7 @@ const routes: Routes = [
     component: FeaturesComponent,
     canActivate: [AuthGuard],
     children: [
-      {path: 'home', component: HomeComponent},
+      {path: 'home', component: DisplayTasksComponent},
       { path: 'employee/NewEmployee', component: AddemployeeComponent },
       { path: 'employee/allEmployees', component: ListemployeeComponent },
       { path: 'employee/empManagement', component: ManageEmployeeComponent },

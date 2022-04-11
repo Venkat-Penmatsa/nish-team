@@ -13,8 +13,10 @@ const moment = _moment;
 })
 export class NewcontractComponent implements OnInit {
 
-  public nishContractId: number;
-  public successFlag: Boolean = false;
+  nishContractId: number;
+  successFlag: Boolean = false;
+  errorFlag: Boolean = false;
+  errorDescription : any;
   empName: any;
   contract: any;
   filterEmpName: string;
@@ -66,6 +68,10 @@ export class NewcontractComponent implements OnInit {
   }
 
   onSubmit() {
+
+    this.errorFlag = false;
+    this.successFlag = false;
+    
     this.user = JSON.parse(localStorage.getItem("userDetails") || '{}') as User;
     console.log(this.newContractForm.value);
     this.newContractForm.patchValue({
@@ -76,15 +82,22 @@ export class NewcontractComponent implements OnInit {
     );
     console.log("leaves jason" + body)
 
-    const headers = { 'Content-type': 'application/json' };
-
     this.newcontractService.createContract(body)
       .subscribe(data => {
         console.log("data ==========> " + data);
-        this.nishContractId = data.nishContractId;
-        //this.nishContractId = data.nishContractId;
+
+        if(data.errorCode == "true"){
+
+          this.errorFlag = true;
+          this.errorDescription = data.errorDescription;
+
+        }else {
+          this.successFlag = true;
+          this.nishContractId = data.nishContractId;
+          this.newContractForm.reset();
+        }
       })
-    this.successFlag = true;
+    
     console.log("nishContractId..." + this.nishContractId)
   }
 
