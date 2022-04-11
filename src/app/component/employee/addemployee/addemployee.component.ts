@@ -132,7 +132,7 @@ export class AddemployeeComponent implements OnInit, OnChanges {
       .subscribe(data => {
         console.log("data ==========> " + data);
         this.employeeId = data.employeeId;
-        //this.nishContractId = data.nishContractId;
+        this.empCreationForm.reset();
       })
     this.successFlag = true;
     console.log("employeeId..." + this.employeeId);
