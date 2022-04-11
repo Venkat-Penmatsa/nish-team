@@ -5,6 +5,10 @@
 
     <div *ngIf="successFlag" class="alert alert-success">Contract Adminstrated successfully !! Contract id is {{
         nishContractId }}</div>
+
+
+    <div *ngIf="errorFlag" class="alert alert-warning">{{ errorDescription }}</div>
+
     <form [formGroup]="newContractForm">
         <div>
             <div class="row">
@@ -31,7 +35,8 @@
                         <mat-label>Contract Status</mat-label>
                         <select matNativeControl required formControlName="contractStatus">
                             <option value="confirmed">Confirmed</option>
-                            <option value="inProgress">inProgress</option>
+                            <option value="closed">Closed</option>
+                            <option value="inProgress">InProgress</option>
                             <option value="hold">Hold</option>
                         </select>
                     </mat-form-field>
