@@ -12,7 +12,7 @@ import { LoaderService } from 'src/app/services/loader.service';
   templateUrl: './leavescalculatebatch.component.html',
   styleUrls: ['./leavescalculatebatch.component.css']
 })
-export class LeavescalculatebatchComponent implements OnInit,OnChanges {
+export class LeavescalculatebatchComponent implements OnInit, OnChanges {
 
   displayedColumns: string[] = ['batchJobName',
     'batchYear',
@@ -30,14 +30,14 @@ export class LeavescalculatebatchComponent implements OnInit,OnChanges {
   selectedMonth: string;
   selectedYear: string;
   selectedFreezeMonth: Date;
-  freezeTimeSheetDate:string;
-  error=false;
-  errorDesc="";
-  loading$:any;
+  freezeTimeSheetDate: string;
+  error = false;
+  errorDesc = "";
+  loading$: any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private leavesService: LeavesService , private loader: LoaderService) {
+  constructor(private leavesService: LeavesService, private loader: LoaderService) {
 
   }
 
@@ -47,11 +47,23 @@ export class LeavescalculatebatchComponent implements OnInit,OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.loading$ = this.loader.loading$;
- }
+  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  unFreezeTimeSheet() {
+    this.message = false;
+    this.user = JSON.parse(localStorage.getItem("userDetails") || '{}') as User;
+    let selectedDate = moment(this.selectedYear).format("DD-MM-YYYY");
+    this.leavesService.unFreezeTimeSheet(selectedDate, this.user.empName).subscribe(res => {
+      console.log(res)
+      this.message = true;
+      this.messageDesc = res.responseStatus + " " + res.errorDescription;
+      this.fetchExecutedBatchJobs();
+    });
   }
 
   triggerSOYLeaves() {
@@ -99,6 +111,21 @@ export class LeavescalculatebatchComponent implements OnInit,OnChanges {
     const status = this.batchService(selectedDate, 'YEAR_START_LEAVES')
   }
 
+  checkTimeSheetStatus(event) {
+    let selectedDate = moment(event.value).format("DD-MM-YYYY");
+    let button = <HTMLButtonElement>document.getElementById('yearButton');
+    this.leavesService.fetchYearBatchJobStatus("FREEZE_TIMESHEET", selectedDate).subscribe(res => {
+      console.log(res)
+      if (res.status == 'Executed') {
+
+        button.disabled = false;
+      } else {
+        button.disabled = true;
+      }
+    });
+
+  }
+
 
   fetchMonthlyReport(event) {
     let selectedDate = moment(event.value).format("DD-MM-YYYY");
@@ -113,7 +140,7 @@ export class LeavescalculatebatchComponent implements OnInit,OnChanges {
 
 
   batchService(selectedDate: any, batchName: string) {
-    
+
     this.error = false;
     this.leavesService.fetchYearBatchJobStatus(batchName, selectedDate).subscribe(res => {
       console.log(res)
