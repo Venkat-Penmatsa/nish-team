@@ -18,11 +18,6 @@ export class DisplayTasksComponent implements OnInit {
 
   ngOnInit(): void {
 
-    fetch('./assets/json/tasks.json').then(res => res.json())
-      .then(json => {
-        this.countries = json;
-      });
-
     this.tasksService.fetchTasks().subscribe(res => {
       console.log(res);
       this.tasks = res;
