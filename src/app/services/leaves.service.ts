@@ -75,5 +75,12 @@ export class LeavesService {
     return this.http.get(`${this.baseUrl}/leaves/leavesSOYearJob/` + date + '/' + user, { headers })
   }
 
+  unFreezeTimeSheet(date: any, user: string): Observable<any> {
+    const headers = { 'Content-type': 'application/json' };
+    return this.http.get(`${this.baseUrl}/batchJob/unFreezeTimeSheet/` + date + '/' + user, { headers })
+  }
+
+  
+
 
 }

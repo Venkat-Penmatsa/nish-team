@@ -9,14 +9,14 @@
 
         <div class="col-3" style="width:100%">
             <mat-form-field>
-                <mat-label>Select Year for Generating Leaves</mat-label>
-                <input matInput [matDatepicker]="batchYear" [(ngModel)]="selectedYear"  required (dateChange)="fetechYearJobStatus($event)">
+                <mat-label>Select Year for UnFreeze TimeSheet</mat-label>
+                <input matInput [matDatepicker]="batchYear" [(ngModel)]="selectedYear"  required (dateChange)="checkTimeSheetStatus($event)">
                 <mat-datepicker-toggle matSuffix [for]="batchYear"></mat-datepicker-toggle>
                 <mat-datepicker #batchYear></mat-datepicker>
             </mat-form-field>
         </div>
         <div class="col-md-auto" style="text-align: center">
-            <button mat-button [disabled]="true"  id="yearButton" (click)="triggerSOYLeaves()" type="submit">Generate Start of the Yearly Leaves</button>
+            <button mat-button  [disabled]="true"  id="yearButton" (click)="unFreezeTimeSheet()" type="submit">UnFreeze TimeSheet</button>
         </div>
     </div>
 
