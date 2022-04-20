@@ -99,7 +99,7 @@ export class AllEmpMonthlyLeaveReportComponent implements OnInit, OnChanges {
     this.selectedDate = moment(event.value).format("DD-MM-YYYY");
     this.leavesService.fetchAllEmpLeavesMonthlyReport(this.selectedDate).subscribe(res => {
 
-      if (res.validationMessage != "") {
+      if (res.validationMessage != null) {
         this.message = true;
         this.messageDesc = res.validationMessage;
       }
