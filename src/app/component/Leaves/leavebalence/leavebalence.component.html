@@ -1,6 +1,6 @@
 <div class="page-layout-container ">
   <div class="row">
-    <h1 class="title"> Monthly Leaves Report  </h1>
+    <h1 class="title"> Monthly Leaves Report </h1>
   </div>
 
   <div class="col-md-auto">
@@ -73,9 +73,11 @@
 
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> Actions</th>
-        <td mat-cell *matCellDef="let element" (click)="deleteLeave(element)"> 
-          <button mat-button >Delete</button>
-          </td>
+        <td mat-cell *matCellDef="let element" (click)="deleteLeave(element)">
+          <div *ngIf="!leaveFreezed">
+            <button mat-button>Delete</button>
+          </div>
+        </td>
       </ng-container>
 
 

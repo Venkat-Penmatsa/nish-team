@@ -2,7 +2,12 @@
   <div class="row">
     <h1 class="title">Employees Monthly TimeSheet Report </h1>
   </div>
-
+  <div *ngIf="!allEmployeesTimeSheetReport?.length"  class="alert alert-warning">
+    <p> For the employees who left the organisation update the fields - OnBoarding status, Employee last day in Manage Employee page </p>
+    <p> For InActive employee if applicable contract end date should be Employee last day in the organisation</p>
+    <p> Apply leaves for all the employees before generating the timesheet report </p>
+    <p> Check whether contracts are up to date for all the employees</p>
+  </div>
   <div *ngIf="message" class="alert alert-warning">{{ messageDesc }}</div>
   <div class="row">
     <div class="col-md-auto">

@@ -28,6 +28,8 @@ export class LeavebalenceComponent implements AfterViewInit, OnInit {
   empLeavesBalenceList: EmpLeavesBalence[] = [];
   dataSource = new MatTableDataSource<EmpLeavesBalence>(this.empLeavesBalenceList);
   selectedDate: any;
+  leaveFreezed: boolean = false;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private leavesService: LeavesService) {
@@ -45,7 +47,22 @@ export class LeavebalenceComponent implements AfterViewInit, OnInit {
 
   }
 
+  validateBatch(selectedDate: any) {
+
+    this.leaveFreezed = false;
+    this.leavesService.fetchYearBatchJobStatus('FREEZE_TIMESHEET', selectedDate).subscribe(res => {
+      console.log(res)
+      if (res.status == 'Executed') {
+        this.leaveFreezed = true;
+      }
+    });
+  }
+
   callMonthlyLeaves(selectedDate: any) {
+
+  
+    this.validateBatch(selectedDate)
+
     this.leavesService.fetchAllEmpLeaves(selectedDate).subscribe(res => {
       console.log(res)
       res.forEach(e => {
