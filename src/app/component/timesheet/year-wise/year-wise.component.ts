@@ -56,6 +56,8 @@ export class YearWiseComponent implements OnInit, OnChanges {
   rttLeaves: string;
   authLeaves: string;
   otherLeaves: string;
+  compensationLeaves: string;
+  forwardedLeaves: string;
   selectedY = new FormControl();
   empName: any;
   filterEmpName: string;
@@ -181,6 +183,8 @@ export class YearWiseComponent implements OnInit, OnChanges {
         this.rttLeaves = data.rttAdvLeaves;
         this.authLeaves = data.authLeaves;
         this.otherLeaves = data.otherLeaves;
+        this.compensationLeaves = data.totcompensationleaves;
+        this.forwardedLeaves = data.totforwardedleaves;
         this.calendar = this.createCalendar(this.date);
       }, error => {
         this.hasError = true;
