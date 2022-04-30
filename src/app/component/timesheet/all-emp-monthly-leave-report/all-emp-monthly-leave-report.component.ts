@@ -65,13 +65,15 @@ export class AllEmpMonthlyLeaveReportComponent implements OnInit, OnChanges {
     'totalleaves',
     'totalsickleaves',
     'totalauthorisedabsence',
+    'totalrttadvleaves',
+    'totalotherleaves',
+    'compensationLeave',
+    'forwardedLeave',
     'totalmaternityleaves',
     'totalpaternityleaves',
-    'totalrttadvleaves',
     'totalovertimeleaves',
     'totalunauthabsleaves',
-    'totalforcedmajeureleaves',
-    'totalotherleaves'
+    'totalforcedmajeureleaves'
   ];
 
   allEmployeesTimeSheetReport: AllEmployeesTimeSheetReport[] = [];
@@ -121,7 +123,10 @@ export class AllEmpMonthlyLeaveReportComponent implements OnInit, OnChanges {
           e.actualWorkingDays,
           e.totalBillableDays,
           e.totalBenchDays,
-          e.totalleaves));
+          e.totalleaves,
+          e.totalcompenstionleaves,
+          e.totalforwardedleaves
+          ));
       })
       this.dataSource = new MatTableDataSource<AllEmployeesTimeSheetReport>(this.allEmployeesTimeSheetReport);
       this.dataSource.paginator = this.paginator;
@@ -171,7 +176,9 @@ export class AllEmployeesTimeSheetReport {
     private actualWorkingDays: number,
     private totalBillableDays: number,
     private totalBenchDays: number,
-    private totalleaves: number
+    private totalleaves: number,
+    private totalcompenstionleaves: number,
+    private totalforwardedleaves: number
   ) { }
 }
 

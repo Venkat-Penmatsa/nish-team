@@ -6,7 +6,7 @@ export let leaveClassNameType: Array<any> = [
   {name: 'Parental leave', className: 'parentalLeave', key: 'parentalLeave', code: 'PL', value:''},
   {name: 'Holiday', className: 'holiday', key: 'holiday', code: 'H', value:''},
   {name: 'Rtt/ADV days', className: 'rttAdv', key: 'rttAdv', code: 'RTT', value:''},
-  {name: 'Overtime', className: 'overtime', key: 'overtime', code: 'OT', value:''},
+  {name: 'Forwarded Leaves', className: 'forwardedLeave', key: 'forwardedLeave', code: 'FL', value:''},
   {name: 'Unauthorised absence', className: 'unauthorisedAbsence', key: 'unauthorisedAbsence', code: 'UA', value:''},
   {name: 'Force majeure', className: 'forceMajeure', key: 'forceMajeure', code: 'FM', value:''},
   {name: 'Other', className: 'other', key: 'other', code: 'O', value:''},
@@ -16,5 +16,7 @@ export let leaveClassNameType: Array<any> = [
 
 export let leaveBalence: Array<any> = [
   {name: 'Paid Holiday', className: 'authorisedAbsence', key: 'authorisedAbsence', code: 'AA', value:''},
-  {name: 'Rtt/ADV days', className: 'rttAdv', key: 'rttAdv', code: 'RTT', value:''}
+  {name: 'Rtt/ADV days', className: 'rttAdv', key: 'rttAdv', code: 'RTT', value:''},
+  {name: 'Compensation Leave', className: 'compensationLeave', key: 'compensationLeave', code: 'CL', value:''},
+  {name: 'Forwarded Leaves', className: 'forwardedLeave', key: 'forwardedLeave', code: 'FL', value:''}
 ];

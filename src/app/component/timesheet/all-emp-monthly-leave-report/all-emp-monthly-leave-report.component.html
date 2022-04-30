@@ -79,6 +79,23 @@
         <td mat-cell *matCellDef="let element"> {{element.totalrttadvleaves}} </td>
       </ng-container>
 
+      <ng-container matColumnDef="totalotherleaves">
+        <th mat-header-cell *matHeaderCellDef> Other </th>
+        <td mat-cell *matCellDef="let element"> {{element.totalotherleaves}} </td>
+      </ng-container>
+
+      
+      <ng-container matColumnDef="compensationLeave">
+        <th mat-header-cell *matHeaderCellDef> Compensation </th>
+        <td mat-cell *matCellDef="let element"> {{element.totalcompenstionleaves}} </td>
+      </ng-container>
+
+      
+      <ng-container matColumnDef="forwardedLeave">
+        <th mat-header-cell *matHeaderCellDef> Forwarded  </th>
+        <td mat-cell *matCellDef="let element"> {{element.totalforwardedleaves}} </td>
+      </ng-container>
+
       <ng-container matColumnDef="totalmaternityleaves">
         <th mat-header-cell *matHeaderCellDef> Maternity </th>
         <td mat-cell *matCellDef="let element"> {{element.totalmaternityleaves}} </td>
@@ -104,11 +121,7 @@
         <td mat-cell *matCellDef="let element"> {{element.totalforcedmajeureleaves}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="totalotherleaves">
-        <th mat-header-cell *matHeaderCellDef> Other </th>
-        <td mat-cell *matCellDef="let element"> {{element.totalotherleaves}} </td>
-      </ng-container>
-
+     
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>

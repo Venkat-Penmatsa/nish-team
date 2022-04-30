@@ -47,8 +47,8 @@ export class UpdateleavesComponent implements OnInit {
           rttAdv: res.rttAdv,
           authorisedAbsence: res.authorisedAbsence,
           other: res.other,
-          parentalLeave: res.parentalLeave,
-          maternityLeave: res.maternityLeave,
+          compensationLeave: res.compensationLeave,
+          forwardedLeave: res.forwardedLeave,
           totalleavebalence: res.totalleavebalence,
           updatedBy: res.updatedBy,
           comments: res.comments
@@ -81,8 +81,8 @@ export class UpdateleavesComponent implements OnInit {
     rttAdv: ['',],
     authorisedAbsence: [''],
     other: ['',],
-    parentalLeave: ['',],
-    maternityLeave: ['',],
+    compensationLeave: ['',],
+    forwardedLeave: ['',],
     totalleavebalence: ['',],
     updatedBy: ['',],
     comments: []
