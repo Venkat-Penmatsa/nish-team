@@ -50,6 +50,7 @@ export class UpdateleavesComponent implements OnInit {
           compensationLeave: res.compensationLeave,
           forwardedLeave: res.forwardedLeave,
           totalleavebalence: res.totalleavebalence,
+          advanceLeaves: res.advanceLeaves,
           updatedBy: res.updatedBy,
           comments: res.comments
         });
@@ -84,6 +85,7 @@ export class UpdateleavesComponent implements OnInit {
     compensationLeave: ['',],
     forwardedLeave: ['',],
     totalleavebalence: ['',],
+    advanceLeaves: ['',],
     updatedBy: ['',],
     comments: []
   });
