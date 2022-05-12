@@ -90,7 +90,7 @@
             </div>
 
             <div style="text-align: center">
-                <button mat-button (click)="UpdateLeaves()" type="submit">Update Leaves</button>
+                <button mat-button (click)="UpdateLeaves()" [disabled]="!updateLeavesForm.valid" type="submit">Update Leaves</button>
             </div>
 
         </div>

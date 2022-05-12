@@ -67,28 +67,28 @@ export class NewAssetComponent implements OnInit {
 
   assetsForm = this.fb.group({
     assetType: ['', Validators.required],
-    assetAssignedToEmp: ['', Validators.required],
+    assetAssignedToEmp: [''],
     empAssignedDate: ['', Validators.required],
-    comments: [''],
-    mobileNumber: ['', Validators.required],
-    fuelCard: ['', Validators.required],
+    comments: ['', Validators.required],
+    mobileNumber: [''],
+    fuelCard: [''],
     assetCar: this.fb.group({
-      model: ['', Validators.required],
-      make: ['', Validators.required],
-      number: ['', Validators.required],
-      color: ['', Validators.required],
-      chasisNumber: ['', Validators.required],
+      model: [''],
+      make: [''],
+      number: [''],
+      color: [''],
+      chasisNumber: [''],
       carbonEmission: [],
-      status: ['', Validators.required],
-      cataloguePrice: ['', Validators.required],
-      assetCategory: ['', Validators.required],
+      status: [''],
+      cataloguePrice: [''],
+      assetCategory: [''],
       leaseEndDate:['']
     }
     ),
     assetElectronic: this.fb.group({
-      electronicModel: ['', Validators.required],
-      electronicSerialNumber: ['', Validators.required],
-      electronicPrice: ['', Validators.required]
+      electronicModel: [''],
+      electronicSerialNumber: [''],
+      electronicPrice: ['']
     }
     )
   });

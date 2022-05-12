@@ -32,7 +32,7 @@
                 </div>
                 <div class="col">
                     <mat-form-field>
-                        <mat-label>Contract Status</mat-label>
+                        <mat-label>Contract Status*</mat-label>
                         <select matNativeControl required formControlName="contractStatus">
                             <option value="confirmed">Confirmed</option>
                             <option value="closed">Closed</option>
@@ -45,13 +45,13 @@
             <div class="row">
                 <div class="col">
                     <mat-form-field class="field-style">
-                        <mat-label>Client Name</mat-label>
+                        <mat-label>Client Name*</mat-label>
                         <input matInput formControlName="clientName">
                     </mat-form-field>
                 </div>
                 <div class="col">
                     <mat-form-field class="field-style">
-                        <mat-label>Contract Company Name</mat-label>
+                        <mat-label>Contract Company Name*</mat-label>
                         <input matInput formControlName="contractCompanyName">
                     </mat-form-field>
                 </div>
@@ -71,13 +71,13 @@
             <div class="row">
                 <div class="col">
                     <mat-form-field class="field-style">
-                        <mat-label>Billing Rate</mat-label>
+                        <mat-label>Billing Rate*</mat-label>
                         <input matInput placeholder="Rate in Euros" formControlName="billingRate">
                     </mat-form-field>
                 </div>
                 <div class="col">
                     <mat-form-field>
-                        <mat-label>Contract Start Date</mat-label>
+                        <mat-label>Contract Start Date*</mat-label>
                         <input matInput [matDatepicker]="contractStartDate" [matDatepickerFilter]="dateOfJoiningFilter"
                             formControlName="contractStartDate">
                         <mat-datepicker-toggle matSuffix [for]="contractStartDate"></mat-datepicker-toggle>
@@ -86,7 +86,7 @@
                 </div>
                 <div class="col">
                     <mat-form-field>
-                        <mat-label>Contract End Date</mat-label>
+                        <mat-label>Contract End Date*</mat-label>
                         <input matInput [matDatepicker]="contractEndDate" [matDatepickerFilter]="dateOfJoiningFilter"
                             formControlName="contractEndDate">
                         <mat-datepicker-toggle matSuffix [for]="contractEndDate"></mat-datepicker-toggle>
@@ -104,6 +104,6 @@
     </form>
     &nbsp;&nbsp;
     <div style="text-align: center">
-        <button mat-button (click)="onSubmit()" type="submit">Manage Contract</button>
+        <button mat-button (click)="onSubmit()" [disabled]="!newContractForm.valid" type="submit">Manage Contract</button>
     </div>
 </div>

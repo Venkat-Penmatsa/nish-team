@@ -103,17 +103,17 @@ export class NewcontractComponent implements OnInit {
 
   newContractForm = this.fb.group({
     nishContractId: [''],
-    employeeId: ['', Validators.required],
+    employeeId: [''],
     contractId: [''],
-    contractStatus: [''],
-    clientName: [''],
-    contractCompanyName: [''],
+    contractStatus: ['', Validators.required],
+    clientName: ['', Validators.required],
+    contractCompanyName: ['', Validators.required],
     subContractCompany1: [''],
     subContractCompany2: [''],
     subContractCompany3: [''],
-    billingRate: [''],
-    contractStartDate: [''],
-    contractEndDate: [''],
+    billingRate: ['', Validators.required],
+    contractStartDate: ['', Validators.required],
+    contractEndDate: ['', Validators.required],
     comments: [''],
     updatedBy: ['']
   });

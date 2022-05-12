@@ -154,6 +154,6 @@
     </form>
     &nbsp;&nbsp;
     <div style="text-align: center">
-        <button mat-button (click)="onSubmit()" type="submit">Create Asset</button>
+        <button mat-button (click)="onSubmit()" [disabled]="!assetsForm.valid" type="submit">Create Asset</button>
     </div>
 </div>
