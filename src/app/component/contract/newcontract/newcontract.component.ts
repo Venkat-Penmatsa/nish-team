@@ -5,6 +5,7 @@ import * as _moment from 'moment';
 import { Moment } from 'moment';
 import { User } from 'src/app/model/User';
 import { NewcontractService } from 'src/app/services/contracts/newcontract.service';
+import { LoaderService } from 'src/app/services/loader.service';
 const moment = _moment;
 @Component({
   selector: 'app-newcontract',
@@ -21,7 +22,10 @@ export class NewcontractComponent implements OnInit {
   contract: any;
   filterEmpName: string;
   user: User;
-  constructor(private fb: FormBuilder, private newcontractService: NewcontractService, private http: HttpClient) {
+  loading$: any;
+
+  constructor(private fb: FormBuilder, private newcontractService: NewcontractService, 
+    private http: HttpClient,public loader: LoaderService) {
   }
 
   ngOnInit(): void {
