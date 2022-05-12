@@ -79,8 +79,8 @@ export class UpdateleavesComponent implements OnInit {
   updateLeavesForm = this.fb.group({
     leavebalenceid: ['', Validators.required],
     employeeId: ['', Validators.required],
-    rttAdv: ['',],
-    authorisedAbsence: [''],
+    rttAdv: ['',Validators.required],
+    authorisedAbsence: ['',Validators.required],
     other: ['',],
     compensationLeave: ['',],
     forwardedLeave: ['',],
