@@ -4,6 +4,7 @@ import { AfterViewInit, Component, ViewChild, OnInit, ViewEncapsulation } from '
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { NewcontractService } from 'src/app/services/contracts/newcontract.service';
+import { LoaderService } from 'src/app/services/loader.service';
 import { AllEmployeesList } from '../../employee/listemployee/listemployee.component';
 import { Contract } from '../contract';
 
@@ -30,9 +31,9 @@ export class AllcontractsComponent implements AfterViewInit, OnInit {
   dataSource = new MatTableDataSource();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  loading$: any;
 
-
-  constructor(private newcontractService: NewcontractService) {
+  constructor(private newcontractService: NewcontractService,public loader: LoaderService) {
 
   }
 
@@ -42,7 +43,9 @@ export class AllcontractsComponent implements AfterViewInit, OnInit {
 
   ngOnInit(): void {
 
-    console.log("String...")
+
+    console.log(" loader in  contract is ", this.loading$);
+    this.loading$ = this.loader.loading$;
 
     this.newcontractService.listAllContracts().subscribe(res => {
       console.log(res);

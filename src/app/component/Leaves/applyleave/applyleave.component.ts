@@ -5,6 +5,7 @@ import moment from 'moment';
 import { Moment } from 'moment';
 import { User } from 'src/app/model/User';
 import { LeavesService } from 'src/app/services/leaves.service';
+import { LoaderService } from 'src/app/services/loader.service';
 import { leaveBalence, leaveClassNameType } from '../../../constants/leaveClassNameType';
 
 
@@ -33,13 +34,15 @@ export class ApplyleaveComponent implements OnInit {
   halfDay : boolean = false;
   leaveStartDate = moment();
   leaveEndDate = moment();
+  loading$: any;
 
-  constructor(private fb: FormBuilder, private leavesService: LeavesService) {
+  constructor(private fb: FormBuilder, private leavesService: LeavesService, public loader: LoaderService) {
 
   }
 
   ngOnInit(): void {
-
+    console.log("this.loading$..." + this.loading$)
+    this.loading$ = this.loader.loading$;
   }
 
   dateFilter = (m: Moment | null): boolean => {
