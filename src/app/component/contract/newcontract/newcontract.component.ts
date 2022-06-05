@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import * as _moment from 'moment';
 import { Moment } from 'moment';
 import { User } from 'src/app/model/User';
@@ -24,7 +24,7 @@ export class NewcontractComponent implements OnInit {
   user: User;
   loading$: any;
 
-  constructor(private fb: FormBuilder, private newcontractService: NewcontractService, 
+  constructor(private fb: UntypedFormBuilder, private newcontractService: NewcontractService, 
     private http: HttpClient,public loader: LoaderService) {
   }
 

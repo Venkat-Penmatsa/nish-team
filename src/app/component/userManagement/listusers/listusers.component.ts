@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { AssetsService } from 'src/app/services/assets.service';
@@ -12,7 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ListusersComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private userService: UserService) {
+  constructor(private fb: UntypedFormBuilder, private userService: UserService) {
 
   }
 

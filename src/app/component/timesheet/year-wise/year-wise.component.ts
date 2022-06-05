@@ -1,7 +1,7 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import * as _moment from 'moment';
 import { default as _rollupMoment, Moment } from 'moment';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { leaveClassNameType } from "../../../constants/leaveClassNameType";
 import { TimesheetService } from "../../../services/timesheet.service";
 import {saveAs as importedSaveAs} from "file-saver";
@@ -50,7 +50,7 @@ export class YearWiseComponent implements OnInit, OnChanges {
   calendar: Array<YearlyCalendarItem[]> = [];
   employeeData: any = null;
   global;
-  yearlyForm: FormGroup;
+  yearlyForm: UntypedFormGroup;
   validPattern = '^[a-zA-Z0-9]+$';
   leaveList = leaveClassNameType;
   rttLeaves: string;
@@ -58,14 +58,14 @@ export class YearWiseComponent implements OnInit, OnChanges {
   otherLeaves: string;
   compensationLeaves: string;
   forwardedLeaves: string;
-  selectedY = new FormControl();
+  selectedY = new UntypedFormControl();
   empName: any;
   filterEmpName: string;
   loading$:any;
   
-  constructor(private service: TimesheetService, public fb: FormBuilder, private loader: LoaderService) {
+  constructor(private service: TimesheetService, public fb: UntypedFormBuilder, private loader: LoaderService) {
     this.yearlyForm = this.fb.group({
-      name: new FormControl('', [Validators.required, Validators.pattern(this.validPattern)])
+      name: new UntypedFormControl('', [Validators.required, Validators.pattern(this.validPattern)])
     });
   }
 

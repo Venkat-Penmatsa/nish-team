@@ -1,6 +1,6 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 import { EmployeeDependents } from 'src/app/model/EmployeeDependents';
 import { Optional } from '@angular/core';
 
@@ -20,7 +20,7 @@ export class EditDependantComponent implements OnInit {
   }
 
 
-  formControl = new FormControl('', [
+  formControl = new UntypedFormControl('', [
     Validators.required
     // Validators.email,
   ]);
