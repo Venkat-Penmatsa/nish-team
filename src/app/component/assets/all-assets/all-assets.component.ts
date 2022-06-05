@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { AssetsService } from 'src/app/services/assets.service';
@@ -12,7 +12,7 @@ import { AssetsService } from 'src/app/services/assets.service';
 })
 export class AllAssetsComponent implements OnInit,AfterViewInit  {
 
-  constructor(private fb: FormBuilder, private assetsService: AssetsService) {
+  constructor(private fb: UntypedFormBuilder, private assetsService: AssetsService) {
 
   }
 

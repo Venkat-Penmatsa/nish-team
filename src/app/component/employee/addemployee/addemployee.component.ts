@@ -1,6 +1,6 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
 import { Employee } from 'src/app/model/Employee';
 import { EmployeeDependents } from 'src/app/model/EmployeeDependents';
 import * as _moment from 'moment';
@@ -36,7 +36,7 @@ export class AddemployeeComponent implements OnInit, OnChanges {
   employee: Employee = new Employee();
   empId = "";
   skillsetList: string[] = skills;
-  skillset: FormControl = new FormControl();
+  skillset: UntypedFormControl = new UntypedFormControl();
   fileList = 'employee';
   retrievedImage: any;
   base64Data: any;
@@ -50,7 +50,7 @@ export class AddemployeeComponent implements OnInit, OnChanges {
   @ViewChild('marriageCheckbox') marriageCheckbox: ElementRef;
 
 
-  constructor(private fb: FormBuilder, private employeeService: EmployeeService, private loader: LoaderService) {
+  constructor(private fb: UntypedFormBuilder, private employeeService: EmployeeService, private loader: LoaderService) {
 
   }
 

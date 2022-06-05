@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { AssetsType } from 'src/app/constants/assetsType';
 import { map, startWith } from 'rxjs/operators';
 import { AssetsService } from 'src/app/services/assets.service';
@@ -21,7 +21,7 @@ export class UpdateleavesComponent implements OnInit {
   empName: any;
   user:User;
   
-  constructor(private fb: FormBuilder, private leavesService: LeavesService) {
+  constructor(private fb: UntypedFormBuilder, private leavesService: LeavesService) {
 
   }
 

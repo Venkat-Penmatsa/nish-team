@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepicker } from '@angular/material/datepicker';
@@ -41,7 +41,7 @@ export class YearlyEmpReportComponent implements OnInit {
   successFlag = false;
   empName: any;
   yearlyReport: any;
-  date = new FormControl(moment());
+  date = new UntypedFormControl(moment());
 
   chosenYearHandler(normalizedYear: Moment) {
     const ctrlValue = this.date.value;
@@ -69,7 +69,7 @@ export class YearlyEmpReportComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
 
-  constructor(private fb: FormBuilder, private timesheetService: TimesheetService) {
+  constructor(private fb: UntypedFormBuilder, private timesheetService: TimesheetService) {
 
   }
 

@@ -3,7 +3,7 @@ import { DocumentsService } from 'src/app/services/documents.service';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
@@ -20,11 +20,11 @@ export class ManageDocumentsComponent implements OnInit {
   newCategory: string;
   categoryList: any[] = [];
   allDocumentsCatelgory: Observable<any[]>;
-  categoryAssign = new FormControl();
+  categoryAssign = new UntypedFormControl();
   employeeName: any[] = [];
   assetType;
   empList: Observable<any[]>;
-  assetAssignedToEmp = new FormControl();
+  assetAssignedToEmp = new UntypedFormControl();
 
   constructor(private documentService: DocumentsService) {
 

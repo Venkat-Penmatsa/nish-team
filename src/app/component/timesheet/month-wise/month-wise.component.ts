@@ -1,7 +1,7 @@
 import { Component, OnChanges, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import * as moment from 'moment';
 import { HttpClient } from '@angular/common/http';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { leaveClassNameType } from '../../../constants/leaveClassNameType';
 import { TimesheetService } from "../../../services/timesheet.service";
 import { LoaderService } from 'src/app/services/loader.service';
@@ -28,7 +28,7 @@ export class MonthWiseComponent implements OnInit,OnChanges {
   date = moment();
   calendar: Array<CalendarItem[]> = [];
   employeeData: any = null;
-  monthlyForm: FormGroup;
+  monthlyForm: UntypedFormGroup;
   validPattern = '^[a-zA-Z0-9]+$';
   leaveList = leaveClassNameType;
   numberOfWorkingDays;
@@ -38,9 +38,9 @@ export class MonthWiseComponent implements OnInit,OnChanges {
   filterEmpName: string;
   loading$:any;
 
-  constructor(public fb: FormBuilder, private service: TimesheetService, private loader: LoaderService) {
+  constructor(public fb: UntypedFormBuilder, private service: TimesheetService, private loader: LoaderService) {
     this.monthlyForm = this.fb.group({
-      employeeNumber: new FormControl('', [Validators.required, Validators.pattern(this.validPattern)])
+      employeeNumber: new UntypedFormControl('', [Validators.required, Validators.pattern(this.validPattern)])
     });
   }
 
