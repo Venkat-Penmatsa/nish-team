@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { Observable, of } from 'rxjs';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { map, startWith } from 'rxjs/operators';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
@@ -15,7 +15,7 @@ export class EmpNameComponent implements OnInit, OnChanges {
   employeeName: any[] = [];
   assetType;
   empList: Observable<any[]>;
-  assetAssignedToEmp = new FormControl();
+  assetAssignedToEmp = new UntypedFormControl();
   @Output() empName = new EventEmitter<any>();
   @Input() filterEmpName;
   constructor(private employeeService: EmployeeService) { }

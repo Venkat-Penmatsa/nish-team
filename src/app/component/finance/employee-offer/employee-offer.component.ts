@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { AssetsType } from 'src/app/constants/assetsType';
 import { User } from 'src/app/model/User';
 import { AssetsService } from 'src/app/services/assets.service';
@@ -21,7 +21,7 @@ export class EmployeeOfferComponent implements OnInit {
   user:User;
   totalExpPerMOnth: number;
   totalYearExpenses:number;
-  constructor(private fb: FormBuilder, private timesheetService: TimesheetService) {
+  constructor(private fb: UntypedFormBuilder, private timesheetService: TimesheetService) {
 
   }
 

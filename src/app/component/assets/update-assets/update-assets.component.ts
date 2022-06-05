@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { AssetsType } from 'src/app/constants/assetsType';
 import { map, startWith } from 'rxjs/operators';
 import { AssetsService } from 'src/app/services/assets.service';
@@ -28,7 +28,7 @@ export class UpdateAssetsComponent implements OnInit {
   searchAssetId: string;
   assetCategory:any;
 
-  constructor(private fb: FormBuilder, private assetsService: AssetsService) {
+  constructor(private fb: UntypedFormBuilder, private assetsService: AssetsService) {
 
   }
 

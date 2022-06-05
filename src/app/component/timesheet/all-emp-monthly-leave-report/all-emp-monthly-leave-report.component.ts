@@ -2,7 +2,7 @@ import { Component, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { LeavesService } from 'src/app/services/leaves.service';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepicker } from '@angular/material/datepicker';
@@ -39,7 +39,7 @@ export const MY_FORMATS = {
   ],
 })
 export class AllEmpMonthlyLeaveReportComponent implements OnInit, OnChanges {
-  date = new FormControl(moment());
+  date = new UntypedFormControl(moment());
   message = false;
   messageDesc = "";
   loading$: any;

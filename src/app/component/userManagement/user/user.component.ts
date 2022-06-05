@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class UserComponent implements OnInit {
   filterEmpName: string;
   successFlag = false;
   message: string;
-  constructor(private fb: FormBuilder, private userService: UserService) { }
+  constructor(private fb: UntypedFormBuilder, private userService: UserService) { }
 
   ngOnInit(): void {
   }

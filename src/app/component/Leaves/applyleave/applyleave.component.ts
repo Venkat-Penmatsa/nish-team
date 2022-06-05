@@ -1,6 +1,6 @@
 
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import moment from 'moment';
 import { Moment } from 'moment';
 import { User } from 'src/app/model/User';
@@ -36,7 +36,7 @@ export class ApplyleaveComponent implements OnInit {
   leaveEndDate = moment();
   loading$: any;
 
-  constructor(private fb: FormBuilder, private leavesService: LeavesService, public loader: LoaderService) {
+  constructor(private fb: UntypedFormBuilder, private leavesService: LeavesService, public loader: LoaderService) {
 
   }
 
