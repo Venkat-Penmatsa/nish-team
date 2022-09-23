@@ -94,6 +94,11 @@
         <th mat-header-cell *matHeaderCellDef>Date Of Birth</th>
         <td mat-cell *matCellDef="let element"> {{element.dateOfBirth}} </td>
       </ng-container>
+      
+      <ng-container matColumnDef="hrSpoc">
+        <th mat-header-cell *matHeaderCellDef>HR Spoc</th>
+        <td mat-cell *matCellDef="let element"> {{element.hrSpoc}} </td>
+      </ng-container>
 
       <ng-container matColumnDef="skills">
         <th mat-header-cell *matHeaderCellDef> Skills </th>

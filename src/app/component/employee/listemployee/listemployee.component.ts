@@ -32,6 +32,7 @@ export class ListemployeeComponent implements AfterViewInit, OnInit, OnChanges {
     'onBoardingDate',
     'onBoardingStatus',
   'dateOfBirth',
+  'hrSpoc',
 'skills'];
 
   allEmployeesList: AllEmployeesList[] = [];
@@ -74,6 +75,7 @@ export class ListemployeeComponent implements AfterViewInit, OnInit, OnChanges {
           e.onBoardingDate,
           e.onBoardingStatus,
           e.dateOfBirth,
+          e.hrSpoc,
           e.skills));
       })
       this.dataSource = new MatTableDataSource<AllEmployeesList>(this.allEmployeesList);
@@ -114,6 +116,7 @@ export class AllEmployeesList {
     private onBoardingDate: string,
     private onBoardingStatus: string,
     private dateOfBirth: string,
+    private hrSpoc: string,
     private skills: string
   ) { }
 }
