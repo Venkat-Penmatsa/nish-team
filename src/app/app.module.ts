@@ -99,6 +99,7 @@ import { DisplayTasksComponent } from './component/tasks/display-tasks/display-t
     DisplayTasksComponent
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,

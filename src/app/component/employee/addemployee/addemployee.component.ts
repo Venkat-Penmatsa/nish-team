@@ -181,6 +181,10 @@ export class AddemployeeComponent implements OnInit, OnChanges {
           this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
         })
 
+        //this.empCreationForm.get('empBasicInfo.dob')?.setValue(moment(this.employee.empBasicInfo.dob,"dd/MM/yyyy"));
+        this.empCreationForm.get('empBasicInfo.onboardingDate')?.setValue(moment(this.employee.empBasicInfo.onboardingDate,"MM/dd/yyyy"));
+        //this.empCreationForm.get('empBasicInfo.rpExpiryDate')?.setValue(moment(this.employee.empBasicInfo.rpExpiryDate,"dd/MM/yyyy"));
+        //this.empCreationForm.get('empBasicInfo.empLastDate')?.setValue(moment(this.employee.empBasicInfo.empLastDate,"dd/MM/yyyy"));
     }
   }
 

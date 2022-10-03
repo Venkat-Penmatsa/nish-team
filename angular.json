@@ -61,8 +61,17 @@
                   "maximumError": "4kb"
                 }
               ]
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -72,7 +81,13 @@
           "configurations": {
             "production": {
               "browserTarget": "nish-admin:build:production"
-            }
+            },
+            "development": {
+              "browserTarget": "nish-admin:build:development",
+              "optimization": false,
+              "sourceMap": true
+            },
+            "defaultConfiguration": "development"
           }
         },
         "extract-i18n": {
@@ -121,7 +136,10 @@
           "configurations": {
             "production": {
               "devServerTarget": "nish-admin:serve:production"
-            }
+            },
+            "development": {
+              "browserTarget": "nish-admin:build:development"
+            } 
           }
         }
       }
