@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as _moment from 'moment';
 import { Moment } from 'moment';
 import { User } from 'src/app/model/User';
@@ -24,11 +24,30 @@ export class NewcontractComponent implements OnInit {
   user: User;
   loading$: any;
 
-  constructor(private fb: UntypedFormBuilder, private newcontractService: NewcontractService, 
+  newContractForm: FormGroup = new FormGroup({});
+
+  constructor(private fb: FormBuilder, private newcontractService: NewcontractService, 
     private http: HttpClient,public loader: LoaderService) {
   }
 
   ngOnInit(): void {
+
+    this.newContractForm = this.fb.group({
+      nishContractId: [''],
+      employeeId: [''],
+      contractId: [''],
+      contractStatus: ['', Validators.required],
+      clientName: ['', Validators.required],
+      contractCompanyName: ['', Validators.required],
+      subContractCompany1: [''],
+      subContractCompany2: [''],
+      subContractCompany3: [''],
+      billingRate: ['', Validators.required],
+      contractStartDate: ['', Validators.required],
+      contractEndDate: ['', Validators.required],
+      comments: [''],
+      updatedBy: ['']
+    });
 
   }
 
@@ -49,6 +68,8 @@ export class NewcontractComponent implements OnInit {
       this.newcontractService.fetchContractInfo(contractID).subscribe(res => {
         console.log(res);
         this.contract = res;
+        console.log("start date ******* " +  this.contract.contractStartDate);
+        console.log( "end date ******* " + this.contract.contractEndDate);
         this.newContractForm.patchValue({
           nishContractId: this.contract.nishContractId,
           employeeId: this.contract.employeeId,
@@ -60,8 +81,8 @@ export class NewcontractComponent implements OnInit {
           subContractCompany2: this.contract.subContractCompany2,
           subContractCompany3: this.contract.subContractCompany3,
           billingRate: this.contract.billingRate,
-          contractStartDate: this.contract.contractStartDate,
-          contractEndDate: this.contract.contractEndDate,
+          contractStartDate: moment(this.contract.contractStartDate,"MM/DD/YYYY"),
+          contractEndDate: moment(this.contract.contractEndDate,"MM/DD/YYYY"),
           comments: this.contract.comments
         });
         this.filterEmpName = this.contract.employeeId;
@@ -105,22 +126,7 @@ export class NewcontractComponent implements OnInit {
     console.log("nishContractId..." + this.nishContractId)
   }
 
-  newContractForm = this.fb.group({
-    nishContractId: [''],
-    employeeId: [''],
-    contractId: [''],
-    contractStatus: ['', Validators.required],
-    clientName: ['', Validators.required],
-    contractCompanyName: ['', Validators.required],
-    subContractCompany1: [''],
-    subContractCompany2: [''],
-    subContractCompany3: [''],
-    billingRate: ['', Validators.required],
-    contractStartDate: ['', Validators.required],
-    contractEndDate: ['', Validators.required],
-    comments: [''],
-    updatedBy: ['']
-  });
+
 
 }
 

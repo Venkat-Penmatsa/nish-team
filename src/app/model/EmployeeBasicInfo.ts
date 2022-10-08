@@ -13,6 +13,7 @@ export class EmployeeBasicInfo {
     passportId: string;
     onboardingStatus: string;
     onboardingDate: Date;
+    rpExpiryDate: Date;
     iBANNumber: string;
     bicCode: string;
     martialStatus: string;
