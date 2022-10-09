@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { AssetsType } from 'src/app/constants/assetsType';
-import { map, startWith } from 'rxjs/operators';
 import { AssetsService } from 'src/app/services/assets.service';
 
 @Component({
@@ -47,7 +46,6 @@ export class NewAssetComponent implements OnInit {
     })
     const assetJson = JSON.stringify(this.assetsForm.value);
     console.log('assetJson ' +assetJson);
-    const headers = { 'Content-type': 'application/json' };
 
     this.assetsService.createAsset(assetJson)
       .subscribe(data => {
