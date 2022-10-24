@@ -14,6 +14,7 @@ import { ForbiddenComponent } from './component/login/forbidden/forbidden.compon
 import { HeaderComponent } from './component/home/header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

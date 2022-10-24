@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -9,7 +11,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private userService:UserService) { }
+  constructor(private fb: FormBuilder, private userService:UserService, 
+    private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -22,8 +25,12 @@ export class LoginComponent implements OnInit {
   signIn() {
     if (this.loginForm.valid) {
 
-      this.userService.login(this.loginForm.value).subscribe(data => {
+      this.userService.login(this.loginForm.value).subscribe( (data: any) => {
         console.log(data);
+        
+        this.authService.setUser(data.user);
+        this.authService.setToken(data.jwtToken);
+        this.router.navigate(['/home']);
       })
 
       /*let res = this.authenticate.login(this.loginForm.get('userName')?.value, this.loginForm.get('password')?.value);
