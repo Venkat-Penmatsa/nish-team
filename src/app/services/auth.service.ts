@@ -8,7 +8,7 @@ export class AuthService {
   constructor() { }
 
   public setUser(user : any){
-    localStorage.setItem("role",user);
+    localStorage.setItem("user",user);
   }
 
   public getUser() {

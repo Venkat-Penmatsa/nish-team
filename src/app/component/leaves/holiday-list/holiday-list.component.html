@@ -1,0 +1,18 @@
+<div class="table-responsive mt-3 customScroll">
+    <table class="table">
+        <thead>
+            <tr>
+                <th><label>Date</label></th>
+                <th><label>Day</label></th>
+                <th><label>Holiday Description</label></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of holidaysList">
+                <td><span>{{ row.date }}</span></td>
+                <td><span>{{ row.day }}</span></td>
+                <td><span>{{ row.desc }}</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

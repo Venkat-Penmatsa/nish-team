@@ -13,12 +13,18 @@ import { MaterialModule } from './material/material.module';
 import { ForbiddenComponent } from './component/login/forbidden/forbidden.component';
 import { HeaderComponent } from './component/home/header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { AuthGuard } from './auth/auth.guard';
+import { AuthInterceptor } from './auth/auth.interceptor';
+import { UserService } from './services/user.service';
+import { EmpInfoComponent } from './component/empInfo/emp-info/emp-info.component';
+import { HolidayListComponent } from './component/leaves/holiday-list/holiday-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    EmpInfoComponent,
     LoginComponent,
     HomeComponent,
     AssetDetailsComponent,
@@ -26,7 +32,8 @@ import { RouterModule } from '@angular/router';
     LeavesHistoryComponent,
     TimesheetComponent,
     ForbiddenComponent,
-    HeaderComponent
+    HeaderComponent,
+    HolidayListComponent
   ],
   imports: [
     FormsModule,
@@ -38,7 +45,14 @@ import { RouterModule } from '@angular/router';
     HttpClientModule,
     RouterModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard,{
+      provide : HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi : true
+  },
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
