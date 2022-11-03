@@ -1,16 +1,21 @@
+<form [formGroup]="empInfoForm">
+
 <table class="table">
     <tbody>
         <tr>
             <td><span>Employee Code</span></td>
-            <td><span>{{ empDetails.empBasicInfo.empId }}</span></td>
+            <td><span>{{ empBasicInfo.empId }}</span></td>
         </tr>
         <tr>
             <td><span>Employee Name</span></td>
-            <td><span>{{ empDetails.empBasicInfo.firstName }}</span></td>
+            <td><span>{{ empBasicInfo.firstName }}</span></td>
         </tr>
         <tr>
             <td><span>Date of Joining</span></td>
-            <td><span>{{ empDetails.empBasicInfo.onboardingDate }}</span></td>
+            <td><span>{{ empBasicInfo.onboardingDate }}</span></td>
         </tr>
     </tbody>
 </table>
+
+<button mat-raised-button color="primary" (click)="openDialog()">Details</button>
+</form>

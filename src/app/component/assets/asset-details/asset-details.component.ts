@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AssetsService } from 'src/app/services/assets.service';
 
 @Component({
   selector: 'app-asset-details',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AssetDetailsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private assetsService : AssetsService) { }
 
-  ngOnInit(): void {
-  }
+  holidaysList : any[] = [];
 
+ ngOnInit(): void {
+  let user :any = JSON.parse(localStorage.getItem("user") || '{}');
+   this.assetsService.fetchEmployeeAssets(user.empId)
+   .subscribe(data => {
+       console.log("holiday date ... " + data);
+       this.holidaysList = data
+   });
+
+}
 }

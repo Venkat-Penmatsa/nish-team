@@ -20,6 +20,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { UserService } from './services/user.service';
 import { EmpInfoComponent } from './component/empInfo/emp-info/emp-info.component';
 import { HolidayListComponent } from './component/leaves/holiday-list/holiday-list.component';
+import { EmpDetailsComponent } from './component/empInfo/emp-details/emp-details.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { HolidayListComponent } from './component/leaves/holiday-list/holiday-li
     TimesheetComponent,
     ForbiddenComponent,
     HeaderComponent,
-    HolidayListComponent
+    HolidayListComponent,
+    EmpDetailsComponent
   ],
   imports: [
     FormsModule,
