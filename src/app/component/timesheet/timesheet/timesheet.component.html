@@ -8,25 +8,10 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><span>Sample Contract New...</span></td>
-                <td><span>LIVE</span></td>
-                <td><span>12 h</span></td>
-            </tr>
-            <tr>
-                <td><span>Sample Contract New...</span></td>
-                <td><span>LIVE</span></td>
-                <td><span>12 h</span></td>
-            </tr>
-            <tr>
-                <td><span>Sample Contract New...</span></td>
-                <td><span>LIVE</span></td>
-                <td><span>12 h</span></td>
-            </tr>
-            <tr>
-                <td><span>Sample Contract New...</span></td>
-                <td><span>LIVE</span></td>
-                <td><span>12 h</span></td>
+            <tr *ngFor="let row of contractList">
+                <td><span>{{ row.clientName }}</span></td>
+                <td><span>{{ row.contractStatus }}</span></td>
+                <td><span>{{ row.contractId }}</span></td>
             </tr>
         </tbody>
     </table>

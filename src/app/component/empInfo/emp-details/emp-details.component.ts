@@ -9,26 +9,24 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class EmpDetailsComponent implements OnInit {
 
-  skillset : any;
+  skillset: [];
+  empDep: any = [];
 
-  constructor(private fb : FormBuilder,
+  constructor(private fb: FormBuilder,
     public dialogRef: MatDialogRef<EmpDetailsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
-      this.empCreationForm.patchValue({
-        empBasicInfo: data.empBasicInfo,
-        employeeAddress: data.employeeAddress,
-        skillset: data.skillset
-      });
-
-      this.skillset = data.skillset;
-    }
+    this.empCreationForm.patchValue({
+      empBasicInfo: data.empBasicInfo,
+      employeeAddress: data.employeeAddress
+    });
+    this.skillset = data.skillset.skillset;
+    this.empDep = data.employeeDependents;
+  }
 
   ngOnInit(): void {
 
-
   }
-
 
   empCreationForm = this.fb.group({
     empBasicInfo: this.fb.group({
@@ -70,10 +68,6 @@ export class EmpDetailsComponent implements OnInit {
       permanentAddstate: [],
       permanentAddcountry: [],
       permanentAddpincode: []
-    }
-    ),
-    skillset: this.fb.group({
-      skillset: ['', Validators.required]
     }
     ),
     updatedBy: []

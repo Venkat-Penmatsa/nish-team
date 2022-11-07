@@ -135,22 +135,13 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="navCont03" role="tabpanel" aria-labelledby="navTab_03">
-                                <div class="row" formGroupName="skillset">
-                                    <div class="col-md-4">
-                                        <label class="form-label mb-0">Skills</label>
-                                        <input class="form-control" type="text" placeholder="" aria-label=""  formControlName="skillset">
-                                    </div>
-                                  
-                                </div>
+            
                                 <div class="row">
-                                <div class="col-md-4">
-                                    <mat-chip-list >
-                                        <mat-chip *ngFor="let chip of skillset" >
-                                          {{chip}}
-                                        </mat-chip>
-                                      </mat-chip-list>
-                                    </div>
-                            </div>
+                                    <mat-label>Skills</mat-label>
+                                    <mat-chip-list aria-label="Skills" multiple >
+                                        <mat-chip color="primary" *ngFor="let chip of skillset" selected>{{chip}}</mat-chip>
+                                    </mat-chip-list>
+                                </div>
                             </div>
                             <div class="tab-pane fade" id="navCont05" role="tabpanel" aria-labelledby="navTab_05">
                                 <div class="row">
@@ -159,24 +150,17 @@
                                             <thead>
                                                 <tr>
                                                     <th>Name</th>
+                                                    <th>Gender</th>
                                                     <th>Relation with Employee</th>
-                                                    <th>Contact No.</th>
                                                     <th>Birth Date</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>Lorem Ipsum</td>
-                                                    <td>Lorem Ipsum</td>
-                                                    <td>Lorem Ipsum</td>
-                                                    <td>Lorem Ipsum</td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>Lorem Ipsum</td>
-                                                    <td>Lorem Ipsum</td>
-                                                    <td>Lorem Ipsum</td>
-                                                    <td>Lorem Ipsum</td>
+                                                <tr *ngFor="let row of empDep">
+                                                    <td><span>{{ row.firstName  }} {{ row.lastName }}</span></td>
+                                                    <td><span>{{ row.sex }}</span></td>
+                                                    <td><span>{{ row.dependant }}</span></td>
+                                                    <td><span>{{ row.dob }}</span></td>
                                                 </tr>
                                             </tbody>
                                         </table>

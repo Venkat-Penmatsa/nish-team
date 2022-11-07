@@ -21,6 +21,8 @@ import { UserService } from './services/user.service';
 import { EmpInfoComponent } from './component/empInfo/emp-info/emp-info.component';
 import { HolidayListComponent } from './component/leaves/holiday-list/holiday-list.component';
 import { EmpDetailsComponent } from './component/empInfo/emp-details/emp-details.component';
+import { TimesheetDetailsComponent } from './component/timesheet/timesheet-details/timesheet-details.component';
+import { NotificationComponent } from './component/notification/notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { EmpDetailsComponent } from './component/empInfo/emp-details/emp-details
     ForbiddenComponent,
     HeaderComponent,
     HolidayListComponent,
-    EmpDetailsComponent
+    EmpDetailsComponent,
+    TimesheetDetailsComponent,
+    NotificationComponent
   ],
   imports: [
     FormsModule,
