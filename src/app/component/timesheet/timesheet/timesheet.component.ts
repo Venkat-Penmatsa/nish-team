@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { TimesheetService } from 'src/app/services/timesheet.service';
+import { EmpDetailsComponent } from '../../empInfo/emp-details/emp-details.component';
+import { TimesheetDetailsComponent } from '../timesheet-details/timesheet-details.component';
 
 @Component({
   selector: 'app-timesheet',
@@ -8,7 +11,7 @@ import { TimesheetService } from 'src/app/services/timesheet.service';
 })
 export class TimesheetComponent implements OnInit {
 
-  constructor(private timesheetService: TimesheetService) { }
+  constructor(private timesheetService: TimesheetService,public dialog: MatDialog) { }
 
   contractList: any[] = [];
 
@@ -27,5 +30,17 @@ export class TimesheetComponent implements OnInit {
       });
 
   }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(TimesheetDetailsComponent,{
+      height: '80%',
+      width: '95%'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
 
 }
