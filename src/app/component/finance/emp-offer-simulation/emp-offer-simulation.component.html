@@ -108,6 +108,18 @@
             </div>
             <div class="col">
                 <mat-form-field>
+                    <mat-label>Eco Cheques*</mat-label>
+                    <input matInput type="number" min="0" formControlName="ecoCheques">
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>Admin Charges*</mat-label>
+                    <input matInput type="number" min="0" formControlName="adminCharges">
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field>
                     <mat-label>CTC Per year(Sum(H,I,J,K,L)) *</mat-label>
                     <input matInput type="number" readonly="true" min="0" formControlName="ctc">
                 </mat-form-field>
