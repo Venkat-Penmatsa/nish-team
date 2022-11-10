@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve nish-admin -o",
-    "build": "ng build nish-admin --prod",
+    "build": "ng build nish-admin",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
