@@ -18,4 +18,18 @@ export class LeavesService {
 
   }
 
+  fetchEmpLeaves(empId: string): Observable<any> {
+    const headers = { 'Content-type': 'application/json' };
+    //return this.http.get<any>(`${this.baseUrl}/leaves/holidaysList` );
+    return this.http.get<any>(this.PATH + '/leaves/empLeavesBalence/' + empId);
+
+  }
+
+  fetchEmpLeavesHist(empId: string): Observable<any> {
+    const headers = { 'Content-type': 'application/json' };
+    //return this.http.get<any>(`${this.baseUrl}/leaves/holidaysList` );
+    return this.http.get<any>(this.PATH + '/leaves/fetchLeavesHistory/' + empId);
+
+  }
+
 }

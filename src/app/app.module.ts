@@ -23,6 +23,8 @@ import { HolidayListComponent } from './component/leaves/holiday-list/holiday-li
 import { EmpDetailsComponent } from './component/empInfo/emp-details/emp-details.component';
 import { TimesheetDetailsComponent } from './component/timesheet/timesheet-details/timesheet-details.component';
 import { NotificationComponent } from './component/notification/notification/notification.component';
+import { LeavesOverviewComponent } from './component/leaves/leaves-overview/leaves-overview.component';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { NotificationComponent } from './component/notification/notification/not
     HolidayListComponent,
     EmpDetailsComponent,
     TimesheetDetailsComponent,
-    NotificationComponent
+    NotificationComponent,
+    LeavesOverviewComponent
   ],
   imports: [
     FormsModule,

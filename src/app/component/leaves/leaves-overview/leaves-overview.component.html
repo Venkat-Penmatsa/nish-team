@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+
+    <div class="row justify-content-center">
+        <div class="col">
+            <h6>Current Balance : {{leaves.totalleavebalence}}</h6>
+        </div>
+    </div>
+    <!-- <div class="col-md-5 pt-5">
+        <div class="leaveCircleWrap">
+            <span>Balance leaves</span>
+            <h3>20</h3>
+        </div>
+    </div> -->
+    <div class="col">
+        <div class="applyLeaveBox">
+            <span>Paid Holiday</span>
+            <h3>{{leaves.authorisedAbsence}}</h3>
+        </div>
+    </div>
+    <div class="col">
+        <div class="applyLeaveBox">
+            <span>RTT/ADV Days</span>
+            <h3>{{leaves.rttAdv}}</h3>
+        </div>
+    </div>
+    <div class="col">
+        <div class="applyLeaveBox">
+            <span>Compensation Leave</span>
+            <h3>{{leaves.compensationLeave}}</h3>
+        </div>
+    </div>
+    <div class="col">
+        <div class="applyLeaveBox">
+            <span>Forwarded Leave</span>
+            <h3>{{leaves.forwardedLeave}}</h3>
+        </div>
+    </div>
+
+</div>
+<div class="row justify-content-center">
+    <div class="col"> <button #applyLeave class="btn_04" (click)="openApplyLeaveDialog()">Apply Leave</button> </div>
+    <div class="col"> <button #leaveHist class="btn_03" (click)="openHistDialog()">Leaves History</button> </div>
+</div>

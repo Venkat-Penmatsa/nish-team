@@ -109,6 +109,12 @@ ul {
 .contentWrap{
     padding: 15px 0;
 }
+.popUpboxWrap{
+    padding: 15px;
+    color: #000;
+    border: 1px #ddd solid;
+    position: relative;
+}
 .boxWrap{
     padding: 15px;
     color: #000;
@@ -244,7 +250,7 @@ ul {
     border-bottom: 1px #dee2e6 solid;
 }
 .notificationBox{
-    max-height: 260px;
+    max-height: 419px;
     overflow-y: auto;
 }
 .leaveCircleWrap{
@@ -283,4 +289,126 @@ ul {
     color: #000;
     bottom: 0;
     z-index: 1;
+}
+.greatPlace {
+    padding: 15px;
+    color: #000;
+    border: 1px #ddd solid;
+    position: relative;
+}
+.boxWrapNotifi{
+    min-height: 497px;
+    max-height: 497px;
+}
+.notificationContent{
+    padding: 15px;
+    color: #000;
+    border: 1px #ddd solid;
+    position: relative;
+}
+.boxWrap .btn_01 {
+    background-color: #ff0000;
+    color: #fff;
+    position: absolute;
+    font-size: 12px;
+    display: inline-block;
+    padding: 5px 25px;
+    right: 15px;
+    bottom: 15px;
+    cursor: pointer;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+}
+.boxWrap .btn_02 {
+    background-color: #01263d;
+    color: #fff;
+    position: absolute;
+    font-size: 12px;
+    display: inline-block;
+    padding: 5px 25px;
+    right: 15px;
+    bottom: 15px;
+    cursor: pointer;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+}
+.boxWrap .btn_03 {
+    background-color: #cd9427;;
+    color: #fff;
+    position: absolute;
+    font-size: 12px;
+    display: inline-block;
+    padding: 5px 25px;
+    right: 15px;
+    bottom: 15px;
+    cursor: pointer;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+}
+.boxWrap .btn_04 {
+    background-color: #cd9427;;
+    color: #fff;
+    position: absolute;
+    font-size: 12px;
+    display: inline-block;
+    padding: 5px 25px;
+    left: 15px;
+    bottom: 15px;
+    cursor: pointer;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+}
+#exampleModalToggle2 .modal-content{
+    -webkit-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.25);
+}
+#exampleModalToggle3 .modal-content {
+    -webkit-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.25);
+}
+#exampleModalToggle4 .modal-content {
+    -webkit-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.25);
+}
+.applyLeaveBox{
+    position: relative;
+    border: 1px #871a1a solid;
+    padding: 5px 10px;
+}
+.applyLeaveBox span{
+    font-size: 12px;
+}
+.applyLeaveBox h3 {
+    font-size: 18px;
+    color: #871a1a;
+}
+.applyLeaveBox h3 label {
+    font-size: 12px;
+    font-weight: normal;
+    color: #000;
+}
+.applyLeaveBox .bi{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-size: 24px;
+    cursor: pointer;
+    line-height: 0;
+    color: #871a1a;
+}
+.leaveTable{
+    max-height: 175px;
+    overflow: hidden;
+}
+.btn-primary {
+    background: #01263d;
+    padding: 5px 25px;
+    border-color: #fff;
 }
