@@ -1,29 +1,32 @@
-<div class="leaveTable">
-    <div class="table-responsive mt-3 customScroll">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th><label>Sr. No.</label></th>
-                    <th><label>Leave Type</label></th>
-                    <th><label>Leave Start Date</label></th>
-                    <th><label>Leave End Date</label></th>
-                    <th><label>No.Of Days</label></th>
-                    <th><label>Status</label></th>
-                    <th><label>Comments</label></th>
-                </tr>
-            </thead>
-            <tbody>
-                <ng-container *ngFor="let row of leaves">
+<div class="popUpboxWrap borTop3">
+    <h5>Leaves History</h5>
+    <div class="leaveTable">
+        <div class="table-responsive mt-300 customScroll">
+            <table class="table">
+                <thead>
                     <tr>
-                        <td><span>{{ row.sno }}</span></td>
-                        <td><span>{{ row.leaveType }}</span></td>
-                        <td><span>{{ row.leaveStartDate }}</span></td>
-                        <td><span>{{ row.leaveEndDate }}</span></td>
-                        <td><span>{{ row.totDays }}</span></td>
-                        <td><span>{{ row.status }}</span></td>
-                        <td><span>{{ row.comments }}</span></td>
+                        <th><label>Sr. No.</label></th>
+                        <th><label>Leave Type</label></th>
+                        <th><label>Leave Start Date</label></th>
+                        <th><label>Leave End Date</label></th>
+                        <th><label>No.Of Days</label></th>
+                        <th><label>Status</label></th>
+                        <th><label>Comments</label></th>
                     </tr>
-                </ng-container>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let row of leaves">
+                        <tr>
+                            <td><span>{{ row.sno }}</span></td>
+                            <td><span>{{ row.leaveType }}</span></td>
+                            <td><span>{{ row.leaveStartDate }}</span></td>
+                            <td><span>{{ row.leaveEndDate }}</span></td>
+                            <td><span>{{ row.totDays }}</span></td>
+                            <td><span>{{ row.status }}</span></td>
+                            <td><span>{{ row.comments }}</span></td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
     </div>
