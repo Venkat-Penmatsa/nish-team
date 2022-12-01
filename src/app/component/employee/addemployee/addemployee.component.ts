@@ -233,7 +233,8 @@ export class AddemployeeComponent implements OnInit, OnChanges {
       emergencyContactNumber: [],
       entity: [],
       empLastDate: [],
-      hrSpoc: []
+      hrSpoc: [],
+      designation:[]
     }
     ),
     employeeAddress: this.fb.group({
