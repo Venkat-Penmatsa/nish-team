@@ -31,9 +31,10 @@ export class ListemployeeComponent implements AfterViewInit, OnInit, OnChanges {
     'rpExpiryDate',
     'onBoardingDate',
     'onBoardingStatus',
-  'dateOfBirth',
-  'hrSpoc',
-'skills'];
+    'dateOfBirth',
+    'hrSpoc',
+    'designation',
+    'skills'];
 
   allEmployeesList: AllEmployeesList[] = [];
   dataSource = new MatTableDataSource<AllEmployeesList>(this.allEmployeesList);
@@ -76,6 +77,7 @@ export class ListemployeeComponent implements AfterViewInit, OnInit, OnChanges {
           e.onBoardingStatus,
           e.dateOfBirth,
           e.hrSpoc,
+          e.designation,
           e.skills));
       })
       this.dataSource = new MatTableDataSource<AllEmployeesList>(this.allEmployeesList);
@@ -117,6 +119,7 @@ export class AllEmployeesList {
     private onBoardingStatus: string,
     private dateOfBirth: string,
     private hrSpoc: string,
+    private designation: string,
     private skills: string
   ) { }
 }

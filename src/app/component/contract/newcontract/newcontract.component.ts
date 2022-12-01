@@ -86,7 +86,7 @@ export class NewcontractComponent implements OnInit {
           comments: this.contract.comments
         });
         this.filterEmpName = this.contract.employeeId;
-        this.newContractForm.controls['billingRate'].disable();
+       // this.newContractForm.controls['billingRate'].disable();
         this.newContractForm.controls['employeeId'].disable();
       });
     }

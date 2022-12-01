@@ -20,4 +20,5 @@ export class EmployeeBasicInfo {
     emergencyContactNumber: number;
     emergencyContactPerson: string;
     empLastDate: Date;
+    designation: string;
 }
