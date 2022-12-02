@@ -17,4 +17,14 @@ export class TimesheetService {
    return this.http.post<any>(this.PATH + '/timesheet/listContracts', body ,{ headers });
 
  }
+
+
+ fetchTimeSheet(empId :any, date :any): Observable<any> {
+  const headers = { 'Content-type': 'application/json' };
+  //return this.http.get<any>(`${this.baseUrl}/timesheet/fillTimeSheet/` );
+  return this.http.get<any>(this.PATH + '/timesheet/fillTimeSheet/'+ empId +'/'+date ,{ headers });
+
+}
+
+
 }

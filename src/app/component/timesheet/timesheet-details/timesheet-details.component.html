@@ -5,13 +5,135 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-
             <div class="table-responsive">
-                
+                <table class="table table-bordered">
+                    <thead >
+                        <tr >
+                            <th scope="col"><i class="bi bi-plus-lg"></i></th>
+                            <th scope="col"><input type="date"></th>
+                            <th scope="col"><span>Logged Hrs</span></th>
+                            <th *ngFor="let hd of header" scope="col"><span>{{ hd.dayName }}<br>{{ hd.day }}</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr  *ngFor="let row of rows">
+                            <th style="width: 5%;" scope="row">Sr. 1</th>
+                            <td style="width: 10%;" scope="row">
+                                {{ row.contractId }}
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="" aria-label="">
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
             </div>
+        </div>
+    </div>
 
 
 
+
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="modal_02Label">Employee Details</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="table-responsive">            
+            </div>
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>
