@@ -12,6 +12,9 @@ export class TimesheetDetailsComponent implements OnInit {
 
   header: any[] = [];
   rows: any[] = [];
+  timesheetDataSource: Timesheet[] = [];
+  displayedColumns = ['key'];
+  timesheetHeader: any[] = [];
 
   constructor(private timesheetService: TimesheetService, public dialog: MatDialog, private fb: FormBuilder) { }
 
@@ -21,20 +24,28 @@ export class TimesheetDetailsComponent implements OnInit {
     this.timesheetService.fetchTimeSheet(user.empId, '02-12-2022' )
       .subscribe(data => {
         this.header = data.timeSheetHeader;
+        this.timesheetHeader = data.timeSheetHeader;
         this.rows = data.timeSheetRow;
+        this.timesheetDataSource = data.timeSheetRow;
         console.log(" this.leaves ........." + data);
       });
 
   }
 
+  UpdateTimeSheet(){
+
+  }
+
 }
 
-interface CalendarItem {
-  day: string;
-  dayName: string;
-  className: string;
-  isWeekend: boolean;
-  employeeData: string;
-  isPreviousMonth: boolean;
-  isNextMonth: boolean;
+interface Timesheet {
+  contractId: string;
+  comments: string;
+  noOfHrs: string;
+  contractTimeSheetList :{
+    day: string;
+    dayName : string;
+    isDisabled : boolean;
+    filledData : string;
+  }
 }
