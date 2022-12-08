@@ -18,18 +18,17 @@
                         <td style="width: 10%;" scope="row">
                             {{ row.contractId }}
                         </td>
-                        <td style="width: 10%;" scope="row">
+                        <td style="width: 10%;" scope="row" [(ngModel)]="row.noOfHrs">
                             {{ row.noOfHrs }}
                         </td>
-                        <td *ngFor="let timeData of row.contractTimeSheetList">
+                        <td *ngFor="let timeData of row.contractTimeSheetList; let i = index">
                             <span *ngIf="timeData.isDisabled; else editPlace">
                                 <input class="form-control" type="text" placeholder="" disabled
                                     [ngModel]="timeData.filledData" aria-label="">
                             </span>
                             <ng-template #editPlace>
-                                <!-- <input [(ngModel)]="element.value" (keyup.enter)="element.editable = false" /> -->
-                                <input class="form-control" type="text" placeholder="" [ngModel]="timeData.filledData"
-                                    aria-label="">
+                                <input class="form-control" type="text" placeholder="" 
+                                    [(ngModel)]="row.contractTimeSheetList[i].filledData" aria-label="">
                             </ng-template>
                         </td>
                     </tr>
@@ -37,9 +36,7 @@
                 </tbody>
             </table>
             <div class="col-md-12 mt-3">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                    data-bs-target="#exampleModalToggle">Save</button>
-                <button type="button" class="btn btn-primary ms-3" data-bs-toggle="modal" onclick="UpdateTimeSheet()"
+                <button type="button" class="btn btn-primary ms-3" data-bs-toggle="modal" (click)="updateTimeSheet()"
                     data-bs-target="#exampleModalToggle2">Submit</button>
             </div>
         </div>

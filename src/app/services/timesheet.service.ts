@@ -7,24 +7,33 @@ import { Observable } from 'rxjs';
 })
 export class TimesheetService {
 
- //private baseUrl = "https://"+ this.document.location.hostname + ':' + this.document.location.port+"/admin-services";
- PATH = 'http://localhost:8888';
- constructor(private http: HttpClient) { }
+  //private baseUrl = "https://"+ this.document.location.hostname + ':' + this.document.location.port+"/admin-services";
+  PATH = 'http://localhost:8888';
+  constructor(private http: HttpClient) { }
 
- fetchActiveContract(body :any): Observable<any> {
-   const headers = { 'Content-type': 'application/json' };
-   //return this.http.get<any>(`${this.baseUrl}/timesheet/listContracts` );
-   return this.http.post<any>(this.PATH + '/timesheet/listContracts', body ,{ headers });
+  fetchActiveContract(body: any): Observable<any> {
+    const headers = { 'Content-type': 'application/json' };
+    //return this.http.get<any>(`${this.baseUrl}/timesheet/listContracts` );
+    return this.http.post<any>(this.PATH + '/timesheet/listContracts', body, { headers });
 
- }
+  }
 
 
- fetchTimeSheet(empId :any, date :any): Observable<any> {
-  const headers = { 'Content-type': 'application/json' };
-  //return this.http.get<any>(`${this.baseUrl}/timesheet/fillTimeSheet/` );
-  return this.http.get<any>(this.PATH + '/timesheet/fillTimeSheet/'+ empId +'/'+date ,{ headers });
+  fetchTimeSheet(empId: any, date: any): Observable<any> {
+    const headers = { 'Content-type': 'application/json' };
+    //return this.http.get<any>(`${this.baseUrl}/timesheet/fillTimeSheet/` );
+    return this.http.get<any>(this.PATH + '/timesheet/fillTimeSheet/' + empId + '/' + date, { headers });
 
-}
+  }
+
+
+  updateTimeSheet(body: any): Observable<any> {
+    const headers = { 'Content-type': 'application/json' };
+    //return this.http.get<any>(`${this.baseUrl}/timesheet/listContracts` );
+    return this.http.post<any>(this.PATH + '/timesheet/updateTimeSheet', body, { headers });
+
+  }
+
 
 
 }
