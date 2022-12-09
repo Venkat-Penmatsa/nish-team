@@ -16,20 +16,21 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
+import { MY_DATE_FORMATS } from '../common/dateformat';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatSelectModule} from '@angular/material/select';
 
 const MaterialComponents = [MatButtonModule, MatInputModule, MatFormFieldModule,
   MatMenuModule, MatToolbarModule, MatSidenavModule, MatListModule, MatIconModule,
   MatExpansionModule, MatDatepickerModule, MatNativeDateModule,MatPaginatorModule,
   MatTableModule, MatChipsModule, MatAutocompleteModule, MatCheckboxModule, 
-  MatIconModule,MatDialogModule, MatSnackBarModule,MatSelectModule];
+  MatIconModule,MatDialogModule, MatSelectModule];
 
 @NgModule({
 
   imports: [MaterialComponents],
   exports: [MaterialComponents],
-  providers: []
+  providers: [{ provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }]
 })
+
 export class MaterialModule { }

@@ -25,11 +25,21 @@ export class LeavesService {
 
   }
 
+  calculateLeaves(startDate: any, endDate: any): Observable<any> {
+    const headers = { 'Content-type': 'application/json' };
+    return this.http.get(this.PATH + "/leaves/calculateLeaves/" + startDate + '/' + endDate, { headers })
+  }
+
   fetchEmpLeavesHist(empId: string): Observable<any> {
     const headers = { 'Content-type': 'application/json' };
     //return this.http.get<any>(`${this.baseUrl}/leaves/holidaysList` );
     return this.http.get<any>(this.PATH + '/leaves/fetchLeavesHistory/' + empId);
 
+  }
+
+  applyLeaves(assetJson: any): Observable<any> {
+    const headers = { 'Content-type': 'application/json' };
+    return this.http.post(this.PATH + '/leaves/applyEmpLeave/', assetJson, { headers })
   }
 
 }
