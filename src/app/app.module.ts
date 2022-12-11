@@ -24,7 +24,7 @@ import { EmpDetailsComponent } from './component/empInfo/emp-details/emp-details
 import { TimesheetDetailsComponent } from './component/timesheet/timesheet-details/timesheet-details.component';
 import { NotificationComponent } from './component/notification/notification/notification.component';
 import { LeavesOverviewComponent } from './component/leaves/leaves-overview/leaves-overview.component';
-
+import {FormattedDatePipe } from './common/FormattedDatePipe';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,8 @@ import { LeavesOverviewComponent } from './component/leaves/leaves-overview/leav
     EmpDetailsComponent,
     TimesheetDetailsComponent,
     NotificationComponent,
-    LeavesOverviewComponent
+    LeavesOverviewComponent,
+    FormattedDatePipe
   ],
   imports: [
     FormsModule,

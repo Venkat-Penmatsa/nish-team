@@ -3,15 +3,15 @@
         <thead>
             <tr>
                 <th><label>Contract Name</label></th>
-                <th><label>Contract Status</label></th>
-                <th><label>Contract Hours</label></th>
+                <th><label>Contract Period</label></th>
+                <th><label>Hours Filled</label></th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let row of contractList">
                 <td><span>{{ row.clientName }}</span></td>
-                <td><span>{{ row.contractStatus }}</span></td>
-                <td><span>{{ row.contractId }}</span></td>
+                <td><span>{{ row.contractStartDate | customDate }} - {{ row.contractEndDate | customDate }}</span></td>
+                <td><span>{{ row.noOfHours }}</span></td>
             </tr>
         </tbody>
     </table>

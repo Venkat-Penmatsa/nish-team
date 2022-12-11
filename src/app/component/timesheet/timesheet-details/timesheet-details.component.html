@@ -14,7 +14,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let row of rows">
+                    <tr *ngFor="let row of rows let j=index">
                         <td style="width: 10%;" scope="row">
                             {{ row.contractId }}
                         </td>
@@ -27,7 +27,11 @@
                                     [ngModel]="timeData.filledData" aria-label="">
                             </span>
                             <ng-template #editPlace>
-                                <input class="form-control" type="text" placeholder="" 
+                                <input class="form-control" type="text" placeholder="" inputmode="numeric"
+                                    oninput="this.value = this.value.replace(/\D+/g, '')"
+                                    onKeyUp="if(this.value>8){this.value='8';}else if(this.value<0){this.value='0';}"
+                                    [value]="row.contractId"
+                                    (change)="calculateHours($event)"
                                     [(ngModel)]="row.contractTimeSheetList[i].filledData" aria-label="">
                             </ng-template>
                         </td>

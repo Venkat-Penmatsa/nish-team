@@ -37,7 +37,7 @@ export class TimesheetDetailsComponent implements OnInit {
     let user: any = JSON.parse(localStorage.getItem("user") || '{}');
     this.timeSheetDetails.timeSheetRow = this.rows;
     this.timeSheetDetails.updatedBy = user.empId;
-    
+
     this.timesheetService.updateTimeSheet(this.timeSheetDetails)
       .subscribe(data => {
         console.log(" this.leaves ........." + data);
@@ -47,6 +47,23 @@ export class TimesheetDetailsComponent implements OnInit {
 
   }
 
+  calculateHours(data: any) {
+
+    console.log(" data ........." + data);
+
+    this.rows.forEach((element) => {
+
+      let contList: any = element.contractTimeSheetList;
+      let totalHours = 0;
+      contList.forEach((cont: any) => {
+        if (!cont.isDisabled) {
+          totalHours = totalHours + +cont.filledData;
+        }
+      }
+      );
+      element.noOfHrs = totalHours;
+    });
+  }
 
 }
 
