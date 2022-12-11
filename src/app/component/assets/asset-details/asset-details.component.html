@@ -12,7 +12,7 @@
                 <tr *ngFor="let row of holidaysList">
                     <td><span>{{ row.assetType }}</span></td>
                     <td><span>{{ row.assetDesc }}</span></td>
-                    <td><span>{{ row.empAssignedDate }}</span></td>
+                    <td><span>{{ row.empAssignedDate  | customDate }}</span></td>
                 </tr>
         </tbody>
     </table>

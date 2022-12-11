@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { TimesheetService } from 'src/app/services/timesheet.service';
+import * as moment from 'moment';
+import { Moment } from 'moment';
 
 @Component({
   selector: 'app-timesheet-details',
@@ -15,21 +17,13 @@ export class TimesheetDetailsComponent implements OnInit {
   timesheetDataSource: Timesheet[] = [];
   timesheetHeader: any[] = [];
   timeSheetDetails: any;
-
+  selectedDate = new Date();
 
   constructor(private timesheetService: TimesheetService, public dialog: MatDialog, private fb: FormBuilder) { }
 
   ngOnInit(): void {
 
-    let user: any = JSON.parse(localStorage.getItem("user") || '{}');
-    this.timesheetService.fetchTimeSheet(user.empId, '02-12-2022')
-      .subscribe(data => {
-        this.timeSheetDetails = data;
-        this.header = data.timeSheetHeader;
-        this.timesheetHeader = data.timeSheetHeader;
-        this.rows = data.timeSheetRow;
-        console.log(" this.leaves ........." + data);
-      });
+    this.fetchTimesheet();
 
   }
 
@@ -63,6 +57,20 @@ export class TimesheetDetailsComponent implements OnInit {
       );
       element.noOfHrs = totalHours;
     });
+  }
+
+  fetchTimesheet(): void {
+
+    let user: any = JSON.parse(localStorage.getItem("user") || '{}');
+    this.timesheetService.fetchTimeSheet(user.empId, moment(this.selectedDate).format("DD-MM-YYYY"))
+      .subscribe(data => {
+        this.timeSheetDetails = data;
+        this.header = data.timeSheetHeader;
+        this.timesheetHeader = data.timeSheetHeader;
+        this.rows = data.timeSheetRow;
+        console.log(" this.leaves ........." + data);
+      });
+
   }
 
 }

@@ -1,6 +1,6 @@
 <div class="modal-content">
     <div class="modal-header">
-        <h5 class="modal-title" id="modal_02Label">Employee Details</h5>
+        <h5 class="modal-title" id="modal_02Label">TimeSheet Details</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
@@ -8,7 +8,17 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col"><input type="date"></th>
+                        <th scope="col">
+                            <mat-form-field>
+                                <mat-label>Select Date</mat-label>
+                                <input matInput [matDatepicker]="timeSheetDate" required  [(ngModel)]="selectedDate"
+                                    (dateChange)="fetchTimesheet()">
+                                <mat-datepicker-toggle matSuffix [for]="timeSheetDate"></mat-datepicker-toggle>
+                                <mat-datepicker #timeSheetDate>
+                                </mat-datepicker>
+                            </mat-form-field>
+
+                        </th>
                         <th scope="col"><span>Logged Hrs</span></th>
                         <th *ngFor="let hd of header" scope="col"><span>{{ hd.dayName }}<br>{{ hd.day }}</span></th>
                     </tr>
@@ -30,8 +40,7 @@
                                 <input class="form-control" type="text" placeholder="" inputmode="numeric"
                                     oninput="this.value = this.value.replace(/\D+/g, '')"
                                     onKeyUp="if(this.value>8){this.value='8';}else if(this.value<0){this.value='0';}"
-                                    [value]="row.contractId"
-                                    (change)="calculateHours($event)"
+                                    [value]="row.contractId" (change)="calculateHours($event)"
                                     [(ngModel)]="row.contractTimeSheetList[i].filledData" aria-label="">
                             </ng-template>
                         </td>

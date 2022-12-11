@@ -9,7 +9,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let row of holidaysList">
-                <td><span>{{ row.date }}</span></td>
+                <td><span>{{ row.date  | customDate }}</span></td>
                 <td><span>{{ row.day }}</span></td>
                 <td><span>{{ row.desc }}</span></td>
             </tr>
