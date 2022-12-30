@@ -122,6 +122,26 @@ export let menu: NavItem[] = [
     ]
   },
   {
+    displayName: 'Emp TimeSheet',
+    iconName: 'file_copy',
+    route: 'emptimesheet',
+    role:['All','Admin'],
+    children: [
+      {
+        displayName: 'Fill Timesheet',
+        iconName: 'attach_file',
+        route: 'emptimesheet/filltimesheet',
+        role:['All','Admin'],
+      },
+      {
+        displayName: 'All Emp TimeSheet Report',
+        iconName: 'attach_file',
+        route: 'emptimesheet/allemptimesheet',
+        role:['All','Admin'],
+      }
+    ]
+  },
+  {
     displayName: 'Assets',
     iconName: 'web_asset',
     route: 'assets',

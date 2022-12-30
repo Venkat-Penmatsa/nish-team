@@ -1,0 +1,63 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="modal_02Label">TimeSheet Details</h5>
+    </div>
+    <div class="row">
+        <div class="col">
+            <app-emp-name [filterEmpName]="filterEmpName" (empName)="empNameSelected($event)">
+            </app-emp-name>
+        </div>
+        <div class="col">
+            <mat-form-field>
+                <mat-label>Select Date</mat-label>
+                <input matInput [matDatepicker]="timeSheetDate" required [(ngModel)]="selectedDate"
+                    (dateChange)="fetchTimesheet()">
+                <mat-datepicker-toggle matSuffix [for]="timeSheetDate"></mat-datepicker-toggle>
+                <mat-datepicker #timeSheetDate>
+                </mat-datepicker>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                        </th>
+                        <th scope="col"><span>Logged Hrs</span></th>
+                        <th *ngFor="let hd of header" scope="col"><span>{{ hd.dayName }}<br>{{ hd.day }}</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let row of rows let j=index">
+                        <td style="width: 10%;" scope="row">
+                            {{ row.contractId }}
+                        </td>
+                        <td style="width: 10%;" scope="row" [(ngModel)]="row.noOfHrs">
+                            {{ row.noOfHrs }}
+                        </td>
+                        <td *ngFor="let timeData of row.contractTimeSheetList; let i = index">
+                            <span *ngIf="timeData.isDisabled; else editPlace">
+                                <input class="form-control" type="text" placeholder="" disabled
+                                    [ngModel]="timeData.filledData" aria-label="">
+                            </span>
+                            <ng-template #editPlace>
+                                <input class="form-control" type="text" placeholder="" inputmode="numeric"
+                                    oninput="this.value = this.value.replace(/\D+/g, '')"
+                                    onKeyUp="if(this.value>8){this.value='8';}else if(this.value<0){this.value='0';}"
+                                    [value]="row.contractId" (change)="calculateHours($event)"
+                                    [(ngModel)]="row.contractTimeSheetList[i].filledData" aria-label="">
+                            </ng-template>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <div class="col-md-12 mt-3">
+                <button type="button" class="btn btn-primary ms-3" data-bs-toggle="modal" (click)="updateTimeSheet()"
+                    data-bs-target="#exampleModalToggle2">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>

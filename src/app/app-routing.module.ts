@@ -32,6 +32,8 @@ import { EmpOfferSimulationComponent } from './component/finance/emp-offer-simul
 import { PasswordResetComponent } from './component/features/password-reset/password-reset.component';
 import { ManageDocumentsComponent } from './component/documents/manage-documents/manage-documents.component';
 import { DisplayTasksComponent } from './component/tasks/display-tasks/display-tasks.component';
+import { EmpTimesheetReportComponent } from './component/emptimesheet/emp-timesheet-report/emp-timesheet-report.component';
+import { FillEmpTimesheetComponent } from './component/emptimesheet/fill-emp-timesheet/fill-emp-timesheet.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -70,6 +72,8 @@ const routes: Routes = [
       { path: 'user/usersList', component: ListusersComponent },
       { path: 'user/newUser', component: UserComponent },
       { path: 'changepwd', component: PasswordResetComponent },
+      { path: 'emptimesheet/filltimesheet', component: FillEmpTimesheetComponent },
+      { path: 'emptimesheet/allemptimesheet', component: EmpTimesheetReportComponent },
 
     ]
   }
