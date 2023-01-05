@@ -17,6 +17,7 @@ export class FillEmpTimesheetComponent implements OnInit {
   selectedDate = new Date();
   filterEmpName: string;
   empName: any = undefined;
+  dataLoaded: boolean = false;
 
   constructor(private timesheetService: TimesheetService) { }
 
@@ -72,6 +73,7 @@ export class FillEmpTimesheetComponent implements OnInit {
         this.timesheetHeader = data.timeSheetHeader;
         this.rows = data.timeSheetRow;
         console.log(" this.leaves ........." + data);
+        this.dataLoaded = true;
       });
 
   }

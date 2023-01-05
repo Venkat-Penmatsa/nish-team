@@ -120,27 +120,27 @@ export let menu: NavItem[] = [
         role:['All','Admin','HR','Finance'],
       }
     ]
-  },
+  }/*,
   {
     displayName: 'Emp TimeSheet',
-    iconName: 'file_copy',
+    iconName: 'access_time',
     route: 'emptimesheet',
     role:['All','Admin'],
     children: [
       {
         displayName: 'Fill Timesheet',
-        iconName: 'attach_file',
+        iconName: 'timer',
         route: 'emptimesheet/filltimesheet',
         role:['All','Admin'],
       },
       {
         displayName: 'All Emp TimeSheet Report',
-        iconName: 'attach_file',
+        iconName: 'select_all',
         route: 'emptimesheet/allemptimesheet',
         role:['All','Admin'],
       }
     ]
-  },
+  }*/,
   {
     displayName: 'Assets',
     iconName: 'web_asset',

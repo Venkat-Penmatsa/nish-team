@@ -1,7 +1,5 @@
-<div class="modal-content">
-    <div class="modal-header">
-        <h5 class="modal-title" id="modal_02Label">TimeSheet Details</h5>
-    </div>
+<div class="page-layout-container ">
+    <h1 class="title"> Fill Employee TimeSheet </h1>
     <div class="row">
         <div class="col">
             <app-emp-name [filterEmpName]="filterEmpName" (empName)="empNameSelected($event)">
@@ -17,16 +15,20 @@
                 </mat-datepicker>
             </mat-form-field>
         </div>
+        <div class="col">
+            <button type="button" class="btn btn-primary ms-3" data-bs-toggle="modal" (click)="fetchTimesheet()"
+                    data-bs-target="#exampleModalToggle2">Fetch Timesheet</button>
+        </div>
     </div>
-    <div class="modal-body">
+    <div class="modal-body" *ngIf="dataLoaded">
         <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th scope="col">
                         </th>
-                        <th scope="col"><span>Logged Hrs</span></th>
-                        <th *ngFor="let hd of header" scope="col"><span>{{ hd.dayName }}<br>{{ hd.day }}</span></th>
+                        <th scope="col"  style="color: green;"><span>Logged Hrs</span></th>
+                        <th *ngFor="let hd of header" scope="col" style="color: green;"><span>{{ hd.dayName }}<br>{{ hd.day }}</span></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,7 +41,7 @@
                         </td>
                         <td *ngFor="let timeData of row.contractTimeSheetList; let i = index">
                             <span *ngIf="timeData.isDisabled; else editPlace">
-                                <input class="form-control" type="text" placeholder="" disabled
+                                <input class="form-control" type="text" placeholder="" disabled  style="color: red;"
                                     [ngModel]="timeData.filledData" aria-label="">
                             </span>
                             <ng-template #editPlace>
@@ -54,10 +56,11 @@
 
                 </tbody>
             </table>
-            <div class="col-md-12 mt-3">
+            <div class="col-md-12 mt-3" style="text-align: center;">
                 <button type="button" class="btn btn-primary ms-3" data-bs-toggle="modal" (click)="updateTimeSheet()"
                     data-bs-target="#exampleModalToggle2">Submit</button>
             </div>
         </div>
     </div>
+
 </div>

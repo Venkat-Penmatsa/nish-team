@@ -20,9 +20,9 @@ export class LeavesService {
     return this.http.delete(`${this.baseUrl}/leaves/deleteLeave/` + leaveId, { headers })
   }
 
-  fetchEmpLeaves(empId: string): Observable<any> {
+  fetchEmpLeaves(empId: string, year: any): Observable<any> {
     const headers = { 'Content-type': 'application/json' };
-    return this.http.get(`${this.baseUrl}/leaves/empLeavesBalence/` + empId, { headers })
+    return this.http.get(`${this.baseUrl}/leaves/empLeavesBalence/` + empId + '/' + year, { headers })
   }
 
   fetchAllEmpLeaves(reportDate: any): Observable<any> {
@@ -80,7 +80,7 @@ export class LeavesService {
     return this.http.get(`${this.baseUrl}/batchJob/unFreezeTimeSheet/` + date + '/' + user, { headers })
   }
 
-  
+
 
 
 }
