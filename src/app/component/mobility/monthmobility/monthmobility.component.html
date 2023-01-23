@@ -68,8 +68,55 @@
     &nbsp;&nbsp;
     &nbsp;&nbsp;
 
-
-    <div style="text-align: center">
-        <button mat-button [disabled]="!mobilityForm.valid" (click)="onSubmit()" type="submit">Submit</button>
+    <div class="row">
+        <h3> Apply Monthly Mobility </h3>
     </div>
+
+    <div *ngIf="mobilitySecFlag">
+        <form [formGroup]="monthMobilityForm">
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="field-style">
+                        <mat-label> House Allowance </mat-label>
+                        <input matInput placeholder="In Euros" formControlName="compHouse">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="field-style">
+                        <mat-label> Travel Allowance </mat-label>
+                        <input matInput placeholder="In Euros" formControlName="compTravelPass">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="field-style">
+                        <mat-label> Other Allowance </mat-label>
+                        <input matInput placeholder="In Euros" formControlName="compOthers">
+                    </mat-form-field>
+                </div>
+
+                <div class="col">
+                    <mat-form-field class="field-style">
+                        <mat-label> Other Allowance </mat-label>
+                        <input matInput placeholder="In Euros" formControlName="totalAllowanceApplied">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <mat-form-field class="form-col" style="width: 80%;">
+                        <mat-label>Comments *</mat-label>
+                        <textarea matInput formControlName="comments"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+
+        <div style="text-align: center">
+            <button mat-button [disabled]="!mobilityForm.valid" (click)="onSubmit()" type="submit">Submit</button>
+        </div>
+
+    </div>
+
+
+
 </div>

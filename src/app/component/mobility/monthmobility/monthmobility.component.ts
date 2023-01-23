@@ -118,4 +118,17 @@ export class MonthmobilityComponent implements OnInit {
     udpatedBy: ['']
   });
 
+  
+  monthMobilityForm = this.fb.group({
+    compHouse: ['', Validators.required],
+    compTravelPass: ['',  Validators.required],
+    compOthers: ['',  Validators.required],
+    totalAllowanceApplied: ['',  Validators.required],
+    availableBudget: ['', ],
+    comments: [''],
+    empId: [''],
+    selectedDate: new FormControl(moment()),
+    udpatedBy: ['']
+  });
+
 }
