@@ -54,6 +54,12 @@ import { ManageDocumentsComponent } from './component/documents/manage-documents
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { NetworkInterceptorService } from './services/network-interceptor.service';
 import { DisplayTasksComponent } from './component/tasks/display-tasks/display-tasks.component';
+import { FillEmpTimesheetComponent } from './component/emptimesheet/fill-emp-timesheet/fill-emp-timesheet.component';
+import { EmpTimesheetReportComponent } from './component/emptimesheet/emp-timesheet-report/emp-timesheet-report.component';
+import { AddmobilityComponent } from './component/mobility/addmobility/addmobility.component';
+import { MonthmobilityComponent } from './component/mobility/monthmobility/monthmobility.component';
+import { MobilityreportComponent } from './component/mobility/mobilityreport/mobilityreport.component';
+import { MobilitybatchComponent } from './component/mobility/mobilitybatch/mobilitybatch.component';
 
 @NgModule({
   declarations: [
@@ -96,7 +102,13 @@ import { DisplayTasksComponent } from './component/tasks/display-tasks/display-t
     EmpOfferSimulationComponent,
     PasswordResetComponent,
     ManageDocumentsComponent,
-    DisplayTasksComponent
+    DisplayTasksComponent,
+    FillEmpTimesheetComponent,
+    EmpTimesheetReportComponent,
+    AddmobilityComponent,
+    MonthmobilityComponent,
+    MobilityreportComponent,
+    MobilitybatchComponent
   ],
   imports: [
     ReactiveFormsModule,

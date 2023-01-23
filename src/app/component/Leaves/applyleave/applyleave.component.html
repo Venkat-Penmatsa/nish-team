@@ -4,18 +4,26 @@
         <h1 class="title"> Apply Leaves </h1>
     </div>
 
-
     <div class="row">
         <div class="col-6" style="width: 80%;">
             <app-emp-name [filterEmpName]="filterEmpName" (empName)="empNameSelected($event)">
             </app-emp-name>
         </div>
+        <div class="col">
+            <mat-form-field>
+                <input matInput [matDatepicker]="dp" placeholder="Select Year" [formControl]="date">
+                <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                <mat-datepicker #dp startView="multi-year" (yearSelected)="chosenYearHandler($event, dp)"
+                    panelClass="example-month-picker">
+                </mat-datepicker>
+            </mat-form-field>
+        </div>
 
     </div>
 
-        <div *ngIf="message" class="alert alert-success">{{ messageDesc }}</div>
-        <div *ngIf="error" class="alert alert-danger">{{ errorDesc }}</div>
- 
+    <div *ngIf="message" class="alert alert-success">{{ messageDesc }}</div>
+    <div *ngIf="error" class="alert alert-danger">{{ errorDesc }}</div>
+
     <div *ngIf="showleaves">
         <div class="row">
             <div class="col-4">
@@ -53,7 +61,7 @@
                         <div class="col">
                             <mat-form-field>
                                 <mat-label>Leave Start Date</mat-label>
-                                <input matInput [matDatepicker]="leaveStartDate" required
+                                <input matInput [matDatepicker]="leaveStartDate" required  datePickerFormat="DD/MM/YYYY"
                                     (dateChange)="dateValidation($event)" [matDatepickerFilter]="dateFilter"
                                     formControlName="leaveStartDate">
                                 <mat-datepicker-toggle matSuffix [for]="leaveStartDate"></mat-datepicker-toggle>

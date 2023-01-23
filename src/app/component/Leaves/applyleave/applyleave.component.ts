@@ -1,22 +1,54 @@
 
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { UntypedFormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { FormControl, UntypedFormBuilder, Validators } from '@angular/forms';
 import moment from 'moment';
 import { Moment } from 'moment';
 import { User } from 'src/app/model/User';
 import { LeavesService } from 'src/app/services/leaves.service';
 import { LoaderService } from 'src/app/services/loader.service';
 import { leaveBalence, leaveClassNameType } from '../../../constants/leaveClassNameType';
+import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatDatepicker } from '@angular/material/datepicker';
 
+export const YEAR_FORMATS = {
+  parse: {
+    dateInput: 'DD/MM/YYYY',
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'DD/MM/YYYY',
+    monthYearA11yLabel: 'DD/MM/YYYY',
+  },
+};
 
 @Component({
   selector: 'app-applyleave',
   templateUrl: './applyleave.component.html',
   styleUrls: ['./applyleave.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  providers: [
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+    },
+    {
+      provide: MAT_DATE_FORMATS, useValue: YEAR_FORMATS
+    },
+  ]
 })
 export class ApplyleaveComponent implements OnInit {
 
+  date = new FormControl(moment());
+  chosenYearHandler(normalizedYear: Moment, dp: any) {
+    let ctrlValue: any = this.date.value;
+    ctrlValue.year(normalizedYear.year());
+    this.date.setValue(ctrlValue);
+    dp.close();
+    console.log(this.date.value, ctrlValue);
+    this.fetchLeaveBalence();
+  }
 
   leaveList = leaveBalence;
   filterEmpName: string;
@@ -28,13 +60,15 @@ export class ApplyleaveComponent implements OnInit {
   startDate = new Date();
   message = false;
   messageDesc = "";
-  error=false;
-  errorDesc="";
+  error = false;
+  errorDesc = "";
   user: User;
-  halfDay : boolean = false;
+  halfDay: boolean = false;
   leaveStartDate = moment();
   leaveEndDate = moment();
   loading$: any;
+  selectYear: any;
+  dateForm = new FormControl();
 
   constructor(private fb: UntypedFormBuilder, private leavesService: LeavesService, public loader: LoaderService) {
 
@@ -48,7 +82,7 @@ export class ApplyleaveComponent implements OnInit {
   dateFilter = (m: Moment | null): boolean => {
     const day = (m || moment()).day();
     return day !== 0 && day !== 6;
-  } 
+  }
 
 
   empNameSelected(emp: any) {
@@ -57,7 +91,10 @@ export class ApplyleaveComponent implements OnInit {
   }
 
   fetchLeaveBalence() {
-    this.leavesService.fetchEmpLeaves(this.empName).subscribe(res => {
+
+    console.log("data ==========> " + this.date.value);
+
+    this.leavesService.fetchEmpLeaves(this.empName, moment(this.date.value).format('YYYY')).subscribe(res => {
       console.log("data ==========> " + res);
       const keys = Object.keys(res);
 
@@ -118,7 +155,7 @@ export class ApplyleaveComponent implements OnInit {
           employeeId: this.empName,
           leaveType: this.leaveForm.value.leaveType,
           startDate: moment(this.leaveForm.value.leaveStartDate).format("DD-MM-YYYY"),
-          endDate:  moment(this.leaveForm.controls["leaveEndDate"].value).format("DD-MM-YYYY"),
+          endDate: moment(this.leaveForm.controls["leaveEndDate"].value).format("DD-MM-YYYY"),
           leaveAppliedBy: this.user.empId,
           halfDay: this.halfDay,
           numberOfDays: this.leaveForm.value.numberOfDays,
@@ -127,18 +164,18 @@ export class ApplyleaveComponent implements OnInit {
         const leavesjson = JSON.stringify(applyLeave);
         this.leavesService.applyLeaves(leavesjson).subscribe(res => {
           console.log(res)
-          
-            if(res.responseStatus == 'failed'){
-              this.error = true;
-              this.errorDesc = res.errorDescription;
-            } 
-            if (res.leaveId != null)  {
-              this.message = true;
-              this.messageDesc = "Leave applied successfully";
-              this.fetchLeaveBalence();
-              this.leaveForm.reset();
-            }
-          
+
+          if (res.responseStatus == 'failed') {
+            this.error = true;
+            this.errorDesc = res.errorDescription;
+          }
+          if (res.leaveId != null) {
+            this.message = true;
+            this.messageDesc = "Leave applied successfully";
+            this.fetchLeaveBalence();
+            this.leaveForm.reset();
+          }
+
         });
 
       }
@@ -150,18 +187,18 @@ export class ApplyleaveComponent implements OnInit {
 
   disableEndDate(status: any) {
     console.log(status);
-    if(status){
+    if (status) {
       this.leaveForm.patchValue({ leaveEndDate: this.leaveForm.value.leaveStartDate });
       this.leaveForm.controls["leaveEndDate"].disable();
       this.leaveForm.patchValue({ numberOfDays: 0.5 });
       this.halfDay = true;
-    }else {
+    } else {
       this.leaveForm.patchValue({ leaveEndDate: '' });
       this.leaveForm.patchValue({ numberOfDays: '' });
       this.leaveForm.controls["leaveEndDate"].enable();
       this.halfDay = false;
     }
-    
+
   }
 
   get f() {

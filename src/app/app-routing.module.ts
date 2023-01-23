@@ -32,6 +32,12 @@ import { EmpOfferSimulationComponent } from './component/finance/emp-offer-simul
 import { PasswordResetComponent } from './component/features/password-reset/password-reset.component';
 import { ManageDocumentsComponent } from './component/documents/manage-documents/manage-documents.component';
 import { DisplayTasksComponent } from './component/tasks/display-tasks/display-tasks.component';
+import { EmpTimesheetReportComponent } from './component/emptimesheet/emp-timesheet-report/emp-timesheet-report.component';
+import { FillEmpTimesheetComponent } from './component/emptimesheet/fill-emp-timesheet/fill-emp-timesheet.component';
+import { AddmobilityComponent } from './component/mobility/addmobility/addmobility.component';
+import { MonthmobilityComponent } from './component/mobility/monthmobility/monthmobility.component';
+import { MobilityreportComponent } from './component/mobility/mobilityreport/mobilityreport.component';
+import { MobilitybatchComponent } from './component/mobility/mobilitybatch/mobilitybatch.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -59,6 +65,10 @@ const routes: Routes = [
       { path: 'hr/yearlyTimesheet', component: YearWiseComponent },
       { path: 'hr/generateMontlyTimeSheetReports', component: AllEmpMonthlyLeaveReportComponent },
       { path: 'hr/batchJob', component: LeavescalculatebatchComponent },
+      { path: 'mobility/manageMobility', component: AddmobilityComponent },
+      { path: 'mobility/monthMobility', component: MonthmobilityComponent },
+      { path: 'mobility/mobilityReport', component: MobilityreportComponent },
+      { path: 'mobility/mobilityBatch', component: MobilitybatchComponent },
       { path: 'upload', component: UploadComponent },
       { path: 'assets/newAsset', component: NewAssetComponent },
       { path: 'dependent', component: DependantComponent },
@@ -70,6 +80,8 @@ const routes: Routes = [
       { path: 'user/usersList', component: ListusersComponent },
       { path: 'user/newUser', component: UserComponent },
       { path: 'changepwd', component: PasswordResetComponent },
+      { path: 'emptimesheet/filltimesheet', component: FillEmpTimesheetComponent },
+      { path: 'emptimesheet/allemptimesheet', component: EmpTimesheetReportComponent },
 
     ]
   }

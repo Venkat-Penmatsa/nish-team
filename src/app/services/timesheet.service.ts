@@ -52,6 +52,19 @@ export class TimesheetService {
     return this.http.get(`${this.baseUrl}/timesheet/downloadMonthlyTimeSheet/` + date,{responseType: 'blob'}).pipe(catchError(this.errorHandler));
   }
 
+  fetchTimeSheet(empId: any, date: any): Observable<any> {
+    return this.http.get(`${this.baseUrl}/timesheet/fillTimeSheet/` + empId + '/' + date).pipe(catchError(this.errorHandler))
+  }
+
+  updateTimeSheet(body: any): Observable<any> {
+    const headers = { 'Content-type': 'application/json' };
+    return this.http.post(`${this.baseUrl}/timesheet/updateTimeSheet/` , body, { headers }).pipe(catchError(this.errorHandler));
+  }
+
+  fetchAllEmpTimeSheet(date: any): Observable<any> {
+    return this.http.get(`${this.baseUrl}/timesheet/fetchAllEmpTimeSheet/` + date).pipe(catchError(this.errorHandler))
+  }
+
   errorHandler(error: HttpErrorResponse) {
     return Observable.throw(error.message || "server error.");
   }

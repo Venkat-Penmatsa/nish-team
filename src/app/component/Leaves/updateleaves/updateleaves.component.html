@@ -13,6 +13,15 @@
                     </app-emp-name>
                 </div>
                 <div class="col">
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="dp" placeholder="Select Year" [formControl]="date">
+                        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                        <mat-datepicker #dp startView="multi-year" (yearSelected)="chosenYearHandler($event, dp)"
+                            panelClass="example-month-picker">
+                        </mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col">
                     <button mat-button (click)="fetchLeaves()" type="submit">Fetch Leaves</button>
                 </div>
             </div>

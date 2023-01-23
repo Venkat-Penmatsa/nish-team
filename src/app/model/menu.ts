@@ -122,6 +122,58 @@ export let menu: NavItem[] = [
     ]
   },
   {
+    displayName: 'Emp TimeSheet',
+    iconName: 'access_time',
+    route: 'emptimesheet',
+    role:['All','Admin'],
+    children: [
+      {
+        displayName: 'Fill Timesheet',
+        iconName: 'timer',
+        route: 'emptimesheet/filltimesheet',
+        role:['All','Admin'],
+      },
+      {
+        displayName: 'All Emp TimeSheet Report',
+        iconName: 'select_all',
+        route: 'emptimesheet/allemptimesheet',
+        role:['All','Admin'],
+      }
+    ]
+  },
+  {
+    displayName: 'Mobility',
+    iconName: 'card_travel',
+    route: 'mobility',
+    role:['All','Admin'],
+    children: [
+      {
+        displayName: 'Manage Mobility',
+        iconName: 'directions_railway',
+        route: 'mobility/manageMobility',
+        role:['All','Admin'],
+      },
+      {
+        displayName: 'Monthly Mobility',
+        iconName: 'shopping_cart',
+        route: 'mobility/monthMobility',
+        role:['All','Admin'],
+      },
+      {
+        displayName: 'Monthly Mobility Report',
+        iconName: 'list',
+        route: 'mobility/mobilityReport',
+        role:['All','Admin'],
+      },
+      {
+        displayName: 'Mobility Batch',
+        iconName: 'list_alt',
+        route: 'mobility/mobilityBatch',
+        role:['All','Admin'],
+      }
+    ]
+  },
+  {
     displayName: 'Assets',
     iconName: 'web_asset',
     route: 'assets',
