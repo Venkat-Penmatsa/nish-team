@@ -1,0 +1,52 @@
+<div class="page-layout-container ">
+    <h1 class="title"> All Employee TimeSheet </h1>
+    <div class="row">
+        <div class="col">
+            <mat-form-field>
+                <mat-label>Select Date</mat-label>
+                <input matInput [matDatepicker]="timeSheetDate" required [(ngModel)]="selectedDate"
+                    (dateChange)="fetchAllEmpTimesheet()">
+                <mat-datepicker-toggle matSuffix [for]="timeSheetDate"></mat-datepicker-toggle>
+                <mat-datepicker #timeSheetDate>
+                </mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-primary ms-3" data-bs-toggle="modal" (click)="fetchAllEmpTimesheet()"
+                    data-bs-target="#exampleModalToggle2">Fetch Timesheet</button>
+        </div>
+    </div>
+    <div class="modal-body" *ngIf="dataLoaded">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                        </th>
+                        <th scope="col"  style="color: green;"><span>Logged Hrs</span></th>
+                        <th *ngFor="let hd of header" scope="col" style="color: green;"><span>{{ hd.dayName }}<br>{{ hd.day }}</span></th>
+                    </tr>
+                </thead>
+              <tbody>
+                    <tr *ngFor="let row of rows
+                     let j=index">
+                        <td style="width: 10%;" scope="row">
+                            {{ row.contractId }}
+                        </td>
+                        <td style="width: 10%;" scope="row">
+                            {{ row.noOfHrs }}
+                        </td>
+                        <td *ngFor="let timeData of row.contractTimeSheetList; let i = index">
+                            <span>
+                                <input class="form-control" type="text" placeholder="" disabled  >
+                            </span>
+                        </td>
+                    </tr>
+
+                </tbody> 
+            </table>
+        
+        </div>
+    </div>
+
+</div>
