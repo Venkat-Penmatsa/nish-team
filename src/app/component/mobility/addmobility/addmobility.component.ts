@@ -56,7 +56,6 @@ export class AddmobilityComponent implements OnInit {
     const emparr = this.empName.split("-");
     const selectedDat = moment(this.yearSelected.value).format("DD-MM-YYYY");
     this.mobilityService.getMobilityDetails(emparr[0], selectedDat).subscribe(res => {
-      console.log(res);
       this.mobilityForm.patchValue({
         isMobilityOpted: res.isMobilityOpted,
         mobilityEffectiveDate: new Date(res.mobilityEffectiveDate),
@@ -66,12 +65,10 @@ export class AddmobilityComponent implements OnInit {
       if (res.isMobilityOpted) {
         this.mobilitySecFlag = true;
       }
-
       if (res.responseStatus == 'Failed') {
         this.error = true;
         this.errorDesc = res.errorDescription;
       }
-
     });
 
   }
@@ -93,9 +90,7 @@ export class AddmobilityComponent implements OnInit {
         udpatedBy: this.user.empId,
         selectedDate: this.yearSelected.value
       })
-
       this.mobilityService.applyMobility(this.mobilityForm.value).subscribe(res => {
-        console.log(res);
 
         if (res.responseStatus == 'Success') {
           this.message = true;
@@ -104,12 +99,8 @@ export class AddmobilityComponent implements OnInit {
           this.error = true;
           this.errorDesc = res.errorDescription;
         }
-
       });
-
     }
-
-
   }
 
   mobilityForm = this.fb.group({
