@@ -30,7 +30,7 @@ export class EmpOfferSimulationComponent implements OnInit {
 
     const billingRate =  this.simulationForm.get('dailyRate')?.value;
     this.simulationForm.patchValue({
-      yearBilling: billingRate*220
+      yearBilling: billingRate*215
     });
 
     this.calculateSimulation();

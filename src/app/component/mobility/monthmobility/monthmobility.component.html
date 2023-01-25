@@ -9,7 +9,8 @@
         </div>
         <div class="col">
             <mat-form-field>
-                <input matInput [matDatepicker]="dp" placeholder="Select Year" [formControl]="yearSelected">
+                <input matInput [matDatepicker]="dp" placeholder="Select Month for applying Mobility"
+                    [formControl]="yearSelected">
                 <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
                 <mat-datepicker #dp startView="multi-year" (yearSelected)="chosenYearHandler($event, dp)"
                     panelClass="example-month-picker">
@@ -68,36 +69,41 @@
     &nbsp;&nbsp;
     &nbsp;&nbsp;
 
-    <div class="row">
-        <h3> Apply Monthly Mobility </h3>
-    </div>
-
     <div *ngIf="mobilitySecFlag">
+
+        <div class="row">
+            <h3 style="text-align:center; color:blue"> Apply Monthly Mobility </h3>
+        </div>
+
         <form [formGroup]="monthMobilityForm">
             <div class="row">
                 <div class="col">
                     <mat-form-field class="field-style">
                         <mat-label> House Allowance </mat-label>
-                        <input matInput placeholder="In Euros" formControlName="compHouse">
+                        <input matInput placeholder="In Euros" type="number" defaultValue="0.0" (change)="calculateTotalAllowance()"
+                            formControlName="compHouse">
                     </mat-form-field>
                 </div>
                 <div class="col">
                     <mat-form-field class="field-style">
                         <mat-label> Travel Allowance </mat-label>
-                        <input matInput placeholder="In Euros" formControlName="compTravelPass">
+                        <input matInput placeholder="In Euros" type="number" (change)="calculateTotalAllowance()"
+                            defaultValue="0.0" formControlName="compTravelPass">
                     </mat-form-field>
                 </div>
                 <div class="col">
                     <mat-form-field class="field-style">
                         <mat-label> Other Allowance </mat-label>
-                        <input matInput placeholder="In Euros" formControlName="compOthers">
+                        <input matInput placeholder="In Euros" type="number" (change)="calculateTotalAllowance()"
+                            defaultValue="0.0" formControlName="compOthers">
                     </mat-form-field>
                 </div>
 
                 <div class="col">
                     <mat-form-field class="field-style">
-                        <mat-label> Other Allowance </mat-label>
-                        <input matInput placeholder="In Euros" formControlName="totalAllowanceApplied">
+                        <mat-label> Total Allowance </mat-label>
+                        <input matInput placeholder="In Euros" type="number" readonly="true"
+                            defaultValue="0.0" formControlName="totalAllowanceApplied">
                     </mat-form-field>
                 </div>
             </div>
