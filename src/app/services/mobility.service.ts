@@ -25,5 +25,10 @@ export class MobilityService {
     const headers = { 'Content-type': 'application/json' };
     return this.http.post(`${this.baseUrl}/mobility/saveMobility/`, applyMob, { headers })
   }
+
+  applyMonthMobility(applyMonthMob: any): Observable<any> {
+    const headers = { 'Content-type': 'application/json' };
+    return this.http.post(`${this.baseUrl}/mobility/saveMonthMobility/`, applyMonthMob, { headers })
+  }
   
 }

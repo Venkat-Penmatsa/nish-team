@@ -22,10 +22,20 @@ export class MonthmobilityComponent implements OnInit {
   mobilityStatusChecked: boolean = false;
   user: User;
 
+
+
   constructor(private fb: FormBuilder, private mobilityService: MobilityService) { }
 
   ngOnInit(): void {
+
+    this.monthMobilityForm.patchValue({
+      compHouse: 0,
+      compTravelPass: 0,
+      compOthers: 0
+    });
+
   }
+
 
   empNameSelected(emp: any) {
     this.empName = emp;
@@ -75,6 +85,21 @@ export class MonthmobilityComponent implements OnInit {
 
   }
 
+  calculateTotalAllowance() {
+
+    console.log('calculateTotalAllowance');
+
+    const compHouse = this.monthMobilityForm.get('compHouse')?.value;
+    const compTravelPass = this.monthMobilityForm.get('compTravelPass')?.value;
+    const compOthers = this.monthMobilityForm.get('compOthers')?.value;
+
+    if (compHouse !=null && compTravelPass !=null && compOthers !=null)  {
+      this.monthMobilityForm.patchValue({
+        totalAllowanceApplied: compHouse + compTravelPass + compOthers
+      });
+    }
+  }
+
   enableMobilitySection(status: any) {
     console.log(status);
     this.mobilitySecFlag = status;
@@ -87,10 +112,12 @@ export class MonthmobilityComponent implements OnInit {
 
     if (this.empName && this.yearSelected) {
       this.user = JSON.parse(localStorage.getItem("userDetails") || '{}') as User;
-      this.mobilityForm.patchValue({
+      this.monthMobilityForm.patchValue({
         empId: this.empName,
         udpatedBy: this.user.empId,
-        selectedDate: this.yearSelected.value
+        selectedDate: this.yearSelected.value,
+        appliedDate: this.yearSelected.value,
+        appliedMonth: this.yearSelected.value
       })
       this.mobilityService.applyMobility(this.mobilityForm.value).subscribe(res => {
         console.log(res);
@@ -110,25 +137,26 @@ export class MonthmobilityComponent implements OnInit {
     isMobilityOpted: ['', Validators.required],
     mobilityEffectiveDate: [new Date(),],
     applicableBudget: ['',],
-    consumedBudget: ['', ],
-    availableBudget: ['', ],
+    consumedBudget: ['',],
+    availableBudget: ['',],
     comments: [''],
     empId: [''],
     selectedDate: new FormControl(moment()),
     udpatedBy: ['']
   });
 
-  
+
   monthMobilityForm = this.fb.group({
-    compHouse: ['', Validators.required],
-    compTravelPass: ['',  Validators.required],
-    compOthers: ['',  Validators.required],
-    totalAllowanceApplied: ['',  Validators.required],
-    availableBudget: ['', ],
+    compHouse: [0.0, Validators.required],
+    compTravelPass: [0.0, Validators.required],
+    compOthers: [0.0, Validators.required],
+    totalAllowanceApplied: [0.0, Validators.required],
     comments: [''],
     empId: [''],
     selectedDate: new FormControl(moment()),
-    udpatedBy: ['']
+    udpatedBy: [''],
+    appliedDate: new FormControl(moment()),
+    appliedMonth: new FormControl(moment())
   });
 
 }
