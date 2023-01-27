@@ -88,7 +88,9 @@ export class AddmobilityComponent implements OnInit {
       this.mobilityForm.patchValue({
         empId: this.empName,
         udpatedBy: this.user.empId,
-        selectedDate: this.yearSelected.value
+        selectedDate: this.yearSelected.value,
+        mobilityEffectiveDate: new Date(moment(this.mobilityForm.value.mobilityEffectiveDate).utcOffset('+2000').format('YYYY-MM-DD')),
+
       })
       this.mobilityService.applyMobility(this.mobilityForm.value).subscribe(res => {
 
@@ -99,6 +101,8 @@ export class AddmobilityComponent implements OnInit {
           this.error = true;
           this.errorDesc = res.errorDescription;
         }
+
+        this.mobilityForm.reset();
       });
     }
   }
