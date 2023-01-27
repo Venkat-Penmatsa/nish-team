@@ -83,6 +83,30 @@ export class MonthmobilityComponent implements OnInit {
       }
     });
 
+
+    this.mobilityService.getMonthMobilityDetails(emparr[0], selectedDat).subscribe(res => {
+      console.log(res);
+
+      if (res.responseStatus == 'Success') {
+
+        this.monthMobilityForm.patchValue({
+          compHouse: res.compHouse,
+          compTravelPass: res.compTravelPass,
+          compOthers: res.compOthers,
+          totalAllowanceApplied: res.totalAllowanceApplied,
+          comments: res.comments
+        })
+      }
+
+      if (res.isMobilityOpted) {
+        this.mobilitySecFlag = true;
+      }
+      if (res.responseStatus == 'Failed') {
+        this.error = true;
+        this.errorDesc = res.errorDescription;
+      }
+    });
+
   }
 
   calculateTotalAllowance() {
@@ -93,7 +117,7 @@ export class MonthmobilityComponent implements OnInit {
     const compTravelPass = this.monthMobilityForm.get('compTravelPass')?.value;
     const compOthers = this.monthMobilityForm.get('compOthers')?.value;
 
-    if (compHouse !=null && compTravelPass !=null && compOthers !=null)  {
+    if (compHouse != null && compTravelPass != null && compOthers != null) {
       this.monthMobilityForm.patchValue({
         totalAllowanceApplied: compHouse + compTravelPass + compOthers
       });
@@ -119,7 +143,7 @@ export class MonthmobilityComponent implements OnInit {
         appliedDate: this.yearSelected.value,
         appliedMonth: this.yearSelected.value
       })
-      this.mobilityService.applyMobility(this.mobilityForm.value).subscribe(res => {
+      this.mobilityService.applyMonthMobility(this.monthMobilityForm.value).subscribe(res => {
         console.log(res);
 
         if (res.responseStatus == 'Success') {
@@ -129,6 +153,9 @@ export class MonthmobilityComponent implements OnInit {
           this.error = true;
           this.errorDesc = res.errorDescription;
         }
+
+        this.mobilityForm.reset();
+        this.monthMobilityForm.reset();
       });
     }
   }
