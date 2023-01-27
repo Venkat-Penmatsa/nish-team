@@ -12,8 +12,7 @@
                 <input matInput [matDatepicker]="dp" placeholder="Select Month for applying Mobility"
                     [formControl]="yearSelected">
                 <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-                <mat-datepicker #dp startView="multi-year" (yearSelected)="chosenYearHandler($event, dp)"
-                    panelClass="example-month-picker">
+                <mat-datepicker #dp (change)="chosenYearHandler()" panelClass="example-month-picker">
                 </mat-datepicker>
             </mat-form-field>
         </div>
@@ -80,8 +79,8 @@
                 <div class="col">
                     <mat-form-field class="field-style">
                         <mat-label> House Allowance </mat-label>
-                        <input matInput placeholder="In Euros" type="number" defaultValue="0.0" (change)="calculateTotalAllowance()"
-                            formControlName="compHouse">
+                        <input matInput placeholder="In Euros" type="number" defaultValue="0.0"
+                            (change)="calculateTotalAllowance()" formControlName="compHouse">
                     </mat-form-field>
                 </div>
                 <div class="col">
@@ -102,8 +101,8 @@
                 <div class="col">
                     <mat-form-field class="field-style">
                         <mat-label> Total Allowance </mat-label>
-                        <input matInput placeholder="In Euros" type="number" readonly="true"
-                            defaultValue="0.0" formControlName="totalAllowanceApplied">
+                        <input matInput placeholder="In Euros" type="number" readonly="true" defaultValue="0.0"
+                            formControlName="totalAllowanceApplied">
                     </mat-form-field>
                 </div>
             </div>

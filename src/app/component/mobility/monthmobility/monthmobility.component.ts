@@ -47,12 +47,12 @@ export class MonthmobilityComponent implements OnInit {
     return day !== 0 && day !== 6;
   }
 
-  chosenYearHandler(normalizedYear: Moment, dp: any) {
-    let ctrlValue: any = this.yearSelected.value;
-    ctrlValue.year(normalizedYear.year());
-    this.yearSelected.setValue(ctrlValue);
-    dp.close();
-    console.log(this.yearSelected.value, ctrlValue);
+  chosenYearHandler() {
+    //let ctrlValue: any = this.yearSelected.value;
+    //ctrlValue.year(normalizedYear.year() + normalizedYear.month() );
+    //this.yearSelected.setValue(ctrlValue);
+    //dp.close();
+    //console.log(this.yearSelected.value, ctrlValue);
     this.getMobilityDetails();
 
   }
