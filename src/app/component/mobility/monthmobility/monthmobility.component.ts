@@ -61,6 +61,10 @@ export class MonthmobilityComponent implements OnInit {
 
     this.message = false;
     this.error = false;
+    this.mobilitySecFlag = false;
+
+    this.mobilityForm.reset();
+    this.monthMobilityForm.reset();
 
     const emparr = this.empName.split("-");
     const selectedDat = moment(this.yearSelected.value).format("DD-MM-YYYY");
