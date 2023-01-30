@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import moment from 'moment';
 import { Moment } from 'moment';
 import { User } from 'src/app/model/User';
@@ -11,6 +13,9 @@ import { MobilityService } from 'src/app/services/mobility.service';
   styleUrls: ['./monthmobility.component.css']
 })
 export class MonthmobilityComponent implements OnInit {
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
   filterEmpName: string;
   empName: any;
   message = false;
@@ -22,8 +27,17 @@ export class MonthmobilityComponent implements OnInit {
   mobilityStatusChecked: boolean = false;
   user: User;
 
+  displayedColumns: string[] = ['monthName',
+    'compHouse',
+    'compTravelPass',
+    'compOthers',
+    'totalAllowanceApplied',
+    'comments',
+    'uploadedBy',
+    'updateDate'];
 
-
+  applieMobilityMonths: ApplieMobilityMonths[] = [];
+  dataSource = new MatTableDataSource<ApplieMobilityMonths>(this.applieMobilityMonths);
   constructor(private fb: FormBuilder, private mobilityService: MobilityService) { }
 
   ngOnInit(): void {
@@ -111,6 +125,8 @@ export class MonthmobilityComponent implements OnInit {
       }
     });
 
+    this.fetchAllMonthsMobility();
+
   }
 
   calculateTotalAllowance() {
@@ -190,4 +206,49 @@ export class MonthmobilityComponent implements OnInit {
     appliedMonth: new FormControl(moment())
   });
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  fetchAllMonthsMobility(): any {
+
+    const emparr = this.empName.split("-");
+    const selectedDat = moment(this.yearSelected.value).format("DD-MM-YYYY");
+    this.applieMobilityMonths = [];
+    this.dataSource = new MatTableDataSource<ApplieMobilityMonths>(this.applieMobilityMonths);
+    this.mobilityService.fetchEmpAllMonthsMobility(emparr[0], selectedDat).subscribe(res => {
+      console.log(res);
+      res.forEach(e => {
+        this.applieMobilityMonths.push(new ApplieMobilityMonths(e.monthName,
+          e.compHouse,
+          e.compTravelPass,
+          e.compOthers,
+          e.totalAllowanceApplied,
+          e.comments,
+          e.uploadedBy,
+          e.updateDate));
+      })
+      this.dataSource = new MatTableDataSource<ApplieMobilityMonths>(this.applieMobilityMonths);
+      this.dataSource.paginator = this.paginator;
+    });
+    return "Success";
+  }
+
+
+
+}
+
+
+export class ApplieMobilityMonths {
+  constructor(
+    private monthName: string,
+    private compHouse: number,
+    private compTravelPass: number,
+    private compOthers: number,
+    private totalAllowanceApplied: number,
+    private comments: string,
+    private updatedBy: string,
+    private updateDate: Date
+  ) { }
 }

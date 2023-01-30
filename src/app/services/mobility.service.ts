@@ -27,6 +27,17 @@ export class MobilityService {
     return this.http.get(`${this.baseUrl}/mobility/selectedMonEmpMobility/` + empId + '/' + selectedDate, { headers })
   }
 
+
+  fetchEmpAllMonthsMobility(empId: any, selectedDate: any): Observable<any> {
+    const headers = { 'Content-type': 'application/json' };
+    return this.http.get(`${this.baseUrl}/mobility/fetchEmpAllMonthsMobility/` + empId + '/' + selectedDate, { headers })
+  }
+
+  fetchMobilityReport(selectedDate: any): Observable<any> {
+    const headers = { 'Content-type': 'application/json' };
+    return this.http.get(`${this.baseUrl}/mobility/mobilityReport/`  + selectedDate, { headers })
+  }
+
   applyMobility(applyMob: any): Observable<any> {
     const headers = { 'Content-type': 'application/json' };
     return this.http.post(`${this.baseUrl}/mobility/saveMobility/`, applyMob, { headers })
