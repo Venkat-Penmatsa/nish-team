@@ -22,6 +22,7 @@ export class AddmobilityComponent implements OnInit {
   mobilitySecFlag = false;
   mobilityStatusChecked: boolean = false;
   user: User;
+  warningDesc:string;
 
   constructor(private fb: FormBuilder, private mobilityService: MobilityService) { }
 
@@ -52,7 +53,7 @@ export class AddmobilityComponent implements OnInit {
 
     this.message = false;
     this.error = false;
-
+    this.warningDesc ="";
     const emparr = this.empName.split("-");
     const selectedDat = moment(this.yearSelected.value).format("DD-MM-YYYY");
     this.mobilityService.getMobilityDetails(emparr[0], selectedDat).subscribe(res => {
@@ -64,11 +65,16 @@ export class AddmobilityComponent implements OnInit {
       })
       if (res.isMobilityOpted) {
         this.mobilitySecFlag = true;
+      }else if(!res.isMobilityOpted) {
+        this.mobilitySecFlag = false;
       }
+
+
       if (res.responseStatus == 'Failed') {
         this.error = true;
         this.errorDesc = res.errorDescription;
       }
+      this.warningDesc = res.warningDescription;
     });
 
   }

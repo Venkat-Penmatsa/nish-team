@@ -26,6 +26,7 @@ export class MonthmobilityComponent implements OnInit {
   mobilitySecFlag = false;
   mobilityStatusChecked: boolean = false;
   user: User;
+  warningDesc:string;
 
   displayedColumns: string[] = ['monthName',
     'compHouse',
@@ -71,12 +72,16 @@ export class MonthmobilityComponent implements OnInit {
 
   }
 
+  fetchMobilityDetails(event) {
+    this.getMobilityDetails();
+  }
+
   getMobilityDetails() {
 
     this.message = false;
     this.error = false;
     this.mobilitySecFlag = false;
-
+    this.warningDesc ="";
     this.mobilityForm.reset();
     this.monthMobilityForm.reset();
 
@@ -99,6 +104,8 @@ export class MonthmobilityComponent implements OnInit {
         this.error = true;
         this.errorDesc = res.errorDescription;
       }
+
+      this.warningDesc = res.warningDescription;
     });
 
 
