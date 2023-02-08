@@ -73,7 +73,7 @@ export class MonthmobilityComponent implements OnInit {
   }
 
   fetchMobilityDetails(event) {
-    console.log("fetching based on date ");
+    console.log("fetching based")
     this.getMobilityDetails();
   }
 
@@ -166,7 +166,7 @@ export class MonthmobilityComponent implements OnInit {
       this.user = JSON.parse(localStorage.getItem("userDetails") || '{}') as User;
       this.monthMobilityForm.patchValue({
         empId: this.empName,
-        udpatedBy: this.user.empId,
+        updatedBy: this.user.empId,
         selectedDate: this.yearSelected.value,
         appliedDate: this.yearSelected.value,
         appliedMonth: this.yearSelected.value
@@ -209,7 +209,7 @@ export class MonthmobilityComponent implements OnInit {
     comments: [''],
     empId: [''],
     selectedDate: new FormControl(moment()),
-    udpatedBy: [''],
+    updatedBy: [''],
     appliedDate: new FormControl(moment()),
     appliedMonth: new FormControl(moment())
   });
@@ -234,8 +234,8 @@ export class MonthmobilityComponent implements OnInit {
           e.compOthers,
           e.totalAllowanceApplied,
           e.comments,
-          e.uploadedBy,
-          e.updateDate));
+          e.updatedBy,
+          e.appliedDate));
       })
       this.dataSource = new MatTableDataSource<ApplieMobilityMonths>(this.applieMobilityMonths);
       this.dataSource.paginator = this.paginator;
