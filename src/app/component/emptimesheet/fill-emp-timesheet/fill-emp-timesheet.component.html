@@ -20,6 +20,10 @@
                     data-bs-target="#exampleModalToggle2">Fetch Timesheet</button>
         </div>
     </div>
+
+    <div *ngIf="status === 'Success'" class="alert alert-success">Timesheet saved successfully</div>
+    <div *ngIf="status === 'Failed'" class="alert alert-danger"> Due to technical error timesheet is not saved</div>
+
     <div class="modal-body" *ngIf="dataLoaded">
         <div class="table-responsive">
             <table class="table table-bordered">

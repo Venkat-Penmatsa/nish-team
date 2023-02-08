@@ -18,7 +18,7 @@ export class FillEmpTimesheetComponent implements OnInit {
   filterEmpName: string;
   empName: any = undefined;
   dataLoaded: boolean = false;
-
+  status: string = '';
   constructor(private timesheetService: TimesheetService) { }
 
   ngOnInit(): void {
@@ -48,13 +48,14 @@ export class FillEmpTimesheetComponent implements OnInit {
 
 
   updateTimeSheet() {
+    this.status = '';
     let user: any = JSON.parse(localStorage.getItem("user") || '{}');
     this.timeSheetDetails.timeSheetRow = this.rows;
     this.timeSheetDetails.updatedBy = user.empId;
 
     this.timesheetService.updateTimeSheet(this.timeSheetDetails)
       .subscribe(data => {
-        console.log(" this.leaves ........." + data);
+        this.status = data.responseStatus;
       });
 
     console.log(" rows........" + this.rows);
@@ -65,7 +66,7 @@ export class FillEmpTimesheetComponent implements OnInit {
 
     console.log(" fetching timesheet " + this.empName);
     let user: any = JSON.parse(localStorage.getItem("user") || '{}');
-    this.timesheetService.fetchTimeSheet( this.empName, moment(this.selectedDate).format("DD-MM-YYYY"))
+    this.timesheetService.fetchTimeSheet(this.empName, moment(this.selectedDate).format("DD-MM-YYYY"))
       .subscribe(data => {
         console.log("data ==========> " + data);
         this.timeSheetDetails = data;
