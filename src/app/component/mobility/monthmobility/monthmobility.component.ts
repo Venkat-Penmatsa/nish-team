@@ -73,6 +73,7 @@ export class MonthmobilityComponent implements OnInit {
   }
 
   fetchMobilityDetails(event) {
+    console.log("fetching based on date ");
     this.getMobilityDetails();
   }
 
