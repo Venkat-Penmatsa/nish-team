@@ -94,7 +94,18 @@
                     </mat-form-field>
                 </div>
                 <div class="col">
-                    <mat-form-field class="form-col" style="width: 80%;">
+                    <mat-form-field>
+                        <mat-label>Contract Type*</mat-label>
+                        <select matNativeControl required formControlName="contractType">
+                            <option value="Billing">Billing</option>
+                            <option value="Bench">Bench</option>
+                        </select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="form-col" style="width: 40%;">
                         <mat-label>Comments *</mat-label>
                         <textarea matInput formControlName="comments"></textarea>
                     </mat-form-field>
@@ -104,7 +115,8 @@
     </form>
     &nbsp;&nbsp;
     <div style="text-align: center">
-        <button mat-button (click)="onSubmit()" [disabled]="!newContractForm.valid" type="submit">Manage Contract</button>
+        <button mat-button (click)="onSubmit()" [disabled]="!newContractForm.valid" type="submit">Manage
+            Contract</button>
     </div>
 </div>
 <app-progress [loading$]="loading$"> </app-progress>

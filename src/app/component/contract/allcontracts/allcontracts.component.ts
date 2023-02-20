@@ -18,6 +18,7 @@ export class AllcontractsComponent implements AfterViewInit, OnInit {
 
   displayedColumns: string[] = ['employeeId',
     'contractId',
+    'contractType',
     'nishContractId',
     'contractStatus',
     'clientName',
@@ -33,7 +34,7 @@ export class AllcontractsComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   loading$: any;
 
-  constructor(private newcontractService: NewcontractService,public loader: LoaderService) {
+  constructor(private newcontractService: NewcontractService, public loader: LoaderService) {
 
   }
 
@@ -42,7 +43,6 @@ export class AllcontractsComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit(): void {
-
 
     console.log(" loader in  contract is ", this.loading$);
     this.loading$ = this.loader.loading$;
