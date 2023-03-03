@@ -9,6 +9,7 @@ import { UntypedFormBuilder, Validators } from '@angular/forms';
 export class EmpOfferSimulationComponent implements OnInit {
 
   constructor(private fb: UntypedFormBuilder) { }
+  transportOption:any;
 
   ngOnInit(): void {
 
@@ -21,6 +22,7 @@ export class EmpOfferSimulationComponent implements OnInit {
       laptop: 600,
       mealVoucher: 176,
       bonus:0,
+      mobility:0,
       ecoCheques:250,
       adminCharges:1000
     });
@@ -56,12 +58,25 @@ export class EmpOfferSimulationComponent implements OnInit {
       const grossPerYear = (grossPerMonth+grossTax)*13.92;
 
       const insurance =  this.simulationForm.get('insurance')?.value;
-      const car =  this.simulationForm.get('car')?.value;
-      const fuelCard =  this.simulationForm.get('fuelCard')?.value;
-      const carInsurance =  this.simulationForm.get('carInsurance')?.value;
       const mealVoucher =  this.simulationForm.get('mealVoucher')?.value;
 
-      const rest = (insurance+car+fuelCard+carInsurance+mealVoucher)*12;
+
+      let transport =0;
+
+      if( this.transportOption!=null && this.transportOption!=""){
+
+        if(this.transportOption == 'Car' ){
+
+          const car =  this.simulationForm.get('car')?.value;
+          const fuelCard =  this.simulationForm.get('fuelCard')?.value;
+          const carInsurance =  this.simulationForm.get('carInsurance')?.value;
+          transport = (car+fuelCard+carInsurance)*12;
+        }else if(this.transportOption == 'Mobility' ){
+          transport =  this.simulationForm.get('mobility')?.value;
+        }
+      }
+
+      const rest = (insurance+mealVoucher)*12;
   
       const laptop =  this.simulationForm.get('laptop')?.value;
       const mobile =  this.simulationForm.get('mobile')?.value;
@@ -69,7 +84,7 @@ export class EmpOfferSimulationComponent implements OnInit {
       const ecoCheques =  this.simulationForm.get('ecoCheques')?.value;
       const adminCharges =  this.simulationForm.get('adminCharges')?.value;
 
-      const ctc = (bonus+mobile+laptop+ecoCheques+adminCharges+grossPerYear+rest)*1;
+      const ctc = (bonus+mobile+laptop+ecoCheques+adminCharges+grossPerYear+rest+transport)*1;
 
       const yearBilling =  this.simulationForm.get('yearBilling')?.value;
 
@@ -91,10 +106,12 @@ export class EmpOfferSimulationComponent implements OnInit {
     yearBilling: ['', Validators.required],
     grossPerMonth: ['', Validators.required],
     grossTax: [''],
+    transportOption: [''],
     car: [''],
     insurance: ['', Validators.required],
     fuelCard: [''],
     carInsurance: [''],
+    mobility: [''],
     mobile: [''],
     ecoCheques:[],
     adminCharges:[],

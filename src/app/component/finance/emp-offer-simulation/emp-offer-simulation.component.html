@@ -34,26 +34,41 @@
         <div class="row">
             <div class="col">
                 <mat-form-field>
-                    <mat-label>Car(D) *</mat-label>
-                    <input matInput type="number" min="0" formControlName="car">
-                </mat-form-field>
-            </div>
-            <div class="col">
-                <mat-form-field>
-                    <mat-label>Insurance(C) *</mat-label>
+                    <mat-label>DKV Insurance(C) *</mat-label>
                     <input matInput type="number" min="0" formControlName="insurance">
                 </mat-form-field>
             </div>
             <div class="col">
                 <mat-form-field>
+                    <mat-label>Transport Options</mat-label>
+                    <select matNativeControl required formControlName="transportOption" [(ngModel)]="transportOption">
+                        <option value="Car">Car</option>
+                        <option value="Mobility">Mobility</option>
+                    </select>
+                </mat-form-field>
+            </div>
+            <div class="col" *ngIf="transportOption === 'Car'">
+                <mat-form-field>
+                    <mat-label>Car(D) *</mat-label>
+                    <input matInput type="number" min="0" formControlName="car">
+                </mat-form-field>
+            </div>
+            <div class="col" *ngIf="transportOption === 'Car'">
+                <mat-form-field>
                     <mat-label>Fuel Card(E) *</mat-label>
                     <input matInput type="number" min="0" formControlName="fuelCard">
                 </mat-form-field>
             </div>
-            <div class="col">
+            <div class="col" *ngIf="transportOption === 'Car'">
                 <mat-form-field>
                     <mat-label>Car Insurance(F) *</mat-label>
                     <input matInput type="number" min="0" formControlName="carInsurance">
+                </mat-form-field>
+            </div>
+            <div class="col" *ngIf="transportOption === 'Mobility'">
+                <mat-form-field>
+                    <mat-label>Mobility(D) *</mat-label>
+                    <input matInput type="number" min="0" formControlName="mobility">
                 </mat-form-field>
             </div>
             <div class="col">
