@@ -33,6 +33,7 @@
                         </th>
                         <th scope="col"  style="color: green;"><span>Logged Hrs</span></th>
                         <th *ngFor="let hd of header" scope="col" style="color: green;"><span>{{ hd.dayName }}<br>{{ hd.day }}</span></th>
+                        <th scope="col"  style="color: green;"><span>Comments</span></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,6 +56,10 @@
                                     [value]="row.contractId" (change)="calculateHours($event)"
                                     [(ngModel)]="row.contractTimeSheetList[i].filledData" aria-label="">
                             </ng-template>
+                        </td>
+                        <td style="width: 10%;" scope="row" >
+                            <input class="form-control" type="text" placeholder=""  [(ngModel)]="row.comments"
+                                     aria-label="">
                         </td>
                     </tr>
 

@@ -31,56 +31,6 @@ export const MY_FORMATS = {
   styleUrls: ['./emp-timesheet-report.component.css']
 })
 export class EmpTimesheetReportComponent implements OnInit {
-  /*
-  header: any[] = [];
-  rows: any[] = [];
-  timesheetDataSource: Timesheet[] = [];
-  timesheetHeader: any[] = [];
-  timeSheetDetails: any[] = [];
-  selectedDate = new Date();
-  filterEmpName: string;
-  empName: any = undefined;
-  dataLoaded: boolean = false;
-
-  empNameSelected(emp: any) {
-    this.empName = emp;
-  }
-
-  calculateHours(data: any) {
-
-    console.log(" data ........." + data);
-    this.rows.forEach((element) => {
-      let contList: any = element.contractTimeSheetList;
-      let totalHours = 0;
-      contList.forEach((cont: any) => {
-        if (!cont.isDisabled) {
-          totalHours = totalHours + +cont.filledData;
-        }
-      }
-      );
-      element.noOfHrs = totalHours;
-    });
-  }
-
-  fetchAllEmpTimesheet(): void {
-    console.log(" All emp timesheet ........."  );
-    this.timesheetService.fetchAllEmpTimeSheet(moment(this.selectedDate).format("DD-MM-YYYY"))
-      .subscribe( (data : any) => {
-        console.log("data ==========> " + data);
-        this.timeSheetDetails = data;
-        this.header = data[0].timeSheetHeader;
-        this.timesheetHeader = data[0].timeSheetHeader;
-        this.timeSheetDetails.forEach( tsd => {
-          const timeSheetRow :any[] = tsd.timeSheetRow;
-          timeSheetRow.forEach( tsd => { 
-            this.rows.push(tsd);
-          });
-        });
-        //this.rows = data.timeSheetRow;
-        console.log("  this.rows......." +  this.rows);
-        this.dataLoaded = true;
-      });
-  } */
 
   date = new FormControl(moment());
   message = false;
@@ -92,7 +42,7 @@ export class EmpTimesheetReportComponent implements OnInit {
 
   chosenYearHandler(normalizedYear: Moment) {
     const ctrlValue = this.date.value;
-    if(ctrlValue!= null){
+    if (ctrlValue != null) {
       ctrlValue.year(normalizedYear.year());
       this.date.setValue(ctrlValue);
     }
@@ -101,7 +51,7 @@ export class EmpTimesheetReportComponent implements OnInit {
 
   chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
     const ctrlValue = this.date.value;
-    if(ctrlValue!= null){
+    if (ctrlValue != null) {
       ctrlValue.month(normalizedMonth.month());
       this.date.setValue(ctrlValue);
       datepicker.close();
@@ -109,20 +59,16 @@ export class EmpTimesheetReportComponent implements OnInit {
 
   }
 
-  displayedColumns: string[] = ['employeeid',
-    'workingdays', 'actualWorkingDays', 'totalBillableDays', 'totalBenchDays',
-    'totalleaves',
-    'totalsickleaves',
-    'totalauthorisedabsence',
-    'totalrttadvleaves',
-    'totalotherleaves',
-    'compensationLeave',
-    'forwardedLeave',
-    'totalmaternityleaves',
-    'totalpaternityleaves',
-    'totalovertimeleaves',
-    'totalunauthabsleaves',
-    'totalforcedmajeureleaves'
+  displayedColumns: string[] = ['empId',
+    'contractPeriod', 
+    'contractId', 
+    'contractType', 
+    'totalWorkingDays',
+    'contractWorkingDays',
+    'numberOfFilledHours',
+    'filledDays',
+    'numberOfLeaves',
+    'comments'
   ];
 
   allEmployeesTimeSheetReport: AllEmployeesTimeSheetReport[] = [];
@@ -148,34 +94,27 @@ export class EmpTimesheetReportComponent implements OnInit {
     this.allEmployeesTimeSheetReport = [];
     this.dataSource = new MatTableDataSource<AllEmployeesTimeSheetReport>(this.allEmployeesTimeSheetReport);
     this.selectedDate = moment(event.value).format("DD-MM-YYYY");
-    this.leavesService.fetchAllEmpLeavesMonthlyReport(this.selectedDate).subscribe(res => {
+    this.timesheetService.generateContractBasedTimeSheetReport(this.selectedDate).subscribe(res => {
 
       if (res.validationMessage != null) {
         this.message = true;
         this.messageDesc = res.validationMessage;
       }
 
-      var empTimesheet = res.monthlyTimeSheetReport;
+      var empTimesheet = res.allEmployeesTimeSheet;
       console.log(empTimesheet);
       empTimesheet.forEach(e => {
-        this.allEmployeesTimeSheetReport.push(new AllEmployeesTimeSheetReport(e.employeeid,
-          e.totalsickleaves,
-          e.totalauthorisedabsence,
-          e.totalmaternityleaves,
-          e.totalpaternityleaves,
-          e.totalrttadvleaves,
-          e.totalovertimeleaves,
-          e.totalunauthabsleaves,
-          e.totalforcedmajeureleaves,
-          e.totalotherleaves,
-          e.workingdays,
-          e.actualWorkingDays,
-          e.totalBillableDays,
-          e.totalBenchDays,
-          e.totalleaves,
-          e.totalcompenstionleaves,
-          e.totalforwardedleaves
-          ));
+        this.allEmployeesTimeSheetReport.push(new AllEmployeesTimeSheetReport(e.empId,
+          e.contractPeriod,
+          e.contractId,
+          e.contractType,
+          e.totalWorkingDays,
+          e.contractWorkingDays,
+          e.numberOfFilledHours,
+          e.filledDays,
+          e.numberOfLeaves,
+          e.comments
+        ));
       })
       this.dataSource = new MatTableDataSource<AllEmployeesTimeSheetReport>(this.allEmployeesTimeSheetReport);
       this.dataSource.paginator = this.paginator;
@@ -211,35 +150,15 @@ export class EmpTimesheetReportComponent implements OnInit {
 
 export class AllEmployeesTimeSheetReport {
   constructor(
-    private employeeid: string,
-    private totalsickleaves: number,
-    private totalauthorisedabsence: number,
-    private totalmaternityleaves: number,
-    private totalpaternityleaves: number,
-    private totalrttadvleaves: number,
-    private totalovertimeleaves: number,
-    private totalunauthabsleaves: number,
-    private totalforcedmajeureleaves: number,
-    private totalotherleaves: number,
-    private workingdays: number,
-    private actualWorkingDays: number,
-    private totalBillableDays: number,
-    private totalBenchDays: number,
-    private totalleaves: number,
-    private totalcompenstionleaves: number,
-    private totalforwardedleaves: number
+    private empId: string,
+    private contractPeriod: string,
+    private contractId: string,
+    private contractType: string,
+    private totalWorkingDays: number,
+    private contractWorkingDays: number,
+    private numberOfFilledHours: number,
+    private filledDays: number,
+    private numberOfLeaves: number,
+    private comments: string
   ) { }
-}
-
-
-interface Timesheet {
-  contractId: string;
-  comments: string;
-  noOfHrs: string;
-  contractTimeSheetList: {
-    day: string;
-    dayName: string;
-    isDisabled: boolean;
-    filledData: string;
-  }
 }
