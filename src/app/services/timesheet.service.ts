@@ -65,6 +65,10 @@ export class TimesheetService {
     return this.http.get(`${this.baseUrl}/timesheet/fetchAllEmpTimeSheet/` + date).pipe(catchError(this.errorHandler))
   }
 
+  generateContractBasedTimeSheetReport(date: any): Observable<any> {
+    return this.http.get(`${this.baseUrl}/timesheet/generateContractTimeSheet/` + date).pipe(catchError(this.errorHandler))
+  }
+
   errorHandler(error: HttpErrorResponse) {
     return Observable.throw(error.message || "server error.");
   }
