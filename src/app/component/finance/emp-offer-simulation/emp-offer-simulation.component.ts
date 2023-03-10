@@ -23,6 +23,7 @@ export class EmpOfferSimulationComponent implements OnInit {
       mealVoucher: 176,
       bonus:0,
       mobility:0,
+      sim:400,
       ecoCheques:250,
       adminCharges:1000
     });
@@ -59,7 +60,7 @@ export class EmpOfferSimulationComponent implements OnInit {
 
       const insurance =  this.simulationForm.get('insurance')?.value;
       const mealVoucher =  this.simulationForm.get('mealVoucher')?.value;
-
+      
 
       let transport =0;
 
@@ -83,8 +84,9 @@ export class EmpOfferSimulationComponent implements OnInit {
       const bonus =  this.simulationForm.get('bonus')?.value;
       const ecoCheques =  this.simulationForm.get('ecoCheques')?.value;
       const adminCharges =  this.simulationForm.get('adminCharges')?.value;
+      const sim =  this.simulationForm.get('sim')?.value;
 
-      const ctc = (bonus+mobile+laptop+ecoCheques+adminCharges+grossPerYear+rest+transport)*1;
+      const ctc = (bonus+mobile+laptop+ecoCheques+adminCharges+sim+grossPerYear+rest+transport)*1;
 
       const yearBilling =  this.simulationForm.get('yearBilling')?.value;
 
@@ -113,6 +115,7 @@ export class EmpOfferSimulationComponent implements OnInit {
     carInsurance: [''],
     mobility: [''],
     mobile: [''],
+    sim: [''],
     ecoCheques:[],
     adminCharges:[],
     laptop: [''],
