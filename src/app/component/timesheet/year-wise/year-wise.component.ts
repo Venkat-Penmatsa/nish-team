@@ -197,7 +197,7 @@ export class YearWiseComponent implements OnInit, OnChanges {
     let selectedEmp = this.empName.split('-');
     this.employeeData = null;
     this.hasError = false;
-    this.service.downloadYearlyTimesheet(selectedEmp[0], _moment(this.selectedY.value).format('YYYY')).subscribe(res => {
+    this.service.downloadYearlyTimesheet(selectedEmp[0], _moment(this.selectedY.value).format('YYYY')).subscribe((res :any) => {
       console.log(res);
       //window.open(res);
 

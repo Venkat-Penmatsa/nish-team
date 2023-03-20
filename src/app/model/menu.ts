@@ -114,6 +114,12 @@ export let menu: NavItem[] = [
         role:['All','Admin','HR','Finance'],
       },
       {
+        displayName: 'Contract Based Monthly TimeSheet',
+        iconName: 'report',
+        route: 'hr/generateContractBasedTimeSheetReport',
+        role:['All','Admin','HR','Finance'],
+      },
+      {
         displayName: 'Leaves Generation Batch',
         iconName: 'list_alt',
         route: 'hr/batchJob',

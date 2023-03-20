@@ -22,9 +22,11 @@ export class FeaturesComponent implements OnDestroy {
   roleDesc: string;
 
   constructor(private media: MediaObserver, private router: Router, public shared: SharedService) {
-    this.mediaWatcher = this.media.media$.subscribe((mediaChange: MediaChange) => {
+
+   // TODO ::check this commented code
+   /* this.mediaWatcher = this.media.media$.subscribe((mediaChange: MediaChange) => {
       this.handleMediaChange(mediaChange);
-    })
+    })*/ 
   }
 
   private handleMediaChange(mediaChange: MediaChange) {

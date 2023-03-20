@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { NotFoundError, Observable, throwError } from 'rxjs';
 import { catchError } from "rxjs/operators";
 import { HostNameServiceService } from './host-name-service.service';
 
@@ -69,7 +69,12 @@ export class TimesheetService {
     return this.http.get(`${this.baseUrl}/timesheet/generateContractTimeSheet/` + date).pipe(catchError(this.errorHandler))
   }
 
+  generateOldContractBasedTimeSheetReport(date: any): Observable<any> {
+    return this.http.get(`${this.baseUrl}/timesheet/generateOldContractBasedTimeSheetReport/` + date).pipe(catchError(this.errorHandler))
+  }
+
   errorHandler(error: HttpErrorResponse) {
-    return Observable.throw(error.message || "server error.");
+    //return Observable.throw(error.message || "server error.");
+    return throwError( new NotFoundError(error.message || "server error.") )
   }
 }

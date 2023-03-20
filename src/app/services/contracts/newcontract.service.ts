@@ -1,7 +1,8 @@
 import { DOCUMENT } from '@angular/common';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { NotFoundError, Observable } from 'rxjs';
+import { throwError } from 'rxjs';
 import { catchError } from "rxjs/operators";
 import { HostNameServiceService } from '../host-name-service.service';
 
@@ -32,7 +33,8 @@ export class NewcontractService {
   }
 
   errorHandler(error: HttpErrorResponse) {
-    return Observable.throw(error.message || "server error.");
+    //return Observable.throw(error.message || "server error.");
+    return throwError( new NotFoundError(error.message || "server error.") )
   }
 
 }

@@ -38,6 +38,7 @@ import { AddmobilityComponent } from './component/mobility/addmobility/addmobili
 import { MonthmobilityComponent } from './component/mobility/monthmobility/monthmobility.component';
 import { MobilityreportComponent } from './component/mobility/mobilityreport/mobilityreport.component';
 import { MobilitybatchComponent } from './component/mobility/mobilitybatch/mobilitybatch.component';
+import { ContractBasedTimesheetComponent } from './component/timesheet/contract-based-timesheet/contract-based-timesheet.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -64,6 +65,7 @@ const routes: Routes = [
       { path: 'hr/monthlyTimesheet', component: MonthWiseComponent },
       { path: 'hr/yearlyTimesheet', component: YearWiseComponent },
       { path: 'hr/generateMontlyTimeSheetReports', component: AllEmpMonthlyLeaveReportComponent },
+      { path: 'hr/generateContractBasedTimeSheetReport', component: ContractBasedTimesheetComponent},
       { path: 'hr/batchJob', component: LeavescalculatebatchComponent },
       { path: 'mobility/manageMobility', component: AddmobilityComponent },
       { path: 'mobility/monthMobility', component: MonthmobilityComponent },
@@ -82,6 +84,7 @@ const routes: Routes = [
       { path: 'changepwd', component: PasswordResetComponent },
       { path: 'emptimesheet/filltimesheet', component: FillEmpTimesheetComponent },
       { path: 'emptimesheet/allemptimesheet', component: EmpTimesheetReportComponent },
+      
 
     ]
   }
