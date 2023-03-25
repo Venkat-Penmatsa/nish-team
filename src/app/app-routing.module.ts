@@ -82,10 +82,9 @@ const routes: Routes = [
       { path: 'user/usersList', component: ListusersComponent },
       { path: 'user/newUser', component: UserComponent },
       { path: 'changepwd', component: PasswordResetComponent },
+      { path: 'user/empManage', component: ManageUserComponent },
       { path: 'emptimesheet/filltimesheet', component: FillEmpTimesheetComponent },
       { path: 'emptimesheet/allemptimesheet', component: EmpTimesheetReportComponent },
-      
-
     ]
   }
 ];

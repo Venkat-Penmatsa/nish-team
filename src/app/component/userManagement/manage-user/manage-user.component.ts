@@ -1,8 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { UntypedFormBuilder } from '@angular/forms';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-import { AssetsService } from 'src/app/services/assets.service';
+import { Component, OnInit } from '@angular/core';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -12,48 +10,47 @@ import { AssetsService } from 'src/app/services/assets.service';
 })
 export class ManageUserComponent implements OnInit {
 
-  constructor(private fb: UntypedFormBuilder, private assetsService: AssetsService) {
-
-  }
-
-  assetHistryList: HistoryDetail[] = [];
+  empName: any;
+  filterEmpName: string;
+  successFlag = false;
+  message: string;
+  constructor(private fb: UntypedFormBuilder, private userService: UserService) { }
 
   ngOnInit(): void {
   }
 
-  displayedColumns: string[] = ['assetAssignedToEmp', 'empAssignedDate', 'empEndDate', 'status'];
-  dataSource = new MatTableDataSource<HistoryDetail>(this.assetHistryList);
-
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+  empNameSelected(emp: any) {
+    this.empName = emp;
   }
 
+  userForm = this.fb.group({
+    password: ['', Validators.required],
+    repassword: ['', Validators.required],
+    active: ['', Validators.required],
+    role: ['', Validators.required]
+  });
 
-  searchAsset($event: Event) {
-    this.assetHistryList = [];
-    const searchAssetId = ($event.target as HTMLTextAreaElement).value;
-    if (searchAssetId != "") {
-      this.assetsService.fetchAssetHistory(searchAssetId).subscribe(res => {
+  createUser() {
+
+    console.log('createUser');
+
+    if (this.userForm.valid) {
+
+      const formData: any = this.userForm.value;
+      const manageUser = {
+        empId: this.empName,
+        role: formData.role,
+        password: formData.password,
+        userActive: formData.active
+      }
+      this.userService.createNewUser(manageUser).subscribe(res => {
         console.log(res);
-        res.forEach(e => {
-          this.assetHistryList.push(new HistoryDetail(e.assetAssignedToEmp, e.empAssignedDate, e.empEndDate, e.status));
-
-        })
-        this.dataSource = new MatTableDataSource<HistoryDetail>(this.assetHistryList);
+        this.successFlag = true;
+        this.message = res.empId + " Adminstrated successfully";
       })
     }
   }
 
-}
 
-export class HistoryDetail {
-  constructor(
-    private assetAssignedToEmp: string,
-    private empAssignedDate: Date,
-    private empEndDate: Date,
-    private status: string
-  ) {}
+
 }

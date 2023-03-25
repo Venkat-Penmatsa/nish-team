@@ -242,6 +242,12 @@ export let menu: NavItem[] = [
         iconName: 'people',
         route: 'user/usersList',
         role:['All','Admin'],
+      },
+      {
+        displayName: 'Manage Employees',
+        iconName: 'people',
+        route: 'user/empManage',
+        role:['All','Admin'],
       }
     ]
   }
