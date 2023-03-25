@@ -12,26 +12,61 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ListusersComponent implements OnInit {
 
+  successMessage: any;
+  errorDescription: any;
+
+
   constructor(private fb: UntypedFormBuilder, private userService: UserService) {
 
   }
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   userDetailList: UserDetail[] = [];
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  deleteUser(user: any) {
+
+    this.errorDescription = "";
+    this.successMessage = "";
+
+    this.userService.deleteUser(user.userName).subscribe((res: any) => {
+      let deleteUserRes: any = res;
+
+      this.userDetailList = [];
+
+      this.errorDescription = res.successMessage;
+      this.successMessage = res.errorDescription;
+
+      this.getUserList();
+
+    });
+
+  }
+
   ngOnInit(): void {
 
+    this.getUserList();
+
+  }
+
+  getUserList() {
+
+    this.userDetailList = [];
     this.userService.fetchUsersList().subscribe(res => {
       console.log(res);
       res.forEach(e => {
         this.userDetailList.push(new UserDetail(e.empId, e.userActive, e.role));
-
       })
       this.dataSource = new MatTableDataSource<UserDetail>(this.userDetailList);
+      this.dataSource.paginator = this.paginator;
     })
-
   }
 
-  displayedColumns: string[] = ['userName', 'status', 'role'];
+  displayedColumns: string[] = ['userName', 'status', 'role', 'actions'];
   dataSource = new MatTableDataSource<UserDetail>(this.userDetailList);
 
 }
@@ -41,5 +76,5 @@ export class UserDetail {
     private userName: string,
     private status: Date,
     private role: string
-  ) {}
+  ) { }
 }

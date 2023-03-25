@@ -33,5 +33,15 @@ export class UserService {
     return this.http.get(`${this.baseUrl}/user/listUsers`, { headers })
   }
 
+  generateRandomPD(): Observable<any> {
+    const headers = { 'Content-type': 'application/json' };
+    return this.http.get(`${this.baseUrl}/user/generateRandomPD`, { headers })
+  }
+
+  deleteUser(userId: any) {
+    const headers = { 'Content-type': 'application/json' };
+    return this.http.delete(`${this.baseUrl}/user/deleteUser/` + userId, { headers })
+  }
+
 
 }

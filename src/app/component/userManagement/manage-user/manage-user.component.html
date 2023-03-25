@@ -13,19 +13,14 @@
         <div class="row">
             <div class="col">
                 <mat-form-field class="example-full-width">
-                    <mat-label>Password *</mat-label>
-                    <input type="password" matInput formControlName="password">
+                    <mat-label>Generate Password </mat-label>
+                    <input type="text" matInput formControlName="password">
                 </mat-form-field>
+                <button mat-button (click)="generateRandomPD()" type="submit">Generate Password
+                </button>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <mat-form-field class="example-full-width">
-                    <mat-label>Reenter Password *</mat-label>
-                    <input type="password" matInput formControlName="repassword">
-                </mat-form-field>
-            </div>
-        </div>
+
         <div class="row">
             <div class="col">
                 <mat-form-field class="example-full-width">
@@ -41,17 +36,14 @@
             <div class="col">
                 <mat-form-field class="example-full-width">
                     <mat-label>Role </mat-label>
-                    <select matNativeControl required formControlName="role">
-                        <option value="admin">Admin</option>
-                        <option value="hr">HR</option>
-                        <option value="finance">Finance</option>
-                    </select>
+                    <input type="text" matInput formControlName="role" value="Employee" readonly="true">
                 </mat-form-field>
             </div>
         </div>
         <div style="text-align: center">
-            <button mat-button [disabled]="!userForm.valid" (click)="createUser()" type="submit">Manage Employee Access
-                </button>
+            <button mat-button [disabled]="!userForm.valid" (click)="createUser()" type="submit">Manage Employee
+                Access
+            </button>
         </div>
     </div>
 </div>

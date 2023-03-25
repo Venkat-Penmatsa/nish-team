@@ -17,6 +17,10 @@ export class ManageUserComponent implements OnInit {
   constructor(private fb: UntypedFormBuilder, private userService: UserService) { }
 
   ngOnInit(): void {
+
+    this.userForm.patchValue({
+      role: "Employee",
+    });
   }
 
   empNameSelected(emp: any) {
@@ -25,7 +29,6 @@ export class ManageUserComponent implements OnInit {
 
   userForm = this.fb.group({
     password: ['', Validators.required],
-    repassword: ['', Validators.required],
     active: ['', Validators.required],
     role: ['', Validators.required]
   });
@@ -52,5 +55,13 @@ export class ManageUserComponent implements OnInit {
   }
 
 
+  generateRandomPD() {
+
+    this.userService.generateRandomPD().subscribe((res: any) => {
+      this.userForm.patchValue({
+        password: res.randomPw,
+      });
+    })
+  }
 
 }
