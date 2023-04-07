@@ -36,9 +36,9 @@ export class FillEmpTimesheetComponent implements OnInit {
 
       let contList: any = element.contractTimeSheetList;
       let totalHours = 0;
-      contList.forEach((cont: any) => {
-        if (!cont.isDisabled) {
-          totalHours = totalHours + +cont.filledData;
+      contList.forEach((num: any) => {
+        if (this.checkNumber(num)) {
+          totalHours = totalHours + +num.filledData;
         }
       }
       );
@@ -46,6 +46,9 @@ export class FillEmpTimesheetComponent implements OnInit {
     });
   }
 
+  checkNumber(num :any){
+   return (typeof(num.filledData) === 'number' || typeof(num.filledData) === "string" && num.filledData.trim() !== '') && !isNaN(num.filledData as number);
+  }
 
   updateTimeSheet() {
     this.status = '';
