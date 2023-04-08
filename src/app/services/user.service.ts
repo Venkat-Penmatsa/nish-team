@@ -1,5 +1,7 @@
+import { DOCUMENT } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
+import { HostNameServiceService } from './host-name-service.service';
 
 
 @Injectable({
@@ -7,15 +9,21 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
 
-  PATH = 'http://localhost:8888';
+  private baseUrl = "https://"+ this.document.location.hostname + ':' + this.document.location.port+"/emp-services";
+
+  constructor(private http: HttpClient, private hostNameServiceService: HostNameServiceService, 
+    @Inject(DOCUMENT) private document: Document) {
+    this.baseUrl = hostNameServiceService.getHostname();
+  }
+  
   requestHeader = new HttpHeaders({
     "No-Auth":"True"
   });
 
-  constructor(private httpClient: HttpClient) { }
 
   public login(loginDate:any){
-    return this.httpClient.post(this.PATH + '/authenticate',loginDate,{headers: this.requestHeader});
+    return this.http.post<any>(`${this.baseUrl}/authenticate`, loginDate,{headers: this.requestHeader});
+    //return this.http.post(this.PATH + '/authenticate',loginDate,{headers: this.requestHeader});
   }
 
 }

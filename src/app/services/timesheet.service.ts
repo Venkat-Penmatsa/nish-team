@@ -1,36 +1,41 @@
+import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { HostNameServiceService } from './host-name-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TimesheetService {
 
-  //private baseUrl = "https://"+ this.document.location.hostname + ':' + this.document.location.port+"/admin-services";
-  PATH = 'http://localhost:8888';
-  constructor(private http: HttpClient) { }
+  private baseUrl = "https://"+ this.document.location.hostname + ':' + this.document.location.port+"/emp-services";
+
+  constructor(private http: HttpClient, private hostNameServiceService: HostNameServiceService, 
+    @Inject(DOCUMENT) private document: Document) {
+    this.baseUrl = hostNameServiceService.getHostname();
+  }
 
   fetchActiveContract(body: any): Observable<any> {
     const headers = { 'Content-type': 'application/json' };
-    //return this.http.get<any>(`${this.baseUrl}/timesheet/listContracts` );
-    return this.http.post<any>(this.PATH + '/timesheet/listContracts', body, { headers });
+    return this.http.post<any>(`${this.baseUrl}/timesheet/listContracts`, body, { headers });
+    //return this.http.post<any>(this.PATH + '/timesheet/listContracts', body, { headers });
 
   }
 
 
   fetchTimeSheet(empId: any, date: any): Observable<any> {
     const headers = { 'Content-type': 'application/json' };
-    //return this.http.get<any>(`${this.baseUrl}/timesheet/fillTimeSheet/` );
-    return this.http.get<any>(this.PATH + '/timesheet/fillTimeSheet/' + empId + '/' + date, { headers });
+    return this.http.get<any>(`${this.baseUrl}/timesheet/fillTimeSheet/`+ empId + '/' + date, { headers });
+    //return this.http.get<any>(this.PATH + '/timesheet/fillTimeSheet/' + empId + '/' + date, { headers });
 
   }
 
 
   updateTimeSheet(body: any): Observable<any> {
     const headers = { 'Content-type': 'application/json' };
-    //return this.http.get<any>(`${this.baseUrl}/timesheet/listContracts` );
-    return this.http.post<any>(this.PATH + '/timesheet/updateTimeSheet', body, { headers });
+    return this.http.post<any>(`${this.baseUrl}/timesheet/updateTimeSheet`, body, { headers });
+    //return this.http.post<any>(this.PATH + '/timesheet/updateTimeSheet', body, { headers });
 
   }
 
