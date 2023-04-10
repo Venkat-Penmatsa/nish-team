@@ -3,11 +3,20 @@
       <div class="row">
           <div class="col-md-1">
               <div class="innerLogo">
-                  <img src="assets/logo.png" alt="" title="">
+                  <img src="assets/images/nishtechlogo.png" alt="" title="">
               </div>
           </div>
-          <div class="col-md-5">
+          <div class="col-md-9" align="center">
               <h1>Employee Portal</h1>
+          </div>
+          <div class="col-md-1" style="float: right">
+            <button style="font-size: 14px;
+          color: white; margin: 0" mat-button [matMenuTriggerFor]="menuI">Hello,{{shared.loggedUsername}}</button>
+            <!-- #enddocregion mat-menu-trigger-for -->
+            <mat-menu #menuI="matMenu">
+              <a mat-menu-item (click)="changePwd()" style="text-decoration: none">Change Password</a>
+              <a mat-menu-item (click)="logout()" style="text-decoration: none">Logout</a>
+            </mat-menu>
           </div>
       </div>
   </div>

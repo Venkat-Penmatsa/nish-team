@@ -15,7 +15,6 @@ export class AuthService {
     return localStorage.getItem("user");
   }
 
-
   public setToken(jwtToken : string){
     localStorage.setItem("jwtToken",jwtToken);
   }
