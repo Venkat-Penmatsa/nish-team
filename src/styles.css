@@ -114,6 +114,7 @@ ul {
     color: #000;
     border: 1px #ddd solid;
     position: relative;
+    height: 100%;
 }
 .boxWrap{
     padding: 15px;
@@ -356,6 +357,20 @@ ul {
     display: inline-block;
     padding: 5px 25px;
     left: 15px;
+    bottom: 15px;
+    cursor: pointer;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+}
+.boxWrap .btn_05 {
+    background-color: #871a1a;
+    color: #fff;
+    position: absolute;
+    font-size: 12px;
+    display: inline-block;
+    padding: 5px 25px;
+    right: 15px;
     bottom: 15px;
     cursor: pointer;
     -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);

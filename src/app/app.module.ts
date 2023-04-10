@@ -25,6 +25,8 @@ import { TimesheetDetailsComponent } from './component/timesheet/timesheet-detai
 import { NotificationComponent } from './component/notification/notification/notification.component';
 import { LeavesOverviewComponent } from './component/leaves/leaves-overview/leaves-overview.component';
 import {FormattedDatePipe } from './common/FormattedDatePipe';
+import { MobilitydetailsComponent } from './component/mobility/mobilitydetails/mobilitydetails.component';
+import { MobilityhistoryComponent } from './component/mobility/mobilityhistory/mobilityhistory.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import {FormattedDatePipe } from './common/FormattedDatePipe';
     TimesheetDetailsComponent,
     NotificationComponent,
     LeavesOverviewComponent,
-    FormattedDatePipe
+    FormattedDatePipe,
+    MobilitydetailsComponent,
+    MobilityhistoryComponent
   ],
   imports: [
     FormsModule,

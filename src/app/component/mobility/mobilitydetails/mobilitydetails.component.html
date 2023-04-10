@@ -1,0 +1,21 @@
+<form [formGroup]="mobilityForm">
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <td><span>Applicable Mobility Budget</span></td>
+                <td><span>{{ mobDetails.applicableBudget }}</span></td>
+            </tr>
+            <tr>
+                <td><span>Consumed Mobility Budget</span></td>
+                <td><span>{{ mobDetails.consumedBudget }}</span></td>
+            </tr>
+            <tr>
+                <td><span>Available Mobility Budget</span></td>
+                <td><span>{{ mobDetails.availableBudget }}</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button class="btn_05" (click)="openDialog()">View Details</button>
+</form>
