@@ -1,7 +1,9 @@
 <div class="modal-content">
     <div class="modal-header">
         <h5 class="modal-title" id="modal_02Label">TimeSheet Details</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" aria-label="Close">
+        </button>
+
     </div>
     <div class="modal-body">
         <div class="table-responsive">
@@ -11,7 +13,7 @@
                         <th scope="col">
                             <mat-form-field>
                                 <mat-label>Select Date</mat-label>
-                                <input matInput [matDatepicker]="timeSheetDate" required  [(ngModel)]="selectedDate"
+                                <input matInput [matDatepicker]="timeSheetDate" required [(ngModel)]="selectedDate"
                                     (dateChange)="fetchTimesheet()">
                                 <mat-datepicker-toggle matSuffix [for]="timeSheetDate"></mat-datepicker-toggle>
                                 <mat-datepicker #timeSheetDate>

@@ -30,8 +30,9 @@ export class LeavesService {
   }
 
   calculateLeaves(startDate: any, endDate: any): Observable<any> {
+    console.log(" startDate " + startDate);
     const headers = { 'Content-type': 'application/json' };
-    return this.http.get<any>(`${this.baseUrl}/leaves/calculateLeaves/`+ + startDate + '/' + endDate, { headers } );
+    return this.http.get<any>(`${this.baseUrl}/leaves/calculateLeaves/`+ startDate + '/' + endDate, { headers } );
     //return this.http.get(this.PATH + "/leaves/calculateLeaves/" + startDate + '/' + endDate, { headers })
   }
 
@@ -44,7 +45,7 @@ export class LeavesService {
 
   applyLeaves(assetJson: any): Observable<any> {
     const headers = { 'Content-type': 'application/json' };
-    return this.http.get<any>(`${this.baseUrl}/leaves/applyEmpLeave/` , assetJson );
+    return this.http.post<any>(`${this.baseUrl}/leaves/applyEmpLeave/` , assetJson , { headers })
     //return this.http.post(this.PATH + '/leaves/applyEmpLeave/', assetJson, { headers })
   }
 
