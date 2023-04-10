@@ -8,21 +8,23 @@ import { LeavesHistoryComponent } from './component/leaves/leaves-history/leaves
 import { ForbiddenComponent } from './component/login/forbidden/forbidden.component';
 import { LoginComponent } from './component/login/login/login.component';
 import { TimesheetComponent } from './component/timesheet/timesheet/timesheet.component';
+import { AuthGuard } from './services/authguard';
 
 const routes: Routes = [
 
-  {path:'home', component: HomeComponent},
-  {path:'user', component: EmpInfoComponent},
-  {path:'login', component: LoginComponent},
-  {path:'forbidden', component: ForbiddenComponent},
-  {path:'admin', component: ApplyLeavesComponent},
-  {path:'leavesHistory', component: LeavesHistoryComponent},
-  {path:'timeSheet', component: TimesheetComponent},
-  {path:'assets', component: AssetDetailsComponent}
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
+  { path: 'user', component: EmpInfoComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
+  { path: 'forbidden', component: ForbiddenComponent, canActivate: [AuthGuard] },
+  { path: 'admin', component: ApplyLeavesComponent, canActivate: [AuthGuard] },
+  { path: 'leavesHistory', component: LeavesHistoryComponent, canActivate: [AuthGuard] },
+  { path: 'timeSheet', component: TimesheetComponent, canActivate: [AuthGuard] },
+  { path: 'assets', component: AssetDetailsComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
