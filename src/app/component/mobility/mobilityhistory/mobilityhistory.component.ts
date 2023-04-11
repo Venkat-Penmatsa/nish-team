@@ -22,8 +22,7 @@ export class MobilityhistoryComponent implements OnInit {
     'compOthers',
     'totalAllowanceApplied',
     'comments',
-    'uploadedBy',
-    'updateDate'];
+    'uploadedBy'];
 
   applieMobilityMonths: ApplieMobilityMonths[] = [];
   dataSource = new MatTableDataSource<ApplieMobilityMonths>(this.applieMobilityMonths);
