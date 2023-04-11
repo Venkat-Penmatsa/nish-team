@@ -22,8 +22,6 @@ export class MobilitydetailsComponent implements OnInit {
 
     let user: any = JSON.parse(localStorage.getItem("user") || '{}');
 
-
-
     this.mobilityService.fetchMobilityById(user.empId).subscribe(res => {
       console.log(res);
       this.mobDetails = res;

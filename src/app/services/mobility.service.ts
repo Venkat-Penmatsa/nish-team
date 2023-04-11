@@ -9,11 +9,16 @@ import { HostNameServiceService } from './host-name-service.service';
 })
 export class MobilityService {
 
-  private baseUrl = "https://"+ this.document.location.hostname + ':' + this.document.location.port+"/emp-services";
+  private baseUrl = "https://" + this.document.location.hostname + ':' + this.document.location.port + "/emp-services";
 
-  constructor(private http: HttpClient, private hostNameServiceService: HostNameServiceService, 
+  constructor(private http: HttpClient, private hostNameServiceService: HostNameServiceService,
     @Inject(DOCUMENT) private document: Document) {
     this.baseUrl = hostNameServiceService.getHostname();
+  }
+
+  fetchEmpAllMonthsMobility(empId: any): Observable<any> {
+    const headers = { 'Content-type': 'application/json' };
+    return this.http.get(`${this.baseUrl}/mobility/fetchEmpAllMonthsMobility/` + empId, { headers })
   }
 
   fetchMobilityById(employee: String): Observable<any> {
