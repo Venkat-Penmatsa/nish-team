@@ -1,4 +1,4 @@
-<div class="popUpboxWrap borTop3">
+<!-- <div class="popUpboxWrap borTop3">
     <h5>Leaves History</h5>
     <div class="leaveTable">
         <div class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
@@ -28,5 +28,53 @@
                     </ng-container>
                 </tbody>
             </table>
+        </div>
+    </div>
+
+-->
+    <div class="popUpboxWrap borTop3">
+        <div class="Leavemodal-body">
+            <h5>Approved Leaves</h5>
+    
+            <div>
+                <table mat-table [dataSource]="dataSource" style="width: 100%;">
+    
+                    <ng-container matColumnDef="srNO" sticky>
+                        <th mat-header-cell *matHeaderCellDef>SNO.</th>
+                        <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="leaveType" sticky>
+                        <th mat-header-cell *matHeaderCellDef> Leave Type </th>
+                        <td mat-cell *matCellDef="let element" class="tab-col"> {{element.leaveType}} </td>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="leaveStartDate">
+                        <th mat-header-cell *matHeaderCellDef> Leave StartDate</th>
+                        <td mat-cell *matCellDef="let element"> {{element.leaveStartDate}} </td>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="leaveEndDate">
+                        <th mat-header-cell *matHeaderCellDef> Leave EndDate </th>
+                        <td mat-cell *matCellDef="let element"> {{element.leaveEndDate}} </td>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="noOfDays">
+                        <th mat-header-cell *matHeaderCellDef> Total Days </th>
+                        <td mat-cell *matCellDef="let element"> {{element.totDays}} </td>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="comments">
+                        <th mat-header-cell *matHeaderCellDef> Comments </th>
+                        <td mat-cell *matCellDef="let element"> {{element.comments}} </td>
+                    </ng-container>
+    
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+    
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+            </div>
+    
         </div>
     </div>
