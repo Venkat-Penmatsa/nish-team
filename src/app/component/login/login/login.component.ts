@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  errorMessage = "";
+
   loginForm = this.fb.group({
     userName: ['', Validators.required],
     userPassword: ['', Validators.required]
@@ -33,22 +35,14 @@ export class LoginComponent implements OnInit {
         //this.authService.setUser(data.user);
         this.authService.setToken(data.jwtToken);
         this.router.navigate(['/home']);
-      })
-
-      /*let res = this.authenticate.login(this.loginForm.get('userName')?.value, this.loginForm.get('password')?.value);
-      res.subscribe(data => {
-        console.log("response is " + data);
-        localStorage.setItem('userDetails', JSON.stringify(data));
-        this.router.navigateByUrl('home');
-      }, (error) => {                              //Error callback
+      },(error) => {                              //Error callback
         console.error('error caught in component')
         if (error.status == 401) {
           this.errorMessage = "Bad Credentails";
         }
       }
-
-      )*/ 
-      //this.router.navigateByUrl('home');
+      )
+     
     }
   }
 

@@ -36,11 +36,20 @@ export class ChangePwdComponent implements OnInit {
 
   changePwd() {
 
+    let user: any = JSON.parse(localStorage.getItem("user") || '{}');
+
     this.messageDesc = "";
     this.errorDesc = "";
-    if (this.changePwdForm.value.newPwd !== this.changePwdForm.value.reEnterNewPed) {
-      this.errorDesc = "New Password is not matching please re-enter"
-    }
+    const formData: any = this.changePwdForm.value;
+      const manageUser = {
+        userName: user.empId,
+        oldPwd: formData.currentPwd,
+        newPwd: formData.newPwd
+      }
+      this.userService.updateUser(manageUser).subscribe(res => {
+        console.log(res);
+        this.messageDesc = "Password Updated !!!";
+      })
 
   }
 
