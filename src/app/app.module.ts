@@ -27,6 +27,7 @@ import { LeavesOverviewComponent } from './component/leaves/leaves-overview/leav
 import {FormattedDatePipe } from './common/FormattedDatePipe';
 import { MobilitydetailsComponent } from './component/mobility/mobilitydetails/mobilitydetails.component';
 import { MobilityhistoryComponent } from './component/mobility/mobilityhistory/mobilityhistory.component';
+import { ChangePwdComponent } from './component/login/change-pwd/change-pwd.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { MobilityhistoryComponent } from './component/mobility/mobilityhistory/m
     LeavesOverviewComponent,
     FormattedDatePipe,
     MobilitydetailsComponent,
-    MobilityhistoryComponent
+    MobilityhistoryComponent,
+    ChangePwdComponent
   ],
   imports: [
     FormsModule,

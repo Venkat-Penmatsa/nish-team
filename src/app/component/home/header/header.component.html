@@ -14,7 +14,7 @@
           color: white; margin: 0" mat-button [matMenuTriggerFor]="menuI">Hello,{{shared.loggedUsername}}</button>
             <!-- #enddocregion mat-menu-trigger-for -->
             <mat-menu #menuI="matMenu">
-              <a mat-menu-item (click)="changePwd()" style="text-decoration: none">Change Password</a>
+              <a mat-menu-item (click)="openDialog()" style="text-decoration: none">Change Password</a>
               <a mat-menu-item (click)="logout()" style="text-decoration: none">Logout</a>
             </mat-menu>
           </div>

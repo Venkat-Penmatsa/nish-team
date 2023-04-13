@@ -1,0 +1,53 @@
+<div class="popUpboxWrap borTop2">
+
+    <h5>Reset Password </h5>
+
+    <div class="container">
+
+        <div *ngIf="messageDesc" class="alert alert-success">{{ messageDesc }}</div>
+        <div *ngIf="errorDesc" class="alert alert-danger">{{ errorDesc }}</div>
+
+        <form [formGroup]="changePwdForm">
+            <div class="row">
+                <div class="col-sm-4">
+
+                    <label>Current Password</label>
+                    <div class="form-group pass_show">
+                        <input type="text" class="form-control" formControlName="currentPwd">
+                    </div>
+
+
+                    <label>New Password</label>
+                    <div class="form-group pass_show">
+                        <input type="password" class="form-control" formControlName="newPwd">
+
+
+                        <div *ngIf="f.newPwd.touched && f.newPwd.invalid" class="alert alert-danger">
+                            <div *ngIf="f.newPwd.errors">Password length should be 8 charcters with alphabets, numbers
+                                and special characters </div>
+                        </div>
+
+                    </div>
+
+                    <label>Confirm Password</label>
+                    <div class="form-group pass_show">
+                        <input type="text" class="form-control" formControlName="reEnterNewPed">
+                        <div class="alert alert-danger"
+                            *ngIf="changePwdForm.value.newPwd !== changePwdForm.value.reEnterNewPed">
+                            Passwords don't match.
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-12 mt-3">
+        <button type="button" class="btn btn-primary ms-3" data-bs-toggle="modal" (click)="changePwd()"
+            [disabled]="!changePwdForm.valid">Change Password</button>
+    </div>
+
+
+</div>
