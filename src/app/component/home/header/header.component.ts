@@ -17,6 +17,10 @@ export class HeaderComponent implements OnInit {
 
   userDet: any;
   ngOnInit(): void {
+
+    this.userDet = JSON.parse(localStorage.getItem("user") || '{}');
+
+    console.log("user ")
   }
 
   openDialog() {
