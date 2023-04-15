@@ -18,7 +18,7 @@ export class ChangePwdComponent implements OnInit {
   errorDesc: any;
 
   changePwdForm = this.fb.group({
-    currentPwd: ['', Validators.required],
+    currentPwd: [''],
     newPwd: ['', [
       Validators.required,
       Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]],
