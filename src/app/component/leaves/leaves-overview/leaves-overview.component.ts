@@ -15,12 +15,15 @@ export class LeavesOverviewComponent implements OnInit {
   constructor(private leavesService: LeavesService, public dialog: MatDialog, private fb: FormBuilder) { }
 
   leaves: any;
+  isDataLoaded: boolean = false;
+
   ngOnInit(): void {
 
     let user: any = JSON.parse(localStorage.getItem("user") || '{}');
     this.leavesService.fetchEmpLeaves(user.empId)
       .subscribe(data => {
         this.leaves = data
+        this.isDataLoaded = true;
         console.log(" this.leaves ........." + this.leaves);
       });
 

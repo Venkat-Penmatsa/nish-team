@@ -1,21 +1,24 @@
-<form [formGroup]="empInfoForm">
+<div *ngIf="isDataLoaded">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <td><span>Employee Code</span></td>
-                <td><span>{{ empBasicInfo.empId }}</span></td>
-            </tr>
-            <tr>
-                <td><span>Employee Name</span></td>
-                <td><span>{{ empBasicInfo.firstName }}</span></td>
-            </tr>
-            <tr>
-                <td><span>Designation</span></td>
-                <td><span>{{ empBasicInfo.designation }}</span></td>
-            </tr>
-        </tbody>
-    </table>
+    <form [formGroup]="empInfoForm">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td><span>Employee Code</span></td>
+                    <td><span>{{ empBasicInfo.empId }}</span></td>
+                </tr>
+                <tr>
+                    <td><span>Employee Name</span></td>
+                    <td><span>{{ empBasicInfo.firstName }}</span></td>
+                </tr>
+                <tr>
+                    <td><span>Designation</span></td>
+                    <td><span>{{ empBasicInfo.designation }}</span></td>
+                </tr>
+            </tbody>
+        </table>
 
-    <button class="btn_01" (click)="openDialog()">View Details</button>
-</form>
+        <button class="btn_01" (click)="openDialog()">View Details</button>
+    </form>
+
+</div>

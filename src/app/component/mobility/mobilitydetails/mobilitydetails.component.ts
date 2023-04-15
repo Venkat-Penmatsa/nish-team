@@ -16,6 +16,7 @@ export class MobilitydetailsComponent implements OnInit {
   isDataLoaded: boolean = false;
   mobilitySecFlag = false;
 
+
   ngOnInit(): void {
 
     console.log(" mobility details .........");
@@ -35,6 +36,8 @@ export class MobilitydetailsComponent implements OnInit {
       if (res.isMobilityOpted) {
         this.mobilitySecFlag = true;
       }
+
+      this.isDataLoaded = true
 
     });
   }
