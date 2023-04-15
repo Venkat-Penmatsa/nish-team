@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TimesheetService } from 'src/app/services/timesheet.service';
-import { TimesheetDetailsComponent } from '../timesheet-details/timesheet-details.component';
-import { ApplyLeavesComponent } from '../../leaves/apply-leaves/apply-leaves.component';
 import { FillTimesheetComponent } from '../fill-timesheet/fill-timesheet.component';
 
 @Component({
@@ -12,12 +10,17 @@ import { FillTimesheetComponent } from '../fill-timesheet/fill-timesheet.compone
 })
 export class TimesheetComponent implements OnInit {
 
-  constructor(private timesheetService: TimesheetService,public dialog: MatDialog) { }
-  user:any;
+  constructor(private timesheetService: TimesheetService, public dialog: MatDialog) { }
+  user: any;
 
   contractList: any[] = [];
 
   ngOnInit(): void {
+
+    this.fetchContractDetails();
+  }
+
+  fetchContractDetails() {
 
     this.user = JSON.parse(localStorage.getItem("user") || '{}');
     let contract = {
@@ -30,33 +33,18 @@ export class TimesheetComponent implements OnInit {
         console.log("contractList data ... " + data);
         this.contractList = data
       });
-
   }
 
   openDialog() {
     const dialogRef = this.dialog.open(FillTimesheetComponent, {
       height: '80%',
       width: '80%',
-      data:this.user
-    });
-
-    dialogRef.afterClosed().subscribe((result: any) => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
-
- /* openDialog() {
-    const dialogRef = this.dialog.open(TimesheetDetailsComponent, {
-      height: '80%',
-      width: '95%',
       data: this.user
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
-      console.log(`Dialog result: ${result}`);
+      this.fetchContractDetails();
     });
-  } */
-
-
+  }
 
 }

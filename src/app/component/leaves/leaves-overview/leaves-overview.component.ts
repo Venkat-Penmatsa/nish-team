@@ -19,14 +19,17 @@ export class LeavesOverviewComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.fetchLeaves();
+  }
+
+  private fetchLeaves() {
     let user: any = JSON.parse(localStorage.getItem("user") || '{}');
     this.leavesService.fetchEmpLeaves(user.empId)
       .subscribe(data => {
-        this.leaves = data
+        this.leaves = data;
         this.isDataLoaded = true;
         console.log(" this.leaves ........." + this.leaves);
       });
-
   }
 
   openApplyLeaveDialog() {
@@ -35,12 +38,11 @@ export class LeavesOverviewComponent implements OnInit {
       width: '80%',
       data: this.leaves
     });
-
     dialogRef.afterClosed().subscribe((result: any) => {
-      console.log(`Dialog result: ${result}`);
+      this.fetchLeaves();
     });
   }
-  
+
 
   openHistDialog() {
     const dialogRef = this.dialog.open(LeavesHistoryComponent, {
@@ -48,9 +50,8 @@ export class LeavesOverviewComponent implements OnInit {
       width: '80%',
       data: this.leaves
     });
-
     dialogRef.afterClosed().subscribe((result: any) => {
-      console.log(`Dialog result: ${result}`);
+      this.fetchLeaves();
     });
   }
 
