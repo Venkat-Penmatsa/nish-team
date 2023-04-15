@@ -28,6 +28,7 @@ import {FormattedDatePipe } from './common/FormattedDatePipe';
 import { MobilitydetailsComponent } from './component/mobility/mobilitydetails/mobilitydetails.component';
 import { MobilityhistoryComponent } from './component/mobility/mobilityhistory/mobilityhistory.component';
 import { ChangePwdComponent } from './component/login/change-pwd/change-pwd.component';
+import { FillTimesheetComponent } from './component/timesheet/fill-timesheet/fill-timesheet.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { ChangePwdComponent } from './component/login/change-pwd/change-pwd.comp
     FormattedDatePipe,
     MobilitydetailsComponent,
     MobilityhistoryComponent,
-    ChangePwdComponent
+    ChangePwdComponent,
+    FillTimesheetComponent
   ],
   imports: [
     FormsModule,

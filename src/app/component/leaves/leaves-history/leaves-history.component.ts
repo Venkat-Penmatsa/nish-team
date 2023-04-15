@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { LeavesService } from 'src/app/services/leaves.service';
@@ -10,14 +11,14 @@ import { LeavesService } from 'src/app/services/leaves.service';
 })
 export class LeavesHistoryComponent implements OnInit {
 
-  constructor(private leavesService: LeavesService) { }
+  constructor(private leavesService: LeavesService, public dialogRef: MatDialogRef<LeavesHistoryComponent>) { }
 
   displayedColumns: string[] = ['srNO',
-  'leaveType',
-  'leaveStartDate',
-  'leaveEndDate',
-  'noOfDays',
-  'comments'];
+    'leaveType',
+    'leaveStartDate',
+    'leaveEndDate',
+    'noOfDays',
+    'comments'];
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -26,13 +27,16 @@ export class LeavesHistoryComponent implements OnInit {
   leaves: Leaves[] = [];
   dataSource = new MatTableDataSource<Leaves>(this.leaves);
 
+  close() {
+    this.dialogRef.close();
+  }
 
   ngOnInit(): void {
     let user: any = JSON.parse(localStorage.getItem("user") || '{}');
     this.leavesService.fetchEmpLeavesHist(user.empId)
       .subscribe(data => {
 
-        data.forEach((e:any) => {
+        data.forEach((e: any) => {
           this.leaves.push(new Leaves(e.sno,
             e.leaveType,
             e.leaveStartDate,

@@ -1,6 +1,9 @@
 <div class="popUpboxWrap borTop2">
-
-    <h5>Reset Password </h5>
+    <div class="modal-header">
+        <h5>Reset Password </h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="close()">
+        </button>
+    </div>
 
     <div class="container">
 
@@ -9,21 +12,23 @@
 
         <form [formGroup]="changePwdForm">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col">
 
-                    <label>Current Password</label>
-                    <div class="form-group pass_show">
-                        <input type="text" class="form-control" formControlName="currentPwd">
-                    </div>
+                    <!-- 
+                        <label>Current Password</label>
+                        <div class="form-group pass_show">
+                            <input type="text" class="form-control" formControlName="currentPwd">
+                        </div> -->
 
 
                     <label>New Password</label>
                     <div class="form-group pass_show">
-                        <input type="password" class="form-control" formControlName="newPwd">
+                        <input type="password" class="form-control" style="width:40%" formControlName="newPwd">
 
 
                         <div *ngIf="f.newPwd.touched && f.newPwd.invalid" class="alert alert-danger">
-                            <div *ngIf="f.newPwd.errors">Password length should be 8 charcters with alphabets, numbers
+                            <div *ngIf="f.newPwd.errors">Password length should be 8 charcters with alphabets,
+                                numbers
                                 and special characters </div>
                         </div>
 
@@ -31,7 +36,7 @@
 
                     <label>Confirm Password</label>
                     <div class="form-group pass_show">
-                        <input type="text" class="form-control" formControlName="reEnterNewPed">
+                        <input type="text" class="form-control" style="width:40%" formControlName="reEnterNewPed">
                         <div class="alert alert-danger"
                             *ngIf="changePwdForm.value.newPwd !== changePwdForm.value.reEnterNewPed">
                             Passwords don't match.
@@ -48,6 +53,5 @@
         <button type="button" class="btn btn-primary ms-3" data-bs-toggle="modal" (click)="changePwd()"
             [disabled]="!changePwdForm.valid">Change Password</button>
     </div>
-
 
 </div>

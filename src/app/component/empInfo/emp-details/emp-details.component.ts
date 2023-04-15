@@ -28,6 +28,10 @@ export class EmpDetailsComponent implements OnInit {
 
   }
 
+  close(){
+    this.dialogRef.close();
+  }
+
   empCreationForm = this.fb.group({
     empBasicInfo: this.fb.group({
       empId: [],

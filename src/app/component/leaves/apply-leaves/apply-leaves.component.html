@@ -1,7 +1,10 @@
 <div class="popUpboxWrap borTop3">
     <div class="Leavemodal-body">
-        <h5>Apply Leaves</h5>
-
+        <div class="modal-header">
+            <h5>Apply Leaves</h5>
+            <button type="button" class="btn-close" aria-label="Close" (click)="close()">
+            </button>
+        </div>
         <div *ngIf="message" class="alert alert-success">{{ messageDesc }}</div>
         <div *ngIf="error" class="alert alert-danger">{{ errorDesc }}</div>
 
@@ -44,12 +47,13 @@
                         <div class="col-md-12 mt-3">
                             <div class="form-check">
                                 <section>
-                                    <mat-checkbox #halfDay placeholder="halfDay" (change)="disableEndDate(halfDay.checked)">
+                                    <mat-checkbox #halfDay placeholder="halfDay"
+                                        (change)="disableEndDate(halfDay.checked)">
                                         HalfDay *</mat-checkbox>
                                 </section>
 
-                              <!-- <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault"> Half Day </label> --> 
+                                <!-- <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault"> Half Day </label> -->
                             </div>
                         </div>
                         <div class="col-md-12 mt-3">
@@ -64,8 +68,8 @@
                 <div class="col-md-4">
                     <div class="col-md-12">
                         <label class="form-label mb-0">Comments</label>
-                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" formControlName="comments"
-                            style="height: 113px"></textarea>
+                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                            formControlName="comments" style="height: 113px"></textarea>
                     </div>
                 </div>
 
@@ -104,4 +108,14 @@
             </div>
         </form>
     </div>
+
+  
+</div>
+
+<div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Please read!</h4>
+    <p> . For SICK Leaves email medical certificate to HR, after verification leaves will be applied by HR</p>
+    <p> . Customer holidays should be applied as RTT leaves </p>
+
+
 </div>

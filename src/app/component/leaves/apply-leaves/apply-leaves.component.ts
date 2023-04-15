@@ -56,8 +56,13 @@ export class ApplyLeavesComponent implements OnInit {
   constructor(private fb: FormBuilder,
     public dialogRef: MatDialogRef<ApplyLeavesComponent>, private leavesService: LeavesService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
+      console.log()
     this.leaves = data;
 
+  }
+
+  close(){
+    this.dialogRef.close();
   }
 
   dateFilter = (m: Moment | null): boolean => {

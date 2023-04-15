@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { EmployeeService } from 'src/app/services/employee.service';
 import { LeavesService } from 'src/app/services/leaves.service';
 import { ApplyLeavesComponent } from '../apply-leaves/apply-leaves.component';
 import { LeavesHistoryComponent } from '../leaves-history/leaves-history.component';
@@ -38,6 +37,7 @@ export class LeavesOverviewComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
+  
 
   openHistDialog() {
     const dialogRef = this.dialog.open(LeavesHistoryComponent, {

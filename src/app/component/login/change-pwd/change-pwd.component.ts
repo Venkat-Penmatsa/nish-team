@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { UserService } from 'src/app/services/user.service';
+
 
 
 @Component({
@@ -10,7 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ChangePwdComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private userService: UserService) { }
+  constructor(private fb: FormBuilder, private userService: UserService, public dialogRef: MatDialogRef<ChangePwdComponent>) { }
 
   messageDesc: any;
   errorDesc: any;
@@ -29,7 +31,9 @@ export class ChangePwdComponent implements OnInit {
     return this.changePwdForm.controls;
   }
 
-
+  close() {
+    this.dialogRef.close();
+  }
 
   ngOnInit(): void {
   }
@@ -41,15 +45,15 @@ export class ChangePwdComponent implements OnInit {
     this.messageDesc = "";
     this.errorDesc = "";
     const formData: any = this.changePwdForm.value;
-      const manageUser = {
-        userName: user.empId,
-        oldPwd: formData.currentPwd,
-        newPwd: formData.newPwd
-      }
-      this.userService.updateUser(manageUser).subscribe(res => {
-        console.log(res);
-        this.messageDesc = "Password Updated !!!";
-      })
+    const manageUser = {
+      userName: user.empId,
+      oldPwd: formData.currentPwd,
+      newPwd: formData.newPwd
+    }
+    this.userService.updateUser(manageUser).subscribe(res => {
+      console.log(res);
+      this.messageDesc = "Password Updated";
+    })
 
   }
 

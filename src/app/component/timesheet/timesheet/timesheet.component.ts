@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TimesheetService } from 'src/app/services/timesheet.service';
-import { EmpDetailsComponent } from '../../empInfo/emp-details/emp-details.component';
 import { TimesheetDetailsComponent } from '../timesheet-details/timesheet-details.component';
+import { ApplyLeavesComponent } from '../../leaves/apply-leaves/apply-leaves.component';
+import { FillTimesheetComponent } from '../fill-timesheet/fill-timesheet.component';
 
 @Component({
   selector: 'app-timesheet',
@@ -12,16 +13,17 @@ import { TimesheetDetailsComponent } from '../timesheet-details/timesheet-detail
 export class TimesheetComponent implements OnInit {
 
   constructor(private timesheetService: TimesheetService,public dialog: MatDialog) { }
+  user:any;
 
   contractList: any[] = [];
 
   ngOnInit(): void {
 
-    let user: any = JSON.parse(localStorage.getItem("user") || '{}');
+    this.user = JSON.parse(localStorage.getItem("user") || '{}');
     let contract = {
-      empId: user.empId,
+      empId: this.user.empId,
       timeSheetDate: new Date(),
-      updatedBy: user.empId
+      updatedBy: this.user.empId
     }
     this.timesheetService.fetchActiveContract(contract)
       .subscribe(data => {
@@ -32,15 +34,29 @@ export class TimesheetComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(TimesheetDetailsComponent,{
+    const dialogRef = this.dialog.open(FillTimesheetComponent, {
       height: '80%',
-      width: '95%'
+      width: '80%',
+      data:this.user
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result: any) => {
       console.log(`Dialog result: ${result}`);
     });
   }
+
+ /* openDialog() {
+    const dialogRef = this.dialog.open(TimesheetDetailsComponent, {
+      height: '80%',
+      width: '95%',
+      data: this.user
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      console.log(`Dialog result: ${result}`);
+    });
+  } */
+
 
 
 }
