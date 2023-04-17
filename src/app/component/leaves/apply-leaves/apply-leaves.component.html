@@ -17,10 +17,10 @@
                                 <mat-label class="form-label mb-0">leaveType </mat-label>
                                 <select matNativeControl required formControlName="leaveType" class="form-select"
                                     aria-label="">
-                                    <option value="AA">Paid Holiday</option>
+                                    <option value="AA">Paid Holidays</option>
                                     <option value="RTT">Rtt/ADV days</option>
-                                    <option value="CL">Compensation leave</option>
-                                    <option value="FL">Forwarded leave</option>
+                                    <option value="CL">Compensation leaves</option>
+                                    <option value="FL">Forwarded leaves</option>
                                 </select>
                             </mat-form-field>
                         </div>
@@ -56,16 +56,18 @@
                                 <label class="form-check-label" for="flexCheckDefault"> Half Day </label> -->
                             </div>
                         </div>
-                        <div class="col-md-12 mt-3">
-                            <mat-form-field>
-                                <mat-label>Total Leaves </mat-label>
-                                <input matInput type="number" min="0" max="100" [readonly]="true"
-                                    formControlName="numberOfDays">
-                            </mat-form-field>
-                        </div>
+                        
                     </div>
                 </div>
                 <div class="col-md-4">
+                    <div class="col-md-12 mt-3">
+                        <mat-form-field>
+                            <mat-label>Total Leaves </mat-label>
+                            <input matInput type="number" min="0" max="100" [readonly]="true"
+                                formControlName="numberOfDays">
+                        </mat-form-field>
+                    </div>
+
                     <div class="col-md-12">
                         <label class="form-label mb-0">Comments</label>
                         <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
@@ -83,7 +85,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><span>Paid Holiday</span></td>
+                                <td><span>Paid Holidays</span></td>
                                 <td><span>{{ leaves.authorisedAbsence }}</span></td>
                             </tr>
                             <tr>
@@ -91,15 +93,16 @@
                                 <td><span>{{ leaves.rttAdv }}</span></td>
                             </tr>
                             <tr>
-                                <td><span>Compensation Leave</span></td>
+                                <td><span>Compensation Leaves</span></td>
                                 <td><span>{{ leaves.compensationLeave }}</span></td>
                             </tr>
                             <tr>
-                                <td><span>Forwarded Leave</span></td>
+                                <td><span>Forwarded Leaves</span></td>
                                 <td><span>{{ leaves.forwardedLeave }}</span></td>
                             </tr>
                         </tbody>
                     </table>
+                    <p style=" font-weight: bold; color: red;"> For other leave types please refer to instructions given below </p>
                 </div>
                 <div class="col-md-12 mt-3 text-end">
                     <button mat-button class="btn btn-primary" (click)="submitLeave()" type="submit">Submit Leave
@@ -109,11 +112,16 @@
         </form>
     </div>
 
-  
+&nbsp; 
+
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Instructions</h4>
+        <p> . For SICK Leaves, email medical certificate to HR, after verification leaves will be applied by HR</p>
+        <p> . Customer holidays should be applied as a leaves in the order RTT, compensation , paid leave </p>
+        <p> . Please contact HR for all other special leaves  </p>
+    </div>
+
 </div>
 
-<div class="alert alert-success" role="alert">
-    <h4 class="alert-heading">Please read!</h4>
-    <p> . For SICK Leaves email medical certificate to HR, after verification leaves will be applied by HR</p>
-    <p> . Customer holidays should be applied as RTT leaves </p>
-</div>
+
+

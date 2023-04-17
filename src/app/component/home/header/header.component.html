@@ -7,11 +7,13 @@
               </div>
           </div>
           <div class="col-md-9" align="center">
-              <h1>Employee Portal</h1>
+              <h1>NEP tune</h1>
           </div>
           <div class="col-md-1" style="float: right">
-            <button style="font-size: 14px;
-          color: white; margin: 0" mat-button [matMenuTriggerFor]="menuI">Hello,{{userDet.username}}</button>
+            <button style="font-size: 14px; 
+          color: white; margin: 0"
+           class="btn btn-default dropdown-toggle" 
+          mat-button [matMenuTriggerFor]="menuI">Hello {{userDet.username}}</button>
             <!-- #enddocregion mat-menu-trigger-for -->
             <mat-menu #menuI="matMenu">
               <a mat-menu-item (click)="openDialog()" style="text-decoration: none">Change Password</a>

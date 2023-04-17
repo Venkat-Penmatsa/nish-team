@@ -14,17 +14,19 @@
                             <th scope="col">
                                 <mat-form-field>
                                     <mat-label>Select Date</mat-label>
-                                    <input matInput [matDatepicker]="timeSheetDate" required [(ngModel)]="selectedDate"  style="color: rgb(62, 0, 128);"
-                                        (dateChange)="fetchTimesheet()">
+                                    <input matInput [matDatepicker]="timeSheetDate" required [(ngModel)]="selectedDate"
+                                        style="color: rgb(62, 0, 128);" (dateChange)="fetchTimesheet()">
                                     <mat-datepicker-toggle matSuffix [for]="timeSheetDate"></mat-datepicker-toggle>
                                     <mat-datepicker #timeSheetDate>
                                     </mat-datepicker>
                                 </mat-form-field>
 
                             </th>
-                            <th scope="col"  style="color: rgb(62, 0, 128);"><span>Logged Hrs</span></th>
-                            <th *ngFor="let hd of header" scope="col" style="color: rgb(62, 0, 128);"><span>{{ hd.dayName }}<br>{{ hd.day }}</span></th>
-                            <th style="width: 50px;" scope="col"  style="color: rgb(62, 0, 128);"><span>Comments</span></th>
+                            <th scope="col" style="color: rgb(62, 0, 128);"><span>Logged Hrs</span></th>
+                            <th *ngFor="let hd of header" scope="col" style="color: rgb(62, 0, 128);"><span>{{
+                                    hd.dayName }}<br>{{ hd.day }}</span></th>
+                            <th style="width: 50px;" scope="col" style="color: rgb(62, 0, 128);"><span>Comments</span>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,9 +50,9 @@
                                         [(ngModel)]="row.contractTimeSheetList[i].filledData" aria-label="">
                                 </ng-template>
                             </td>
-                            <td style="align-items: center;" scope="row" >
-                                <input class="form-control" type="text" placeholder=""  [(ngModel)]="row.comments"
-                                         aria-label="">
+                            <td style="align-items: center;" scope="row">
+                                <input class="form-control" type="text" placeholder="" [(ngModel)]="row.comments"
+                                    aria-label="">
                             </td>
                         </tr>
 
@@ -67,13 +69,11 @@
     &nbsp;
 
     <div class="alert alert-success" role="alert">
-        <h4 class="alert-heading">Please read!</h4>
+        <h4 class="alert-heading">Instructions</h4>
+        <p> . LE - Leave, HL -  Half day Leave</p>
         <p> . Please mention extra working days or hours in the comments section</p>
-        <p> . Customer holidays should be applied as a leave , Please fill timesheet before 25th of every month</p>
-        <p> . There should not be any discripancy in (Total Hours) between NISH and customer </p>
-
+        <p> . Customer holidays should be applied as a leave , please fill the timesheet before 25th of every month</p>
+        <p> . There should not be any discrepancy in (Total Hours) between NISH and customer timesheet </p>
     </div>
 
 </div>
-
-

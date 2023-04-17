@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MobilityService } from 'src/app/services/mobility.service';
@@ -14,7 +15,8 @@ export class MobilityhistoryComponent implements OnInit {
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
-  constructor(private mobilityService: MobilityService, private fb: FormBuilder) { }
+  constructor( public dialogRef: MatDialogRef<MobilityhistoryComponent>,
+      private mobilityService: MobilityService, private fb: FormBuilder) { }
 
   displayedColumns: string[] = ['monthName',
     'compHouse',
@@ -30,6 +32,11 @@ export class MobilityhistoryComponent implements OnInit {
 
     this.fetchAllMonthsMobility();
   }
+
+  close(){
+    this.dialogRef.close();
+  }
+
 
   fetchAllMonthsMobility(): any {
 
