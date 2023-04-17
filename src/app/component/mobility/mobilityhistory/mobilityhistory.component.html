@@ -14,23 +14,23 @@
                 </ng-container>
 
                 <ng-container matColumnDef="compHouse" sticky>
-                    <th mat-header-cell *matHeaderCellDef> Composition House </th>
-                    <td mat-cell *matCellDef="let element" class="tab-col"> {{element.compHouse}} </td>
+                    <th mat-header-cell *matHeaderCellDef> Rent/Mortgage </th>
+                    <td mat-cell *matCellDef="let element" class="tab-col"> €{{element.compHouse}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="compTravelPass">
-                    <th mat-header-cell *matHeaderCellDef> Composition Travel</th>
-                    <td mat-cell *matCellDef="let element"> {{element.compTravelPass}} </td>
+                    <th mat-header-cell *matHeaderCellDef>  Transportation </th>
+                    <td mat-cell *matCellDef="let element"> €{{element.compTravelPass}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="compOthers">
-                    <th mat-header-cell *matHeaderCellDef> Composition Others </th>
-                    <td mat-cell *matCellDef="let element"> {{element.compOthers}} </td>
+                    <th mat-header-cell *matHeaderCellDef>  Others </th>
+                    <td mat-cell *matCellDef="let element"> €{{element.compOthers}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="totalAllowanceApplied">
-                    <th mat-header-cell *matHeaderCellDef> Total Allowance Applied </th>
-                    <td mat-cell *matCellDef="let element"> {{element.totalAllowanceApplied}} </td>
+                    <th mat-header-cell *matHeaderCellDef> Total availed </th>
+                    <td mat-cell *matCellDef="let element"> €{{element.totalAllowanceApplied}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="comments">

@@ -14,12 +14,12 @@
                     <div class="row">
                         <div class="col-md-12">
                             <mat-form-field>
-                                <mat-label class="form-label mb-0">leaveType </mat-label>
+                                <mat-label class="form-label mb-0">LeaveType </mat-label>
                                 <select matNativeControl required formControlName="leaveType" class="form-select"
                                     aria-label="">
                                     <option value="AA">Paid Holidays</option>
                                     <option value="RTT">Rtt/ADV days</option>
-                                    <option value="CL">Compensation leaves</option>
+                                    <option value="CL">Comp off leaves</option>
                                     <option value="FL">Forwarded leaves</option>
                                 </select>
                             </mat-form-field>
@@ -49,7 +49,7 @@
                                 <section>
                                     <mat-checkbox #halfDay placeholder="halfDay"
                                         (change)="disableEndDate(halfDay.checked)">
-                                        HalfDay *</mat-checkbox>
+                                        Halfday *</mat-checkbox>
                                 </section>
 
                                 <!-- <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
@@ -67,9 +67,9 @@
                                 formControlName="numberOfDays">
                         </mat-form-field>
                     </div>
-
+                    <br>
                     <div class="col-md-12">
-                        <label class="form-label mb-0">Comments</label>
+                       <!--  <label class="form-label mb-0">Comments</label> -->
                         <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
                             formControlName="comments" style="height: 113px"></textarea>
                     </div>
@@ -93,7 +93,7 @@
                                 <td><span>{{ leaves.rttAdv }}</span></td>
                             </tr>
                             <tr>
-                                <td><span>Compensation Leaves</span></td>
+                                <td><span>Comp off Leaves</span></td>
                                 <td><span>{{ leaves.compensationLeave }}</span></td>
                             </tr>
                             <tr>
@@ -102,7 +102,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <p style=" font-weight: bold; color: red;"> For other leave types please refer to instructions given below </p>
+                    <p style=" font-weight: bold; color: orange;"> Please refer below for all other leave types </p>
                 </div>
                 <div class="col-md-12 mt-3 text-end">
                     <button mat-button class="btn btn-primary" (click)="submitLeave()" type="submit">Submit Leave
@@ -116,9 +116,9 @@
 
     <div class="alert alert-success" role="alert">
         <h4 class="alert-heading">Instructions</h4>
-        <p> . For SICK Leaves, email medical certificate to HR, after verification leaves will be applied by HR</p>
-        <p> . Customer holidays should be applied as a leaves in the order RTT, compensation , paid leave </p>
-        <p> . Please contact HR for all other special leaves  </p>
+        <p> ‣ Please send medical certificate to 'hr@nishtech.be' to avail sick leaves</p>
+        <p> ‣ Customer holidays should be applied as a leaves in the order - RTT, Comp off, paid leave </p>
+        <p> ‣ Please contact HR for all other special leaves  </p>
     </div>
 
 </div>
