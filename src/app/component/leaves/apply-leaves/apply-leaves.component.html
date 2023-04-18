@@ -28,7 +28,7 @@
                             <mat-form-field>
                                 <mat-label class="form-label mb-0">Leave Start Date</mat-label>
                                 <input matInput [matDatepicker]="leaveStartDate" required
-                                    (dateChange)="dateValidation($event)" formControlName="leaveStartDate">
+                                    (dateChange)="dateValidation($event)" [matDatepickerFilter]="dateFilter" formControlName="leaveStartDate">
                                 <mat-datepicker-toggle matSuffix [for]="leaveStartDate"></mat-datepicker-toggle>
                                 <mat-datepicker #leaveStartDate (selectedChanged)="dateValidation($event)">
                                 </mat-datepicker>
@@ -38,7 +38,7 @@
                             <mat-form-field>
                                 <mat-label class="form-label mb-0">Leave End Date</mat-label>
                                 <input matInput [matDatepicker]="leaveEndDate" required
-                                    (dateChange)="dateValidation($event)" formControlName="leaveEndDate">
+                                    (dateChange)="dateValidation($event)" [matDatepickerFilter]="dateFilter" formControlName="leaveEndDate">
                                 <mat-datepicker-toggle matSuffix [for]="leaveEndDate"></mat-datepicker-toggle>
                                 <mat-datepicker #leaveEndDate></mat-datepicker>
                             </mat-form-field>
@@ -80,7 +80,7 @@
                         <thead>
                             <tr>
                                 <th><label>Leave Type</label></th>
-                                <th><label>Balence</label></th>
+                                <th><label>Balance</label></th>
                             </tr>
                         </thead>
                         <tbody>

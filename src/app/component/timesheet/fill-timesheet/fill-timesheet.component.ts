@@ -20,6 +20,8 @@ export class FillTimesheetComponent implements OnInit {
   timeSheetDetails: any;
   selectedDate = new Date();
   empId: any;
+  timeSheetFlag: boolean = false;
+  errorMessage:any;
 
   constructor(private fb: FormBuilder,
     public dialogRef: MatDialogRef<FillTimesheetComponent>, private leavesService: LeavesService, private timesheetService: TimesheetService,
@@ -81,10 +83,19 @@ export class FillTimesheetComponent implements OnInit {
   }
   fetchTimesheet(): void {
 
+    this.timeSheetFlag = false;
+    this.errorMessage="";
+    let currMonth = new Date().getMonth();
+    let selectedDateMonth = this.selectedDate.getMonth();
+    if(selectedDateMonth>currMonth){
+      this.errorMessage="Its too early to submit the timesheet, contact your HR";
+      return ;
+    }
     if (this.empId) {
 
       this.timesheetService.fetchTimeSheet(this.empId, moment(this.selectedDate).format("DD-MM-YYYY"))
         .subscribe(data => {
+          this.timeSheetFlag = data.timeSheetFlag;
           this.timeSheetDetails = data;
           this.header = data.timeSheetHeader;
           this.timesheetHeader = data.timeSheetHeader;
