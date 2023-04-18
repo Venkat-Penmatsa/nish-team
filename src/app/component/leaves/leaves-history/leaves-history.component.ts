@@ -18,6 +18,9 @@ export class LeavesHistoryComponent implements OnInit {
     'leaveStartDate',
     'leaveEndDate',
     'noOfDays',
+    'appliedBy',
+    'appliedDate',
+    'status',
     'comments'];
 
   @ViewChild(MatPaginator)
@@ -42,6 +45,8 @@ export class LeavesHistoryComponent implements OnInit {
             e.leaveStartDate,
             e.leaveEndDate,
             e.totDays,
+            e.appliedBy,
+            e.appliedDate,
             e.status,
             e.comments));
         })
@@ -62,6 +67,8 @@ export class Leaves {
     private leaveStartDate: string,
     private leaveEndDate: string,
     private totDays: number,
+    private appliedBy: string,
+    private appliedDate: string,
     private status: string,
     private comments: string
   ) { }

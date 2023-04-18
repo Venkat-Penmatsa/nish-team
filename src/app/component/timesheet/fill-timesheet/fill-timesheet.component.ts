@@ -89,7 +89,6 @@ export class FillTimesheetComponent implements OnInit {
     let selectedDateMonth = this.selectedDate.getMonth();
     if(selectedDateMonth>currMonth){
       this.errorMessage="Its too early to submit the timesheet, contact your HR";
-      return ;
     }
     if (this.empId) {
 
