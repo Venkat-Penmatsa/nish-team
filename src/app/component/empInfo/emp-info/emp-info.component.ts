@@ -18,12 +18,14 @@ export class EmpInfoComponent implements OnInit {
 
   ngOnInit(): void {
     let user :any = JSON.parse(localStorage.getItem("user") || '{}');
+
     console.log(" userDetails ........." + user);
     this.employeeService.fetchEmployeeById(user.empId)
     .subscribe(data => {
         this.empDetails = data
         this.empBasicInfo = data.empBasicInfo;
         this.isDataLoaded = true;
+        localStorage.setItem('empName', data.empBasicInfo.firstName + " " +data.empBasicInfo.lastName);
     });
   }
 

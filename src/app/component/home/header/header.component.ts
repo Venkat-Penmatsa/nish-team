@@ -16,11 +16,12 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router,public shared: SharedService,public dialog: MatDialog, public authService : AuthService) { }
 
   userDet: any;
+  userName:any;
   ngOnInit(): void {
 
     this.userDet = JSON.parse(localStorage.getItem("user") || '{}');
-
-    console.log("user ")
+    this.userName=localStorage.getItem("empName");
+    console.log(" username is  " + this.userName);
   }
 
   openDialog() {
