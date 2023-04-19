@@ -1,4 +1,4 @@
-import { Component, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { TimesheetService } from 'src/app/services/timesheet.service';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -11,6 +11,8 @@ import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { LeavesService } from 'src/app/services/leaves.service';
+import { MatSort, Sort } from '@angular/material/sort';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 const moment = _rollupMoment || _moment;
 export const MY_FORMATS = {
@@ -30,7 +32,7 @@ export const MY_FORMATS = {
   templateUrl: './emp-timesheet-report.component.html',
   styleUrls: ['./emp-timesheet-report.component.css']
 })
-export class EmpTimesheetReportComponent implements OnInit {
+export class EmpTimesheetReportComponent implements OnInit,AfterViewInit  {
 
   date = new FormControl(moment());
   message = false;
@@ -74,21 +76,31 @@ export class EmpTimesheetReportComponent implements OnInit {
   allEmployeesTimeSheetReport: AllEmployeesTimeSheetReport[] = [];
   dataSource = new MatTableDataSource<AllEmployeesTimeSheetReport>(this.allEmployeesTimeSheetReport);
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
-
-  constructor(private leavesService: LeavesService, public loader: LoaderService, public timesheetService: TimesheetService) {
+  constructor(private leavesService: LeavesService, private _liveAnnouncer: LiveAnnouncer,
+    public loader: LoaderService, public timesheetService: TimesheetService) {
 
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.loading$ = this.loader.loading$;
+    this.dataSource.sort = this.sort;
   }
-
-
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
+  announceSortChange(sortState: any) {
+    console.log("sorted")
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
+  }
+  
   fetchMonthlyReport(event) {
     this.message = false;
     this.allEmployeesTimeSheetReport = [];
@@ -118,6 +130,7 @@ export class EmpTimesheetReportComponent implements OnInit {
       })
       this.dataSource = new MatTableDataSource<AllEmployeesTimeSheetReport>(this.allEmployeesTimeSheetReport);
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
 
   }
