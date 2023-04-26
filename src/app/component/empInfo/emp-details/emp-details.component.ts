@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-emp-details',
@@ -11,6 +12,13 @@ export class EmpDetailsComponent implements OnInit {
 
   skillset: [];
   empDep: any = [];
+  displayedColumns: string[] = ['name',
+    'gender',
+    'relationship',
+    'dateOfBirth'];
+
+  dependents: Dependents[] = [];
+  dataSource = new MatTableDataSource<Dependents>(this.dependents);
 
   constructor(private fb: FormBuilder,
     public dialogRef: MatDialogRef<EmpDetailsComponent>,
@@ -22,6 +30,15 @@ export class EmpDetailsComponent implements OnInit {
     });
     this.skillset = data.skillset.skillset;
     this.empDep = data.employeeDependents;
+
+    this.empDep.forEach((e: any) => {
+      this.dependents.push(new Dependents(e.firstName + " " + e.lastName,
+        e.sex,
+        e.dependant,
+        e.dob));
+    })
+    this.dataSource = new MatTableDataSource<Dependents>(this.dependents);
+
   }
 
   ngOnInit(): void {
@@ -77,4 +94,13 @@ export class EmpDetailsComponent implements OnInit {
     updatedBy: []
   });
 
+}
+
+export class Dependents {
+  constructor(
+    private name: string,
+    private gender: string,
+    private relationship: string,
+    private dateOfBirth: Date
+  ) { }
 }
