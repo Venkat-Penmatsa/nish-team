@@ -28,7 +28,7 @@ export class EmpDetailsComponent implements OnInit {
 
   }
 
-  close(){
+  close() {
     this.dialogRef.close();
   }
 

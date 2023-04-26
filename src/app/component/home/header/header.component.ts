@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { SharedService } from 'src/app/services/shared.service';
-import { MobilityhistoryComponent } from '../../mobility/mobilityhistory/mobilityhistory.component';
 import { ChangePwdComponent } from '../../login/change-pwd/change-pwd.component';
 
 @Component({
@@ -13,15 +12,17 @@ import { ChangePwdComponent } from '../../login/change-pwd/change-pwd.component'
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private router: Router,public shared: SharedService,public dialog: MatDialog, public authService : AuthService) { }
+  constructor(private router: Router, public shared: SharedService, public dialog: MatDialog, public authService: AuthService) { }
 
   userDet: any;
-  userName:any;
+  userName: any;
   ngOnInit(): void {
+    this.shared.currentData.subscribe((dataSub: any) => {
+      if (dataSub) {
+        this.userName = dataSub.firstName + " " + dataSub.lastName
+      }
+    })
 
-    this.userDet = JSON.parse(localStorage.getItem("user") || '{}');
-    this.userName=localStorage.getItem("empName");
-    console.log(" username is  " + this.userName);
   }
 
   openDialog() {
