@@ -166,7 +166,7 @@
                                                         <td><span>{{ row.firstName }} {{ row.lastName }}</span></td>
                                                         <td><span>{{ row.sex }}</span></td>
                                                         <td><span>{{ row.dependant }}</span></td>
-                                                        <td><span>{{ row.dob }}</span></td>
+                                                        <td><span>{{ row.dob | date: 'dd/MMM/yyyy' }}</span></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
