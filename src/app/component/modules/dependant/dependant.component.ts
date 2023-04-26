@@ -25,7 +25,7 @@ import { MY_FORMATS } from 'src/app/constants/DateFormat';
 export class DependantComponent implements OnInit, OnChanges {
 
 
-  displayedColumns = ['id','dependant', 'firstName', 'lastName', 'sex', 'dob', 'actions'];
+  displayedColumns = ['id','dependant', 'firstName', 'lastName', 'Gender', 'dob', 'actions'];
   dataSource: any = [];
   index: number;
 

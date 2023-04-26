@@ -23,14 +23,14 @@
             <mat-cell *matCellDef="let row"> {{row.lastName}}</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="sex">
+        <ng-container matColumnDef="Gender">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Sex</mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.sex}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="dob">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Date of Birth</mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{ row.dob | date }}</mat-cell>
+            <mat-cell *matCellDef="let row"> {{ row.dob  }}</mat-cell>
         </ng-container>
 
         <!-- actions -->
