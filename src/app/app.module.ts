@@ -21,7 +21,6 @@ import { UserService } from './services/user.service';
 import { EmpInfoComponent } from './component/empInfo/emp-info/emp-info.component';
 import { HolidayListComponent } from './component/leaves/holiday-list/holiday-list.component';
 import { EmpDetailsComponent } from './component/empInfo/emp-details/emp-details.component';
-import { TimesheetDetailsComponent } from './component/timesheet/timesheet-details/timesheet-details.component';
 import { NotificationComponent } from './component/notification/notification/notification.component';
 import { LeavesOverviewComponent } from './component/leaves/leaves-overview/leaves-overview.component';
 import {FormattedDatePipe } from './common/FormattedDatePipe';
@@ -44,7 +43,6 @@ import { FillTimesheetComponent } from './component/timesheet/fill-timesheet/fil
     HeaderComponent,
     HolidayListComponent,
     EmpDetailsComponent,
-    TimesheetDetailsComponent,
     NotificationComponent,
     LeavesOverviewComponent,
     FormattedDatePipe,
