@@ -138,7 +138,7 @@ export class ApplyleaveComponent implements OnInit {
     if (this.leaveForm.valid) {
       const leaveType = this.leaveForm.value.leaveType;
       this.leaveList.forEach(leave => {
-        if (leave.code === leaveType) {
+        if (leaveType!=='SL' && leave.code === leaveType) {
           const numberOfDays = leave.value
           if (this.leaveForm.value.numberOfDays > numberOfDays) {
             this.error = true;
