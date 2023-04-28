@@ -11,9 +11,9 @@ export class AuthenticationService {
   public currentUser: Observable<any>;
   private currentUserSubject: BehaviorSubject<any>;
 
-  private baseUrl = "https://"+ this.document.location.hostname + ':' + this.document.location.port+"/admin-services";
+  private baseUrl = "https://" + this.document.location.hostname + ':' + this.document.location.port + "/admin-services";
 
-  constructor(private httpClient: HttpClient, private hostNameServiceService: HostNameServiceService,@Inject(DOCUMENT) private document: Document) {
+  constructor(private httpClient: HttpClient, private hostNameServiceService: HostNameServiceService, @Inject(DOCUMENT) private document: Document) {
     this.currentUserSubject = new BehaviorSubject<any>(localStorage.getItem('currentUser'));
     this.currentUser = this.currentUserSubject.asObservable();
     this.baseUrl = hostNameServiceService.getHostname();
@@ -23,12 +23,11 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
 
-  public login(username, password): any {
-    console.log('baseUrl .......... '+this.baseUrl);
+  public login(username: any, password: any): any {
+    console.log('baseUrl .......... ' + this.baseUrl);
     localStorage.setItem('currentUser', JSON.stringify(username));
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ":" + password) });
     this.currentUserSubject.next(username);
     return this.httpClient.get(`${this.baseUrl}/login/authentication`, { headers });
-    //return this.httpClient.get(this.hostNameServiceService.getHostname() +"https://3.125.8.211:8443/admin-services/login/authentication", {headers});
   }
 }

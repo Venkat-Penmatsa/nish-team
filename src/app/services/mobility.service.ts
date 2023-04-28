@@ -9,7 +9,7 @@ import { HostNameServiceService } from './host-name-service.service';
 })
 export class MobilityService {
 
-  private baseUrl = "https://" + this.document.location.hostname + ':' + this.document.location.port + "/emp-services";
+  private baseUrl = "";
 
   constructor(private http: HttpClient, private hostNameServiceService: HostNameServiceService,
     @Inject(DOCUMENT) private document: Document) {

@@ -17,14 +17,10 @@ export class SharedService {
   private dataSub = new BehaviorSubject<object>(this.empData);
   currentData = this.dataSub.asObservable();
   constructor() {
-
   }
 
   changeDataSub(newSub: object) {
     console.log("serice");
     this.dataSub.next(newSub);
   }
-
-
-
 }

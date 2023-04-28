@@ -10,21 +10,20 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class UserService {
 
-  private baseUrl = "https://"+ this.document.location.hostname + ':' + this.document.location.port+"/emp-services";
+  private baseUrl = "";
 
-  constructor(private http: HttpClient, private hostNameServiceService: HostNameServiceService, 
+  constructor(private http: HttpClient, private hostNameServiceService: HostNameServiceService,
     @Inject(DOCUMENT) private document: Document) {
     this.baseUrl = hostNameServiceService.getHostname();
   }
-  
+
   requestHeader = new HttpHeaders({
-    "No-Auth":"True"
+    "No-Auth": "True"
   });
 
 
-  public login(loginDate:any){
-    return this.http.post<any>(`${this.baseUrl}/authenticate`, loginDate,{headers: this.requestHeader});
-    //return this.http.post(this.PATH + '/authenticate',loginDate,{headers: this.requestHeader});
+  public login(loginDate: any) {
+    return this.http.post<any>(`${this.baseUrl}/authenticate`, loginDate, { headers: this.requestHeader });
   }
 
   updateUser(assetJson: any): Observable<any> {
