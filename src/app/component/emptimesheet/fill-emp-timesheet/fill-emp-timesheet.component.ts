@@ -68,6 +68,7 @@ export class FillEmpTimesheetComponent implements OnInit {
   fetchTimesheet(): void {
 
     console.log(" fetching timesheet " + this.empName);
+    this.status="";
     let user: any = JSON.parse(localStorage.getItem("user") || '{}');
     this.timesheetService.fetchTimeSheet(this.empName, moment(this.selectedDate).format("DD-MM-YYYY"))
       .subscribe(data => {

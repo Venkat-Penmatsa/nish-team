@@ -31,14 +31,15 @@
                     <tr>
                         <th scope="col">
                         </th>
-                        <th scope="col"  style="color: green;"><span>Logged Hrs</span></th>
-                        <th *ngFor="let hd of header" scope="col" style="color: green;"><span>{{ hd.dayName }}<br>{{ hd.day }}</span></th>
-                        <th scope="col"  style="color: green;"><span>Comments</span></th>
+                        <th scope="col" style="color: rgb(62, 0, 128);"><span>Logged Hrs</span></th>
+                        <th *ngFor="let hd of header" scope="col" style="color: rgb(62, 0, 128);">
+                            <span>{{ hd.dayName }}<br>{{ hd.day }}</span></th>
+                        <th scope="col"  style="color: rgb(62, 0, 128);"><span>Comments</span></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let row of rows let j=index">
-                        <td style="width: 10%;" scope="row">
+                        <td style="width: 10%; color: rgb(62, 0, 128);" scope="row">
                             {{ row.contractId }}
                         </td>
                         <td style="width: 10%;" scope="row" [(ngModel)]="row.noOfHrs">
