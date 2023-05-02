@@ -21,7 +21,7 @@ export class FillTimesheetComponent implements OnInit {
   selectedDate = new Date();
   empId: any;
   timeSheetFlag: boolean = false;
-  errorMessage:any;
+  errorMessage: any;
 
   constructor(private fb: FormBuilder,
     public dialogRef: MatDialogRef<FillTimesheetComponent>, private leavesService: LeavesService, private timesheetService: TimesheetService,
@@ -65,8 +65,8 @@ export class FillTimesheetComponent implements OnInit {
       contList.forEach((num: any) => {
         if (this.checkNumber(num)) {
           totalHours = totalHours + +num.filledData;
-        }else if(num.filledData && num.filledData === "HL"){
-          totalHours = totalHours + 0.5;
+        } else if (num.filledData && num.filledData === "HL") {
+          totalHours = totalHours + 4;
         }
       }
       );
@@ -84,11 +84,11 @@ export class FillTimesheetComponent implements OnInit {
   fetchTimesheet(): void {
 
     this.timeSheetFlag = false;
-    this.errorMessage="";
+    this.errorMessage = "";
     let currMonth = new Date().getMonth();
     let selectedDateMonth = this.selectedDate.getMonth();
-    if(selectedDateMonth>currMonth){
-      this.errorMessage="Its too early to submit the timesheet, contact your HR";
+    if (selectedDateMonth > currMonth) {
+      this.errorMessage = "Its too early to submit the timesheet, contact your HR";
     }
     if (this.empId) {
 
