@@ -105,11 +105,19 @@
             </div>
             <div class="row">
                 <div class="col">
+                    <mat-form-field class="field-style">
+                        <mat-label>Per Day working hours</mat-label>
+                        <input matInput placeholder="Per Day working hours" formControlName="perDayHrs">
+                    </mat-form-field>
+                </div>
+                <div class="col">
                     <mat-form-field class="form-col" style="width: 40%;">
                         <mat-label>Comments *</mat-label>
                         <textarea matInput formControlName="comments"></textarea>
                     </mat-form-field>
                 </div>
+                <div class="col"></div>
+                <div class="col"></div>
             </div>
         </div>
     </form>

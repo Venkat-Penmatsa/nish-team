@@ -39,6 +39,8 @@ export class FillEmpTimesheetComponent implements OnInit {
       contList.forEach((num: any) => {
         if (this.checkNumber(num)) {
           totalHours = totalHours + +num.filledData;
+        } else if (num.filledData != '' && num.filledData === 'HL') {
+          totalHours = totalHours + 4;
         }
       }
       );
@@ -46,8 +48,8 @@ export class FillEmpTimesheetComponent implements OnInit {
     });
   }
 
-  checkNumber(num :any){
-   return (typeof(num.filledData) === 'number' || typeof(num.filledData) === "string" && num.filledData.trim() !== '') && !isNaN(num.filledData as number);
+  checkNumber(num: any) {
+    return (typeof (num.filledData) === 'number' || typeof (num.filledData) === "string" && num.filledData.trim() !== '') && !isNaN(num.filledData as number);
   }
 
   updateTimeSheet() {
@@ -68,7 +70,7 @@ export class FillEmpTimesheetComponent implements OnInit {
   fetchTimesheet(): void {
 
     console.log(" fetching timesheet " + this.empName);
-    this.status="";
+    this.status = "";
     let user: any = JSON.parse(localStorage.getItem("user") || '{}');
     this.timesheetService.fetchTimeSheet(this.empName, moment(this.selectedDate).format("DD-MM-YYYY"))
       .subscribe(data => {

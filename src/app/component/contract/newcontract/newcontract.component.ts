@@ -46,6 +46,7 @@ export class NewcontractComponent implements OnInit {
       contractStartDate: ['', Validators.required],
       contractEndDate: ['', Validators.required],
       contractType: ['', Validators.required],
+      perDayHrs: ['', Validators.required],
       comments: [''],
       updatedBy: ['']
     });
@@ -85,7 +86,8 @@ export class NewcontractComponent implements OnInit {
           contractStartDate: moment(this.contract.contractStartDate, "MM/DD/YYYY"),
           contractEndDate: moment(this.contract.contractEndDate, "MM/DD/YYYY"),
           comments: this.contract.comments,
-          contractType: this.contract.contractType
+          contractType: this.contract.contractType,
+          perDayHrs: this.contract.perDayHrs
         });
         this.filterEmpName = this.contract.employeeId;
         // this.newContractForm.controls['billingRate'].disable();
