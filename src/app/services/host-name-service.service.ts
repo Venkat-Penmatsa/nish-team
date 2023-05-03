@@ -13,7 +13,7 @@ export class HostNameServiceService {
     //return this.document.defaultView.window.location.hostname;
 
     // Or use the location on document.
-   //const url = "https://"+ this.document.location.hostname + ':' + this.document.location.port+"/nish-team-services";
+   //const url = "https://"+ this.document.location.hostname + ':' + this.document.location.port+"/NEPtune-services";
     
   const url =  'http://localhost:8092';
    // const url = "http://"+ this.document.location.hostname + ':' + this.document.location.port+"/admin-services";

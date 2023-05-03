@@ -1,4 +1,4 @@
-<div class="popUpboxWrap borTop2">
+<div class="popUpboxWrap borTop2 p-3">
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="modal_02Label">Fill Timesheet</h5>
@@ -13,7 +13,7 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th scope="col">
+                            <th scope="col" style="width: 225px">
                                 <mat-form-field>
                                     <mat-label>Select Date</mat-label>
                                     <input matInput [matDatepicker]="timeSheetDate" required [(ngModel)]="selectedDate"
@@ -23,24 +23,23 @@
                                     <mat-datepicker #timeSheetDate>
                                     </mat-datepicker>
                                 </mat-form-field>
-
                             </th>
-                            <th scope="col" style="color: rgb(62, 0, 128);"><span>Logged Hrs</span></th>
-                            <th *ngFor="let hd of header" scope="col" style="color: rgb(62, 0, 128);"><span>{{
+                            <th scope="col"  style="color: rgb(62, 0, 128); width: 90px"><span>Logged Hrs</span></th>
+                            <th *ngFor="let hd of header" scope="col" style="color: rgb(62, 0, 128); width: 55px"><span>{{
                                     hd.dayName }}<br>{{ hd.day }}</span></th>
-                            <th style="width: 50px;" scope="col" style="color: rgb(62, 0, 128);"><span>Comments</span>
+                            <th scope="col" style="color: rgb(62, 0, 128);  width: 225px"><span>Comments</span>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let row of rows let j=index">
-                            <td style="width: 10%; color: rgb(62, 0, 128);" scope="row">
-                                {{ row.contractId }}
+                        <tr *ngFor="let row of rows let j=index" >
+                            <td style="color: rgb(62, 0, 128);" scope="row">
+                               <span> {{ row.contractId }}</span>
                             </td>
-                            <td style="width: 10%;" scope="row" [(ngModel)]="row.noOfHrs">
-                                {{ row.noOfHrs }}
+                            <td scope="row" [(ngModel)]="row.noOfHrs">
+                                 <span> {{ row.noOfHrs }}</span>
                             </td>
-                            <td *ngFor="let timeData of row.contractTimeSheetList; let i = index">
+                            <td *ngFor="let timeData of row.contractTimeSheetList; let i = index" style="width: 55px">
                                 <span *ngIf="timeData.isDisabled; else editPlace">
                                     <input class="form-control" type="text" placeholder="" disabled style="color: red;"
                                         [ngModel]="timeData.filledData" aria-label="">
@@ -61,7 +60,7 @@
 
                     </tbody>
                 </table>
-                <div class="col-md-12 mt-3" *ngIf ="!timeSheetFlag && !errorMessage">
+                <div class="col-md-12 mt-3 mb-3" *ngIf ="!timeSheetFlag && !errorMessage">
                     <button type="button" class="btn btn-primary ms-3" data-bs-toggle="modal"
                         (click)="updateTimeSheet()" data-bs-target="#exampleModalToggle2">Submit</button>
                 </div>
@@ -71,7 +70,7 @@
 
     &nbsp;
 
-    <div class="alert alert-success" role="alert">
+    <div class="alert alert-success alert-box" role="alert">
         <p> Legend : PH - Public Holiday, LE - Leave & HL - Half day Leave.</p>
         <h4 class="alert-heading">Instructions</h4>
         <p> ‣ Please mention extra working days/hours in the comments section</p>

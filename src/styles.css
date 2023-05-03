@@ -96,34 +96,30 @@ ul {
     border: 0;
 }
 #header{
-    padding: 10px;
+    padding: 5px;
     background: #01263d;
 }
 #header h1{
     color: #fff;
     font-size: 50px;
     text-transform: none;
-    padding: 8px 20px;
     font-weight: 500;
-    border-left: 2px #fff solid;
 }
 .contentWrap{
     padding: 15px 0;
 }
 .popUpboxWrap{
-    padding: 15px;
     color: #000;
     border: 1px #ddd solid;
     position: relative;
-    height: 100%;
 }
 .boxWrap{
     padding: 15px;
     color: #000;
     border: 1px #ddd solid;
     position: relative;
-    min-height: 340px;
-    max-height: 340px;
+    min-height: 320px;
+    max-height: 320px;
 }
 .boxWrap h2{
     font-size: 20px;
@@ -142,11 +138,10 @@ ul {
 .table-responsive .table tr th{
     color: #000;
     font-weight: 500;
-    padding-bottom: 15px;
     vertical-align: top;
 }
 .boxCont .table-responsive{
-    max-height: 260px;
+    max-height: 250px;
 }
 .headerFixed thead{
     display: table;
@@ -164,21 +159,7 @@ ul {
     display: table;
     table-layout: fixed;
 }
-.customScroll::-webkit-scrollbar {
-    width: 5px;
-}
-/* Track */
-.customScroll::-webkit-scrollbar-track {
-    background: #f79227;
-}
-/* Handle */
-.customScroll::-webkit-scrollbar-thumb {
-    background: #c6751f;
-}
-/* Handle on hover */
-.customScroll::-webkit-scrollbar-thumb:hover {
-    background: #a7631a;
-}
+
 .borTop1{
     border-top: 7px solid #ff0000;
 }
@@ -273,7 +254,6 @@ ul {
     line-height: 20px;
 }
 .Leavemodal-body{
-    padding: 15px;
   
 }
 #navCont04 .bi-plus-lg, #navCont05 .bi-plus-lg{
@@ -396,7 +376,9 @@ ul {
 .applyLeaveBox{
     position: relative;
     border: 1px #871a1a solid;
-    padding: 5px 10px;
+}
+.applyLeaveBox-content{
+    padding: 5px;
 }
 .applyLeaveBox span{
     font-size: 12px;
@@ -404,6 +386,7 @@ ul {
 .applyLeaveBox h3 {
     font-size: 18px;
     color: #871a1a;
+    margin-top: 10px;
 }
 .applyLeaveBox h3 label {
     font-size: 12px;
@@ -432,4 +415,46 @@ ul {
 td.mat-cell, th.mat-header-cell {
     text-align: center;
     justify-content:center;
+}
+
+
+.alert-box {
+    margin-bottom: 0 !important;
+}
+
+.example-month-picker .mat-calendar-header{
+    display: none;
+}
+  
+mat-year-view .mat-calendar-body-label{
+    display: none !important;
+}
+
+.example-month-picker.mat-calendar {
+    height: 150px !important;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f79227;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #c6751f;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a7631a;
+  }
+
+  table {
+    table-layout: fixed;
+    word-wrap: break-word;
 }

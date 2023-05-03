@@ -1,14 +1,38 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { LeavesService } from 'src/app/services/leaves.service';
 import { TimesheetService } from 'src/app/services/timesheet.service';
 import * as moment from 'moment';
+import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import {MatDatepicker} from '@angular/material/datepicker';
+
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'MM/YYYY',
+  },
+  display: {
+    dateInput: 'MM',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 
 @Component({
   selector: 'app-fill-timesheet',
   templateUrl: './fill-timesheet.component.html',
-  styleUrls: ['./fill-timesheet.component.css']
+  styleUrls: ['./fill-timesheet.component.css'],
+  providers: [
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+    },
+
+    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+  ],
 })
 export class FillTimesheetComponent implements OnInit {
 
@@ -22,9 +46,11 @@ export class FillTimesheetComponent implements OnInit {
   empId: any;
   timeSheetFlag: boolean = false;
   errorMessage: any;
+  //date = new FormControl(moment());
 
   constructor(private fb: FormBuilder,
-    public dialogRef: MatDialogRef<FillTimesheetComponent>, private leavesService: LeavesService, private timesheetService: TimesheetService,
+    public dialogRef: MatDialogRef<FillTimesheetComponent>, private leavesService: LeavesService, 
+    private timesheetService: TimesheetService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.user = data;
@@ -35,10 +61,21 @@ export class FillTimesheetComponent implements OnInit {
 
 
   ngOnInit(): void {
-
     this.fetchTimesheet();
-
   }
+
+  /*chosenYearHandler(normalizedYear: any) {
+    const ctrlValue = this.date.value;
+    ctrlValue?.year(normalizedYear.year());
+    this.date.setValue(ctrlValue);
+  }
+
+  chosenMonthHandler(normalizedMonth: any, datepicker: MatDatepicker<any>) {
+    const ctrlValue = this.date.value;
+    ctrlValue?.month(normalizedMonth.month());
+    this.date.setValue(ctrlValue);
+    datepicker.close();
+  }*/
 
   updateTimeSheet() {
     let user: any = JSON.parse(localStorage.getItem("user") || '{}');
@@ -82,17 +119,20 @@ export class FillTimesheetComponent implements OnInit {
     this.dialogRef.close();
   }
   fetchTimesheet(): void {
-
     this.timeSheetFlag = false;
     this.errorMessage = "";
     let currMonth = new Date().getMonth();
-    let selectedDateMonth = this.selectedDate.getMonth();
-    if (selectedDateMonth > currMonth) {
+    console.log(this.selectedDate);
+   // let selectedDateMonth = this.selectedDate.getMonth();
+    var check = moment(this.selectedDate, 'YYYY/MM/DD');
+    var month = check.format('M');
+    if (Number(month) > currMonth+1) {
       this.errorMessage = "Its too early to submit the timesheet, contact your HR";
     }
     if (this.empId) {
 
       this.timesheetService.fetchTimeSheet(this.empId, moment(this.selectedDate).format("DD-MM-YYYY"))
+      //this.timesheetService.fetchTimeSheet(this.empId, this.date.value)
         .subscribe(data => {
           this.timeSheetFlag = data.timeSheetFlag;
           this.timeSheetDetails = data;
