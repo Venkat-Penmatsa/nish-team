@@ -15,7 +15,7 @@
                         <tr>
                             <th scope="col" style="width: 225px">
                                 <mat-form-field>
-                                    <mat-label>Select Date</mat-label>
+                                    <mat-label>Select Month</mat-label>
                                     <input matInput [matDatepicker]="timeSheetDate" required [(ngModel)]="selectedDate"
                                     datePickerFormat="DD/MM/YYYY"
                                         style="color: rgb(62, 0, 128);" (dateChange)="fetchTimesheet()">
@@ -47,7 +47,7 @@
                                 <ng-template #editPlace>
                                     <input class="form-control" type="text" placeholder="" inputmode="decimal"
                                     pattern="\d*"
-                                        onKeyUp="if(this.value>8){this.value='8';}else if(this.value<0){this.value='0';}"
+                                        onKeyUp="if(this.value>9){this.value='9';}else if(this.value<0){this.value='0';}"
                                         [value]="row.contractId" (change)="calculateHours($event)"
                                         [(ngModel)]="row.contractTimeSheetList[i].filledData" aria-label="">
                                 </ng-template>
@@ -73,6 +73,7 @@
     <div class="alert alert-success alert-box" role="alert">
         <p> Legend : PH - Public Holiday, LE - Leave & HL - Half day Leave.</p>
         <h4 class="alert-heading">Instructions</h4>
+        <p> ‣ Please enter the time as per the example: 8.5 or 7.5 or 4 ("only decimal". No comma (,) and no column (:)).</p>
         <p> ‣ Please mention extra working days/hours in the comments section</p>
         <p> ‣ Customer holidays should be applied as a leave, please fill the timesheet before 25th of every month</p>
         <p> ‣ There should not be any discrepancy in (Total Hours) between NISH and customer timesheet </p>
