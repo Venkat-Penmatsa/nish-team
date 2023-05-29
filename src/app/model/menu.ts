@@ -106,7 +106,7 @@ export let menu: NavItem[] = [
         iconName: 'timer',
         route: 'hr/yearlyTimesheet',
         role:['All','Admin','HR','Finance'],
-      },
+      }/*,
       {
         displayName: 'Monthly TimeSheet Report',
         iconName: 'report',
@@ -118,7 +118,7 @@ export let menu: NavItem[] = [
         iconName: 'report',
         route: 'hr/generateContractBasedTimeSheetReport',
         role:['All','Admin','HR','Finance'],
-      },
+      }*/,
       {
         displayName: 'Leaves Generation Batch',
         iconName: 'list_alt',

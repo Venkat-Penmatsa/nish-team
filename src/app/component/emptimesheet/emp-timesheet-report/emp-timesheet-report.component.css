@@ -6,6 +6,10 @@
     background-color: rgba(255, 102, 0, 0.718);
   }
 
+  .row-mismatchHrs {
+    background-color: rgba(246, 255, 0, 0.871);
+  }
+
 
   ::ng-deep .mat-sort-header-container:not(.mat-sort-header-sorted) .mat-sort-header-arrow {
     opacity: 0.54 !important;

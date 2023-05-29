@@ -34,7 +34,8 @@
                         <th scope="col" style="color: rgb(62, 0, 128);"><span>Logged Hrs</span></th>
                         <th *ngFor="let hd of header" scope="col" style="color: rgb(62, 0, 128);">
                             <span>{{ hd.dayName }}<br>{{ hd.day }}</span></th>
-                        <th scope="col"  style="color: rgb(62, 0, 128);"><span>Comments</span></th>
+                        <th scope="col"  style="color: rgb(62, 0, 128); width: 225px"><span>Comments</span></th>
+                        <th scope="col"  style="color: rgb(62, 0, 128); width: 225px"><span>HR Comments</span></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,13 +53,17 @@
                             </span>
                             <ng-template #editPlace>
                                 <input class="form-control" type="text" placeholder="" inputmode="decimal"
-                                    onKeyUp="if(this.value>8){this.value='8';}else if(this.value<0){this.value='0';}"
+                                    onKeyUp="if(this.value>9){this.value='9';}else if(this.value<0){this.value='0';}"
                                     [value]="row.contractId" (change)="calculateHours($event)"
                                     [(ngModel)]="row.contractTimeSheetList[i].filledData" aria-label="">
                             </ng-template>
                         </td>
-                        <td style="width: 10%;" scope="row" >
+                        <td style="align-items: center;" scope="row" >
                             <input class="form-control" type="text" placeholder=""  [(ngModel)]="row.comments"
+                                     aria-label="">
+                        </td>
+                        <td  style="align-items: center;" scope="row" >
+                            <input class="form-control" type="text" placeholder=""  [(ngModel)]="row.hrComments"
                                      aria-label="">
                         </td>
                     </tr>

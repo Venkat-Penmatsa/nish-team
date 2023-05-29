@@ -70,7 +70,8 @@ export class EmpTimesheetReportComponent implements OnInit,AfterViewInit  {
     'numberOfFilledHours',
     'filledDays',
     'numberOfLeaves',
-    'comments'
+    'comments',
+    'hrComments'
   ];
 
   allEmployeesTimeSheetReport: AllEmployeesTimeSheetReport[] = [];
@@ -125,7 +126,8 @@ export class EmpTimesheetReportComponent implements OnInit,AfterViewInit  {
           e.numberOfFilledHours,
           e.filledDays,
           e.numberOfLeaves,
-          e.comments
+          e.comments,
+          e.hrComments
         ));
       })
       this.dataSource = new MatTableDataSource<AllEmployeesTimeSheetReport>(this.allEmployeesTimeSheetReport);
@@ -150,10 +152,8 @@ export class EmpTimesheetReportComponent implements OnInit,AfterViewInit  {
 
     this.timesheetService.downloadMonthlyTimeSheet(this.selectedDate).subscribe(res => {
       console.log(res);
-
       let blob: any = new Blob([res], { type: 'text/json; charset=utf-8' });
       importedSaveAs(blob, this.selectedDate + '-MonthlyTimeSheet.xls');
-
     }
     );
   }
@@ -172,6 +172,7 @@ export class AllEmployeesTimeSheetReport {
     private numberOfFilledHours: number,
     private filledDays: number,
     private numberOfLeaves: number,
-    private comments: string
+    private comments: string,
+    private hrComments: string
   ) { }
 }

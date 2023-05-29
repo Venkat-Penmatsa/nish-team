@@ -90,6 +90,7 @@ export class FillEmpTimesheetComponent implements OnInit {
 interface Timesheet {
   contractId: string;
   comments: string;
+  hrComments: string;
   noOfHrs: string;
   contractTimeSheetList: {
     day: string;
