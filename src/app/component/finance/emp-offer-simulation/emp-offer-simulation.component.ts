@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, Validators } from '@angular/forms';
+import { User } from 'src/app/model/User';
 
 @Component({
   selector: 'app-emp-offer-simulation',
@@ -10,8 +11,11 @@ export class EmpOfferSimulationComponent implements OnInit {
 
   constructor(private fb: UntypedFormBuilder) { }
   transportOption:any;
+  user: User;
 
   ngOnInit(): void {
+
+    this.user = JSON.parse(localStorage.getItem("userDetails") || '{}') as User;
 
     this.simulationForm.patchValue({
       insurance:100,
@@ -92,11 +96,23 @@ export class EmpOfferSimulationComponent implements OnInit {
 
       const margin = Math.round(yearBilling-ctc);
 
+      let range =0;
+      if(margin <=0){
+        range = 0;
+      }else if(margin > 0 && margin <=10000){
+        range = 1;
+      }else if(margin > 10000 && margin <=20000){
+        range = 2;
+      }else if(margin > 20000){
+        range = 3;
+      }
+
       this.simulationForm.patchValue({
         grossPerYear: grossPerYear,
         rest: rest,
         ctc: ctc,
-        margin: margin
+        range: range,
+        margin: margin 
       });
 
     }
@@ -124,6 +140,7 @@ export class EmpOfferSimulationComponent implements OnInit {
     grossPerYear: ['', Validators.required],
     rest: ['', Validators.required],
     ctc: ['', ],
+    range: ['', ],
     margin: ['', ],
     
   });

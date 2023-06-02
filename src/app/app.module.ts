@@ -61,6 +61,7 @@ import { MonthmobilityComponent } from './component/mobility/monthmobility/month
 import { MobilityreportComponent } from './component/mobility/mobilityreport/mobilityreport.component';
 import { MobilitybatchComponent } from './component/mobility/mobilitybatch/mobilitybatch.component';
 import { ContractBasedTimesheetComponent } from './component/timesheet/contract-based-timesheet/contract-based-timesheet.component';
+import { ActiveEmpComponent } from './common/active-emp/active-emp.component';
 
 @NgModule({
   declarations: [
@@ -110,7 +111,8 @@ import { ContractBasedTimesheetComponent } from './component/timesheet/contract-
     MonthmobilityComponent,
     MobilityreportComponent,
     MobilitybatchComponent,
-    ContractBasedTimesheetComponent
+    ContractBasedTimesheetComponent,
+    ActiveEmpComponent
   ],
   imports: [
     ReactiveFormsModule,

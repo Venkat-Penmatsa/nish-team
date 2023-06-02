@@ -6,8 +6,8 @@
     <div [formGroup]="userForm" class="page-layout-container">
         <div class="row">
             <div class="col" style="width: 30%;">
-                <app-emp-name [filterEmpName]="filterEmpName" (empName)="empNameSelected($event)">
-                </app-emp-name>
+                <app-active-emp [filterEmpName]="filterEmpName" (empName)="empNameSelected($event)">
+                </app-active-emp>
             </div>
         </div>
         <div class="row">

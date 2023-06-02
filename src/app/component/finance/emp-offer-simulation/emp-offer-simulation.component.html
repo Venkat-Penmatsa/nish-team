@@ -141,12 +141,18 @@
             </div>
             <div class="col">
                 <mat-form-field>
-                    <mat-label>Margin(CTC - Year Billing) *</mat-label>
-                    <input matInput type="number" readonly="true" min="0" formControlName="margin">
+                    <mat-label>Range*</mat-label>
+                    <input matInput type="number" readonly="true" min="0" formControlName="range">
                 </mat-form-field>
             </div>
         </div>
-        <div class="row">      
+        <div class="row" *ngIf="this.user.role == 'admin'">   
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>Margin(CTC - Year Billing) *</mat-label>
+                    <input matInput type="number" readonly="true" min="0" formControlName="margin">
+                </mat-form-field>
+            </div>   
         </div>
     </form>
 

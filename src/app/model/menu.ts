@@ -34,6 +34,20 @@ export let menu: NavItem[] = [
     ]
   },
   {
+    displayName: 'Simulation',
+    iconName: 'business',
+    route: 'contracts',
+    role:['All','Admin','HR','Finance'],
+    children: [
+      {
+        displayName: 'Simulation',
+        iconName: 'list_alt',
+        route: 'finance/simulation',
+        role:['All','Admin','HR'],
+      }
+    ]
+  },
+  {
     displayName: 'Finance',
     iconName: 'business',
     route: 'contracts',

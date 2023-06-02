@@ -33,6 +33,10 @@ export class EmployeeService {
     return this.http.get(`${this.baseUrl}/employee/fetchAllEmployeeName`);
   }
 
+  fetchActiveEmployeeName(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/employee/fetchActiveEmployees`);
+  }
+
 
   fetchAllEmpLeaves(): Observable<any> {
     const headers = { 'Content-type': 'application/json' };
