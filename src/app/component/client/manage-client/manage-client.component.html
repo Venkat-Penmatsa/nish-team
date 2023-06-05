@@ -1,0 +1,137 @@
+<div class="page-layout-container">
+  <div class="row">
+    <h1 class="title">Manage Client</h1>
+  </div>
+
+  <div *ngIf="successFlag" class="alert alert-success">
+    Customer Details Adminstrated successfully !! Customer id is {{ clientId }}
+  </div>
+
+  <div *ngIf="errorFlag" class="alert alert-warning">
+    {{ errorDescription }}
+  </div>
+
+  <form [formGroup]="newClientForm">
+    <div>
+      <div class="row">
+        <div class="col-6">
+          <mat-form-field style="padding: 20px">
+            <mat-label>Search with Customer ID *</mat-label>
+            <input
+              matInput
+              formControlName="clientId"
+              (change)="searchContractId($event)"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="example-full-width">
+            <mat-label>Customer Name</mat-label>
+            <input matInput formControlName="clientName" />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="field-style">
+            <mat-label>Address 1</mat-label>
+            <input matInput formControlName="address1" />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="field-style">
+            <mat-label>Address 2</mat-label>
+            <input matInput formControlName="address2" />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="field-style">
+            <mat-label>Postcode</mat-label>
+            <input matInput formControlName="postcode" />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="field-style">
+            <mat-label>Country</mat-label>
+            <input matInput formControlName="country" />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="field-style">
+            <mat-label>TVA</mat-label>
+            <input matInput formControlName="tva" />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="field-style">
+            <mat-label>Invoice Payment Days</mat-label>
+            <input matInput formControlName="invoicePaymentDays" />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <mat-label>Contract onBoarded Date</mat-label>
+            <input
+              matInput
+              [matDatepicker]="clientOnBoardedDate"
+              formControlName="clientOnBoardedDate"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="clientOnBoardedDate"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #clientOnBoardedDate></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="field-style">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" formControlName="clientEmail" />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="field-style">
+            <mat-label>Phone</mat-label>
+            <input matInput placeholder="Phone" formControlName="clientPhone" />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="field-style">
+            <mat-label>Customer point of Contact</mat-label>
+            <input
+              matInput
+              placeholder="Customer point of Contact"
+              formControlName="clientPointOfContact"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="form-col" style="width: 40%">
+            <mat-label>Comments *</mat-label>
+            <textarea matInput formControlName="comments"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col"></div>
+        <div class="col"></div>
+      </div>
+    </div>
+  </form>
+  &nbsp;&nbsp;
+  <div style="text-align: center">
+    <button
+      mat-button
+      (click)="onSubmit()"
+      [disabled]="!newClientForm.valid"
+      type="submit"
+    >
+      Manage Customer
+    </button>
+  </div>
+</div>
+<app-progress [loading$]="loading$"> </app-progress>

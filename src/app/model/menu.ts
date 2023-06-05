@@ -66,6 +66,18 @@ export let menu: NavItem[] = [
         role:['All','Admin','HR','Finance'],
       },
       {
+        displayName: 'Manage Customer',
+        iconName: 'add_business',
+        route: 'client/manageClient',
+        role:['All','Admin','HR','Finance'],
+      },
+      {
+        displayName: 'All Customers',
+        iconName: 'list',
+        route: 'client/allClients',
+        role:['All','Admin','HR','Finance'],
+      },
+      {
         displayName: 'Employee Outlay',
         iconName: 'list',
         route: 'finance/empOffer',

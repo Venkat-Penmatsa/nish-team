@@ -1,0 +1,99 @@
+<div class="page-layout-container">
+  <div class="row">
+    <h1 class="title">All Customers</h1>
+  </div>
+
+  <div>
+    <mat-form-field appearance="standard">
+      <mat-label>Filter</mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        placeholder="search with Contract id, name,.."
+        #input
+      />
+    </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="clientId">
+        <th mat-header-cell *matHeaderCellDef>Customer Id</th>
+        <td mat-cell *matCellDef="let element">{{ element.clientId }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="clientName">
+        <th mat-header-cell *matHeaderCellDef>Client Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.clientName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="address1">
+        <th mat-header-cell *matHeaderCellDef>Address 1</th>
+        <td mat-cell *matCellDef="let element">{{ element.address1 }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="address2">
+        <th mat-header-cell *matHeaderCellDef>Address 2</th>
+        <td mat-cell *matCellDef="let element">{{ element.address2 }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="postcode">
+        <th mat-header-cell *matHeaderCellDef>Postcode</th>
+        <td mat-cell *matCellDef="let element">{{ element.postcode }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="country">
+        <th mat-header-cell *matHeaderCellDef>Country</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.country }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="tva">
+        <th mat-header-cell *matHeaderCellDef>TVA</th>
+        <td mat-cell *matCellDef="let element">{{ element.tva }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="invoicePaymentDays">
+        <th mat-header-cell *matHeaderCellDef>Invoice Payment Days</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.invoicePaymentDays }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="clientEmail">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let element">{{ element.clientEmail }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="clientOnBoardedDate">
+        <th mat-header-cell *matHeaderCellDef>Client OnBoarded Date</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.clientOnBoardedDate | date : "dd/MMMM/yyyy" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="clientPhone">
+        <th mat-header-cell *matHeaderCellDef>Phone Number</th>
+        <td mat-cell *matCellDef="let element">{{ element.clientPhone }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="comments">
+        <th mat-header-cell *matHeaderCellDef>Comments</th>
+        <td mat-cell *matCellDef="let element">{{ element.comments }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="updatedBy">
+        <th mat-header-cell *matHeaderCellDef>Created/Updated By</th>
+        <td mat-cell *matCellDef="let element">{{ element.updatedBy }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+  <app-progress [loading$]="loading$"> </app-progress>
+</div>

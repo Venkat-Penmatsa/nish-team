@@ -39,6 +39,8 @@ import { MonthmobilityComponent } from './component/mobility/monthmobility/month
 import { MobilityreportComponent } from './component/mobility/mobilityreport/mobilityreport.component';
 import { MobilitybatchComponent } from './component/mobility/mobilitybatch/mobilitybatch.component';
 import { ContractBasedTimesheetComponent } from './component/timesheet/contract-based-timesheet/contract-based-timesheet.component';
+import { ManageClientComponent } from './component/client/manage-client/manage-client.component';
+import { ListAllClientsComponent } from './component/client/list-all-clients/list-all-clients.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -85,6 +87,9 @@ const routes: Routes = [
       { path: 'user/empManage', component: ManageUserComponent },
       { path: 'emptimesheet/filltimesheet', component: FillEmpTimesheetComponent },
       { path: 'emptimesheet/allemptimesheet', component: EmpTimesheetReportComponent },
+      { path: 'client/manageClient', component: ManageClientComponent },
+      { path: 'client/allClients', component: ListAllClientsComponent },
+     
     ]
   }
 ];
