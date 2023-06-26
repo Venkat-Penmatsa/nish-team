@@ -37,6 +37,11 @@ export class ClientDetailsService {
     return this.http.get(`${this.baseUrl}/customer/listCustomers`, { headers });
   }
 
+  listAllCustomersName(): Observable<any> {
+    const headers = { 'Content-type': 'application/json' };
+    return this.http.get(`${this.baseUrl}/customer/customerName`, { headers });
+  }
+
   fetchCustomerInfo(custId: string) {
     return this.http
       .get(`${this.baseUrl}/customer/fetchCustomerInfo/` + custId)

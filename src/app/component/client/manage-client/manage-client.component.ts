@@ -61,7 +61,7 @@ export class ManageClientComponent implements OnInit {
             clientId: res.clientId,
             clientName: res.clientName,
             address1: res.address1,
-            address2: res.address1,
+            address2: res.address2,
             postcode: res.postcode,
             country: res.country,
             tva: res.tva,

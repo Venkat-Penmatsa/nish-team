@@ -1,130 +1,204 @@
-<div class="page-layout-container ">
-    <div class="row">
-        <h1 class="title"> Manage Contract </h1>
-    </div>
+<div class="page-layout-container">
+  <div class="row">
+    <h1 class="title">Manage Contract</h1>
+  </div>
 
-    <div *ngIf="successFlag" class="alert alert-success">Contract Adminstrated successfully !! Contract id is {{
-        nishContractId }}</div>
+  <div *ngIf="successFlag" class="alert alert-success">
+    Contract Adminstrated successfully !! Contract id is {{ nishContractId }}
+  </div>
 
+  <div *ngIf="errorFlag" class="alert alert-warning">
+    {{ errorDescription }}
+  </div>
 
-    <div *ngIf="errorFlag" class="alert alert-warning">{{ errorDescription }}</div>
-
-    <form [formGroup]="newContractForm">
-        <div>
-            <div class="row">
-                <div class="col-6">
-                    <mat-form-field style="padding: 20px">
-                        <mat-label>Search with NISH Contract ID *</mat-label>
-                        <input matInput formControlName="nishContractId" (change)="searchContractId($event)" />
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-6" style="width: 80%;">
-                    <app-active-emp [filterEmpName]="filterEmpName" (empName)="empNameSelected($event)">
-                    </app-active-emp>
-                </div>
-                <div class="col">
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Client Contract Id</mat-label>
-                        <input matInput formControlName="contractId">
-                    </mat-form-field>
-                </div>
-                <div class="col">
-                    <mat-form-field>
-                        <mat-label>Contract Status*</mat-label>
-                        <select matNativeControl required formControlName="contractStatus">
-                            <option value="confirmed">Confirmed</option>
-                            <option value="closed">Closed</option>
-                            <option value="inProgress">InProgress</option>
-                            <option value="hold">Hold</option>
-                        </select>
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <mat-form-field class="field-style">
-                        <mat-label>Client Name*</mat-label>
-                        <input matInput formControlName="clientName">
-                    </mat-form-field>
-                </div>
-                <div class="col">
-                    <mat-form-field class="field-style">
-                        <mat-label>Contract Company Name*</mat-label>
-                        <input matInput formControlName="contractCompanyName">
-                    </mat-form-field>
-                </div>
-                <div class="col">
-                    <mat-form-field class="field-style">
-                        <mat-label>SubContract Company Name1</mat-label>
-                        <input matInput formControlName="subContractCompany1">
-                    </mat-form-field>
-                </div>
-                <div class="col">
-                    <mat-form-field class="field-style">
-                        <mat-label>SubContract Company Name2</mat-label>
-                        <input matInput formControlName="subContractCompany2">
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <mat-form-field class="field-style">
-                        <mat-label>Billing Rate*</mat-label>
-                        <input matInput placeholder="Rate in Euros" formControlName="billingRate">
-                    </mat-form-field>
-                </div>
-                <div class="col">
-                    <mat-form-field>
-                        <mat-label>Contract Start Date*</mat-label>
-                        <input matInput [matDatepicker]="contractStartDate" [matDatepickerFilter]="dateOfJoiningFilter"
-                            formControlName="contractStartDate">
-                        <mat-datepicker-toggle matSuffix [for]="contractStartDate"></mat-datepicker-toggle>
-                        <mat-datepicker #contractStartDate></mat-datepicker>
-                    </mat-form-field>
-                </div>
-                <div class="col">
-                    <mat-form-field>
-                        <mat-label>Contract End Date*</mat-label>
-                        <input matInput [matDatepicker]="contractEndDate" [matDatepickerFilter]="dateOfJoiningFilter"
-                            formControlName="contractEndDate">
-                        <mat-datepicker-toggle matSuffix [for]="contractEndDate"></mat-datepicker-toggle>
-                        <mat-datepicker #contractEndDate></mat-datepicker>
-                    </mat-form-field>
-                </div>
-                <div class="col">
-                    <mat-form-field>
-                        <mat-label>Contract Type*</mat-label>
-                        <select matNativeControl required formControlName="contractType">
-                            <option value="Billing">Billing</option>
-                            <option value="Bench">Bench</option>
-                        </select>
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <mat-form-field class="field-style">
-                        <mat-label>Per Day working hours</mat-label>
-                        <input matInput placeholder="Per Day working hours" formControlName="perDayHrs">
-                    </mat-form-field>
-                </div>
-                <div class="col">
-                    <mat-form-field class="form-col" style="width: 40%;">
-                        <mat-label>Comments *</mat-label>
-                        <textarea matInput formControlName="comments"></textarea>
-                    </mat-form-field>
-                </div>
-                <div class="col"></div>
-                <div class="col"></div>
-            </div>
+  <form [formGroup]="newContractForm">
+    <div>
+      <div class="row">
+        <div class="col-6">
+          <mat-form-field style="padding: 20px">
+            <mat-label>Search with NISH Contract ID *</mat-label>
+            <input
+              matInput
+              formControlName="nishContractId"
+              (change)="searchContractId($event)"
+            />
+          </mat-form-field>
         </div>
-    </form>
-    &nbsp;&nbsp;
-    <div style="text-align: center">
-        <button mat-button (click)="onSubmit()" [disabled]="!newContractForm.valid" type="submit">Manage
-            Contract</button>
+      </div>
+      <div class="row">
+        <div class="col-6" style="width: 80%">
+          <app-active-emp
+            [filterEmpName]="filterEmpName"
+            (empName)="empNameSelected($event)"
+          >
+          </app-active-emp>
+        </div>
+        <div class="col">
+          <mat-form-field class="example-full-width">
+            <mat-label>Client Contract Id</mat-label>
+            <input matInput formControlName="contractId" />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <mat-label>Contract Status*</mat-label>
+            <select matNativeControl required formControlName="contractStatus">
+              <option value="confirmed">Confirmed</option>
+              <option value="closed">Closed</option>
+              <option value="inProgress">InProgress</option>
+              <option value="hold">Hold</option>
+            </select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="field-style">
+            <mat-label>Client Name*</mat-label>
+            <input matInput formControlName="clientName" />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="field-style">
+            <mat-label>Contract Company Name*</mat-label>
+            <input matInput formControlName="contractCompanyName" />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="field-style">
+            <mat-label>SubContract Company Name1</mat-label>
+            <input matInput formControlName="subContractCompany1" />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="field-style">
+            <mat-label>SubContract Company Name2</mat-label>
+            <input matInput formControlName="subContractCompany2" />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="field-style">
+            <mat-label>Billing Rate*</mat-label>
+            <input
+              matInput
+              placeholder="Rate in Euros"
+              formControlName="billingRate"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <mat-label>Contract Start Date*</mat-label>
+            <input
+              matInput
+              [matDatepicker]="contractStartDate"
+              [matDatepickerFilter]="dateOfJoiningFilter"
+              formControlName="contractStartDate"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="contractStartDate"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #contractStartDate></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <mat-label>Contract End Date*</mat-label>
+            <input
+              matInput
+              [matDatepicker]="contractEndDate"
+              [matDatepickerFilter]="dateOfJoiningFilter"
+              formControlName="contractEndDate"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="contractEndDate"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #contractEndDate></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <mat-label>Contract Type*</mat-label>
+            <select matNativeControl required formControlName="contractType">
+              <option value="Billing">Billing</option>
+              <option value="Bench">Bench</option>
+              <option value="Internal">Internal</option>
+            </select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="field-style">
+            <mat-label>Per Day working hours</mat-label>
+            <input
+              matInput
+              placeholder="Per Day working hours"
+              formControlName="perDayHrs"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="form-col" style="width: 40%">
+            <mat-label>Comments *</mat-label>
+            <textarea matInput formControlName="comments"></textarea>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="field-style">
+            <mat-label>Contract Reference</mat-label>
+            <input
+              matInput
+              placeholder="Contract Reference"
+              formControlName="contractReference"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="field-style">
+            <mat-label>VOS Reference</mat-label>
+            <input
+              matInput
+              placeholder="VOS Reference"
+              formControlName="vosReference"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field>
+            <mat-label>Invoice Entity </mat-label>
+            <select matNativeControl required formControlName="entity">
+              <option value="nishtech">NISH Tech</option>
+              <option value="nish">NISH Technologies</option>
+            </select>
+          </mat-form-field>
+        </div>
+        <div class="col-6" style="width: 80%">
+          <app-customer-name
+            [filterCustomerName]="filterCustomerName"
+            (custName)="custNameSelected($event)"
+          >
+          </app-customer-name>
+        </div>
+      </div>
     </div>
+  </form>
+  &nbsp;&nbsp;
+  <div style="text-align: center">
+    <button
+      mat-button
+      (click)="onSubmit()"
+      [disabled]="!newContractForm.valid"
+      type="submit"
+    >
+      Manage Contract
+    </button>
+  </div>
 </div>
 <app-progress [loading$]="loading$"> </app-progress>

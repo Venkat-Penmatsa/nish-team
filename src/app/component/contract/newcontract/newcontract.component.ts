@@ -10,28 +10,31 @@ const moment = _moment;
 @Component({
   selector: 'app-newcontract',
   templateUrl: './newcontract.component.html',
-  styleUrls: ['./newcontract.component.css']
+  styleUrls: ['./newcontract.component.css'],
 })
 export class NewcontractComponent implements OnInit {
-
   nishContractId: number;
   successFlag: Boolean = false;
   errorFlag: Boolean = false;
   errorDescription: any;
   empName: any;
+  customerName: any;
   contract: any;
   filterEmpName: string;
+  filterCustomerName: string;
   user: User;
   loading$: any;
 
   newContractForm: FormGroup = new FormGroup({});
 
-  constructor(private fb: FormBuilder, private newcontractService: NewcontractService,
-    private http: HttpClient, public loader: LoaderService) {
-  }
+  constructor(
+    private fb: FormBuilder,
+    private newcontractService: NewcontractService,
+    private http: HttpClient,
+    public loader: LoaderService
+  ) {}
 
   ngOnInit(): void {
-
     this.newContractForm = this.fb.group({
       nishContractId: [''],
       employeeId: [''],
@@ -48,30 +51,36 @@ export class NewcontractComponent implements OnInit {
       contractType: ['', Validators.required],
       perDayHrs: ['', Validators.required],
       comments: [''],
-      updatedBy: ['']
+      updatedBy: [''],
+      contractReference: [''],
+      vosReference: [''],
+      entity: [''],
+      customerId: [''],
     });
-
   }
-
 
   dateOfJoiningFilter = (m: Moment | null): boolean => {
     const day = (m || moment()).day();
     return day !== 0 && day !== 6;
-  }
+  };
 
   empNameSelected(emp: any) {
     this.empName = emp;
   }
 
+  custNameSelected(custId: any) {
+    this.customerName = custId;
+  }
+
   searchContractId($event: Event) {
     this.successFlag = false;
     const contractID = ($event.target as HTMLTextAreaElement).value;
-    if (contractID != "") {
-      this.newcontractService.fetchContractInfo(contractID).subscribe(res => {
+    if (contractID != '') {
+      this.newcontractService.fetchContractInfo(contractID).subscribe((res) => {
         console.log(res);
         this.contract = res;
-        console.log("start date ******* " + this.contract.contractStartDate);
-        console.log("end date ******* " + this.contract.contractEndDate);
+        console.log('start date ******* ' + this.contract.contractStartDate);
+        console.log('end date ******* ' + this.contract.contractEndDate);
         this.newContractForm.patchValue({
           nishContractId: this.contract.nishContractId,
           employeeId: this.contract.employeeId,
@@ -83,13 +92,17 @@ export class NewcontractComponent implements OnInit {
           subContractCompany2: this.contract.subContractCompany2,
           subContractCompany3: this.contract.subContractCompany3,
           billingRate: this.contract.billingRate,
-          contractStartDate: moment(this.contract.contractStartDate, "MM/DD/YYYY"),
-          contractEndDate: moment(this.contract.contractEndDate, "MM/DD/YYYY"),
+          contractStartDate: moment(
+            this.contract.contractStartDate,
+            'MM/DD/YYYY'
+          ),
+          contractEndDate: moment(this.contract.contractEndDate, 'MM/DD/YYYY'),
           comments: this.contract.comments,
           contractType: this.contract.contractType,
-          perDayHrs: this.contract.perDayHrs
+          perDayHrs: this.contract.perDayHrs,
         });
         this.filterEmpName = this.contract.employeeId;
+        this.filterCustomerName = this.contract.customerId;
         // this.newContractForm.controls['billingRate'].disable();
         this.newContractForm.controls['employeeId'].disable();
       });
@@ -97,42 +110,46 @@ export class NewcontractComponent implements OnInit {
   }
 
   onSubmit() {
-
     this.errorFlag = false;
     this.successFlag = false;
 
-    this.user = JSON.parse(localStorage.getItem("userDetails") || '{}') as User;
+    this.user = JSON.parse(localStorage.getItem('userDetails') || '{}') as User;
     console.log(this.newContractForm.value);
     this.newContractForm.patchValue({
       employeeId: this.empName,
       updatedBy: this.user.empId,
-      contractStartDate: new Date(moment(this.newContractForm.value.contractStartDate).utcOffset('+2000').format('YYYY-MM-DD')),
-      contractEndDate: new Date(moment(this.newContractForm.value.contractEndDate).utcOffset('+2000').format('YYYY-MM-DD'))
-    })
+      customerId: this.customerName,
+      contractStartDate: new Date(
+        moment(this.newContractForm.value.contractStartDate)
+          .utcOffset('+2000')
+          .format('YYYY-MM-DD')
+      ),
+      contractEndDate: new Date(
+        moment(this.newContractForm.value.contractEndDate)
+          .utcOffset('+2000')
+          .format('YYYY-MM-DD')
+      ),
+    });
     const body = JSON.stringify(this.newContractForm.getRawValue());
 
-    console.log("leaves jason" + body)
+    console.log('leaves jason' + body);
 
-    this.newcontractService.createContract(body)
-      .subscribe(data => {
-        console.log("data ==========> " + data);
+    this.newcontractService.createContract(body).subscribe((data) => {
+      console.log('data ==========> ' + data);
 
-        if (data.errorCode == "true") {
+      if (data.errorCode == 'true') {
+        this.errorFlag = true;
+        this.errorDescription = data.errorDescription;
+      } else {
+        this.successFlag = true;
+        this.nishContractId = data.nishContractId;
+        this.newContractForm.reset();
+      }
+    });
 
-          this.errorFlag = true;
-          this.errorDescription = data.errorDescription;
-
-        } else {
-          this.successFlag = true;
-          this.nishContractId = data.nishContractId;
-          this.newContractForm.reset();
-        }
-      })
-
-    console.log("nishContractId..." + this.nishContractId)
+    console.log('nishContractId...' + this.nishContractId);
   }
 }
-
 
 interface ContractResponse {
   nishContractId: number;

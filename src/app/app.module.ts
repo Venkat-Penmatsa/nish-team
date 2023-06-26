@@ -64,6 +64,7 @@ import { ContractBasedTimesheetComponent } from './component/timesheet/contract-
 import { ActiveEmpComponent } from './common/active-emp/active-emp.component';
 import { ManageClientComponent } from './component/client/manage-client/manage-client.component';
 import { ListAllClientsComponent } from './component/client/list-all-clients/list-all-clients.component';
+import { CustomerNameComponent } from './common/customer-name/customer-name.component';
 
 @NgModule({
   declarations: [
@@ -116,7 +117,8 @@ import { ListAllClientsComponent } from './component/client/list-all-clients/lis
     ContractBasedTimesheetComponent,
     ActiveEmpComponent,
     ManageClientComponent,
-    ListAllClientsComponent
+    ListAllClientsComponent,
+    CustomerNameComponent
   ],
   imports: [
     ReactiveFormsModule,
