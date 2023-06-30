@@ -5,20 +5,23 @@ import { Observable } from 'rxjs';
 import { HostNameServiceService } from './host-name-service.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmployeeService {
+  private baseUrl = '';
 
-  private baseUrl = "";
-
-  constructor(private http: HttpClient, private hostNameServiceService: HostNameServiceService,
-    @Inject(DOCUMENT) private document: Document) {
+  constructor(
+    private http: HttpClient,
+    private hostNameServiceService: HostNameServiceService
+  ) {
     this.baseUrl = hostNameServiceService.getHostname();
   }
 
   fetchEmployeeById(employee: String): Observable<any> {
     const headers = { 'Content-type': 'application/json' };
-    return this.http.get<any>(`${this.baseUrl}/employee/getEmployeeById/` + employee, { headers });
+    return this.http.get<any>(
+      `${this.baseUrl}/employee/getEmployeeById/` + employee,
+      { headers }
+    );
   }
-
 }

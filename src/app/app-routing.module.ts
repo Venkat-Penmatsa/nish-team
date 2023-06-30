@@ -11,20 +11,35 @@ import { TimesheetComponent } from './component/timesheet/timesheet/timesheet.co
 import { AuthGuard } from './services/authguard';
 
 const routes: Routes = [
-
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: '', pathMatch: 'full', redirectTo: 'login' },
-  { path: 'user', component: EmpInfoComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
-  { path: 'forbidden', component: ForbiddenComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'user', component: EmpInfoComponent, canActivate: [AuthGuard] },
+  {
+    path: 'forbidden',
+    component: ForbiddenComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'admin', component: ApplyLeavesComponent, canActivate: [AuthGuard] },
-  { path: 'leavesHistory', component: LeavesHistoryComponent, canActivate: [AuthGuard] },
-  { path: 'timeSheet', component: TimesheetComponent, canActivate: [AuthGuard] },
-  { path: 'assets', component: AssetDetailsComponent, canActivate: [AuthGuard] }
+  {
+    path: 'leavesHistory',
+    component: LeavesHistoryComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'timeSheet',
+    component: TimesheetComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'assets',
+    component: AssetDetailsComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true })],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

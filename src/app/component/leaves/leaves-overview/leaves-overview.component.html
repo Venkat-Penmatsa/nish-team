@@ -1,66 +1,69 @@
 <div *ngIf="isDataLoaded">
-    <div class="row justify-content-center">
-
-        <br>
-<br>
-
-        <div class="row justify-content-center">
-            <div class="col">
-                <h6>Current Balance : {{leaves.totalleavebalence}}</h6>
-            </div>
-        </div>
-        <!-- <div class="col-md-5 pt-5">
-        <div class="leaveCircleWrap">
-            <span>Balance leaves</span>
-            <h3>20</h3>
-        </div>
-    </div> -->
-
-<br>
-<br>
-        <div class="col">
-            <div class="applyLeaveBox">
-                <div class="applyLeaveBox-content">
-                    <span>Paid  <br> 
-                        Holidays</span>
-                   <h3>{{leaves.authorisedAbsence}}</h3>
-                </div>
-                
-            </div>
-        </div>
-        <div class="col">
-            <div class="applyLeaveBox">
-                <div class="applyLeaveBox-content">
-                    <span>RTT/ADV  <br>  Days</span>
-                    <h3>{{leaves.rttAdv}}</h3>
-                </div>
-               
-            </div>
-        </div>
-        <div class="col">
-            <div class="applyLeaveBox">
-                <div class="applyLeaveBox-content">
-                    <span>Comp off  <br> Leaves</span>
-                <h3>{{leaves.compensationLeave}}</h3>
-                </div>
-                
-            </div>
-        </div>
-        <div class="col">
-            <div class="applyLeaveBox">
-                <div class="applyLeaveBox-content">
-                    <span>Forwarded  <br>  Leaves</span>
-                <h3>{{leaves.forwardedLeave}}</h3>
-                </div>
-                
-            </div>
-        </div>
-
-    </div>
-    <div class="row justify-content-center">
-        <div class="col"> <button #applyLeave class="btn_04" (click)="openApplyLeaveDialog()">Apply Leave</button>
-        </div>
-        <div class="col"> <button #leaveHist class="btn_03" (click)="openHistDialog()">Leaves History</button> </div>
+  <div class="row justify-content-center">
+    <div class="d-inline-flex p-2">
+      <h6>Current Balance : {{ leaves.totalleavebalence }}</h6>
     </div>
 
+    <div
+      class="d-flex flex-wrap align-content-center justify-content-evenly align-items-center"
+    >
+      <div class="p-1 flex-fill">
+        <div class="applyLeaveBox">
+          <div class="applyLeaveBox-content">
+            <span
+              >Paid <br />
+              Holidays</span
+            >
+            <h3>{{ leaves.authorisedAbsence }}</h3>
+          </div>
+        </div>
+      </div>
+      <div class="p-1 flex-fill">
+        <div class="applyLeaveBox">
+          <div class="applyLeaveBox-content">
+            <span
+              >RTT/ADV <br />
+              Days</span
+            >
+            <h3>{{ leaves.rttAdv }}</h3>
+          </div>
+        </div>
+      </div>
+      <div class="p-1 flex-fill">
+        <div class="applyLeaveBox">
+          <div class="applyLeaveBox-content">
+            <span
+              >Comp Off <br />
+              Leaves</span
+            >
+            <h3>{{ leaves.compensationLeave }}</h3>
+          </div>
+        </div>
+      </div>
+      <div class="p-1 flex-fill">
+        <div class="applyLeaveBox">
+          <div class="applyLeaveBox-content">
+            <span
+              >Forwarded <br />
+              Leaves</span
+            >
+            <h3>{{ leaves.forwardedLeave }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col">
+      <button #applyLeave class="btn_04" (click)="openApplyLeaveDialog()">
+        Apply Leave
+      </button>
+    </div>
+    <div class="col">
+      <button #leaveHist class="btn_03" (click)="openHistDialog()">
+        Leaves History
+      </button>
+    </div>
+  </div>
 </div>

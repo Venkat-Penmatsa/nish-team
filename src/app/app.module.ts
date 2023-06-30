@@ -23,11 +23,12 @@ import { HolidayListComponent } from './component/leaves/holiday-list/holiday-li
 import { EmpDetailsComponent } from './component/empInfo/emp-details/emp-details.component';
 import { NotificationComponent } from './component/notification/notification/notification.component';
 import { LeavesOverviewComponent } from './component/leaves/leaves-overview/leaves-overview.component';
-import {FormattedDatePipe } from './common/FormattedDatePipe';
+import { FormattedDatePipe } from './common/FormattedDatePipe';
 import { MobilitydetailsComponent } from './component/mobility/mobilitydetails/mobilitydetails.component';
 import { MobilityhistoryComponent } from './component/mobility/mobilityhistory/mobilityhistory.component';
 import { ChangePwdComponent } from './component/login/change-pwd/change-pwd.component';
 import { FillTimesheetComponent } from './component/timesheet/fill-timesheet/fill-timesheet.component';
+import { JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { FillTimesheetComponent } from './component/timesheet/fill-timesheet/fil
     MobilitydetailsComponent,
     MobilityhistoryComponent,
     ChangePwdComponent,
-    FillTimesheetComponent
+    FillTimesheetComponent,
   ],
   imports: [
     FormsModule,
@@ -59,16 +60,18 @@ import { FillTimesheetComponent } from './component/timesheet/fill-timesheet/fil
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    // JwtModule.forRoot({}),
   ],
   providers: [
-    AuthGuard,{
-      provide : HTTP_INTERCEPTORS,
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi : true
-  },
-    UserService
+      multi: true,
+    },
+    UserService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

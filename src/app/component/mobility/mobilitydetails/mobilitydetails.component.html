@@ -1,35 +1,28 @@
 <div *ngIf="isDataLoaded">
-    <div *ngIf="mobilitySecFlag">
-        <form [formGroup]="mobilityForm">
-
-            <table class="table">
-                <tbody>
-
-                    <br>
-                    <br>
-
-                    
-                    <tr>
-                        <td><span>Eligible Budget</span></td>
-                        <td><span>€{{ mobDetails.applicableBudget }}</span></td>
-                    </tr>
-                    <tr>
-                        <td><span>Consumed Budget</span></td>
-                        <td><span>€{{ mobDetails.consumedBudget }}</span></td>
-                    </tr>
-                    <tr>
-                        <td><span>Available Budget</span></td>
-                        <td><span>€{{ mobDetails.availableBudget }}</span></td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <button class="btn_05" (click)="openDialog()">View Rational</button>
-        </form>
-    </div>
-    <div *ngIf="!mobilitySecFlag">
-        <div class="alert alert-success alert-box" role="alert">
-            <p> Car is allocated to you, Mobility Budget is not applicable </p>
+  <div *ngIf="mobilitySecFlag">
+    <div class="container mt-3">
+      <div class="row p-3 border-bottom">
+        <div class="col">Eligible Budget</div>
+        <div class="col">€{{ mobDetails.applicableBudget }}</div>
+      </div>
+      <div class="row p-3 border-bottom">
+        <div class="col">Consumed Budget</div>
+        <div class="col">€{{ mobDetails.consumedBudget }}</div>
+      </div>
+      <div class="row p-3 border-bottom">
+        <div class="col">Available Budget</div>
+        <div class="col">
+          €{{ mobDetails.availableBudget | number : "1.2-2" }}
         </div>
+      </div>
     </div>
+    <div class="d-flex align-items-end flex-column bd-highlight mb-3">
+      <button class="btn_05" (click)="openDialog()">View Rational</button>
+    </div>
+  </div>
+  <div *ngIf="!mobilitySecFlag">
+    <div class="alert alert-success alert-box" role="alert">
+      <p>Car is allocated to you, Mobility Budget is not applicable</p>
+    </div>
+  </div>
 </div>
