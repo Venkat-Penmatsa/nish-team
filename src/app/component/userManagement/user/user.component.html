@@ -1,57 +1,69 @@
 <div class="page-layout-container">
-    <div class="title-group">
-        <h1>Create New/Manage User </h1>
+  <div class="title-group">
+    <h1>Create New/Manage User</h1>
+  </div>
+  <div *ngIf="successFlag" class="alert alert-success">{{ message }}</div>
+  <div [formGroup]="userForm" class="page-layout-container">
+    <div class="row">
+      <div class="col" style="width: 30%">
+        <app-active-emp
+          [filterEmpName]="filterEmpName"
+          (empName)="empNameSelected($event)"
+        >
+        </app-active-emp>
+      </div>
     </div>
-    <div *ngIf="successFlag" class="alert alert-success">{{ message }}</div>
-    <div [formGroup]="userForm" class="page-layout-container">
-        <div class="row">
-            <div class="col" style="width: 30%;">
-                <app-active-emp [filterEmpName]="filterEmpName" (empName)="empNameSelected($event)">
-                </app-active-emp>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <mat-form-field class="example-full-width">
-                    <mat-label>Password *</mat-label>
-                    <input type="password" matInput formControlName="password">
-                </mat-form-field>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <mat-form-field class="example-full-width">
-                    <mat-label>Reenter Password *</mat-label>
-                    <input type="password" matInput formControlName="repassword">
-                </mat-form-field>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <mat-form-field class="example-full-width">
-                    <mat-label>Status </mat-label>
-                    <select matNativeControl required formControlName="active">
-                        <option value="active">Active</option>
-                        <option value="inActive">In Active</option>
-                    </select>
-                </mat-form-field>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <mat-form-field class="example-full-width">
-                    <mat-label>Role </mat-label>
-                    <select matNativeControl required formControlName="role">
-                        <option value="admin">Admin</option>
-                        <option value="hr">HR</option>
-                        <option value="finance">Finance</option>
-                    </select>
-                </mat-form-field>
-            </div>
-        </div>
-        <div style="text-align: center">
-            <button mat-button [disabled]="!userForm.valid" (click)="createUser()" type="submit">Create
-                User</button>
-        </div>
+    <div class="row">
+      <div class="col">
+        <mat-form-field class="example-full-width">
+          <mat-label>Password *</mat-label>
+          <input type="password" matInput formControlName="password" />
+        </mat-form-field>
+      </div>
     </div>
+    <div class="row">
+      <div class="col">
+        <mat-form-field class="example-full-width">
+          <mat-label>Reenter Password *</mat-label>
+          <input type="password" matInput formControlName="repassword" />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <mat-form-field class="example-full-width">
+          <mat-label>Status </mat-label>
+          <select matNativeControl required formControlName="active">
+            <option value="active">Active</option>
+            <option value="inActive">In Active</option>
+          </select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <mat-form-field class="example-full-width">
+          <mat-label>Role </mat-label>
+          <select matNativeControl required formControlName="role">
+            <option value="admin">Admin</option>
+            <option value="hr">HR</option>
+            <option value="finance">Finance</option>
+            <option value="timesheet">Timesheet</option>
+            <option value="recruiter">Recruiter</option>
+            <option value="contract">Contract</option>
+          </select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div style="text-align: center">
+      <button
+        mat-button
+        [disabled]="!userForm.valid"
+        (click)="createUser()"
+        type="submit"
+      >
+        Create User
+      </button>
+    </div>
+  </div>
 </div>

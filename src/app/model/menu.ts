@@ -109,7 +109,7 @@ export let menu: NavItem[] = [
     displayName: 'HR',
     iconName: 'manage_accounts',
     route: 'hr',
-    role: ['contract', 'admin', 'hr', 'finance'],
+    role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
     children: [
       {
         displayName: 'Apply Leaves',
