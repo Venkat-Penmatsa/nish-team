@@ -29,6 +29,8 @@ import { MobilityhistoryComponent } from './component/mobility/mobilityhistory/m
 import { ChangePwdComponent } from './component/login/change-pwd/change-pwd.component';
 import { FillTimesheetComponent } from './component/timesheet/fill-timesheet/fill-timesheet.component';
 import { JwtModule } from '@auth0/angular-jwt';
+import { FileUploadModule } from 'ng2-file-upload';
+import { UploadrSelectDirective } from './component/timesheet/fill-timesheet/uploadr-select.directive';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,7 @@ import { JwtModule } from '@auth0/angular-jwt';
     MobilityhistoryComponent,
     ChangePwdComponent,
     FillTimesheetComponent,
+    UploadrSelectDirective,
   ],
   imports: [
     FormsModule,
@@ -61,6 +64,7 @@ import { JwtModule } from '@auth0/angular-jwt';
     MaterialModule,
     HttpClientModule,
     RouterModule,
+    FileUploadModule,
     // JwtModule.forRoot({}),
   ],
   providers: [

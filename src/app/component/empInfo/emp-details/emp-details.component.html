@@ -1,156 +1,335 @@
 <div class="popUpboxWrap borTop1 p-3">
-    <form [formGroup]="empCreationForm">
-        <mat-dialog-content>
-            <div>
-                <div class="modal-dialog modal-xl modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modal_01Label">Employee Details</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                                (click)="close()"></button>
-                        </div>
-                        <div class="modal-body">
-                            <nav>
-                                <div class="nav nav-tabs mb-4" id="nav-tab" role="tablist">
-                                    <button class="nav-link active" id="navTab_01" data-bs-toggle="tab"
-                                        data-bs-target="#navCont01" type="button" role="tab" aria-controls="navCont01"
-                                        aria-selected="true">Employee
-                                        Details</button>
-                                    <button class="nav-link" id="navTab_02" data-bs-toggle="tab"
-                                        data-bs-target="#navCont02" type="button" role="tab" aria-controls="navCont02"
-                                        aria-selected="false">Address
-                                        Details</button>
-                                    <button class="nav-link" id="navTab_03" data-bs-toggle="tab"
-                                        data-bs-target="#navCont03" type="button" role="tab" aria-controls="navCont03"
-                                        aria-selected="false">Skills</button>
-                                    <button class="nav-link" id="navTab_05" data-bs-toggle="tab"
-                                        data-bs-target="#navCont05" type="button" role="tab" aria-controls="navCont05"
-                                        aria-selected="false">Family
-                                        Details</button>
-                                </div>
-                            </nav>
-                            <div class="tab-content" id="nav-tabContent">
-
-                                <div class="tab-pane fade show active" id="navCont01" role="tabpanel"
-                                    aria-labelledby="navTab_01">
-                                    <div formGroupName="empBasicInfo">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <label class="form-label mb-0">First Name</label>
-                                                <input class="form-control" type="text" readonly="true" placeholder=""
-                                                    formControlName="firstName" aria-label="">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label class="form-label mb-0">Last Name</label>
-                                                <input class="form-control" type="text" readonly="true" placeholder=""
-                                                    aria-label="" formControlName="lastName">
-
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label class="form-label mb-0">Date of Joining</label>
-                                                <input class="form-control" type="text" readonly="true" placeholder=""
-                                                    aria-label="" formControlName="onboardingDate">
-                                            </div>
-                                            <div class="col-md-4 mt-3">
-                                                <label class="form-label mb-0">RP Expiry Date</label>
-                                                <input class="form-control" type="text" readonly="true" placeholder=""
-                                                    aria-label="" formControlName="rpExpiryDate">
-                                            </div>
-                                            <div class="col-md-4 mt-3">
-                                                <label class="form-label mb-0">National Registration Number</label>
-                                                <input class="form-control" type="text" readonly="true" placeholder=""
-                                                    aria-label="" formControlName="ssn">
-                                            </div>
-                                            <div class="col-md-4 mt-3">
-                                                <label class="form-label mb-0">Date of Birth</label>
-                                                <input class="form-control" type="text" readonly="true" placeholder=""
-                                                    aria-label="" formControlName="dob">
-                                            </div>
-                                            <div class="col-md-4 mt-3">
-                                                <label class="form-label mb-0">Email</label>
-                                                <input class="form-control" type="text" readonly="true" placeholder=""
-                                                    aria-label="" formControlName="email">
-                                            </div>
-                                            <div class="col-md-4 mt-3">
-                                                <label class="form-label mb-0">Phone</label>
-                                                <input class="form-control" type="text" readonly="true" placeholder=""
-                                                    aria-label="" formControlName="mobile">
-                                            </div>
-                                            <div class="col-md-4 mt-3">
-                                                <label class="form-label mb-0">Entity</label>
-                                                <input class="form-control" type="text" readonly="true" placeholder=""
-                                                    aria-label="" formControlName="entity">
-                                            </div>
-                                            <div class="col-md-4 mt-3">
-                                                <label class="form-label mb-0">Passport Number</label>
-                                                <input class="form-control" type="text" readonly="true" placeholder=""
-                                                    aria-label="" formControlName="passportId">
-                                            </div>
-                                            <div class="col-md-4 mt-3">
-                                                <label class="form-label mb-0">Bank Account Number</label>
-                                                <input class="form-control" type="text" readonly="true" placeholder=""
-                                                    aria-label="" formControlName="ibannumber">
-                                            </div>
-                                            <div class="col-md-4 mt-3">
-                                                <label class="form-label mb-0">HR Spoc</label>
-                                                <input class="form-control" type="text" readonly="true" placeholder=""
-                                                    aria-label="" formControlName="hrSpoc">
-                                            </div>
-                                            <div class="col-md-4 mt-3">
-                                                <label class="form-label mb-0">Emergency Contact Person</label>
-                                                <input class="form-control" type="text" readonly="true" placeholder=""
-                                                    aria-label="" formControlName="emergencyContactPerson">
-                                            </div>
-                                            <div class="col-md-4 mt-3">
-                                                <label class="form-label mb-0">Emergency Contact Number</label>
-                                                <input class="form-control" type="text" readonly="true" placeholder=""
-                                                    aria-label="" formControlName="emergencyContactNumber">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="navCont02" role="tabpanel" aria-labelledby="navTab_02">
-                                    <div class="row" formGroupName="employeeAddress">
-                                        <div class="col-md-4">
-                                            <label class="form-label mb-0">Address Line 1</label>
-                                            <input class="form-control" type="text" readonly="true" placeholder=""
-                                                aria-label="" formControlName="currentAddress1">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="form-label mb-0">Address Line 2</label>
-                                            <input class="form-control" type="text" readonly="true" placeholder=""
-                                                aria-label="" formControlName="currentAddress2">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="form-label mb-0">City</label>
-                                            <input class="form-control" type="text" readonly="true" placeholder=""
-                                                aria-label="" formControlName="currentCity">
-                                        </div>
-                                        <div class="col-md-4 mt-3">
-                                            <label class="form-label mb-0">Postcode</label>
-                                            <input class="form-control" type="text" readonly="true" placeholder=""
-                                                aria-label="" formControlName="currentPincode">
-                                        </div>
-                                        <div class="col-md-4 mt-3">
-                                            <label class="form-label mb-0">Country</label>
-                                            <input class="form-control" type="text" readonly="true" placeholder=""
-                                                aria-label="" formControlName="currentCountry">
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="navCont03" role="tabpanel" aria-labelledby="navTab_03">
-
-                                    <div class="row">
-                                        <mat-label>Skills</mat-label>
-                                        <mat-chip-list aria-label="Skills" multiple>
-                                            <mat-chip color="primary" *ngFor="let chip of skillset"
-                                                selected>{{chip}}</mat-chip>
-                                        </mat-chip-list>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="navCont05" role="tabpanel"  id="navCont05">
-                                    <!-- <div class="row">
+  <form [formGroup]="empCreationForm">
+    <mat-dialog-content>
+      <div>
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal_01Label">Employee Details</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                (click)="close()"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <nav>
+                <div class="nav nav-tabs mb-4" id="nav-tab" role="tablist">
+                  <button
+                    class="nav-link active"
+                    id="navTab_01"
+                    data-bs-toggle="tab"
+                    data-bs-target="#navCont01"
+                    type="button"
+                    role="tab"
+                    aria-controls="navCont01"
+                    aria-selected="true"
+                  >
+                    Employee Details
+                  </button>
+                  <button
+                    class="nav-link"
+                    id="navTab_02"
+                    data-bs-toggle="tab"
+                    data-bs-target="#navCont02"
+                    type="button"
+                    role="tab"
+                    aria-controls="navCont02"
+                    aria-selected="false"
+                  >
+                    Address Details
+                  </button>
+                  <button
+                    class="nav-link"
+                    id="navTab_03"
+                    data-bs-toggle="tab"
+                    data-bs-target="#navCont03"
+                    type="button"
+                    role="tab"
+                    aria-controls="navCont03"
+                    aria-selected="false"
+                  >
+                    Skills
+                  </button>
+                  <button
+                    class="nav-link"
+                    id="navTab_05"
+                    data-bs-toggle="tab"
+                    data-bs-target="#navCont05"
+                    type="button"
+                    role="tab"
+                    aria-controls="navCont05"
+                    aria-selected="false"
+                  >
+                    Family Details
+                  </button>
+                </div>
+              </nav>
+              <div class="tab-content" id="nav-tabContent">
+                <div
+                  class="tab-pane fade show active"
+                  id="navCont01"
+                  role="tabpanel"
+                  aria-labelledby="navTab_01"
+                >
+                  <div formGroupName="empBasicInfo">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <label class="form-label mb-0">First Name</label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          readonly="true"
+                          placeholder=""
+                          formControlName="firstName"
+                          aria-label=""
+                        />
+                      </div>
+                      <div class="col-md-4">
+                        <label class="form-label mb-0">Last Name</label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          readonly="true"
+                          placeholder=""
+                          aria-label=""
+                          formControlName="lastName"
+                        />
+                      </div>
+                      <div class="col-md-4">
+                        <label class="form-label mb-0">Date of Joining</label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          readonly="true"
+                          placeholder=""
+                          aria-label=""
+                          formControlName="onboardingDate"
+                        />
+                      </div>
+                      <div class="col-md-4 mt-3">
+                        <label class="form-label mb-0">RP Expiry Date</label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          readonly="true"
+                          placeholder=""
+                          aria-label=""
+                          formControlName="rpExpiryDate"
+                        />
+                      </div>
+                      <div class="col-md-4 mt-3">
+                        <label class="form-label mb-0"
+                          >National Registration Number</label
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          readonly="true"
+                          placeholder=""
+                          aria-label=""
+                          formControlName="ssn"
+                        />
+                      </div>
+                      <div class="col-md-4 mt-3">
+                        <label class="form-label mb-0">Date of Birth</label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          readonly="true"
+                          placeholder=""
+                          aria-label=""
+                          formControlName="dob"
+                        />
+                      </div>
+                      <div class="col-md-4 mt-3">
+                        <label class="form-label mb-0">Email</label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          readonly="true"
+                          placeholder=""
+                          aria-label=""
+                          formControlName="email"
+                        />
+                      </div>
+                      <div class="col-md-4 mt-3">
+                        <label class="form-label mb-0">Phone</label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          readonly="true"
+                          placeholder=""
+                          aria-label=""
+                          formControlName="mobile"
+                        />
+                      </div>
+                      <div class="col-md-4 mt-3">
+                        <label class="form-label mb-0">Entity</label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          readonly="true"
+                          placeholder=""
+                          aria-label=""
+                          formControlName="entity"
+                        />
+                      </div>
+                      <div class="col-md-4 mt-3">
+                        <label class="form-label mb-0">Passport Number</label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          readonly="true"
+                          placeholder=""
+                          aria-label=""
+                          formControlName="passportId"
+                        />
+                      </div>
+                      <div class="col-md-4 mt-3">
+                        <label class="form-label mb-0"
+                          >Bank Account Number</label
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          readonly="true"
+                          placeholder=""
+                          aria-label=""
+                          formControlName="ibannumber"
+                        />
+                      </div>
+                      <div class="col-md-4 mt-3">
+                        <label class="form-label mb-0">HR Spoc</label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          readonly="true"
+                          placeholder=""
+                          aria-label=""
+                          formControlName="hrSpoc"
+                        />
+                      </div>
+                      <div class="col-md-4 mt-3">
+                        <label class="form-label mb-0"
+                          >Emergency Contact Person</label
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          readonly="true"
+                          placeholder=""
+                          aria-label=""
+                          formControlName="emergencyContactPerson"
+                        />
+                      </div>
+                      <div class="col-md-4 mt-3">
+                        <label class="form-label mb-0"
+                          >Emergency Contact Number</label
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          readonly="true"
+                          placeholder=""
+                          aria-label=""
+                          formControlName="emergencyContactNumber"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="navCont02"
+                  role="tabpanel"
+                  aria-labelledby="navTab_02"
+                >
+                  <div class="row" formGroupName="employeeAddress">
+                    <div class="col-md-4">
+                      <label class="form-label mb-0">Address Line 1</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        readonly="true"
+                        placeholder=""
+                        aria-label=""
+                        formControlName="currentAddress1"
+                      />
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label mb-0">Address Line 2</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        readonly="true"
+                        placeholder=""
+                        aria-label=""
+                        formControlName="currentAddress2"
+                      />
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label mb-0">City</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        readonly="true"
+                        placeholder=""
+                        aria-label=""
+                        formControlName="currentCity"
+                      />
+                    </div>
+                    <div class="col-md-4 mt-3">
+                      <label class="form-label mb-0">Postcode</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        readonly="true"
+                        placeholder=""
+                        aria-label=""
+                        formControlName="currentPincode"
+                      />
+                    </div>
+                    <div class="col-md-4 mt-3">
+                      <label class="form-label mb-0">Country</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        readonly="true"
+                        placeholder=""
+                        aria-label=""
+                        formControlName="currentCountry"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="navCont03"
+                  role="tabpanel"
+                  aria-labelledby="navTab_03"
+                >
+                  <div class="row">
+                    <mat-label>Skills</mat-label>
+                    <mat-chip-list aria-label="Skills" multiple>
+                      <mat-chip
+                        color="primary"
+                        *ngFor="let chip of skillset"
+                        selected
+                        >{{ chip }}</mat-chip
+                      >
+                    </mat-chip-list>
+                  </div>
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="navCont05"
+                  role="tabpanel"
+                  id="navCont05"
+                >
+                  <!-- <div class="row">
                                        <div class="table-responsive mt-3">
                                             <table class="table table-bordered">
                                                 <thead>
@@ -171,42 +350,71 @@
                                                 </tbody>
                                             </table>
                                         </div> 
-                                    </div>--> 
+                                    </div>-->
 
-                                    <div>
-                                        <table mat-table [dataSource]="dataSource" style="width: 100%;">
-                            
-                                            <ng-container matColumnDef="name" sticky>
-                                                <th mat-header-cell *matHeaderCellDef>Name</th>
-                                                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                                            </ng-container>
-                            
-                                            <ng-container matColumnDef="gender" sticky>
-                                                <th mat-header-cell *matHeaderCellDef> Gender </th>
-                                                <td mat-cell *matCellDef="let element" > {{element.gender}} </td>
-                                            </ng-container>
-                            
-                                            <ng-container matColumnDef="relationship">
-                                                <th mat-header-cell *matHeaderCellDef> Relationship</th>
-                                                <td mat-cell *matCellDef="let element"> {{element.relationship}} </td>
-                                            </ng-container>
+                  <div class="example-container mat-elevation-z1">
+                    <mat-table
+                      class="responsive-md responsive-sm zebra sticky-header"
+                      #table
+                      [dataSource]="dataSource"
+                      matSort
+                    >
+                      <ng-container matColumnDef="name">
+                        <mat-header-cell *matHeaderCellDef>
+                          Name
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="Name">
+                          {{ element.name }}
+                        </mat-cell>
+                      </ng-container>
 
-                                            <ng-container matColumnDef="dateOfBirth">
-                                                <th mat-header-cell *matHeaderCellDef> Date of Birth</th>
-                                                <td mat-cell *matCellDef="let element"> {{element.dateOfBirth |  date:'dd/MMMM/yyyy' }} </td>
-                                            </ng-container>
+                      <ng-container matColumnDef="gender">
+                        <mat-header-cell *matHeaderCellDef>
+                          Gender</mat-header-cell
+                        >
+                        <mat-cell *matCellDef="let element" data-label="Gender">
+                          {{ element.gender }}
+                        </mat-cell>
+                      </ng-container>
 
-                                            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-                                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                                        </table>
-                                    </div>
+                      <ng-container matColumnDef="relationship">
+                        <mat-header-cell *matHeaderCellDef>
+                          Relationship
+                        </mat-header-cell>
+                        <mat-cell
+                          *matCellDef="let element"
+                          data-label="Relationship"
+                        >
+                          {{ element.relationship }}
+                        </mat-cell>
+                      </ng-container>
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                      <ng-container matColumnDef="dateOfBirth">
+                        <mat-header-cell *matHeaderCellDef>
+                          DOB
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="DOB">
+                          {{ element.dateOfBirth | date : "dd/MMMM/yyyy" }}
+                        </mat-cell>
+                      </ng-container>
+
+                      <mat-header-row
+                        *matHeaderRowDef="displayedColumns"
+                      ></mat-header-row>
+                      <mat-row *matRowDef="let row; columns: displayedColumns">
+                      </mat-row>
+                    </mat-table>
+
+                    <mat-paginator
+                      [pageSizeOptions]="[5, 10, 25, 100]"
+                    ></mat-paginator>
+                  </div>
                 </div>
+              </div>
             </div>
-        </mat-dialog-content>
-    </form>
+          </div>
+        </div>
+      </div>
+    </mat-dialog-content>
+  </form>
 </div>

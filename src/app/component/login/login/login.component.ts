@@ -62,7 +62,11 @@ export class LoginComponent implements OnInit {
           this.authService.setToken(data.jwtToken);
           this.router.navigate(['/home']);
         },
-        error: (e) => console.error(e),
+        error: (error: any) => {
+          if (error.status == 401) {
+            this.errorMessage = 'Bad Credentails';
+          }
+        },
       });
     }
   }
