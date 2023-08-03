@@ -31,6 +31,7 @@ import { FillTimesheetComponent } from './component/timesheet/fill-timesheet/fil
 import { JwtModule } from '@auth0/angular-jwt';
 import { FileUploadModule } from 'ng2-file-upload';
 import { UploadrSelectDirective } from './component/timesheet/fill-timesheet/uploadr-select.directive';
+import { NotificationService } from './services/notification.service';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { UploadrSelectDirective } from './component/timesheet/fill-timesheet/upl
       multi: true,
     },
     UserService,
+    NotificationService,
   ],
   bootstrap: [AppComponent],
 })

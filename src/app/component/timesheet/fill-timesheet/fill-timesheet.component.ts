@@ -13,6 +13,7 @@ import {
 } from '@angular/material/core';
 import { FileUploader } from 'ng2-file-upload';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { saveAs as importedSaveAs } from 'file-saver';
 
 const URL = '';
 
@@ -55,6 +56,8 @@ export class FillTimesheetComponent implements OnInit {
   errorMessage: any;
   visible: boolean = false;
   selectedFiles?: FileList;
+  documentList: any;
+  accepted: boolean;
 
   public uploader: FileUploader = new FileUploader({
     url: URL,
@@ -64,8 +67,6 @@ export class FillTimesheetComponent implements OnInit {
     itemAlias: 'attachment',
     allowedFileType: ['xls', 'xlsx', 'pdf', 'odt', 'ods', 'odt'],
   });
-
-  uploadqueue: File[] = [];
 
   constructor(
     public dialogRef: MatDialogRef<FillTimesheetComponent>,
@@ -83,25 +84,60 @@ export class FillTimesheetComponent implements OnInit {
   }
 
   //onclick toggling both
-  onclick() {
+  onCheckboxClick() {
     if (this.uploader.queue.length === 0) {
       this.visible = !this.visible;
     }
   }
 
-  onFileSelected(filesdata) {
-    const file: File = filesdata[0];
-    this.selectedFiles = filesdata;
-    console.log(file);
-    console.log(this.selectedFiles);
-    Object.keys(filesdata).forEach((element) => {
-      this.uploadqueue.push(filesdata[element]);
-    });
-    console.log(this.uploadqueue);
+  onFileSelected() {
+    this.uploader.onBeforeUploadItem = (item) => {
+      item.remove();
+      if (
+        this.documentList &&
+        this.documentList.filter((fl: any) => fl.fileName == item._file.name)
+          .length == 0
+      ) {
+        this.uploader.queue.push(item);
+      } else {
+        alert(
+          'Timesheet already uploaded with given name, please upload file with different name'
+        );
+      }
+    };
+
+    this.uploader.onAfterAddingFile = (item) => {
+      item.remove();
+      if (
+        this.uploader.queue.filter((f) => f._file.name == item._file.name)
+          .length == 0
+      ) {
+        this.uploader.queue.push(item);
+      } else {
+        alert(
+          'Timesheet already uploaded with given name, please upload file with different name'
+        );
+      }
+    };
   }
 
-  save(value: any) {
-    if (this.uploadqueue.length > 0) {
+  download(filename): void {
+    const user: any = JSON.parse(localStorage.getItem('user') || '{}');
+    this.timesheetService
+      .download(
+        filename,
+        user.empId,
+        moment(this.selectedDate).format('DD-MM-YYYY')
+      )
+      .subscribe((data) => {
+        window.open(data.url);
+        let blob: any = new Blob([data], { type: 'text/json; charset=utf-8' });
+        importedSaveAs(blob, filename);
+      });
+  }
+
+  save() {
+    if (this.uploader.queue.length > 0) {
       const user: any = JSON.parse(localStorage.getItem('user') || '{}');
 
       for (let j = 0; j < this.uploader.queue.length; j++) {
@@ -117,7 +153,10 @@ export class FillTimesheetComponent implements OnInit {
         );
 
         this.timesheetService.uploadMultiple(data).subscribe((data) => {
-          console.log(' file uploaded..');
+          this.documentList = data?.body.uploadedFilesList;
+          this.uploader.queue = [];
+          this.visible = false;
+          this.accepted = false;
         });
       }
     }
@@ -198,6 +237,7 @@ export class FillTimesheetComponent implements OnInit {
           this.header = data.timeSheetHeader;
           this.timesheetHeader = data.timeSheetHeader;
           this.rows = data.timeSheetRow;
+          this.documentList = data.uploadedFilesList;
         });
     }
   }

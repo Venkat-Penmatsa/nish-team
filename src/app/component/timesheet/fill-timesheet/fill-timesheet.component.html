@@ -133,9 +133,50 @@
 
   <div class="m-2">
     <div class="row">
+      <div class="col-12" *ngIf="documentList.length > 0">
+        <div
+          class="table-responsive overflow-auto mt-3"
+          style="max-height: 150px"
+        >
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Uploaded Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let doc of documentList">
+                <td class="text-truncate">
+                  {{ doc?.fileName }}
+                </td>
+                <td class="text-truncate">
+                  {{ doc?.docStatus }}
+                </td>
+                <td class="text-truncate">
+                  {{ doc?.uploadedDate }}
+                </td>
+                <td class="text-truncate">
+                  <button
+                    type="button"
+                    class="btn btn-primary ms-3"
+                    (click)="download(doc?.fileName)"
+                  >
+                    Download
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
       <div class="col-12">
         <mat-checkbox
-          (click)="onclick()"
+          (click)="onCheckboxClick()"
+          [checked]="accepted"
           class="timeshet-cb"
           [disabled]="uploader.queue.length > 0"
           >Click to upload approved timesheets for the selected
@@ -153,7 +194,7 @@
                     #fileInput
                     ng2FileSelect
                     [uploader]="uploader"
-                    (onFileSelected)="onFileSelected($event)"
+                    (onFileSelected)="onFileSelected()"
                   />
                 </span>
                 <div class="btn-group mt-2" (click)="fileInput.click()">
@@ -210,7 +251,7 @@
           type="button"
           class="btn btn-primary ms-3 mt-3"
           [disabled]="uploader?.queue.length === 0"
-          (click)="save(uploader?.queue)"
+          (click)="save()"
         >
           Submit
         </button>

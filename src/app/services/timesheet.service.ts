@@ -51,7 +51,7 @@ export class TimesheetService {
     );
   }
 
-  uploadMultiple(formData: any): Observable<HttpEvent<any>> {
+  uploadMultiple(formData: any): Observable<any> {
     const req = new HttpRequest(
       'POST',
       `${this.baseUrl}/timesheet/uploadTimeSheet`,
@@ -59,5 +59,12 @@ export class TimesheetService {
     );
 
     return this.http.request(req);
+  }
+
+  download(filename: any, empId: any, date: any): Observable<any> {
+    return this.http.get(
+      `${this.baseUrl}/timesheet/download/${filename}/${empId}/${date}`,
+      { responseType: 'blob' }
+    );
   }
 }

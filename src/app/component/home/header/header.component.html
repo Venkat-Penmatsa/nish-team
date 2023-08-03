@@ -31,3 +31,30 @@
     </div>
   </div>
 </header>
+<style></style>
+<div class="row">
+  <div class="col-md-12">
+    <div
+      class="d-flex justify-content-between align-items-center breaking-news bg-white"
+      style="border: 1px solid #01263d"
+    >
+      <div
+        class="d-flex flex-row flex-grow-1 flex-fill justify-content-center bg-danger py-2 text-white px-1 news"
+      >
+        <span class="d-flex align-items-center">&nbsp;Notification</span>
+      </div>
+      <marquee
+        class="news-scroll"
+        behavior="scroll"
+        direction="left"
+        onmouseover="this.stop();"
+        onmouseout="this.start();"
+      >
+        <span *ngFor="let notifiy of notification; let i = index">
+          <a href="#">{{ notifiy.title }}</a>
+          <span class="dot" style="margin-right: 10px"></span>
+        </span>
+      </marquee>
+    </div>
+  </div>
+</div>
