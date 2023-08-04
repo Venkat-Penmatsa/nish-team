@@ -90,21 +90,26 @@ export class FillTimesheetComponent implements OnInit {
     }
   }
 
-  onFileSelected() {
-    this.uploader.onBeforeUploadItem = (item) => {
-      item.remove();
-      if (
-        this.documentList &&
-        this.documentList.filter((fl: any) => fl.fileName == item._file.name)
-          .length == 0
-      ) {
-        this.uploader.queue.push(item);
-      } else {
-        alert(
-          'Timesheet already uploaded with given name, please upload file with different name'
-        );
-      }
-    };
+  onFileSelected(event: any) {
+    console.log('event ----------' + event);
+
+    if (
+      this.documentList.filter((fl: any) => fl.fileName == event[0].name)
+        .length == 0
+    ) {
+      //this.uploader.queue.push(event[0]);
+      console.log('file is not available in the documentList ');
+    } else {
+      this.uploader.queue.forEach((fi: any, index) => {
+        if (fi._file.name == event[0].name) {
+          this.uploader.queue.splice(index, 1);
+        }
+      });
+      alert(
+        'Timesheet already uploaded with given name, please upload file with different name'
+      );
+      return;
+    }
 
     this.uploader.onAfterAddingFile = (item) => {
       item.remove();

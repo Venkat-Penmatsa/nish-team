@@ -141,10 +141,10 @@
           <table class="table">
             <thead>
               <tr>
-                <th>Name</th>
+                <th>File Name</th>
                 <th>Status</th>
                 <th>Uploaded Date</th>
-                <th>Action</th>
+                <th>Download Timesheet</th>
               </tr>
             </thead>
             <tbody>
@@ -156,7 +156,7 @@
                   {{ doc?.docStatus }}
                 </td>
                 <td class="text-truncate">
-                  {{ doc?.uploadedDate }}
+                  {{ doc?.uploadedDate | date : "dd/MMM/yyyy" }}
                 </td>
                 <td class="text-truncate">
                   <button
@@ -194,7 +194,7 @@
                     #fileInput
                     ng2FileSelect
                     [uploader]="uploader"
-                    (onFileSelected)="onFileSelected()"
+                    (onFileSelected)="onFileSelected($event)"
                   />
                 </span>
                 <div class="btn-group mt-2" (click)="fileInput.click()">
@@ -222,8 +222,8 @@
           <table class="table">
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Size</th>
+                <th>File Name</th>
+                <th>File Size</th>
                 <th>Action</th>
               </tr>
             </thead>
