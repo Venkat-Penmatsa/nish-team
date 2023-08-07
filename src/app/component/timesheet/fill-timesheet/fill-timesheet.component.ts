@@ -14,6 +14,7 @@ import {
 import { FileUploader } from 'ng2-file-upload';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { saveAs as importedSaveAs } from 'file-saver';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 const URL = '';
 
@@ -72,6 +73,7 @@ export class FillTimesheetComponent implements OnInit {
     public dialogRef: MatDialogRef<FillTimesheetComponent>,
     private timesheetService: TimesheetService,
     private http: HttpClient,
+    private spinner: NgxSpinnerService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.user = data;
@@ -143,6 +145,7 @@ export class FillTimesheetComponent implements OnInit {
 
   save() {
     if (this.uploader.queue.length > 0) {
+      this.spinner.show();
       const user: any = JSON.parse(localStorage.getItem('user') || '{}');
 
       for (let j = 0; j < this.uploader.queue.length; j++) {
@@ -162,6 +165,7 @@ export class FillTimesheetComponent implements OnInit {
           this.uploader.queue = [];
           this.visible = false;
           this.accepted = false;
+          this.spinner.hide();
         });
       }
     }

@@ -32,6 +32,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { FileUploadModule } from 'ng2-file-upload';
 import { UploadrSelectDirective } from './component/timesheet/fill-timesheet/uploadr-select.directive';
 import { NotificationService } from './services/notification.service';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { NotificationService } from './services/notification.service';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    NgxSpinnerModule,
     MaterialModule,
     HttpClientModule,
     RouterModule,
