@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -33,9 +33,9 @@ import { AllAssetsComponent } from './component/assets/all-assets/all-assets.com
 import { EmpNameComponent } from './common/emp-name/emp-name.component';
 import { UpdateAssetsComponent } from './component/assets/update-assets/update-assets.component';
 import { AssetHistoryComponent } from './component/assets/asset-history/asset-history.component';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {MonthWiseComponent} from "./component/timesheet/month-wise/month-wise.component";
-import {YearWiseComponent} from "./component/timesheet/year-wise/year-wise.component";
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MonthWiseComponent } from './component/timesheet/month-wise/month-wise.component';
+import { YearWiseComponent } from './component/timesheet/year-wise/year-wise.component';
 import { HomeComponent } from './component/home/home.component';
 import { UserComponent } from './component/userManagement/user/user.component';
 import { ListusersComponent } from './component/userManagement/listusers/listusers.component';
@@ -48,10 +48,13 @@ import { EmployeeOfferComponent } from './component/finance/employee-offer/emplo
 import { LeavescalculatebatchComponent } from './component/Leaves/leavescalculatebatch/leavescalculatebatch.component';
 import { EmpOfferSimulationComponent } from './component/finance/emp-offer-simulation/emp-offer-simulation.component';
 import { PasswordResetComponent } from './component/features/password-reset/password-reset.component';
-import { MatMomentDateModule,MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import {
+  MatMomentDateModule,
+  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+} from '@angular/material-moment-adapter';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ManageDocumentsComponent } from './component/documents/manage-documents/manage-documents.component';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NetworkInterceptorService } from './services/network-interceptor.service';
 import { DisplayTasksComponent } from './component/tasks/display-tasks/display-tasks.component';
 import { FillEmpTimesheetComponent } from './component/emptimesheet/fill-emp-timesheet/fill-emp-timesheet.component';
@@ -65,7 +68,8 @@ import { ActiveEmpComponent } from './common/active-emp/active-emp.component';
 import { ManageClientComponent } from './component/client/manage-client/manage-client.component';
 import { ListAllClientsComponent } from './component/client/list-all-clients/list-all-clients.component';
 import { CustomerNameComponent } from './common/customer-name/customer-name.component';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -118,7 +122,7 @@ import { CustomerNameComponent } from './common/customer-name/customer-name.comp
     ActiveEmpComponent,
     ManageClientComponent,
     ListAllClientsComponent,
-    CustomerNameComponent
+    CustomerNameComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -128,14 +132,24 @@ import { CustomerNameComponent } from './common/customer-name/customer-name.comp
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    FormsModule,FileUploadModule,MatButtonToggleModule,
-    MatDatepickerModule, MatMomentDateModule,MatProgressSpinnerModule
+    FormsModule,
+    FileUploadModule,
+    MatButtonToggleModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
+    MatProgressSpinnerModule,
+    NgbModule,
+    NgxSpinnerModule,
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
-    { provide: HTTP_INTERCEPTORS, useClass: NetworkInterceptorService, multi: true },
-    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } }
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: NetworkInterceptorService,
+      multi: true,
+    },
+    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

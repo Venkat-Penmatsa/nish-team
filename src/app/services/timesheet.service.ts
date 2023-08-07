@@ -1,5 +1,9 @@
 import { DOCUMENT } from '@angular/common';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpRequest,
+} from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { NotFoundError, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -120,6 +124,29 @@ export class TimesheetService {
           date
       )
       .pipe(catchError(this.errorHandler));
+  }
+
+  download(filename: any, empId: any, date: any): Observable<any> {
+    return this.http.get(
+      `${this.baseUrl}/timesheet/download/${filename}/${empId}/${date}`,
+      { responseType: 'blob' }
+    );
+  }
+
+  delete(filename: any, empId: any, date: any): Observable<any> {
+    return this.http.get(
+      `${this.baseUrl}/timesheet/delete/${filename}/${empId}/${date}`
+    );
+  }
+
+  upload(formData: any): Observable<any> {
+    const req = new HttpRequest(
+      'POST',
+      `${this.baseUrl}/timesheet/uploadTimeSheet`,
+      formData
+    );
+
+    return this.http.request(req);
   }
 
   errorHandler(error: HttpErrorResponse) {
