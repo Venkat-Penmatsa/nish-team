@@ -107,10 +107,12 @@ export class FillEmpTimesheetComponent implements OnInit {
     const user: any = JSON.parse(localStorage.getItem('user') || '{}');
     this.file = this.fileUploadControl.value;
 
+    let emp = this.empName.split('-');
+
     let data = new FormData();
     data.append('file', this.file[0]);
     data.append('fileName', this.file[0].name);
-    data.append('empId', user.empId);
+    data.append('empId', emp[0]);
     data.append(
       'selectedTimeSheetDate',
       moment(this.selectedDate).format('DD-MM-YYYY')
@@ -125,10 +127,11 @@ export class FillEmpTimesheetComponent implements OnInit {
 
   download(filename): void {
     const user: any = JSON.parse(localStorage.getItem('user') || '{}');
+    let emp = this.empName.split('-');
     this.timesheetService
       .download(
         filename,
-        user.empId,
+        emp[0],
         moment(this.selectedDate).format('DD-MM-YYYY')
       )
       .subscribe((data) => {
@@ -139,13 +142,10 @@ export class FillEmpTimesheetComponent implements OnInit {
   }
 
   delete(filename): void {
+    let emp = this.empName.split('-');
     const user: any = JSON.parse(localStorage.getItem('user') || '{}');
     this.timesheetService
-      .delete(
-        filename,
-        user.empId,
-        moment(this.selectedDate).format('DD-MM-YYYY')
-      )
+      .delete(filename, emp[0], moment(this.selectedDate).format('DD-MM-YYYY'))
       .subscribe((data) => {
         this.documentList = data.uploadedFilesList;
       });
