@@ -83,6 +83,12 @@ export class TimesheetService {
       .pipe(catchError(this.errorHandler));
   }
 
+  generateYearlyRevenueReport(year: string) {
+    return this.http
+      .get(`${this.baseUrl}/finance/yearlyRevenueReport/` + year)
+      .pipe(catchError(this.errorHandler));
+  }
+
   downloadMonthlyTimeSheet(date: any): Observable<any> {
     //const headers = { 'Content-type': 'application/json' };
     return this.http

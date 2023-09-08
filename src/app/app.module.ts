@@ -70,6 +70,7 @@ import { ListAllClientsComponent } from './component/client/list-all-clients/lis
 import { CustomerNameComponent } from './common/customer-name/customer-name.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { RevenueReportComponent } from './component/finance/revenue-report/revenue-report.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -123,6 +124,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     ManageClientComponent,
     ListAllClientsComponent,
     CustomerNameComponent,
+    RevenueReportComponent,
   ],
   imports: [
     ReactiveFormsModule,

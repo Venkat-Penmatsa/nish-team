@@ -1,6 +1,9 @@
-  /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
+html,
+body {
+  height: 100%;
+}
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -17,267 +20,291 @@ body {
 }
 
 .title {
-    color: #4a148c;
-    font-size: 17px;
-    font-family: 'Signika', sans-serif;
-    padding : 20px;
-  }
+  color: #4a148c;
+  font-size: 17px;
+  font-family: "Signika", sans-serif;
+  padding: 20px;
+}
 
-  .heading {
-    color: #4a148c;
-    font-size: 5px;
-    font-family: 'Signika', sans-serif;
-    padding : 0px;
-  }
+.heading {
+  color: #4a148c;
+  font-size: 5px;
+  font-family: "Signika", sans-serif;
+  padding: 0px;
+}
 
-  .section {
-    border-radius: 25px;
-    border: 1px solid #4a148c;
-    padding: 20px;
-  }
+.section {
+  border-radius: 25px;
+  border: 1px solid #4a148c;
+  padding: 20px;
+}
 
-  .divider {								/* minor cosmetics */
-      display: table;
-      font-size: 24px;
-      text-align: center;
-      width: 75%; 						/* divider width */
-      margin: 40px auto;					/* spacing above/below */
-  }
-  .divider span { display: table-cell; position: relative; }
-  .divider span:first-child, .divider span:last-child {
-      width: 50%;
-      top: 13px;							/* adjust vertical align */
-      -moz-background-size: 100% 2px; 	/* line width */
-      background-size: 100% 2px; 			/* line width */
-      background-position: 0 0, 0 100%;
-      background-repeat: no-repeat;
-  }
-  .divider span:first-child {				/* color changes in here */
-      background-image: -webkit-gradient(linear, 0 0, 0 100%, from(transparent), to(#4a148c));
-      background-image: -webkit-linear-gradient(180deg, transparent, #4a148c);
-      background-image: -moz-linear-gradient(180deg, transparent, #4a148c);
-      background-image: -o-linear-gradient(180deg, transparent, #4a148c);
-      background-image: linear-gradient(90deg, transparent, #4a148c);
-  }
-  .divider span:nth-child(2) {
-      color: #4a148c; padding: 0px 5px; width: auto; white-space: nowrap;
-  }
-  .divider span:last-child {				/* color changes in here */
-      background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#4a148c), to(transparent));
-      background-image: -webkit-linear-gradient(180deg, #4a148c, transparent);
-      background-image: -moz-linear-gradient(180deg, #4a148c, transparent);
-      background-image: -o-linear-gradient(180deg, #4a148c, transparent);
-      background-image: linear-gradient(90deg, #4a148c, transparent);
-  }
+.divider {
+  /* minor cosmetics */
+  display: table;
+  font-size: 24px;
+  text-align: center;
+  width: 75%; /* divider width */
+  margin: 40px auto; /* spacing above/below */
+}
+.divider span {
+  display: table-cell;
+  position: relative;
+}
+.divider span:first-child,
+.divider span:last-child {
+  width: 50%;
+  top: 13px; /* adjust vertical align */
+  -moz-background-size: 100% 2px; /* line width */
+  background-size: 100% 2px; /* line width */
+  background-position: 0 0, 0 100%;
+  background-repeat: no-repeat;
+}
+.divider span:first-child {
+  /* color changes in here */
+  background-image: -webkit-gradient(
+    linear,
+    0 0,
+    0 100%,
+    from(transparent),
+    to(#4a148c)
+  );
+  background-image: -webkit-linear-gradient(180deg, transparent, #4a148c);
+  background-image: -moz-linear-gradient(180deg, transparent, #4a148c);
+  background-image: -o-linear-gradient(180deg, transparent, #4a148c);
+  background-image: linear-gradient(90deg, transparent, #4a148c);
+}
+.divider span:nth-child(2) {
+  color: #4a148c;
+  padding: 0px 5px;
+  width: auto;
+  white-space: nowrap;
+}
+.divider span:last-child {
+  /* color changes in here */
+  background-image: -webkit-gradient(
+    linear,
+    0 0,
+    0 100%,
+    from(#4a148c),
+    to(transparent)
+  );
+  background-image: -webkit-linear-gradient(180deg, #4a148c, transparent);
+  background-image: -moz-linear-gradient(180deg, #4a148c, transparent);
+  background-image: -o-linear-gradient(180deg, #4a148c, transparent);
+  background-image: linear-gradient(90deg, #4a148c, transparent);
+}
 
-   /* subhiksha*/
+/* subhiksha*/
 
 /* You can add global styles to this file, and also import other style files */
 
-.internal-container{
-    margin: 60px 50px !important;
-  }
+.internal-container {
+  margin: 60px 50px !important;
+}
 
-  .calendar-days {
-    width: 100px;
-    height: 60px;
-    background: #fff;
-    border: 1px solid #ccc;
-    padding: 3px;
-    margin: 1px;
-    text-align: center;
-    line-height: 30px;
-  }
+.calendar-days {
+  width: 100px;
+  height: 60px;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 3px;
+  margin: 1px;
+  text-align: center;
+  line-height: 30px;
+}
 
-  .year-calendar-days {
-    height: 40px !important;
-    min-width: 40px !important;
-  }
+.year-calendar-days {
+  height: 40px !important;
+  min-width: 40px !important;
+}
 
-  .calendar-month {
-    padding: 3px;
-    margin: 2px;
-    min-width: 40px;
-  }
-  .calendar-days.previous-month,
-  .calendar-days.next-month {
-    color: grey;
-    background-color: rgb(245, 245, 245);
-  }
+.calendar-month {
+  padding: 3px;
+  margin: 2px;
+  min-width: 40px;
+}
+.calendar-days.previous-month,
+.calendar-days.next-month {
+  color: grey;
+  background-color: rgb(245, 245, 245);
+}
 
-  .calendar-days.weekend {
-    background-color: rgb(245, 245, 245);
-  }
+.calendar-days.weekend {
+  background-color: rgb(245, 245, 245);
+}
 
-  .calendar-days.invalidDate {
-    background-color: rgb(210, 205, 205);
-  }
+.calendar-days.invalidDate {
+  background-color: rgb(210, 205, 205);
+}
 
+.flex-container {
+  display: -webkit-flex;
+  display: flex;
+}
 
-  .flex-container {
-    display: -webkit-flex;
-    display: flex;
-  }
+.flex-center {
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
 
-  .flex-center {
-    -webkit-align-items: center;
-    align-items: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-  }
+.flex-left {
+  -webkit-align-items: flex-end;
+  align-items: flex-end;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+}
 
-  .flex-left {
-    -webkit-align-items: flex-end;
-    align-items: flex-end;
-    -webkit-justify-content: flex-start;
-    justify-content: flex-start;
-  }
+.w-90 {
+  width: 90% !important;
+}
 
-  .w-90{
-    width: 90% !important;
-  }
+.mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: blue;
+}
 
-  .mat-form-field.mat-focused .mat-form-field-ripple{
-    background-color: blue;
-  }
+.mat-form-field.mat-focused .mat-form-field-label {
+  color: blue;
+}
 
-  .mat-form-field.mat-focused .mat-form-field-label{
-    color: blue;
-  }
+.search {
+  margin: 0 20px !important;
+  background-color: blue;
+  color: white;
+}
 
-  .search{
-    margin: 0 20px  !important;
-    background-color: blue;
-    color: white;
-  }
+.square {
+  height: 30px;
+  width: 30px;
+}
 
-  .square {
-    height: 30px;
-    width: 30px;
-  }
+.sickLeave {
+  background-color: #960404 !important;
+  opacity: 0.5;
+}
+.publicHoliday {
+  background-color: #f08080 !important;
+  opacity: 0.5;
+}
+.authorisedAbsence {
+  background-color: #add8e6 !important;
+  opacity: 0.5;
+}
+.maternityLeave {
+  background-color: #1e65a8 !important;
+  opacity: 0.5;
+}
+.parentalLeave {
+  background-color: #90ee90 !important;
+  opacity: 0.5;
+}
+.holiday {
+  background-color: #87cefa !important;
+  opacity: 0.5;
+}
+.rttAdv {
+  background-color: #00ff00 !important;
+  opacity: 0.5;
+}
+.forwardedLeave {
+  background-color: #9b5f23 !important;
+  opacity: 0.5;
+}
+.unauthorisedAbsence {
+  background-color: rgba(72, 61, 139, 0.72) !important;
+  opacity: 0.5;
+}
+.forceMajeure {
+  background-color: rgba(148, 0, 211, 0.51) !important;
+  opacity: 0.5;
+}
+.compensationLeave {
+  background-color: rgba(11, 70, 243, 0.8) !important;
+  opacity: 0.5;
+}
+.other {
+  background-color: #00bfff !important;
+  opacity: 0.5;
+}
 
-  .sickLeave{
-    background-color: #960404 !important;
-    opacity: 0.5;
-  }
-  .publicHoliday{
-    background-color: #F08080 !important;
-    opacity: 0.5;
-  }
-  .authorisedAbsence{
-    background-color: #ADD8E6 !important;
-    opacity: 0.5;
-  }
-  .maternityLeave{
-    background-color: #1e65a8 !important;
-    opacity: 0.5;
-  }
-  .parentalLeave{
-    background-color: #90EE90 !important;
-    opacity: 0.5;
-  }
-  .holiday{
-    background-color:#87CEFA !important;
-    opacity: 0.5;
-  }
-  .rttAdv{
-    background-color: #00FF00 !important;
-    opacity: 0.5;
-  }
-  .forwardedLeave{
-    background-color: #9b5f23 !important;
-    opacity: 0.5;
-  }
-  .unauthorisedAbsence{
-    background-color: rgba(72, 61, 139, 0.72) !important;
-    opacity: 0.5;
-  }
-  .forceMajeure{
-    background-color: rgba(148, 0, 211, 0.51) !important;
-    opacity: 0.5;
-  }
-  .compensationLeave{
-    background-color: rgba(11, 70, 243, 0.8) !important;
-    opacity: 0.5;
-  }
-  .other{
-    background-color: #00BFFF !important;
-    opacity: 0.5;
-  }
+.weekday-title {
+  position: absolute;
+  top: -30px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #534f4f !important;
+  left: 10px;
+}
 
-  .weekday-title{
-    position: absolute;
-    top: -30px;
-    text-transform: uppercase;
-    font-weight: 500;
-    color: #534f4f !important;
-    left: 10px;
-  }
+.pl-10 {
+  padding-left: 10px !important;
+}
 
-  .pl-10{
-    padding-left: 10px !important;
-  }
+.leaveList {
+  font-size: 14px !important;
+  color: black;
+}
 
-  .leaveList{
-    font-size: 14px !important;
-    color: black;
-  }
+.w-20px {
+  width: 20px !important;
+}
 
-  .w-20px{
-    width: 20px !important;
-  }
+.mat-form-field.mat-form-field-invalid.mat-focused .mat-form-field-label {
+  color: #f44336;
+}
 
-  .mat-form-field.mat-form-field-invalid.mat-focused .mat-form-field-label {
-    color: #f44336;
-  }
+.d-flex {
+  display: flex;
+}
 
-  .d-flex{
-    display: flex;
-  }
+.m-10 {
+  margin: 10px;
+}
 
-  .m-10{
-    margin: 10px;
-  }
+.text-center {
+  text-align: center;
+}
 
-  .text-center{
-    text-align: center;
-  }
+.margin-auto {
+  margin: auto;
+}
 
-  .margin-auto{
-    margin: auto;
-  }
+.page-layout-container {
+  border-radius: 20px;
+  border: 1px solid #4a148c;
+  padding: 20px;
+  margin: 20px;
+  align-content: center;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.mat-drawer-inner-container::-webkit-scrollbar {
+  width: 10px;
+}
 
+.btn-primary,
+.btn-primary:hover,
+.mat-button {
+  color: #fff;
+  background-color: #15293f;
+  border-color: #15293f;
+}
 
-  .page-layout-container {
-    border-radius: 20px;
-    border: 1px solid #4a148c;
-    padding: 20px;
-    margin:20px;
-    align-content: center;
-    flex-wrap: wrap;
-    overflow-y:auto;
-    overflow-x: hidden;
-  }
-  .mat-drawer-inner-container::-webkit-scrollbar {
-    width: 10px;
-  }
+.upload {
+  overflow: hidden !important;
+  display: block !important;
+  background: #6499b229 !important;
+  padding: 20px 66px 20px 20px !important;
+  min-height: 100px !important;
+  outline: 1px dashed #92b0b3 !important;
+  outline-offset: -10px !important;
+  position: relative !important;
+  border-radius: 10px !important;
+}
 
-  .btn-primary, .btn-primary:hover , .mat-button{
-    color: #fff;
-    background-color: #15293f;
-    border-color: #15293f;
-  }
-
-  .upload{
-    overflow: hidden !important;
-    display: block !important;
-    background: #6499b229 !important;
-    padding: 20px 66px 20px 20px !important;
-    min-height: 100px !important;
-    outline: 1px dashed #92b0b3 !important;
-    outline-offset: -10px !important;
-    position: relative !important;
-    border-radius: 10px !important;
-  }
-
-
+.pagination {
+  flex-wrap: wrap;
+}

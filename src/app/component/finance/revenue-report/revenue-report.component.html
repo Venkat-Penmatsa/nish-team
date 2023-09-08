@@ -1,0 +1,116 @@
+<div class="page-layout-container">
+  <div class="row">
+    <h1 class="title">Yearly Revenue Report</h1>
+  </div>
+
+  <div class="col">
+    <mat-form-field>
+      <mat-label>Select Year for generating report</mat-label>
+      <input
+        matInput
+        [matDatepicker]="selectedYear"
+        required
+        (dateChange)="generateReport($event)"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="selectedYear"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #selectedYear></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <!-- ROW-1 OPEN -->
+  <div class="row">
+    <div class="col-xl-12 col-md-12">
+      <div class="card cart">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered border-bottom text-nowrap">
+              <thead>
+                <tr class="border-top">
+                  <th class="w-5">Employee Name</th>
+                  <th class="w-5">Total RevenuevGenerated/th></th>
+                  <th class="w-15">CTC</th>
+                  <th class="w-10">Margin</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let items of yearlyEmpsRevenueReport">
+                  <td>{{ items.empName }}</td>
+                  <td>{{ items.totalRevenueGenerated }}</td>
+                  <td>{{ items.ctc }}</td>
+                  <td>{{ items.diff }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="float-end">
+            <ngb-pagination
+              [collectionSize]="40"
+              [page]="1"
+              aria-label="Default pagination"
+            ></ngb-pagination>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ROW-1 CLOSED -->
+
+  <div class="row">
+    <div class="col-lg-12 col-md-12">
+      <div class="card">
+        <div class="card-body p-0 task-edit-main">
+          <div class="row p-3">
+            <div class="col-sm-12 col-md-12 col-xl-3">
+              <div class="form-group mb-0">
+                <label class="form-label text-muted"
+                  >Total Company Revenue <span class="text-red">*</span></label
+                >
+                <div class="input-group" id="task-name">
+                  <input
+                    type="text"
+                    class="form-control text-dark"
+                    placeholder=""
+                    [(ngModel)]="totalCompanyRevenue"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-xl-3">
+              <div class="form-group mb-0">
+                <label class="form-label text-muted"
+                  >Total CTC <span class="text-red">*</span></label
+                >
+                <div class="input-group" id="task-name">
+                  <input
+                    type="text"
+                    class="form-control text-dark"
+                    placeholder=""
+                    [(ngModel)]="totalCtc"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-xl-3">
+              <div class="form-group mb-0">
+                <label class="form-label text-muted"
+                  >Revene YetTo Generate <span class="text-red">*</span></label
+                >
+                <div class="input-group" id="task-name">
+                  <input
+                    type="text"
+                    class="form-control text-dark"
+                    placeholder=""
+                    [(ngModel)]="reveneYetToGenerate"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
