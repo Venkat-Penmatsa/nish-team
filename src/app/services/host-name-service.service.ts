@@ -14,7 +14,7 @@ export class HostNameServiceService {
     // Or use the location on document.
     // const url =
     'https://' +
-      this.document.location.hostname +   
+      this.document.location.hostname +
       ':' +
       this.document.location.port +
       '/admin-services';

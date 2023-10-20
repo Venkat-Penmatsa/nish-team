@@ -1,163 +1,239 @@
-<div class="page-layout-container ">
+<div class="page-layout-container">
+  <div class="row">
+    <h1 class="title">Offer Simulation Form</h1>
+  </div>
+  <form [formGroup]="simulationForm">
     <div class="row">
-        <h1 class="title"> Offer Simulation Form </h1>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Daily Rate *</mat-label>
+          <input
+            matInput
+            type="number"
+            (change)="calculateYearBilling()"
+            min="0"
+            max="1000"
+            formControlName="dailyRate"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Year Billing(Rate X 215 Days) *</mat-label>
+          <input
+            matInput
+            type="number"
+            readonly="true"
+            min="0"
+            max="1000"
+            formControlName="yearBilling"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Gross Per Month(A) *</mat-label>
+          <input
+            matInput
+            type="number"
+            min="0"
+            max="5000"
+            (change)="calculateGross()"
+            formControlName="grossPerMonth"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Tax on Gross(B = A*33%) *</mat-label>
+          <input
+            matInput
+            type="number"
+            min="0"
+            readonly="true"
+            formControlName="grossTax"
+          />
+        </mat-form-field>
+      </div>
     </div>
-    <form [formGroup]="simulationForm">
 
-        <div class="row">
-            <div class="col">
-                <mat-form-field>
-                    <mat-label>Daily Rate *</mat-label>
-                    <input matInput type="number" (change)="calculateYearBilling()" min="0" max="1000" formControlName="dailyRate">
-                </mat-form-field>
-            </div>
-            <div class="col">
-                <mat-form-field>
-                    <mat-label>Year Billing(Rate X 215 Days) *</mat-label>
-                    <input matInput type="number" readonly="true" min="0" max="1000" formControlName="yearBilling">
-                </mat-form-field>
-            </div>
-            <div class="col">
-                <mat-form-field>
-                    <mat-label>Gross Per Month(A) *</mat-label>
-                    <input matInput type="number" min="0" max="5000"  (change)="calculateGross()"  formControlName="grossPerMonth">
-                </mat-form-field>
-            </div>
-            <div class="col">
-                <mat-form-field>
-                    <mat-label>Tax on Gross(B = A*33%) *</mat-label>
-                    <input matInput type="number" min="0" readonly="true" formControlName="grossTax">
-                </mat-form-field>
-            </div>
-        </div>
+    <div class="row">
+      <div class="col">
+        <mat-form-field>
+          <mat-label>DKV Insurance(C) *</mat-label>
+          <input matInput type="number" min="0" formControlName="insurance" />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Transport Options</mat-label>
+          <select
+            matNativeControl
+            required
+            formControlName="transportOption"
+            [(ngModel)]="transportOption"
+          >
+            <option value="Car">Car</option>
+            <option value="Mobility">Mobility</option>
+          </select>
+        </mat-form-field>
+      </div>
+      <div class="col" *ngIf="transportOption === 'Car'">
+        <mat-form-field>
+          <mat-label>Car(D) *</mat-label>
+          <input matInput type="number" min="0" formControlName="car" />
+        </mat-form-field>
+      </div>
+      <div class="col" *ngIf="transportOption === 'Car'">
+        <mat-form-field>
+          <mat-label>Fuel Card(E) *</mat-label>
+          <input matInput type="number" min="0" formControlName="fuelCard" />
+        </mat-form-field>
+      </div>
+      <div class="col" *ngIf="transportOption === 'Car'">
+        <mat-form-field>
+          <mat-label>Car Insurance(F) *</mat-label>
+          <input
+            matInput
+            type="number"
+            min="0"
+            formControlName="carInsurance"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col" *ngIf="transportOption === 'Mobility'">
+        <mat-form-field>
+          <mat-label>Mobility(D) *</mat-label>
+          <input matInput type="number" min="0" formControlName="mobility" />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Meal Voucher(G) *</mat-label>
+          <input matInput type="number" min="0" formControlName="mealVoucher" />
+        </mat-form-field>
+      </div>
+    </div>
 
-        <div class="row">
-            <div class="col">
-                <mat-form-field>
-                    <mat-label>DKV Insurance(C) *</mat-label>
-                    <input matInput type="number" min="0" formControlName="insurance">
-                </mat-form-field>
-            </div>
-            <div class="col">
-                <mat-form-field>
-                    <mat-label>Transport Options</mat-label>
-                    <select matNativeControl required formControlName="transportOption" [(ngModel)]="transportOption">
-                        <option value="Car">Car</option>
-                        <option value="Mobility">Mobility</option>
-                    </select>
-                </mat-form-field>
-            </div>
-            <div class="col" *ngIf="transportOption === 'Car'">
-                <mat-form-field>
-                    <mat-label>Car(D) *</mat-label>
-                    <input matInput type="number" min="0" formControlName="car">
-                </mat-form-field>
-            </div>
-            <div class="col" *ngIf="transportOption === 'Car'">
-                <mat-form-field>
-                    <mat-label>Fuel Card(E) *</mat-label>
-                    <input matInput type="number" min="0" formControlName="fuelCard">
-                </mat-form-field>
-            </div>
-            <div class="col" *ngIf="transportOption === 'Car'">
-                <mat-form-field>
-                    <mat-label>Car Insurance(F) *</mat-label>
-                    <input matInput type="number" min="0" formControlName="carInsurance">
-                </mat-form-field>
-            </div>
-            <div class="col" *ngIf="transportOption === 'Mobility'">
-                <mat-form-field>
-                    <mat-label>Mobility(D) *</mat-label>
-                    <input matInput type="number" min="0" formControlName="mobility">
-                </mat-form-field>
-            </div>
-            <div class="col">
-                <mat-form-field>
-                    <mat-label>Meal Voucher(G) *</mat-label>
-                    <input matInput type="number" min="0" formControlName="mealVoucher">
-                </mat-form-field>
-            </div>
-        </div>
+    <div class="row">
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Laptop(H) *</mat-label>
+          <input matInput type="number" min="0" formControlName="laptop" />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Mobile(I) *</mat-label>
+          <input matInput type="number" min="0" formControlName="mobile" />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Bonus(L) *</mat-label>
+          <input matInput type="number" min="0" formControlName="bonus" />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Gross Per year(J=Sum(A+B)-13.92) *</mat-label>
+          <input
+            matInput
+            type="number"
+            min="0"
+            formControlName="grossPerYear"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Rest(K = Sum(C-G)*12) *</mat-label>
+          <input matInput type="number" min="0" formControlName="rest" />
+        </mat-form-field>
+      </div>
+    </div>
 
-        <div class="row">
-           
-            <div class="col">
-                <mat-form-field>
-                    <mat-label>Laptop(H) *</mat-label>
-                    <input matInput type="number" min="0" formControlName="laptop">
-                </mat-form-field>
-            </div>
-            <div class="col">
-                <mat-form-field>
-                    <mat-label>Mobile(I) *</mat-label>
-                    <input matInput type="number" min="0" formControlName="mobile">
-                </mat-form-field>
-            </div>
-            <div class="col">
-                <mat-form-field>
-                    <mat-label>Bonus(L) *</mat-label>
-                    <input matInput type="number" min="0" formControlName="bonus">
-                </mat-form-field>
-            </div>
-            <div class="col">
-                <mat-form-field>
-                    <mat-label>Gross Per year(J=Sum(A+B)-13.92) *</mat-label>
-                    <input matInput type="number" min="0" formControlName="grossPerYear">
-                </mat-form-field>
-            </div>
-            <div class="col">
-                <mat-form-field>
-                    <mat-label>Rest(K = Sum(C-G)*12) *</mat-label>
-                    <input matInput type="number" min="0" formControlName="rest">
-                </mat-form-field>
-            </div>
-        </div>
+    <div class="row">
+      <div class="col">
+        <mat-form-field>
+          <mat-label>SIM(I) *</mat-label>
+          <input matInput type="number" min="0" formControlName="sim" />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Eco Cheques*</mat-label>
+          <input matInput type="number" min="0" formControlName="ecoCheques" />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Admin Charges*</mat-label>
+          <input
+            matInput
+            type="number"
+            min="0"
+            formControlName="adminCharges"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Benefits*</mat-label>
+          <input matInput type="number" min="0" formControlName="benefits" />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>CTC Per year(Sum(D,H,I,J,K,L)) *</mat-label>
+          <input
+            matInput
+            type="number"
+            readonly="true"
+            min="0"
+            formControlName="ctc"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row" *ngIf="this.user.role == 'admin'">
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Range*</mat-label>
+          <input
+            matInput
+            type="number"
+            readonly="true"
+            min="0"
+            formControlName="range"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Margin(CTC - Year Billing) *</mat-label>
+          <input
+            matInput
+            type="number"
+            readonly="true"
+            min="0"
+            formControlName="margin"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col"></div>
+    </div>
+  </form>
 
-        <div class="row">
-           
-            <div class="col">
-                <mat-form-field>
-                    <mat-label>SIM(I) *</mat-label>
-                    <input matInput type="number" min="0" formControlName="sim">
-                </mat-form-field>
-            </div>
-            <div class="col">
-                <mat-form-field>
-                    <mat-label>Eco Cheques*</mat-label>
-                    <input matInput type="number" min="0" formControlName="ecoCheques">
-                </mat-form-field>
-            </div>
-            <div class="col">
-                <mat-form-field>
-                    <mat-label>Admin Charges*</mat-label>
-                    <input matInput type="number" min="0" formControlName="adminCharges">
-                </mat-form-field>
-            </div>
-            <div class="col">
-                <mat-form-field>
-                    <mat-label>CTC Per year(Sum(D,H,I,J,K,L)) *</mat-label>
-                    <input matInput type="number" readonly="true" min="0" formControlName="ctc">
-                </mat-form-field>
-            </div>
-            <div class="col">
-                <mat-form-field>
-                    <mat-label>Range*</mat-label>
-                    <input matInput type="number" readonly="true" min="0" formControlName="range">
-                </mat-form-field>
-            </div>
-        </div>
-        <div class="row" *ngIf="this.user.role == 'admin'">   
-            <div class="col">
-                <mat-form-field>
-                    <mat-label>Margin(CTC - Year Billing) *</mat-label>
-                    <input matInput type="number" readonly="true" min="0" formControlName="margin">
-                </mat-form-field>
-            </div>   
-        </div>
-    </form>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-    <div class="alert alert-warning"> *Calculation will be performed on change of DAILY RATE and GROSS SAL PER MONTH Fields</div>
-    <div class="alert alert-warning"> *Please fill all editable fields with 0 or any other value</div>
+  <div class="alert alert-warning">
+    *Calculation will be performed on change of DAILY RATE and GROSS SAL PER
+    MONTH Fields
+  </div>
+  <div class="alert alert-warning">
+    *Please fill all editable fields with 0 or any other value
+  </div>
 </div>

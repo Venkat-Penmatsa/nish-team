@@ -186,7 +186,27 @@ export let menu: NavItem[] = [
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
     ],
-  },
+  } /*
+  {
+    displayName: 'Notification',
+    iconName: 'access_time',
+    route: 'notification',
+    role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
+    children: [
+      {
+        displayName: 'New Notification',
+        iconName: 'timer',
+        route: 'notification/newNotification',
+        role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
+      },
+      {
+        displayName: 'All Notification',
+        iconName: 'select_all',
+        route: 'notification/allNotification',
+        role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
+      },
+    ],
+  },*/,
   {
     displayName: 'Mobility',
     iconName: 'card_travel',

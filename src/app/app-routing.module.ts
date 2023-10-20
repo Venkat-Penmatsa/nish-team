@@ -42,6 +42,8 @@ import { ContractBasedTimesheetComponent } from './component/timesheet/contract-
 import { ManageClientComponent } from './component/client/manage-client/manage-client.component';
 import { ListAllClientsComponent } from './component/client/list-all-clients/list-all-clients.component';
 import { RevenueReportComponent } from './component/finance/revenue-report/revenue-report.component';
+import { NewNotificationComponent } from './component/notification/new-notification/new-notification.component';
+import { AllNotificationComponent } from './component/notification/all-notification/all-notification.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -103,6 +105,14 @@ const routes: Routes = [
       },
       { path: 'client/manageClient', component: ManageClientComponent },
       { path: 'client/allClients', component: ListAllClientsComponent },
+      {
+        path: 'notification/newNotification',
+        component: NewNotificationComponent,
+      },
+      {
+        path: 'notification/allNotification',
+        component: AllNotificationComponent,
+      },
     ],
   },
 ];

@@ -1,0 +1,62 @@
+<div class="page-layout-container">
+  <div class="row">
+    <h1 class="title">List Notification</h1>
+  </div>
+  <div class="row">
+    <div class="col-xl-12 col-md-12">
+      <div class="card cart">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered border-bottom text-nowrap">
+              <thead>
+                <tr class="border-top">
+                  <th class="w-5">Notification Id</th>
+                  <th class="w-15">Title</th>
+                  <th class="w-5">Description</th>
+                  <th class="w-5">Start Date</th>
+                  <th class="w-15">End Date</th>
+                  <th class="w-5">Comments</th>
+                  <th class="w-10">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let items of notificatio">
+                  <td>{{ items.notificationId }}</td>
+                  <td>{{ items.title }}</td>
+                  <td>{{ items.description }}</td>
+                  <td>{{ items.validFrom }}</td>
+                  <td>{{ items.validTo }}</td>
+                  <td>{{ items.comments }}</td>
+                  <td>
+                    <a
+                      class="btn btn-primary-light btn-square br-50 m-1"
+                      ngbTooltip="View"
+                      ><i class="fe fe-eye fs-13"></i
+                    ></a>
+                    <a
+                      class="btn btn-info-light btn-square br-50 m-1"
+                      ngbTooltip="edit"
+                      ><i class="fe fe-edit fs-13"></i>
+                    </a>
+                    <a
+                      class="btn btn-danger-light btn-square br-50 m-1"
+                      ngbTooltip="remove"
+                      ><i class="fe fe-trash fs-13"></i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="float-end">
+            <ngb-pagination
+              [collectionSize]="40"
+              [page]="1"
+              aria-label="Default pagination"
+            ></ngb-pagination>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

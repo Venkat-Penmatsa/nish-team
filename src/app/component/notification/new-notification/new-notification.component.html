@@ -1,0 +1,127 @@
+<div class="page-layout-container">
+  <div class="row">
+    <h1 class="title">Manage Notification</h1>
+  </div>
+
+  <form [formGroup]="newNotificationForm">
+    <div class="row">
+      <div class="col-md-3">
+        <mat-form-field>
+          <mat-label>Title </mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="title"
+            placeholder="Enter Title"
+            [ngClass]="{ 'is-invalid': submitted && f['title'].errors }"
+          />
+          <div *ngIf="submitted && f['title'].errors" class="invalid-feedback">
+            <div *ngIf="f['title'].errors['required']">Title is required</div>
+          </div>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-form-field>
+          <mat-label> Start Date*</mat-label>
+          <input
+            matInput
+            [matDatepicker]="startDate"
+            placeholder="dd/mm/yyyy"
+            formControlName="startDate"
+            [ngClass]="{
+              'is-invalid': submitted && f['startDate'].errors
+            }"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="startDate"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #startDate></mat-datepicker>
+
+          <!--<input
+       
+        placeholder="dd/mm/yyyy"
+        name="startDate"
+        ngbDatepicker
+        formControlName="startDate"
+        [ngClass]="{
+          'is-invalid': submitted && f['startDate'].errors
+        }"
+      />
+      <div *ngIf="submitted && f['startDate'].errors" class="invalid-feedback">
+        <div *ngIf="f['startDate'].errors['required']">
+          Start Date is required
+        </div>
+      </div>-->
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-3">
+        <mat-form-field>
+          <mat-label> End Date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="endDate"
+            placeholder="dd/mm/yyyy"
+            formControlName="endDate"
+            [ngClass]="{
+              'is-invalid': submitted && f['endDate'].errors
+            }"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="endDate"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #endDate></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Status</mat-label>
+          <select
+            matNativeControl
+            required
+            formControlName="status"
+            [(ngModel)]="selectedList"
+          >
+            <option value="Active">Active</option>
+            <option value="InActive">InActive</option>
+          </select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <mat-form-field class="form-col">
+          <mat-label>Description </mat-label>
+          <textarea
+            matInput
+            formControlName="description"
+            rows="2"
+            [ngClass]="{ 'is-invalid': submitted && f['description'].errors }"
+          ></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-3">
+        <mat-form-field class="form-col">
+          <mat-label>Comments </mat-label>
+          <textarea
+            matInput
+            formControlName="comments"
+            rows="2"
+            [ngClass]="{ 'is-invalid': submitted && f['comments'].errors }"
+          ></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+  &nbsp;&nbsp;
+  <div style="text-align: center">
+    <button mat-button (click)="onSubmit()" type="submit">
+      Create Notification
+    </button>
+  </div>
+</div>

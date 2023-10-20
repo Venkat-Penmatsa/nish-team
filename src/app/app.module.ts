@@ -71,6 +71,9 @@ import { CustomerNameComponent } from './common/customer-name/customer-name.comp
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { RevenueReportComponent } from './component/finance/revenue-report/revenue-report.component';
+import { NewNotificationComponent } from './component/notification/new-notification/new-notification.component';
+import { AllNotificationComponent } from './component/notification/all-notification/all-notification.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -125,6 +128,8 @@ import { RevenueReportComponent } from './component/finance/revenue-report/reven
     ListAllClientsComponent,
     CustomerNameComponent,
     RevenueReportComponent,
+    NewNotificationComponent,
+    AllNotificationComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -142,6 +147,7 @@ import { RevenueReportComponent } from './component/finance/revenue-report/reven
     MatProgressSpinnerModule,
     NgbModule,
     NgxSpinnerModule,
+    NgSelectModule,
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
