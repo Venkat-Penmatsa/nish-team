@@ -74,6 +74,7 @@ import { RevenueReportComponent } from './component/finance/revenue-report/reven
 import { NewNotificationComponent } from './component/notification/new-notification/new-notification.component';
 import { AllNotificationComponent } from './component/notification/all-notification/all-notification.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { ContractDaysReportComponent } from './component/contract/contract-days-report/contract-days-report.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -130,6 +131,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     RevenueReportComponent,
     NewNotificationComponent,
     AllNotificationComponent,
+    ContractDaysReportComponent,
   ],
   imports: [
     ReactiveFormsModule,

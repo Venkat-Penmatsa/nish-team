@@ -109,6 +109,12 @@ export let menu: NavItem[] = [
         route: 'client/allClients',
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
+      {
+        displayName: 'Contract Report',
+        iconName: 'list',
+        route: 'contracts/contractReport',
+        role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
+      },
     ],
   },
   {

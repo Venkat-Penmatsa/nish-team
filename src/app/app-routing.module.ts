@@ -44,6 +44,7 @@ import { ListAllClientsComponent } from './component/client/list-all-clients/lis
 import { RevenueReportComponent } from './component/finance/revenue-report/revenue-report.component';
 import { NewNotificationComponent } from './component/notification/new-notification/new-notification.component';
 import { AllNotificationComponent } from './component/notification/all-notification/all-notification.component';
+import { ContractDaysReportComponent } from './component/contract/contract-days-report/contract-days-report.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -61,6 +62,10 @@ const routes: Routes = [
       { path: 'employee/empManagement', component: ManageEmployeeComponent },
       { path: 'contracts/newContract', component: NewcontractComponent },
       { path: 'contracts/allContracts', component: AllcontractsComponent },
+      {
+        path: 'contracts/contractReport',
+        component: ContractDaysReportComponent,
+      },
       { path: 'finance/empOffer', component: EmployeeOfferComponent },
       { path: 'finance/empYearlyReport', component: YearlyEmpReportComponent },
       { path: 'finance/simulation', component: EmpOfferSimulationComponent },
