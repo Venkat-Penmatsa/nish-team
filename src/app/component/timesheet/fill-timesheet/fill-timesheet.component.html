@@ -179,8 +179,8 @@
           [checked]="accepted"
           class="timeshet-cb"
           [disabled]="uploader.queue.length > 0"
-          >Click to upload approved timesheets for the selected
-          month</mat-checkbox
+          >Click to upload approved timesheets for the selected month(Allowed
+          Formats - word, excel and pdf files )</mat-checkbox
         >
         <ng-container *ngIf="visible">
           <div class="form-group">
@@ -265,17 +265,18 @@
     <p>Legend : PH - Public Holiday, LE - Leave & HL - Half day Leave.</p>
     <h4 class="alert-heading">Instructions</h4>
     <p>
-      ‣ Please enter the time as per the example: 8.5 or 7.5 or 4 ("only
-      decimal". No comma (,) and no column (:)).
+      ‣ Please enter the time as per your working hours – 8.5, 8, 7.5 or 5
+      ("only decimal". No comma (,) and no colon  (:)).
     </p>
-    <p>‣ Please mention extra working days/hours in the comments section</p>
+    <p>‣ Please mention overtime in the “comments” section</p>
     <p>
-      ‣ Customer holidays should be applied as a leave, please fill the
-      timesheet before 25th of every month
+      ‣ Please do not add any time for Sick leaves and mention these days in the
+      comments section.
     </p>
+    <p>‣ Customer holidays should be applied as leaves.</p>
     <p>
-      ‣ There should not be any discrepancy in (Total Hours) between NISH and
-      customer timesheet
+      ‣ Kindly verify timesheet before submitting. NEPtune timesheet and client
+      timesheet should have the same number of working hours.
     </p>
   </div>
 </div>
