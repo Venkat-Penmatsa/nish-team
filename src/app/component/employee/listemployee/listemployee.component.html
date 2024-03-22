@@ -12,6 +12,7 @@
         #input
       />
     </mat-form-field>
+    <button mat-button (click)="activeEmp()">Download Active Employee</button>
 
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container matColumnDef="employeeId" sticky>

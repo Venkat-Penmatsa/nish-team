@@ -52,7 +52,7 @@
             <div class="row no-gutters">
               <div class="col-3">
                 <mat-form-field class="form-col">
-                  <mat-label>First Name *</mat-label>
+                  <mat-label>First Name</mat-label>
                   <input
                     matInput
                     placeholder="Name"
@@ -62,7 +62,7 @@
               </div>
               <div class="col-md-auto">
                 <mat-form-field class="form-col">
-                  <mat-label>Last Name *</mat-label>
+                  <mat-label>Last Name</mat-label>
                   <input
                     matInput
                     placeholder="Name"
@@ -232,6 +232,16 @@
             </div>
             <div class="row">
               <div class="col">
+                <mat-form-field class="form-col">
+                  <mat-label>NISH Email *</mat-label>
+                  <input
+                    matInput
+                    placeholder="nishEmail"
+                    formControlName="nishEmail"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="col">
                 <mat-form-field class="example-full-width">
                   <mat-label>Designation</mat-label>
                   <input
@@ -271,6 +281,8 @@
                   />
                 </mat-form-field>
               </div>
+            </div>
+            <div class="row">
               <div class="col">
                 <section class="example-section">
                   <mat-checkbox

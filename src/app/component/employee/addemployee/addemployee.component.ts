@@ -1,6 +1,17 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
+import {
+  Component,
+  ElementRef,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
+import {
+  UntypedFormBuilder,
+  UntypedFormControl,
+  Validators,
+} from '@angular/forms';
 import { Employee } from 'src/app/model/Employee';
 import { EmployeeDependents } from 'src/app/model/EmployeeDependents';
 import * as _moment from 'moment';
@@ -17,16 +28,14 @@ const moment = _moment;
   selector: 'app-addemployee',
   templateUrl: './addemployee.component.html',
   styleUrls: ['./addemployee.component.css'],
-  providers: [DatePipe]
+  providers: [DatePipe],
 })
 export class AddemployeeComponent implements OnInit, OnChanges {
-
-
   public employeeId: number;
   public successFlag: Boolean = false;
   showMarriageSectionFlag = false;
   disablePermanentSectionFlag = true;
-  uploadDocuments = false
+  uploadDocuments = false;
   public step = 0;
   visible = true;
   selectable = true;
@@ -36,7 +45,7 @@ export class AddemployeeComponent implements OnInit, OnChanges {
   empDependants: EmployeeDependents[] = [];
   savedEmpDependants: EmployeeDependents[] = [];
   employee: Employee = new Employee();
-  empId = "";
+  empId = '';
   skillsetList: string[] = skills;
   skillset: UntypedFormControl = new UntypedFormControl();
   fileList = 'employee';
@@ -51,16 +60,16 @@ export class AddemployeeComponent implements OnInit, OnChanges {
 
   @ViewChild('marriageCheckbox') marriageCheckbox: ElementRef;
 
-
-  constructor(private fb: UntypedFormBuilder, private employeeService: EmployeeService,
-    private loader: LoaderService, private datePipe: DatePipe) {
-
-  }
+  constructor(
+    private fb: UntypedFormBuilder,
+    private employeeService: EmployeeService,
+    private loader: LoaderService,
+    private datePipe: DatePipe
+  ) {}
 
   ngOnInit(): void {
     this.loading$ = this.loader.loading$;
   }
-
 
   ngOnChanges(changes: SimpleChanges): void {
     this.loading$ = this.loader.loading$;
@@ -71,16 +80,25 @@ export class AddemployeeComponent implements OnInit, OnChanges {
   }
 
   employeeDetailsValidation() {
-    console.log(' validation flag value ... ' + this.empCreationForm.get('empBasicInfo')?.valid)
+    console.log(
+      ' validation flag value ... ' +
+        this.empCreationForm.get('empBasicInfo')?.valid
+    );
     if (this.empCreationForm.get('empBasicInfo')?.valid) {
-      console.log(' validation flag value ... ' + this.empCreationForm.get('empBasicInfo')?.valid)
+      console.log(
+        ' validation flag value ... ' +
+          this.empCreationForm.get('empBasicInfo')?.valid
+      );
       this.step++;
     }
   }
 
   addressDetailsValidation() {
     if (this.empCreationForm.get('employeeAddress')?.valid) {
-      console.log(' validation flag value ... ' + this.empCreationForm.get('empBasicInfo')?.valid)
+      console.log(
+        ' validation flag value ... ' +
+          this.empCreationForm.get('empBasicInfo')?.valid
+      );
       this.step++;
     }
   }
@@ -89,9 +107,8 @@ export class AddemployeeComponent implements OnInit, OnChanges {
     this.empName = emp;
   }
 
-
   onNationalitySelected(country: any) {
-    if (country == "Belgium") {
+    if (country == 'Belgium') {
       this.disablePermanentSectionFlag = false;
     } else {
       this.disablePermanentSectionFlag = true;
@@ -115,11 +132,9 @@ export class AddemployeeComponent implements OnInit, OnChanges {
     this.showMarriageSectionFlag = status;
   }
 
-
   onSubmit() {
-
     //new Date(this.moment(date).utcOffset('+0000').format('YYYY-MM-DD HH:MM'))
-    this.user = JSON.parse(localStorage.getItem("userDetails") || '{}') as User;
+    this.user = JSON.parse(localStorage.getItem('userDetails') || '{}') as User;
     console.log(this.empCreationForm.value);
     this.employee = Object.assign({}, this.empCreationForm.value);
     this.employee.employeeDependents = this.empDependants;
@@ -127,32 +142,46 @@ export class AddemployeeComponent implements OnInit, OnChanges {
     //this.employee.empBasicInfo.dob = dsd?.value;
     this.employee.updatedBy = this.user.empId;
     //this.employee.empBasicInfo.dob =  this.datePipe.transform(this.empCreationForm.value.empBasicInfo.dob, 'dd-MM-yyyy');
-    this.employee.empBasicInfo.dob = new Date(moment(this.empCreationForm.value.empBasicInfo.dob).utcOffset('+2000').format('YYYY-MM-DD'));
-    this.employee.empBasicInfo.onboardingDate = new Date(moment(this.empCreationForm.value.empBasicInfo.onboardingDate).utcOffset('+2000').format('YYYY-MM-DD'));
+    this.employee.empBasicInfo.dob = new Date(
+      moment(this.empCreationForm.value.empBasicInfo.dob)
+        .utcOffset('+2000')
+        .format('YYYY-MM-DD')
+    );
+    this.employee.empBasicInfo.onboardingDate = new Date(
+      moment(this.empCreationForm.value.empBasicInfo.onboardingDate)
+        .utcOffset('+2000')
+        .format('YYYY-MM-DD')
+    );
     if (this.empCreationForm.value.empBasicInfo.rpExpiryDate != null) {
-      this.employee.empBasicInfo.rpExpiryDate = new Date(moment(this.empCreationForm.value.empBasicInfo.rpExpiryDate).utcOffset('+2000').format('YYYY-MM-DD'));
+      this.employee.empBasicInfo.rpExpiryDate = new Date(
+        moment(this.empCreationForm.value.empBasicInfo.rpExpiryDate)
+          .utcOffset('+2000')
+          .format('YYYY-MM-DD')
+      );
     }
     if (this.empCreationForm.value.empBasicInfo.empLastDate != null) {
-      this.employee.empBasicInfo.empLastDate = new Date(moment(this.empCreationForm.value.empBasicInfo.empLastDate).utcOffset('+2000').format('YYYY-MM-DD'));
+      this.employee.empBasicInfo.empLastDate = new Date(
+        moment(this.empCreationForm.value.empBasicInfo.empLastDate)
+          .utcOffset('+2000')
+          .format('YYYY-MM-DD')
+      );
     }
 
     const empJson = JSON.stringify(this.employee);
     console.log('empJson ' + empJson);
 
-    this.employeeService.createEmployee(this.employee)
-      .subscribe(data => {
-        console.log("data ==========> " + data);
-        this.employeeId = data.employeeId;
-        this.empCreationForm.reset();
-      })
+    this.employeeService.createEmployee(this.employee).subscribe((data) => {
+      console.log('data ==========> ' + data);
+      this.employeeId = data.employeeId;
+      this.empCreationForm.reset();
+    });
     this.successFlag = true;
-    console.log("employeeId..." + this.employeeId);
+    console.log('employeeId...' + this.employeeId);
     window.scroll({
       top: 0,
       left: 0,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
-
   }
 
   public handleMissingImage(event: Event) {
@@ -161,45 +190,56 @@ export class AddemployeeComponent implements OnInit, OnChanges {
 
   searchEmployees() {
     this.successFlag = false;
-    if (this.empName != "") {
-      const emparr = this.empName.split("-");
+    if (this.empName != '') {
+      const emparr = this.empName.split('-');
       this.empCreationForm.reset();
       this.savedEmpDependants = [];
-      this.employeeService.fetchEmployeeById(emparr[0])
-        .subscribe(data => {
-          console.log("data ==========> " + data);
-          this.employee = data;
-          this.empCreationForm.patchValue({
-            empBasicInfo: this.employee.empBasicInfo,
-            employeeAddress: this.employee.employeeAddress,
-            skillset: this.employee.skillset
-          });
-          this.savedEmpDependants = this.employee.employeeDependents;
-          this.empId = this.employee.empBasicInfo.empId;
-          if (this.savedEmpDependants != null && this.savedEmpDependants.length > 0) {
-            this.showMarriageSectionFlag = true;
-            this.martialStatusChecked = true;
-          }
-          this.uploadDocuments = true;
+      this.employeeService.fetchEmployeeById(emparr[0]).subscribe((data) => {
+        console.log('data ==========> ' + data);
+        this.employee = data;
+        this.empCreationForm.patchValue({
+          empBasicInfo: this.employee.empBasicInfo,
+          employeeAddress: this.employee.employeeAddress,
+          skillset: this.employee.skillset,
+        });
+        this.savedEmpDependants = this.employee.employeeDependents;
+        this.empId = this.employee.empBasicInfo.empId;
+        if (
+          this.savedEmpDependants != null &&
+          this.savedEmpDependants.length > 0
+        ) {
+          this.showMarriageSectionFlag = true;
+          this.martialStatusChecked = true;
+        }
+        this.uploadDocuments = true;
 
-          if (this.employee.employeeAddress.nationality == "Belgium") {
-            this.disablePermanentSectionFlag = false;
-          } else {
-            this.disablePermanentSectionFlag = true;
-          }
+        if (this.employee.employeeAddress.nationality == 'Belgium') {
+          this.disablePermanentSectionFlag = false;
+        } else {
+          this.disablePermanentSectionFlag = true;
+        }
 
-          this.base64Data = this.employee.empImage;
-          this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+        this.base64Data = this.employee.empImage;
+        this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
 
-          this.empCreationForm.patchValue({
-            empBasicInfo: {
-              dob: moment(this.employee.empBasicInfo.dob, "DD/MM/YYYYT00:00:00"),
-              onboardingDate: moment(this.employee.empBasicInfo.onboardingDate, "DD/MM/YYYYT00:00:00"),
-              rpExpiryDate: moment(this.employee.empBasicInfo.rpExpiryDate, "DD/MM/YYYYT00:00:00"),
-              empLastDate: moment(this.employee.empBasicInfo.empLastDate, "DD/MM/YYYYT00:00:00")
-            }
-          })
-        })
+        this.empCreationForm.patchValue({
+          empBasicInfo: {
+            dob: moment(this.employee.empBasicInfo.dob, 'DD/MM/YYYYT00:00:00'),
+            onboardingDate: moment(
+              this.employee.empBasicInfo.onboardingDate,
+              'DD/MM/YYYYT00:00:00'
+            ),
+            rpExpiryDate: moment(
+              this.employee.empBasicInfo.rpExpiryDate,
+              'DD/MM/YYYYT00:00:00'
+            ),
+            empLastDate: moment(
+              this.employee.empBasicInfo.empLastDate,
+              'DD/MM/YYYYT00:00:00'
+            ),
+          },
+        });
+      });
     }
   }
 
@@ -208,10 +248,9 @@ export class AddemployeeComponent implements OnInit, OnChanges {
   dateOfJoiningFilter = (m: Moment | null): boolean => {
     const day = (m || moment()).day();
     return day !== 0 && day !== 6;
-  }
+  };
 
   empCreationForm = this.fb.group({
-
     empBasicInfo: this.fb.group({
       empId: [],
       firstName: ['', Validators.required],
@@ -234,9 +273,9 @@ export class AddemployeeComponent implements OnInit, OnChanges {
       entity: [],
       empLastDate: [],
       hrSpoc: [],
-      designation:[]
-    }
-    ),
+      designation: [],
+      nishEmail: [],
+    }),
     employeeAddress: this.fb.group({
       addressId: [],
       currentAddress1: ['', Validators.required],
@@ -251,15 +290,11 @@ export class AddemployeeComponent implements OnInit, OnChanges {
       permanentAddcity: [],
       permanentAddstate: [],
       permanentAddcountry: [],
-      permanentAddpincode: []
-    }
-    ),
+      permanentAddpincode: [],
+    }),
     skillset: this.fb.group({
-      skillset: ['', Validators.required]
-    }
-    ),
-    updatedBy: []
+      skillset: ['', Validators.required],
+    }),
+    updatedBy: [],
   });
-
 }
-
