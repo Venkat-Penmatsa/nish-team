@@ -19,7 +19,7 @@ export class MobilitydetailsComponent implements OnInit {
   ) {}
   mobDetails: any;
   isDataLoaded: boolean = false;
-  mobilitySecFlag = false;
+  message = '';
 
   ngOnInit(): void {
     console.log(' mobility details .........');
@@ -27,17 +27,22 @@ export class MobilitydetailsComponent implements OnInit {
     let user: any = JSON.parse(localStorage.getItem('user') || '{}');
 
     this.mobilityService.fetchMobilityById(user.empId).subscribe((res) => {
-      console.log(res);
       this.mobDetails = res;
-      this.mobilityForm.patchValue({
-        isMobilityOpted: res.isMobilityOpted,
-        mobilityEffectiveDate: new Date(res.mobilityEffectiveDate),
-        applicableBudget: res.applicableBudget,
-        consumedBudget: res.consumedBudget,
-        availableBudget: res.availableBudget,
-      });
-      if (res.isMobilityOpted) {
-        this.mobilitySecFlag = true;
+      if (res.isMobilityApplicable) {
+        this.mobilityForm.patchValue({
+          isMobilityOpted: res.isMobilityOpted,
+          mobilityEffectiveDate: new Date(res.mobilityEffectiveDate),
+          applicableBudget: res.applicableBudget,
+          consumedBudget: res.consumedBudget,
+          availableBudget: res.availableBudget,
+        });
+      } else {
+        if (res.assetId != '' && res.assetId != null) {
+          this.message =
+            'Car is allocated to you, Mobility Budget is not applicable';
+        } else {
+          this.message = 'For a freelancer, Mobility Budget is Not Applicable';
+        }
       }
 
       this.isDataLoaded = true;

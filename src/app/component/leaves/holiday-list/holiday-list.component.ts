@@ -4,22 +4,16 @@ import { LeavesService } from 'src/app/services/leaves.service';
 @Component({
   selector: 'app-holiday-list',
   templateUrl: './holiday-list.component.html',
-  styleUrls: ['./holiday-list.component.css']
+  styleUrls: ['./holiday-list.component.css'],
 })
 export class HolidayListComponent implements OnInit {
+  constructor(private leavesService: LeavesService) {}
 
-  constructor(private leavesService : LeavesService) { }
-
-   holidaysList : any[] = [];
+  holidaysList: any[] = [];
 
   ngOnInit(): void {
-
-    this.leavesService.fetchCompanyHolidays()
-    .subscribe(data => {
-        console.log("holiday date ... " + data);
-        this.holidaysList = data
+    this.leavesService.fetchCompanyHolidays().subscribe((data) => {
+      this.holidaysList = data;
     });
-
   }
-
 }

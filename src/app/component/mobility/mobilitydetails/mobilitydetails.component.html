@@ -1,5 +1,5 @@
 <div *ngIf="isDataLoaded">
-  <div *ngIf="mobilitySecFlag">
+  <div *ngIf="mobDetails.isMobilityApplicable">
     <div class="container mt-3">
       <div class="row p-3 border-bottom">
         <div class="col">Eligible Budget</div>
@@ -20,9 +20,9 @@
       <button class="btn_05" (click)="openDialog()">View Rational</button>
     </div>
   </div>
-  <div *ngIf="!mobilitySecFlag">
+  <div *ngIf="!mobDetails.isMobilityApplicable">
     <div class="alert alert-success alert-box" role="alert">
-      <p>Car is allocated to you, Mobility Budget is not applicable</p>
+      <p>{{ message }}</p>
     </div>
   </div>
 </div>

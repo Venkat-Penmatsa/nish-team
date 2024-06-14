@@ -78,7 +78,6 @@ export class FillTimesheetComponent implements OnInit {
   ) {
     this.user = data;
     this.empId = data.empId;
-    console.log(' user ' + this.user);
   }
 
   ngOnInit(): void {

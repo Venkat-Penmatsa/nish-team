@@ -51,7 +51,6 @@ export class MobilityhistoryComponent implements OnInit {
     this.mobilityService
       .fetchEmpAllMonthsMobility(user.empId)
       .subscribe((res) => {
-        console.log(res);
         res.forEach((e: any) => {
           this.applieMobilityMonths.push(
             new ApplieMobilityMonths(

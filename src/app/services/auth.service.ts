@@ -30,11 +30,8 @@ export class AuthService {
     // Other functions
     const expirationDate = helper.getTokenExpirationDate(token);
     const isExpired = helper.isTokenExpired(token);
-    console.log('expirationDate ' + expirationDate);
-    console.log('isExpired ' + isExpired);
     this.timeout =
       helper.getTokenExpirationDate(token)?.valueOf() - new Date().valueOf();
-    console.log('this.timeout ' + this.timeout);
     this.expirationCounter(this.timeout);
 
     return token;

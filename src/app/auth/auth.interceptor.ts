@@ -23,7 +23,6 @@ export class AuthInterceptor implements HttpInterceptor {
     }
     const token: any = this.authService.getToken();
     if (token !== 'undefined' && token !== null) {
-      console.log('token...........' + token);
       req = this.addToken(req, token);
     }
     return next.handle(req).pipe(
