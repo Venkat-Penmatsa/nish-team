@@ -1,7 +1,14 @@
-import { AfterViewInit, Component, ViewChild, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ViewChild,
+  OnInit,
+  ViewEncapsulation,
+} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { LeavesService } from 'src/app/services/leaves.service';
+import { saveAs as importedSaveAs } from 'file-saver';
 import * as _moment from 'moment';
 import moment from 'moment';
 
@@ -9,11 +16,11 @@ import moment from 'moment';
   selector: 'app-leavebalence',
   templateUrl: './leavebalence.component.html',
   styleUrls: ['./leavebalence.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class LeavebalenceComponent implements AfterViewInit, OnInit {
-
-  displayedColumns: string[] = ['leaveId',
+  displayedColumns: string[] = [
+    'leaveId',
     'employeeId',
     'leaveType',
     'startDate',
@@ -23,18 +30,18 @@ export class LeavebalenceComponent implements AfterViewInit, OnInit {
     'leaveAppliedDate',
     'numberOfDays',
     'comments',
-    'actions'
+    'actions',
   ];
   empLeavesBalenceList: EmpLeavesBalence[] = [];
-  dataSource = new MatTableDataSource<EmpLeavesBalence>(this.empLeavesBalenceList);
+  dataSource = new MatTableDataSource<EmpLeavesBalence>(
+    this.empLeavesBalenceList
+  );
   selectedDate: any;
   leaveFreezed: boolean = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private leavesService: LeavesService) {
-
-  }
+  constructor(private leavesService: LeavesService) {}
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -42,43 +49,46 @@ export class LeavebalenceComponent implements AfterViewInit, OnInit {
 
   fetchMonthlyReport(event) {
     this.empLeavesBalenceList = [];
-    this.selectedDate = moment(event.value).format("DD-MM-YYYY");
+    this.selectedDate = moment(event.value).format('DD-MM-YYYY');
     this.callMonthlyLeaves(this.selectedDate);
-
   }
 
   validateBatch(selectedDate: any) {
-
     this.leaveFreezed = false;
-    this.leavesService.fetchYearBatchJobStatus('FREEZE_TIMESHEET', selectedDate).subscribe(res => {
-      console.log(res)
-      if (res.status == 'Executed') {
-        this.leaveFreezed = true;
-      }
-    });
+    this.leavesService
+      .fetchYearBatchJobStatus('FREEZE_TIMESHEET', selectedDate)
+      .subscribe((res) => {
+        console.log(res);
+        if (res.status == 'Executed') {
+          this.leaveFreezed = true;
+        }
+      });
   }
 
   callMonthlyLeaves(selectedDate: any) {
+    this.validateBatch(selectedDate);
 
-  
-    this.validateBatch(selectedDate)
-
-    this.leavesService.fetchAllEmpLeaves(selectedDate).subscribe(res => {
-      console.log(res)
-      res.forEach(e => {
-        this.empLeavesBalenceList.push(new EmpLeavesBalence(e.leaveId,
-          e.employeeId,
-          e.leaveType,
-          e.startDate,
-          e.endDate,
-          e.status,
-          e.leaveAppliedBy,
-          e.leaveAppliedDate,
-          e.numberOfDays,
-          e.comments
-        ));
-      })
-      this.dataSource = new MatTableDataSource<EmpLeavesBalence>(this.empLeavesBalenceList);
+    this.leavesService.fetchAllEmpLeaves(selectedDate).subscribe((res) => {
+      console.log(res);
+      res.forEach((e) => {
+        this.empLeavesBalenceList.push(
+          new EmpLeavesBalence(
+            e.leaveId,
+            e.employeeId,
+            e.leaveType,
+            e.startDate,
+            e.endDate,
+            e.status,
+            e.leaveAppliedBy,
+            e.leaveAppliedDate,
+            e.numberOfDays,
+            e.comments
+          )
+        );
+      });
+      this.dataSource = new MatTableDataSource<EmpLeavesBalence>(
+        this.empLeavesBalenceList
+      );
       this.dataSource.paginator = this.paginator;
     });
   }
@@ -89,25 +99,29 @@ export class LeavebalenceComponent implements AfterViewInit, OnInit {
   }
 
   deleteLeave(leaveRequest: any) {
+    console.log('selected leave request is ' + leaveRequest);
 
-    console.log("selected leave request is " + leaveRequest);
-
-    this.leavesService.deleteLeave(leaveRequest.leaveId).subscribe(res => {
-      console.log("response from service  " + res);
+    this.leavesService.deleteLeave(leaveRequest.leaveId).subscribe((res) => {
+      console.log('response from service  ' + res);
       let deleteLeaveRes: any = res;
-      if (deleteLeaveRes.responseStatus == "success") {
+      if (deleteLeaveRes.responseStatus == 'success') {
         this.empLeavesBalenceList = [];
         this.callMonthlyLeaves(this.selectedDate);
       }
     });
-
   }
 
-  ngOnInit(): void {
-
-
+  downLoadSickLeavesReport() {
+    this.leavesService
+      .downloadSickLeavesReport(this.selectedDate)
+      .subscribe((res) => {
+        console.log(res);
+        let blob: any = new Blob([res], { type: 'text/json; charset=utf-8' });
+        importedSaveAs(blob, this.selectedDate + '-MonthlyTimeSheet.xls');
+      });
   }
 
+  ngOnInit(): void {}
 }
 
 export class EmpLeavesBalence {
@@ -122,5 +136,5 @@ export class EmpLeavesBalence {
     private leaveAppliedDate: string,
     private numberOfDays: string,
     private comments: string
-  ) { }
+  ) {}
 }

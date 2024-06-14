@@ -5,8 +5,15 @@ import { map, startWith } from 'rxjs/operators';
 import { AssetsService } from 'src/app/services/assets.service';
 import { LeavesService } from 'src/app/services/leaves.service';
 import { User } from 'src/app/model/User';
-import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import {
+  MomentDateAdapter,
+  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+} from '@angular/material-moment-adapter';
+import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+} from '@angular/material/core';
 import moment from 'moment';
 import { Moment } from 'moment';
 
@@ -29,15 +36,15 @@ export const MY_FORMATS = {
     {
       provide: DateAdapter,
       useClass: MomentDateAdapter,
-      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
     },
     {
-      provide: MAT_DATE_FORMATS, useValue: MY_FORMATS
+      provide: MAT_DATE_FORMATS,
+      useValue: MY_FORMATS,
     },
-  ]
+  ],
 })
 export class UpdateleavesComponent implements OnInit {
-
   date = new FormControl(moment());
   chosenYearHandler(normalizedYear: Moment, dp: any) {
     let ctrlValue: any = this.date.value;
@@ -54,44 +61,46 @@ export class UpdateleavesComponent implements OnInit {
   disableBtn = false;
   successFlag = false;
   empName: any;
-  user:User;
+  user: User;
   selectYear: any;
   dateForm = new FormControl();
 
-  constructor(private fb: UntypedFormBuilder, private leavesService: LeavesService) {
-
-  }
+  constructor(
+    private fb: UntypedFormBuilder,
+    private leavesService: LeavesService
+  ) {}
 
   ngOnInit(): void {
-    this.user = JSON.parse(localStorage.getItem("userDetails")|| '{}') as User;
+    this.user = JSON.parse(localStorage.getItem('userDetails') || '{}') as User;
   }
 
   empNameSelected(emp: any) {
     this.empName = emp;
   }
 
-
   fetchLeaves() {
     this.successFlag = false;
-    if (this.empName != "") {
+    if (this.empName != '') {
       this.updateLeavesForm.reset();
-      this.leavesService.fetchEmpLeaves(this.empName, moment(this.date.value).format('YYYY')).subscribe(res => {
-        console.log("data ==========> " + res);
+      this.leavesService
+        .fetchEmpLeaves(this.empName, moment(this.date.value).format('YYYY'))
+        .subscribe((res) => {
+          console.log('data ==========> ' + res);
 
-        this.updateLeavesForm.patchValue({
-          leavebalenceid: res.leavebalenceid,
-          employeeId: res.employeeId,
-          rttAdv: res.rttAdv,
-          authorisedAbsence: res.authorisedAbsence,
-          other: res.other,
-          compensationLeave: res.compensationLeave,
-          forwardedLeave: res.forwardedLeave,
-          totalleavebalence: res.totalleavebalence,
-          advanceLeaves: res.advanceLeaves,
-          updatedBy: res.updatedBy,
-          comments: res.comments
+          this.updateLeavesForm.patchValue({
+            leavebalenceid: res.leavebalenceid,
+            employeeId: res.employeeId,
+            rttAdv: res.rttAdv,
+            authorisedAbsence: res.authorisedAbsence,
+            other: res.other,
+            compensationLeave: res.compensationLeave,
+            forwardedLeave: res.forwardedLeave,
+            totalleavebalence: res.totalleavebalence,
+            advanceLeaves: res.advanceLeaves,
+            updatedBy: res.updatedBy,
+            comments: res.comments,
+          });
         });
-      })
     }
   }
 
@@ -100,31 +109,29 @@ export class UpdateleavesComponent implements OnInit {
     console.log(this.updateLeavesForm.value);
     this.updateLeavesForm.patchValue({
       updatedBy: this.user.empId,
-      employeeId: this.empName
-    })
+      employeeId: this.empName,
+    });
     const assetJson = JSON.stringify(this.updateLeavesForm.value);
     console.log('assetJson ' + assetJson);
 
-    this.leavesService.updateEmpLeaves(assetJson)
-      .subscribe(data => {
-        console.log("data ==========> " + data);
-        let serviceResponse = data;
-        this.successFlag = true;
-      })
+    this.leavesService.updateEmpLeaves(assetJson).subscribe((data) => {
+      console.log('data ==========> ' + data);
+      let serviceResponse = data;
+      this.successFlag = true;
+    });
   }
 
   updateLeavesForm = this.fb.group({
-    leavebalenceid: ['', Validators.required],
+    leavebalenceid: [''],
     employeeId: ['', Validators.required],
-    rttAdv: ['',Validators.required],
-    authorisedAbsence: ['',Validators.required],
-    other: ['',],
-    compensationLeave: ['',],
-    forwardedLeave: ['',],
-    totalleavebalence: ['',],
-    advanceLeaves: ['',],
-    updatedBy: ['',],
-    comments: []
+    rttAdv: ['', Validators.required],
+    authorisedAbsence: ['', Validators.required],
+    other: [''],
+    compensationLeave: [''],
+    forwardedLeave: [''],
+    totalleavebalence: [''],
+    advanceLeaves: [''],
+    updatedBy: [''],
+    comments: [],
   });
-
 }

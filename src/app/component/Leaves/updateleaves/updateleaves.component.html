@@ -1,107 +1,167 @@
 <div class="page-layout-container">
-    <form [formGroup]="updateLeavesForm">
-
-        <div *ngIf="successFlag" class="alert alert-success">Leaves updated successfully for employee -- {{ empName }}
+  <form [formGroup]="updateLeavesForm">
+    <div *ngIf="successFlag" class="alert alert-success">
+      Leaves updated successfully for employee -- {{ empName }}
+    </div>
+    <div>
+      <div class="row">
+        <h1 class="title">Update Leaves for - {{ empName }}</h1>
+      </div>
+      <div class="row">
+        <div class="col-6" style="width: 80%">
+          <app-emp-name
+            [filterEmpName]="filterEmpName"
+            (empName)="empNameSelected($event)"
+          >
+          </app-emp-name>
         </div>
-        <div>
-            <div class="row">
-                <h1 class="title"> Update Leaves for - {{ empName }} </h1>
-            </div>
-            <div class="row">
-                <div class="col-6" style="width: 80%;">
-                    <app-emp-name [filterEmpName]="filterEmpName" (empName)="empNameSelected($event)">
-                    </app-emp-name>
-                </div>
-                <div class="col">
-                    <mat-form-field>
-                        <input matInput [matDatepicker]="dp" placeholder="Select Year" [formControl]="date">
-                        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-                        <mat-datepicker #dp startView="multi-year" (yearSelected)="chosenYearHandler($event, dp)"
-                            panelClass="example-month-picker">
-                        </mat-datepicker>
-                    </mat-form-field>
-                </div>
-                <div class="col">
-                    <button mat-button (click)="fetchLeaves()" type="submit">Fetch Leaves</button>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    <mat-form-field>
-                        <mat-label>RTT Adv Leaves *</mat-label>
-                        <input matInput type="number" min="0" max="100" formControlName="rttAdv">
-                    </mat-form-field>
-                </div>
-                <div class="col">
-                    <mat-form-field>
-                        <mat-label>Paid Holiday *</mat-label>
-                        <input matInput type="number" min="0" max="100" formControlName="authorisedAbsence">
-                    </mat-form-field>
-                </div>
-                <div class="col">
-                    <mat-form-field>
-                        <mat-label>Others Leaves *</mat-label>
-                        <input matInput type="number" min="0" max="100" formControlName="other">
-                    </mat-form-field>
-                </div>
-                <div class="col">
-                    <mat-form-field>
-                        <mat-label>Compensation Leaves *</mat-label>
-                        <input matInput type="number" min="0" max="100" formControlName="compensationLeave">
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <mat-form-field>
-                        <mat-label>Forwarded Leaves *</mat-label>
-                        <input matInput type="number" min="0" max="100" formControlName="forwardedLeave">
-                    </mat-form-field>
-                </div>
-                <div class="col">
-                    <mat-form-field>
-                        <mat-label>Total Leaves *</mat-label>
-                        <input matInput type="number" min="0" max="100" formControlName="totalleavebalence">
-                    </mat-form-field>
-                </div>
-                <div class="col">
-                    <mat-form-field>
-                        <mat-label>Advance Leaves taken already*</mat-label>
-                        <input matInput type="number" min="0" max="100" formControlName="advanceLeaves">
-                    </mat-form-field>
-                </div>
-                <div class="col">
-                   
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-6">
-                    <mat-form-field class="form-col" style="width: 80%;">
-                        <mat-label>Comments*</mat-label>
-                        <textarea matInput formControlName="comments"></textarea>
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <mat-form-field [hidden]="true">
-                        <mat-label>Leave Balence Id*</mat-label>
-                        <input matInput formControlName="leavebalenceid">
-                    </mat-form-field>
-                </div>
-                <div class="col">
-                    <mat-form-field [hidden]="true">
-                        <mat-label>Employee Id*</mat-label>
-                        <input matInput formControlName="employeeId">
-                    </mat-form-field>
-                </div>
-            </div>
-
-            <div style="text-align: center">
-                <button mat-button (click)="UpdateLeaves()" [disabled]="!updateLeavesForm.valid" type="submit">Update Leaves</button>
-            </div>
-
+        <div class="col">
+          <mat-form-field>
+            <input
+              matInput
+              [matDatepicker]="dp"
+              placeholder="Select Year"
+              [formControl]="date"
+            />
+            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+            <mat-datepicker
+              #dp
+              startView="multi-year"
+              (yearSelected)="chosenYearHandler($event, dp)"
+              panelClass="example-month-picker"
+            >
+            </mat-datepicker>
+          </mat-form-field>
         </div>
-    </form>
+        <div class="col">
+          <button mat-button (click)="fetchLeaves()" type="submit">
+            Fetch Leaves
+          </button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field>
+            <mat-label>RTT Adv Leaves *</mat-label>
+            <input
+              matInput
+              type="number"
+              min="0"
+              max="100"
+              formControlName="rttAdv"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <mat-label>Paid Holiday *</mat-label>
+            <input
+              matInput
+              type="number"
+              min="0"
+              max="100"
+              formControlName="authorisedAbsence"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <mat-label>Others Leaves *</mat-label>
+            <input
+              matInput
+              type="number"
+              min="0"
+              max="100"
+              formControlName="other"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <mat-label>Compensation Leaves *</mat-label>
+            <input
+              matInput
+              type="number"
+              min="0"
+              max="100"
+              formControlName="compensationLeave"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field>
+            <mat-label>Forwarded Leaves *</mat-label>
+            <input
+              matInput
+              type="number"
+              min="0"
+              max="100"
+              formControlName="forwardedLeave"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <mat-label>Total Leaves *</mat-label>
+            <input
+              matInput
+              type="number"
+              min="0"
+              max="100"
+              formControlName="totalleavebalence"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <mat-label>Advance Leaves taken already*</mat-label>
+            <input
+              matInput
+              type="number"
+              min="0"
+              max="100"
+              formControlName="advanceLeaves"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col"></div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <mat-form-field class="form-col" style="width: 80%">
+            <mat-label>Comments*</mat-label>
+            <textarea matInput formControlName="comments"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field [hidden]="true">
+            <mat-label>Leave Balence Id*</mat-label>
+            <input matInput formControlName="leavebalenceid" />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field [hidden]="true">
+            <mat-label>Employee Id*</mat-label>
+            <input matInput formControlName="employeeId" />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div style="text-align: center">
+        <button
+          mat-button
+          (click)="UpdateLeaves()"
+          [disabled]="!updateLeavesForm.valid"
+          type="submit"
+        >
+          Update Leaves
+        </button>
+      </div>
+    </div>
+  </form>
 </div>
