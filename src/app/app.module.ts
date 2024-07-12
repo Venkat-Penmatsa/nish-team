@@ -33,6 +33,9 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { UploadrSelectDirective } from './component/timesheet/fill-timesheet/uploadr-select.directive';
 import { NotificationService } from './services/notification.service';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { CarPolicyComponent } from './component/mobility/car-policy/car-policy.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -56,6 +59,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     ChangePwdComponent,
     FillTimesheetComponent,
     UploadrSelectDirective,
+    CarPolicyComponent,
   ],
   imports: [
     FormsModule,
@@ -68,6 +72,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     HttpClientModule,
     RouterModule,
     FileUploadModule,
+    PdfViewerModule,
+    NgxExtendedPdfViewerModule,
     // JwtModule.forRoot({}),
   ],
   providers: [

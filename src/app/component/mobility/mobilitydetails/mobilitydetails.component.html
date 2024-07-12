@@ -24,5 +24,12 @@
     <div class="alert alert-success alert-box" role="alert">
       <p>{{ message }}</p>
     </div>
+
+    <div
+      *ngIf="assetId != '' && assetId != null"
+      class="d-flex align-items-end flex-column bd-highlight mb-3"
+    >
+      <button class="btn_05" (click)="openCarPolicyDialog()">Car Policy</button>
+    </div>
   </div>
 </div>

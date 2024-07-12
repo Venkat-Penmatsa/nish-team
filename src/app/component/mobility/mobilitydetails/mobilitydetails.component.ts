@@ -4,6 +4,7 @@ import { MobilityhistoryComponent } from '../mobilityhistory/mobilityhistory.com
 import { MobilityService } from 'src/app/services/mobility.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/services/auth.service';
+import { CarPolicyComponent } from '../car-policy/car-policy.component';
 
 @Component({
   selector: 'app-mobilitydetails',
@@ -20,6 +21,7 @@ export class MobilitydetailsComponent implements OnInit {
   mobDetails: any;
   isDataLoaded: boolean = false;
   message = '';
+  assetId = null;
 
   ngOnInit(): void {
     console.log(' mobility details .........');
@@ -38,6 +40,7 @@ export class MobilitydetailsComponent implements OnInit {
         });
       } else {
         if (res.assetId != '' && res.assetId != null) {
+          this.assetId = res.assetId;
           this.message =
             'Car is allocated to you, Mobility Budget is not applicable';
         } else {
@@ -51,6 +54,18 @@ export class MobilitydetailsComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(MobilityhistoryComponent, {
+      height: '80%',
+      width: '80%',
+      data: this.mobDetails,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  openCarPolicyDialog() {
+    const dialogRef = this.dialog.open(CarPolicyComponent, {
       height: '80%',
       width: '80%',
       data: this.mobDetails,
