@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { ClientDetailsService } from 'src/app/services/client-details.service';
 @Component({
@@ -20,7 +20,7 @@ import { ClientDetailsService } from 'src/app/services/client-details.service';
 export class CustomerNameComponent implements OnInit {
   customerName: any[] = [];
   customerList: Observable<any[]>;
-  assetCustName = new UntypedFormControl();
+  assetCustName = new FormControl();
   @Output() custName = new EventEmitter<any>();
   @Input() filterCustomerName;
   constructor(private clientDetailsService: ClientDetailsService) {}

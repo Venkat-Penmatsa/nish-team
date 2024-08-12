@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { Moment } from 'moment';
 import { TimesheetService } from 'src/app/services/timesheet.service';
@@ -123,6 +123,30 @@ export class FillEmpTimesheetComponent implements OnInit {
       this.spinner.hide();
       this.fileUploadControl.clear();
     });
+  }
+
+  downloadInvoice(contractId) {
+    console.log('Downloading the invoice ');
+    const user: any = JSON.parse(localStorage.getItem('user') || '{}');
+    let contract = contractId.split(' >>');
+    let emp = this.empName.split('-');
+    let fileName =
+      'Invoice_' +
+      emp[0] +
+      '_' +
+      moment(this.selectedDate).format('DD-MM-YYYY') +
+      '.xls';
+    this.timesheetService
+      .downloadInvoice(
+        contract[0],
+        emp[0],
+        moment(this.selectedDate).format('DD-MM-YYYY')
+      )
+      .subscribe((data) => {
+        window.open(data.url);
+        let blob: any = new Blob([data], { type: 'text/json; charset=utf-8' });
+        importedSaveAs(blob, fileName);
+      });
   }
 
   download(filename): void {

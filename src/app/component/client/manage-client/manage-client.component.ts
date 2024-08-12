@@ -52,10 +52,11 @@ export class ManageClientComponent implements OnInit {
 
   searchContractId($event: Event) {
     this.successFlag = false;
-    const contractID = ($event.target as HTMLTextAreaElement).value;
-    if (contractID != '') {
+    const custId = ($event.target as HTMLTextAreaElement).value;
+    if (custId != '') {
+      console.log('Search customer ');
       this.clientDetailsService
-        .fetchCustomerInfo(contractID)
+        .fetchCustomerInfo(custId)
         .subscribe((res: any) => {
           this.newClientForm.patchValue({
             clientId: res.clientId,

@@ -1,9 +1,17 @@
-<mat-form-field style="width: 80%;">
-    <mat-label>Search Employee *</mat-label>
-    <input type="text" matInput [formControl]="assetAssignedToEmp" [matAutocomplete]="auto" />
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectionChange($event)" >
-        <mat-option *ngFor="let option of empList | async" [value]="option">
-            {{option}}
-        </mat-option>
-      </mat-autocomplete>
+<mat-form-field style="width: 80%">
+  <mat-label>Search Employee *</mat-label>
+  <input
+    type="text"
+    matInput
+    [formControl]="assetAssignedToEmp"
+    [matAutocomplete]="auto"
+  />
+  <mat-autocomplete
+    #auto="matAutocomplete"
+    (optionSelected)="onSelectionChange($event)"
+  >
+    <mat-option *ngFor="let option of empList | async" [value]="option">
+      {{ option }}
+    </mat-option>
+  </mat-autocomplete>
 </mat-form-field>

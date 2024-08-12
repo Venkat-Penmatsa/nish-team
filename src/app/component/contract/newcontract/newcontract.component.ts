@@ -100,6 +100,10 @@ export class NewcontractComponent implements OnInit {
           comments: this.contract.comments,
           contractType: this.contract.contractType,
           perDayHrs: this.contract.perDayHrs,
+          contractReference: this.contract.contractReference,
+          vosReference: this.contract.vosReference,
+          entity: this.contract.entity,
+          customerId: this.contract.perDayHrs,
         });
         this.filterEmpName = this.contract.employeeId;
         this.filterCustomerName = this.contract.customerId;
