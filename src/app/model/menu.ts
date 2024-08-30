@@ -192,7 +192,29 @@ export let menu: NavItem[] = [
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
     ],
-  } /*
+  },
+  {
+    displayName: 'Invoice',
+    iconName: 'business',
+    route: 'invoice',
+    role: ['admin', 'finance', 'timesheet'],
+    children: [
+      {
+        displayName: 'Invoice Report',
+        iconName: 'timer',
+        route: 'invoice/invoiceReport',
+        role: ['admin', 'finance', 'timesheet'],
+      },
+      {
+        displayName: 'Invoice Details',
+        iconName: 'select_all',
+        route: 'invoice/invoiceDetails',
+        role: ['admin', 'finance', 'timesheet'],
+      },
+    ],
+  },
+
+  /*
   {
     displayName: 'Notification',
     iconName: 'access_time',
@@ -212,8 +234,7 @@ export let menu: NavItem[] = [
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
     ],
-  },*/,
-  {
+  },*/ {
     displayName: 'Mobility',
     iconName: 'card_travel',
     route: 'mobility',

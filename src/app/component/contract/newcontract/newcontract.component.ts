@@ -30,7 +30,6 @@ export class NewcontractComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private newcontractService: NewcontractService,
-    private http: HttpClient,
     public loader: LoaderService
   ) {}
 

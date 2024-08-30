@@ -1,0 +1,152 @@
+<div class="page-layout-container">
+  <div class="row">
+    <h1 class="title">Manage Contract</h1>
+  </div>
+
+  <div *ngIf="successFlag" class="alert alert-success">
+    Invoice updated successfully
+  </div>
+
+  <div *ngIf="errorFlag" class="alert alert-warning">
+    {{ errorDescription }}
+  </div>
+
+  <form [formGroup]="invoiceForm">
+    <div class="row">
+      <div class="col-6">
+        <mat-form-field style="padding: 20px">
+          <mat-label>Search with NISH Invoice ID *</mat-label>
+          <input
+            matInput
+            formControlName="invoiceId"
+            (change)="searchInvoiceId($event)"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <mat-form-field class="example-full-width">
+          <mat-label>NISH Contract Id</mat-label>
+          <input matInput formControlName="contractId" />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field class="field-style">
+          <mat-label>Employee Name*</mat-label>
+          <input matInput formControlName="employeeId" />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Status</mat-label>
+          <select matNativeControl required formControlName="status">
+            <option value="G">GENERATED</option>
+            <option value="S">SUBMITTED</option>
+            <option value="R">RECEIVED</option>
+            <option value="E">REJECTED</option>
+            <option value="H">ONHOLD</option>
+          </select>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Generated Date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="generatedDate"
+            [matDatepickerFilter]="dateOfJoiningFilter"
+            formControlName="generatedDate"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="generatedDate"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #generatedDate></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Submitted Date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="submittedDate"
+            [matDatepickerFilter]="dateOfJoiningFilter"
+            formControlName="submittedDate"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="submittedDate"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #submittedDate></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Received Date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="billReceivedDate"
+            [matDatepickerFilter]="dateOfJoiningFilter"
+            formControlName="billReceivedDate"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="billReceivedDate"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #billReceivedDate></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Rejected Date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="billRejectedDate"
+            [matDatepickerFilter]="dateOfJoiningFilter"
+            formControlName="billRejectedDate"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="billRejectedDate"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #billRejectedDate></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>OnHold Date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="billOnHoldDate"
+            [matDatepickerFilter]="dateOfJoiningFilter"
+            formControlName="onHoldDate"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="billOnHoldDate"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #billOnHoldDate></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <mat-form-field class="form-col" style="width: 40%">
+          <mat-label>Comments *</mat-label>
+          <textarea matInput formControlName="comments"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+  &nbsp;&nbsp;
+  <div style="text-align: center">
+    <button mat-button (click)="onSubmit()" type="submit">
+      Update Invoice
+    </button>
+  </div>
+</div>
+<app-progress [loading$]="loading$"> </app-progress>

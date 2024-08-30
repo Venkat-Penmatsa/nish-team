@@ -45,6 +45,8 @@ import { RevenueReportComponent } from './component/finance/revenue-report/reven
 import { NewNotificationComponent } from './component/notification/new-notification/new-notification.component';
 import { AllNotificationComponent } from './component/notification/all-notification/all-notification.component';
 import { ContractDaysReportComponent } from './component/contract/contract-days-report/contract-days-report.component';
+import { InvoiceDetailsComponent } from './component/invoice/invoice-details/invoice-details.component';
+import { InvoiceReportComponent } from './component/invoice/invoice-report/invoice-report.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -118,6 +120,8 @@ const routes: Routes = [
         path: 'notification/allNotification',
         component: AllNotificationComponent,
       },
+      { path: 'invoice/invoiceDetails', component: InvoiceDetailsComponent },
+      { path: 'invoice/invoiceReport', component: InvoiceReportComponent },
     ],
   },
 ];

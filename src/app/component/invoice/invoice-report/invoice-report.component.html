@@ -1,0 +1,193 @@
+<div class="page-layout-container">
+  <div class="row">
+    <h1 class="title">Invoices Monthly Report</h1>
+  </div>
+  <div *ngIf="!invoiceReport?.length" class="alert alert-warning">
+    <p>To change invoice status , dates.. update in Invoice details page</p>
+  </div>
+  <div *ngIf="message" class="alert alert-warning">{{ messageDesc }}</div>
+  <div class="row">
+    <div class="col-md-auto">
+      <mat-form-field>
+        <mat-label>Select Month for generating invoices Report</mat-label>
+        <input
+          matInput
+          [matDatepicker]="leaveEndDate"
+          required
+          (dateChange)="fetchInvoiceReport($event)"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="leaveEndDate"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #leaveEndDate></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col" *ngIf="invoiceReport?.length">
+      <button mat-button (click)="downloadInvoiceReport()">
+        Download Invoice Report
+      </button>
+    </div>
+  </div>
+
+  <div>
+    <mat-form-field appearance="standard">
+      <mat-label>Filter</mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        placeholder="search with Employee Name"
+        #input
+      />
+    </mat-form-field>
+
+    <table
+      mat-table
+      [dataSource]="invoiceDataSource"
+      matSort
+      (matSortChange)="announceSortChange($event)"
+      class="mat-elevation-z8"
+    >
+      <ng-container matColumnDef="invoiceId">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by Invoice id"
+        >
+          Invoice ID
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.invoiceId }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="employeeId">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by Employee id"
+        >
+          Employee Name
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.employeeId }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="nishContractId">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by contract id"
+        >
+          Contract ID
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.nishContractId }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by status type"
+        >
+          status
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="generatedDate">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by Timesheet uploaded flag"
+        >
+          Generated Date
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.generatedDate | date : "dd/MMMM/yyyy" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="submittedDate">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by submittedDate"
+        >
+          Submitted Date
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.submittedDate | date : "dd/MMMM/yyyy" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="billReceivedDate">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by billReceivedDate"
+        >
+          Bill ReceivedDate
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.billReceivedDate | date : "dd/MMMM/yyyy" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="billRejectedDate">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by billRejectedDate"
+        >
+          Rejected Date
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.billRejectedDate | date : "dd/MMMM/yyyy" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="billOnHoldDate">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by billOnHoldDate"
+        >
+          Bill ReceivedDate
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.billOnHoldDate | date : "dd/MMMM/yyyy" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="comments">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by comments"
+        >
+          Comments
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.comments }}
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+
+  <app-progress [loading$]="loading$"> </app-progress>
+</div>

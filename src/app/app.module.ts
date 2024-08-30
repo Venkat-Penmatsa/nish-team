@@ -75,6 +75,8 @@ import { NewNotificationComponent } from './component/notification/new-notificat
 import { AllNotificationComponent } from './component/notification/all-notification/all-notification.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ContractDaysReportComponent } from './component/contract/contract-days-report/contract-days-report.component';
+import { InvoiceReportComponent } from './component/invoice/invoice-report/invoice-report.component';
+import { InvoiceDetailsComponent } from './component/invoice/invoice-details/invoice-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -132,6 +134,8 @@ import { ContractDaysReportComponent } from './component/contract/contract-days-
     NewNotificationComponent,
     AllNotificationComponent,
     ContractDaysReportComponent,
+    InvoiceReportComponent,
+    InvoiceDetailsComponent,
   ],
   imports: [
     ReactiveFormsModule,
