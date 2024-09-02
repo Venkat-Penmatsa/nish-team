@@ -54,6 +54,9 @@ export class NewcontractComponent implements OnInit {
       contractReference: [''],
       vosReference: [''],
       entity: [''],
+      tsFlag: [''],
+      invoicesDH: [''],
+      invoiceDueDate: [''],
       customerId: [''],
     });
   }
@@ -102,12 +105,17 @@ export class NewcontractComponent implements OnInit {
           contractReference: this.contract.contractReference,
           vosReference: this.contract.vosReference,
           entity: this.contract.entity,
-          customerId: this.contract.perDayHrs,
+          //customerId: this.contract.perDayHrs,
+          tsFlag: this.contract.tsFlag,
+          invoicesDH: this.contract.invoicesDH,
+          invoiceDueDate: this.contract.invoiceDueDate,
         });
         this.filterEmpName = this.contract.employeeId;
         this.filterCustomerName = this.contract.customerId;
         // this.newContractForm.controls['billingRate'].disable();
+        console.log(' filter cutomer name is ', this.filterCustomerName);
         this.newContractForm.controls['employeeId'].disable();
+        this.filterCustomerName = this.contract.customerId;
       });
     }
   }

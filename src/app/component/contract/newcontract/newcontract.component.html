@@ -179,13 +179,45 @@
             </select>
           </mat-form-field>
         </div>
-        <div class="col-6" style="width: 80%">
-          <app-customer-name
-            [filterCustomerName]="filterCustomerName"
-            (custName)="custNameSelected($event)"
-          >
-          </app-customer-name>
+        <div class="col">
+          <mat-form-field>
+            <mat-label>TimeSheet Required Flag </mat-label>
+            <select matNativeControl required formControlName="tsFlag">
+              <option value="y">Yes</option>
+              <option value="n">NO</option>
+            </select>
+          </mat-form-field>
         </div>
+        <div class="col">
+          <mat-form-field>
+            <mat-label>Invoice in Days/Hours </mat-label>
+            <select matNativeControl required formControlName="invoicesDH">
+              <option value="D">Days</option>
+              <option value="H">Hours</option>
+            </select>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <mat-label>Invoice Due Date </mat-label>
+            <select matNativeControl required formControlName="invoiceDueDate">
+              <option value="1">15</option>
+              <option value="2">30</option>
+              <option value="3">45</option>
+              <option value="4">60</option>
+              <option value="4">90</option>
+            </select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6" style="width: 80%">
+        <app-customer-name
+          [filterCustomerName]="filterCustomerName"
+          (custName)="custNameSelected($event)"
+        >
+        </app-customer-name>
       </div>
     </div>
   </form>

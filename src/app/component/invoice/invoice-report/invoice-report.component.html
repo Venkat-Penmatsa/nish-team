@@ -79,9 +79,88 @@
           mat-sort-header
           sortActionDescription="Sort by contract id"
         >
-          Contract ID
+          NISH ContractID
         </th>
         <td mat-cell *matCellDef="let element">{{ element.nishContractId }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="clientName">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by clientName"
+        >
+          Client Name
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.clientName }}</td>
+      </ng-container>
+      <ng-container matColumnDef="vendorName">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by vendorName"
+        >
+          Vendor Name
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.vendorName }}</td>
+      </ng-container>
+      <ng-container matColumnDef="daysOrHours">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by daysOrHours"
+        >
+          Days/Hours
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.daysOrHours }}</td>
+      </ng-container>
+      <ng-container matColumnDef="rate">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by rate "
+        >
+          Rate
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.rate }}</td>
+      </ng-container>
+      <ng-container matColumnDef="amt">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by amt"
+        >
+          Amount
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.amt }}</td>
+      </ng-container>
+      <ng-container matColumnDef="vat">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by vat"
+        >
+          VAT
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.vat }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="total">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by total"
+        >
+          Total
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.total }}</td>
       </ng-container>
 
       <ng-container matColumnDef="status">
@@ -89,13 +168,23 @@
           mat-header-cell
           *matHeaderCellDef
           mat-sort-header
-          sortActionDescription="Sort by status type"
+          sortActionDescription="Sort by status"
         >
-          status
+          Status
         </th>
         <td mat-cell *matCellDef="let element">{{ element.status }}</td>
       </ng-container>
-
+      <ng-container matColumnDef="tsFlag">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by tsFlag"
+        >
+          TS Required Flag
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.tsFlag }}</td>
+      </ng-container>
       <ng-container matColumnDef="generatedDate">
         <th
           mat-header-cell
@@ -121,6 +210,20 @@
         </th>
         <td mat-cell *matCellDef="let element">
           {{ element.submittedDate | date : "dd/MMMM/yyyy" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="dueDate">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by dueDate"
+        >
+          Bill Due Date
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.dueDate | date : "dd/MMMM/yyyy" }}
         </td>
       </ng-container>
 
@@ -159,7 +262,7 @@
           mat-sort-header
           sortActionDescription="Sort by billOnHoldDate"
         >
-          Bill ReceivedDate
+          Bill OnHold Date
         </th>
         <td mat-cell *matCellDef="let element">
           {{ element.billOnHoldDate | date : "dd/MMMM/yyyy" }}

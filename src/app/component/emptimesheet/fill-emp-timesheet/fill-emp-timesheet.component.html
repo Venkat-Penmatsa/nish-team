@@ -64,6 +64,9 @@
               <span>{{ hd.dayName }}<br />{{ hd.day }}</span>
             </th>
             <th scope="col" style="color: rgb(62, 0, 128); width: 225px">
+              <span>Extra Hrs Amount</span>
+            </th>
+            <th scope="col" style="color: rgb(62, 0, 128); width: 225px">
               <span>Comments</span>
             </th>
             <th scope="col" style="color: rgb(62, 0, 128); width: 225px">
@@ -116,6 +119,15 @@
                   aria-label=""
                 />
               </ng-template>
+            </td>
+            <td style="align-items: center" scope="row">
+              <input
+                class="form-control"
+                type="text"
+                placeholder=""
+                [(ngModel)]="row.extraHrsAmt"
+                aria-label=""
+              />
             </td>
             <td style="align-items: center" scope="row">
               <input
