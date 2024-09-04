@@ -52,6 +52,9 @@
           <tr>
             <th scope="col"></th>
             <th scope="col" style="color: rgb(62, 0, 128)">
+              <span>TS Required Flag</span>
+            </th>
+            <th scope="col" style="color: rgb(62, 0, 128)">
               <span>Logged Hrs</span>
             </th>
             <th scope="col" style="color: rgb(62, 0, 128)">Invoice</th>
@@ -79,7 +82,9 @@
             <td style="width: 10%; color: rgb(62, 0, 128)" scope="row">
               {{ row.contractId }}
             </td>
-
+            <td style="width: 10%" scope="row">
+              {{ row.tsRequiredFlag }}
+            </td>
             <td style="width: 10%" scope="row" [(ngModel)]="row.noOfHrs">
               {{ row.noOfHrs }}
             </td>

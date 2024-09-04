@@ -116,6 +116,7 @@ export class NewcontractComponent implements OnInit {
         console.log(' filter cutomer name is ', this.filterCustomerName);
         this.newContractForm.controls['employeeId'].disable();
         this.filterCustomerName = this.contract.customerId;
+        this.customerName = this.contract.customerId;
       });
     }
   }
