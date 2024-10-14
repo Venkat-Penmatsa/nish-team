@@ -127,6 +127,7 @@ export class FillEmpTimesheetComponent implements OnInit {
 
   downloadInvoice(contractId) {
     console.log('Downloading the invoice ');
+    this.status = '';
     const user: any = JSON.parse(localStorage.getItem('user') || '{}');
     let contract = contractId.split(' >>');
     let emp = this.empName.split('-');
@@ -142,10 +143,19 @@ export class FillEmpTimesheetComponent implements OnInit {
         emp[0],
         moment(this.selectedDate).format('DD-MM-YYYY')
       )
-      .subscribe((data) => {
-        window.open(data.url);
-        let blob: any = new Blob([data], { type: 'text/json; charset=utf-8' });
-        importedSaveAs(blob, fileName);
+      .subscribe((data: any) => {
+        console.log(data);
+
+        let blob: any = new Blob([data], {
+          type: 'text/json; charset=utf-8',
+        });
+        console.log(blob);
+        const size = blob.size;
+        if (size > 0) {
+          importedSaveAs(blob, fileName);
+        } else {
+          this.status = 'invoiceFailed';
+        }
       });
   }
 

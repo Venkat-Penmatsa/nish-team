@@ -44,6 +44,9 @@
   <div *ngIf="status === 'Failed'" class="alert alert-danger">
     Due to technical error timesheet is not saved
   </div>
+  <div *ngIf="status === 'invoiceFailed'" class="alert alert-danger">
+    Invoice generation failed, please contact technical team for the issue
+  </div>
 
   <div class="modal-body" *ngIf="dataLoaded">
     <div class="table-responsive">
@@ -74,6 +77,9 @@
             </th>
             <th scope="col" style="color: rgb(62, 0, 128); width: 225px">
               <span>HR Comments</span>
+            </th>
+            <th scope="col" style="color: rgb(62, 0, 128); width: 225px">
+              <span>Account Comments</span>
             </th>
           </tr>
         </thead>
@@ -149,6 +155,15 @@
                 type="text"
                 placeholder=""
                 [(ngModel)]="row.hrComments"
+                aria-label=""
+              />
+            </td>
+            <td style="align-items: center" scope="row">
+              <input
+                class="form-control"
+                type="text"
+                placeholder=""
+                [(ngModel)]="row.accComments"
                 aria-label=""
               />
             </td>

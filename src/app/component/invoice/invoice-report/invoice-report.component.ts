@@ -82,6 +82,7 @@ export class InvoiceReportComponent implements OnInit {
     'billRejectedDate',
     'billOnHoldDate',
     'comments',
+    'accComments',
   ];
 
   invoiceReport: InvoiceReport[] = [];
@@ -160,7 +161,8 @@ export class InvoiceReportComponent implements OnInit {
               e.billReceivedDate,
               e.billRejectedDate,
               e.billOnHoldDate,
-              e.comments
+              e.comments,
+              e.accComments
             )
           );
         });
@@ -204,6 +206,7 @@ export class InvoiceReport {
     private billReceivedDate: string,
     private billRejectedDate: string,
     private billOnHoldDate: string,
-    private comments: string
+    private comments: string,
+    private accComments: string
   ) {}
 }
