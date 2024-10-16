@@ -47,6 +47,7 @@ import { AllNotificationComponent } from './component/notification/all-notificat
 import { ContractDaysReportComponent } from './component/contract/contract-days-report/contract-days-report.component';
 import { InvoiceDetailsComponent } from './component/invoice/invoice-details/invoice-details.component';
 import { InvoiceReportComponent } from './component/invoice/invoice-report/invoice-report.component';
+import { EmployeeExitComponent } from './component/employee/employee-exit/employee-exit.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -62,6 +63,7 @@ const routes: Routes = [
       { path: 'employee/NewEmployee', component: AddemployeeComponent },
       { path: 'employee/allEmployees', component: ListemployeeComponent },
       { path: 'employee/empManagement', component: ManageEmployeeComponent },
+      { path: 'employee/empOffBoarding', component: EmployeeExitComponent },
       { path: 'contracts/newContract', component: NewcontractComponent },
       { path: 'contracts/allContracts', component: AllcontractsComponent },
       {

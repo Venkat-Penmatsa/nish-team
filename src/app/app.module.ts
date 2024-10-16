@@ -77,6 +77,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { ContractDaysReportComponent } from './component/contract/contract-days-report/contract-days-report.component';
 import { InvoiceReportComponent } from './component/invoice/invoice-report/invoice-report.component';
 import { InvoiceDetailsComponent } from './component/invoice/invoice-details/invoice-details.component';
+import { EmployeeExitComponent } from './component/employee/employee-exit/employee-exit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -136,6 +137,7 @@ import { InvoiceDetailsComponent } from './component/invoice/invoice-details/inv
     ContractDaysReportComponent,
     InvoiceReportComponent,
     InvoiceDetailsComponent,
+    EmployeeExitComponent,
   ],
   imports: [
     ReactiveFormsModule,

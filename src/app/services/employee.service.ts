@@ -37,10 +37,27 @@ export class EmployeeService {
     );
   }
 
+  getEmployeeExitDetails(employee: String): Observable<any> {
+    const headers = { 'Content-type': 'application/json' };
+    return this.http.get<any>(
+      `${this.baseUrl}/employee/getEmployeeExitDet/` + employee,
+      { headers }
+    );
+  }
+
   createEmployee(employee: Employee): Observable<any> {
     const headers = { 'Content-type': 'application/json' };
     return this.http.post<any>(
       `${this.baseUrl}/employee/createEmployee`,
+      employee,
+      { headers }
+    );
+  }
+
+  updateEmployeeExit(employee: any): Observable<any> {
+    const headers = { 'Content-type': 'application/json' };
+    return this.http.post<any>(
+      `${this.baseUrl}/employee/updateEmpExitDet`,
       employee,
       { headers }
     );

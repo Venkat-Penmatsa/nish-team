@@ -1,0 +1,155 @@
+<div class="page-layout-container">
+  <div class="row">
+    <h1 class="title">Manage Contract</h1>
+  </div>
+
+  <div *ngIf="successFlag" class="alert alert-success">
+    Employee exit process updated successfully
+  </div>
+
+  <div *ngIf="errorFlag" class="alert alert-warning">
+    {{ errorDescription }}
+  </div>
+
+  <form [formGroup]="empExitForm">
+    <div class="row">
+      <div class="col-6">
+        <mat-form-field style="padding: 20px">
+          <mat-label>Search with NISH Employee ID *</mat-label>
+          <input
+            matInput
+            formControlName="employeeId"
+            (change)="searchEmployeeId($event)"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <mat-form-field>
+          <mat-label>OnBoarding status</mat-label>
+          <select matNativeControl required formControlName="onboardingStatus">
+            <option value="onGoing">On Going</option>
+            <option value="active">Active</option>
+            <option value="inActive">InActive</option>
+            <option value="FreeLancer">FreeLancer</option>
+          </select>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field class="example-full-width">
+          <mat-label>End of Contract</mat-label>
+          <select matNativeControl required formControlName="endOfContract">
+            <option value="1">Resignation</option>
+            <option value="2">Termination</option>
+          </select>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field class="field-style">
+          <mat-label>Notice Type</mat-label>
+          <select matNativeControl required formControlName="noticeType">
+            <option value="1">Registered Letter</option>
+            <option value="2">delivery of Letter</option>
+          </select>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Notice Start Date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="noticeStartDate"
+            [matDatepickerFilter]="dateOfJoiningFilter"
+            formControlName="noticeStartDate"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="noticeStartDate"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #noticeStartDate></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Notice Last Date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="noticeLastDate"
+            [matDatepickerFilter]="dateOfJoiningFilter"
+            formControlName="noticeLastDate"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="noticeLastDate"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #noticeLastDate></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <section class="example-section">
+          <mat-checkbox #dav [checked]="davChecked" formControlName="dav">
+            DAV CheckList</mat-checkbox
+          >
+        </section>
+      </div>
+      <div class="col">
+        <section class="example-section">
+          <mat-checkbox #sim [checked]="simChecked" formControlName="sim">
+            SIM CheckList</mat-checkbox
+          >
+        </section>
+      </div>
+      <div class="col">
+        <mat-form-field class="form-col">
+          <mat-label>Comments *</mat-label>
+          <textarea matInput formControlName="comments"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row"></div>
+  </form>
+  &nbsp;&nbsp;
+  <div style="text-align: center">
+    <button mat-button (click)="onSubmit()" type="submit">
+      Update Employee Details
+    </button>
+  </div>
+
+  <br />
+
+  <div
+    *ngIf="assetList?.length"
+    class="table-responsive customScroll"
+    style="width: 50%"
+  >
+    <table class="table">
+      <thead>
+        <tr>
+          <th><label>Asset</label></th>
+          <th><label>Description</label></th>
+          <th><label>Assigned Date</label></th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+      <tbody>
+        <tr *ngFor="let row of assetList">
+          <td>
+            <span>{{ row.assetType }}</span>
+          </td>
+          <td>
+            <span>{{ row.assetDesc }}</span>
+          </td>
+          <td>
+            <span>{{ row.empAssignedDate }}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<app-progress [loading$]="loading$"> </app-progress>

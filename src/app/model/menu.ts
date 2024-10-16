@@ -26,6 +26,12 @@ export let menu: NavItem[] = [
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
       {
+        displayName: 'Employee OffBoarding',
+        iconName: 'person_search',
+        route: 'employee/empOffBoarding',
+        role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
+      },
+      {
         displayName: 'Batch Upload',
         iconName: 'person_search',
         route: 'employee/empManagement',
