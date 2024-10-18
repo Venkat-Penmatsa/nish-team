@@ -1,6 +1,6 @@
 <div class="page-layout-container">
   <div class="row">
-    <h1 class="title">Manage Contract</h1>
+    <h1 class="title">Employee OffBoarding</h1>
   </div>
 
   <div *ngIf="successFlag" class="alert alert-success">
@@ -45,15 +45,7 @@
           </select>
         </mat-form-field>
       </div>
-      <div class="col">
-        <mat-form-field class="field-style">
-          <mat-label>Notice Type</mat-label>
-          <select matNativeControl required formControlName="noticeType">
-            <option value="1">Registered Letter</option>
-            <option value="2">delivery of Letter</option>
-          </select>
-        </mat-form-field>
-      </div>
+
       <div class="col">
         <mat-form-field>
           <mat-label>Notice Start Date</mat-label>
@@ -70,8 +62,6 @@
           <mat-datepicker #noticeStartDate></mat-datepicker>
         </mat-form-field>
       </div>
-    </div>
-    <div class="row">
       <div class="col">
         <mat-form-field>
           <mat-label>Notice Last Date</mat-label>
@@ -88,10 +78,21 @@
           <mat-datepicker #noticeLastDate></mat-datepicker>
         </mat-form-field>
       </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <mat-form-field class="field-style">
+          <mat-label>Notice Type</mat-label>
+          <select matNativeControl required formControlName="noticeType">
+            <option value="1">Registered Letter</option>
+            <option value="2">Delivery of Letter</option>
+          </select>
+        </mat-form-field>
+      </div>
       <div class="col">
         <section class="example-section">
           <mat-checkbox #dav [checked]="davChecked" formControlName="dav">
-            DAV CheckList</mat-checkbox
+            DKV CheckList</mat-checkbox
           >
         </section>
       </div>
