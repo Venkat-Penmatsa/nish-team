@@ -39,7 +39,7 @@ export class ManageClientComponent implements OnInit {
       address2: ['', Validators.required],
       postcode: ['', Validators.required],
       country: ['', Validators.required],
-      tva: ['', Validators.required],
+      tva: [''],
       invoicePaymentDays: ['', Validators.required],
       clientOnBoardedDate: [''],
       clientEmail: [''],
