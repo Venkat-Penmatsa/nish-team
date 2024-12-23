@@ -47,6 +47,9 @@ export class ManageClientComponent implements OnInit {
       clientPointOfContact: [''],
       comments: [''],
       updatedBy: [''],
+      buildingName: [''],
+      box: [''],
+      floor: [''],
     });
   }
 
@@ -67,11 +70,14 @@ export class ManageClientComponent implements OnInit {
             country: res.country,
             tva: res.tva,
             invoicePaymentDays: res.invoicePaymentDays,
-            clientOnBoardedDate: moment(res.clientOnBoardedDate, 'MM/DD/YYYY'),
+            //clientOnBoardedDate: moment(res.clientOnBoardedDate, 'MM/DD/YYYY'),
             clientEmail: res.clientEmail,
             clientPhone: res.clientPhone,
             clientPointOfContact: res.clientPointOfContact,
             comments: res.comments,
+            buildingName: res.buildingName,
+            box: res.box,
+            floor: res.floor,
           });
         });
     }

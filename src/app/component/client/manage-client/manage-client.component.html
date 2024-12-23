@@ -34,24 +34,42 @@
         </div>
         <div class="col">
           <mat-form-field class="field-style">
-            <mat-label>Address 1</mat-label>
+            <mat-label>Building Name</mat-label>
+            <input matInput formControlName="buildingName" />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="field-style">
+            <mat-label>Street Name, Number</mat-label>
             <input matInput formControlName="address1" />
           </mat-form-field>
         </div>
         <div class="col">
           <mat-form-field class="field-style">
-            <mat-label>Address 2</mat-label>
-            <input matInput formControlName="address2" />
+            <mat-label>Box</mat-label>
+            <input matInput formControlName="box" />
           </mat-form-field>
         </div>
+        <div class="col">
+          <mat-form-field class="field-style">
+            <mat-label>Extra Info</mat-label>
+            <input matInput formControlName="floor" />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
         <div class="col">
           <mat-form-field class="field-style">
             <mat-label>Postcode</mat-label>
             <input matInput formControlName="postcode" />
           </mat-form-field>
         </div>
-      </div>
-      <div class="row">
+        <div class="col">
+          <mat-form-field class="field-style">
+            <mat-label>commune</mat-label>
+            <input matInput formControlName="address2" />
+          </mat-form-field>
+        </div>
         <div class="col">
           <mat-form-field class="field-style">
             <mat-label>Country</mat-label>
@@ -70,7 +88,8 @@
             <input matInput formControlName="invoicePaymentDays" />
           </mat-form-field>
         </div>
-        <div class="col">
+
+        <!-- <div class="col">
           <mat-form-field>
             <mat-label>Client onBoarded Date</mat-label>
             <input
@@ -84,7 +103,7 @@
             ></mat-datepicker-toggle>
             <mat-datepicker #clientOnBoardedDate></mat-datepicker>
           </mat-form-field>
-        </div>
+        </div> -->
       </div>
       <div class="row">
         <div class="col">
