@@ -26,18 +26,33 @@
       </ng-container>
 
       <ng-container matColumnDef="address1">
-        <th mat-header-cell *matHeaderCellDef>Address 1</th>
+        <th mat-header-cell *matHeaderCellDef>Street Name, Number</th>
         <td mat-cell *matCellDef="let element">{{ element.address1 }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="address2">
-        <th mat-header-cell *matHeaderCellDef>Address 2</th>
-        <td mat-cell *matCellDef="let element">{{ element.address2 }}</td>
+      <ng-container matColumnDef="buildingName">
+        <th mat-header-cell *matHeaderCellDef>Building Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.buildingName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="box">
+        <th mat-header-cell *matHeaderCellDef>Box</th>
+        <td mat-cell *matCellDef="let element">{{ element.box }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="floor">
+        <th mat-header-cell *matHeaderCellDef>Extra Info</th>
+        <td mat-cell *matCellDef="let element">{{ element.floor }}</td>
       </ng-container>
 
       <ng-container matColumnDef="postcode">
         <th mat-header-cell *matHeaderCellDef>Postcode</th>
         <td mat-cell *matCellDef="let element">{{ element.postcode }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="address2">
+        <th mat-header-cell *matHeaderCellDef>Commune</th>
+        <td mat-cell *matCellDef="let element">{{ element.address2 }}</td>
       </ng-container>
 
       <ng-container matColumnDef="country">
