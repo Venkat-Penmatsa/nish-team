@@ -125,6 +125,13 @@ export class NewcontractComponent implements OnInit {
     this.errorFlag = false;
     this.successFlag = false;
 
+    if (this.customerName == '' || this.customerName == null) {
+      this.errorFlag = true;
+      this.errorDescription =
+        'A Contract must be mapped to a Customer, please select a customer from dropdown';
+      return;
+    }
+
     this.user = JSON.parse(localStorage.getItem('userDetails') || '{}') as User;
     console.log(this.newContractForm.value);
     this.newContractForm.patchValue({

@@ -27,7 +27,7 @@ export class EmpOfferSimulationComponent implements OnInit {
       mobility: 0,
       sim: 400,
       ecoCheques: 250,
-      adminCharges: 1000,
+      adminCharges: 1500,
       benefits: 1200,
     });
   }
