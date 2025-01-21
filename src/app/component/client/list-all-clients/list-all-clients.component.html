@@ -67,6 +67,11 @@
         <td mat-cell *matCellDef="let element">{{ element.tva }}</td>
       </ng-container>
 
+      <ng-container matColumnDef="vat">
+        <th mat-header-cell *matHeaderCellDef>VAT</th>
+        <td mat-cell *matCellDef="let element">{{ element.vat }}</td>
+      </ng-container>
+
       <ng-container matColumnDef="invoicePaymentDays">
         <th mat-header-cell *matHeaderCellDef>Invoice Payment Days</th>
         <td mat-cell *matCellDef="let element">

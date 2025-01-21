@@ -12,7 +12,7 @@ export class HostNameServiceService {
     //return this.document.defaultView.window.location.hostname;
 
     // Or use the location on document.
-    //  const url =
+    // const url =
     'https://' +
       this.document.location.hostname +
       ':' +

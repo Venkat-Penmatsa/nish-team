@@ -107,6 +107,16 @@
       </div>
       <div class="row">
         <div class="col">
+          <mat-form-field>
+            <mat-label>VAT</mat-label>
+            <select matNativeControl required formControlName="vat">
+              <option value="21">21</option>
+              <option value="10">10</option>
+              <option value="0">0</option>
+            </select>
+          </mat-form-field>
+        </div>
+        <div class="col">
           <mat-form-field class="field-style">
             <mat-label>Email</mat-label>
             <input matInput placeholder="Email" formControlName="clientEmail" />

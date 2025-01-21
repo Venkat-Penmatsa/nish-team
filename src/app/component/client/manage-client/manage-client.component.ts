@@ -50,6 +50,7 @@ export class ManageClientComponent implements OnInit {
       buildingName: [''],
       box: [''],
       floor: [''],
+      vat: ['', Validators.required],
     });
   }
 
@@ -70,7 +71,6 @@ export class ManageClientComponent implements OnInit {
             country: res.country,
             tva: res.tva,
             invoicePaymentDays: res.invoicePaymentDays,
-            //clientOnBoardedDate: moment(res.clientOnBoardedDate, 'MM/DD/YYYY'),
             clientEmail: res.clientEmail,
             clientPhone: res.clientPhone,
             clientPointOfContact: res.clientPointOfContact,
@@ -78,6 +78,7 @@ export class ManageClientComponent implements OnInit {
             buildingName: res.buildingName,
             box: res.box,
             floor: res.floor,
+            vat: res.vat,
           });
         });
     }

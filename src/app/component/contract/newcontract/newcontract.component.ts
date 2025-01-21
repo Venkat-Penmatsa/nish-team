@@ -36,6 +36,7 @@ export class NewcontractComponent implements OnInit {
   ngOnInit(): void {
     this.newContractForm = this.fb.group({
       nishContractId: [''],
+      searchNishContractId: [''],
       employeeId: [''],
       contractId: [''],
       contractStatus: ['', Validators.required],
@@ -73,18 +74,25 @@ export class NewcontractComponent implements OnInit {
   custNameSelected(custId: any) {
     this.customerName = custId;
   }
+  cloneContract() {
+    var cloneContractId =
+      this.newContractForm.controls['searchNishContractId'].value;
+    this.getContractInfo(cloneContractId);
+    this.newContractForm.controls['nishContractId'].setValue('');
+  }
 
   searchContractId($event: Event) {
     this.successFlag = false;
     const contractID = ($event.target as HTMLTextAreaElement).value;
+    this.getContractInfo(contractID);
+  }
+  getContractInfo(contractID) {
     if (contractID != '') {
       this.newcontractService.fetchContractInfo(contractID).subscribe((res) => {
         console.log(res);
         this.contract = res;
-        console.log('start date ******* ' + this.contract.contractStartDate);
-        console.log('end date ******* ' + this.contract.contractEndDate);
         this.newContractForm.patchValue({
-          nishContractId: this.contract.nishContractId,
+          //nishContractId: this.contract.nishContractId,
           employeeId: this.contract.employeeId,
           contractId: this.contract.contractId,
           contractStatus: this.contract.contractStatus,
@@ -105,15 +113,13 @@ export class NewcontractComponent implements OnInit {
           contractReference: this.contract.contractReference,
           vosReference: this.contract.vosReference,
           entity: this.contract.entity,
-          //customerId: this.contract.perDayHrs,
           tsFlag: this.contract.tsFlag,
           invoicesDH: this.contract.invoicesDH,
           invoiceDueDate: this.contract.invoiceDueDate,
         });
         this.filterEmpName = this.contract.employeeId;
+        this.empName = this.contract.employeeId;
         this.filterCustomerName = this.contract.customerId;
-        // this.newContractForm.controls['billingRate'].disable();
-        console.log(' filter cutomer name is ', this.filterCustomerName);
         this.newContractForm.controls['employeeId'].disable();
         this.filterCustomerName = this.contract.customerId;
         this.customerName = this.contract.customerId;

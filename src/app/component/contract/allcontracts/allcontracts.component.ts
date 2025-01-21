@@ -1,6 +1,11 @@
-
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, ViewChild, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ViewChild,
+  OnInit,
+  ViewEncapsulation,
+} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { NewcontractService } from 'src/app/services/contracts/newcontract.service';
@@ -12,12 +17,12 @@ import { Contract } from '../contract';
   selector: 'app-allcontracts',
   templateUrl: './allcontracts.component.html',
   styleUrls: ['./allcontracts.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class AllcontractsComponent implements AfterViewInit, OnInit {
-
-  displayedColumns: string[] = ['employeeId',
-    'contractId',
+  displayedColumns: string[] = [
+    'employeeId',
+    'customerId',
     'contractType',
     'nishContractId',
     'contractStatus',
@@ -25,29 +30,35 @@ export class AllcontractsComponent implements AfterViewInit, OnInit {
     'billingRate',
     'contractStartDate',
     'contractEndDate',
+    'contractReference',
+    'vosReference',
+    'entity',
+    'tsFlag',
+    'invoicesDH',
     'comments',
     'contractUpdatedDate',
-    'contractUpdatedBy'];
+    'contractUpdatedBy',
+  ];
 
   dataSource = new MatTableDataSource();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   loading$: any;
 
-  constructor(private newcontractService: NewcontractService, public loader: LoaderService) {
-
-  }
+  constructor(
+    private newcontractService: NewcontractService,
+    public loader: LoaderService
+  ) {}
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
 
   ngOnInit(): void {
-
-    console.log(" loader in  contract is ", this.loading$);
+    console.log(' loader in  contract is ', this.loading$);
     this.loading$ = this.loader.loading$;
 
-    this.newcontractService.listAllContracts().subscribe(res => {
+    this.newcontractService.listAllContracts().subscribe((res) => {
       console.log(res);
       this.dataSource.data = res;
       this.dataSource.paginator = this.paginator;
@@ -58,5 +69,4 @@ export class AllcontractsComponent implements AfterViewInit, OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
 }

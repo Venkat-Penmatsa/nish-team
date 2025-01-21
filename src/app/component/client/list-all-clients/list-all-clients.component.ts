@@ -21,6 +21,7 @@ export class ListAllClientsComponent implements AfterViewInit, OnInit {
     'postcode',
     'country',
     'tva',
+    'vat',
     'invoicePaymentDays',
     'clientEmail',
     'clientOnBoardedDate',
