@@ -138,6 +138,13 @@ export class NewcontractComponent implements OnInit {
       return;
     }
 
+    if (this.empName == '' || this.empName == null) {
+      this.errorFlag = true;
+      this.errorDescription =
+        'A Contract must be mapped to a NISH Employee, please select an employee from Search Employee field';
+      return;
+    }
+
     this.user = JSON.parse(localStorage.getItem('userDetails') || '{}') as User;
     console.log(this.newContractForm.value);
     this.newContractForm.patchValue({
