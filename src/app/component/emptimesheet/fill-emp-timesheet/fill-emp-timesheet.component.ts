@@ -27,6 +27,7 @@ export class FillEmpTimesheetComponent implements OnInit {
   status: string = '';
   documentList: any;
   public file: File[];
+  isAdmin: boolean = false;
 
   public fileUploadControl = new FileUploadControl({ listVisible: false });
 
@@ -58,6 +59,36 @@ export class FillEmpTimesheetComponent implements OnInit {
     });
   }
 
+  enableTimesheet(contract: any) {
+    this.status = '';
+    let emp = this.empName.split('-');
+    let contractID = contract.split('>>');
+    const body = {
+      contractId: contractID[0],
+      employeeId: emp[0],
+      selectedDate: moment(this.selectedDate).format('DD-MM-YYYY'),
+    };
+
+    this.timesheetService.updateTSInvoiceFlag(body).subscribe((data) => {
+      this.status = data.responseStatus;
+    });
+  }
+
+  createCreditNote(contract: any) {
+    this.status = '';
+    let emp = this.empName.split('-');
+    let contractID = contract.split('>>');
+    const body = {
+      contractId: contractID[0],
+      employeeId: emp[0],
+      selectedDate: moment(this.selectedDate).format('DD-MM-YYYY'),
+    };
+
+    this.timesheetService.updateTSInvoiceFlag(body).subscribe((data) => {
+      this.status = data.responseStatus;
+    });
+  }
+
   checkNumber(num: any) {
     return (
       (typeof num.filledData === 'number' ||
@@ -68,7 +99,7 @@ export class FillEmpTimesheetComponent implements OnInit {
 
   updateTimeSheet() {
     this.status = '';
-    let user: any = JSON.parse(localStorage.getItem('user') || '{}');
+    let user: any = JSON.parse(localStorage.getItem('userDetails') || '{}');
     this.timeSheetDetails.timeSheetRow = this.rows;
     this.timeSheetDetails.updatedBy = user.empId;
 
@@ -84,7 +115,11 @@ export class FillEmpTimesheetComponent implements OnInit {
   fetchTimesheet(): void {
     console.log(' fetching timesheet ' + this.empName);
     this.status = '';
-    let user: any = JSON.parse(localStorage.getItem('user') || '{}');
+    let user: any = JSON.parse(localStorage.getItem('userDetails') || '{}');
+    if (user.role == 'admin') {
+      this.isAdmin = true;
+    }
+
     this.timesheetService
       .fetchTimeSheet(
         this.empName,

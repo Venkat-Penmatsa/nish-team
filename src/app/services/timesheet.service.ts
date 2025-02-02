@@ -111,6 +111,13 @@ export class TimesheetService {
       .pipe(catchError(this.errorHandler));
   }
 
+  updateTSInvoiceFlag(body: any): Observable<any> {
+    const headers = { 'Content-type': 'application/json' };
+    return this.http
+      .post(`${this.baseUrl}/timesheet/updateTSInvoiceFlag`, body, { headers })
+      .pipe(catchError(this.errorHandler));
+  }
+
   fetchAllEmpTimeSheet(date: any): Observable<any> {
     return this.http
       .get(`${this.baseUrl}/timesheet/fetchAllEmpTimeSheet/` + date)

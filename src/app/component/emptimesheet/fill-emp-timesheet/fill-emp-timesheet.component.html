@@ -33,7 +33,7 @@
         (click)="fetchTimesheet()"
         data-bs-target="#exampleModalToggle2"
       >
-        Fetch Timesheet
+        GET Timesheet
       </button>
     </div>
   </div>
@@ -61,6 +61,7 @@
               <span>Logged Hrs</span>
             </th>
             <th scope="col" style="color: rgb(62, 0, 128)">Invoice</th>
+            <th scope="col" style="color: rgb(62, 0, 128)">Credit Note</th>
             <!---->
             <th
               *ngFor="let hd of header"
@@ -80,6 +81,9 @@
             </th>
             <th scope="col" style="color: rgb(62, 0, 128); width: 225px">
               <span>Account Comments</span>
+            </th>
+            <th scope="col" style="color: rgb(62, 0, 128); width: 225px">
+              <span>Enable TimeSheet</span>
             </th>
           </tr>
         </thead>
@@ -102,7 +106,14 @@
                 Download
               </button>
             </td>
-
+            <td style="padding-top: 20px">
+              <button
+                mat-raised-button
+                (click)="createCreditNote(row.contractId)"
+              >
+                Download
+              </button>
+            </td>
             <td
               *ngFor="let timeData of row.contractTimeSheetList; let i = index"
             >
@@ -166,6 +177,19 @@
                 [(ngModel)]="row.accComments"
                 aria-label=""
               />
+            </td>
+            <td style="align-items: center" scope="row">
+              <div *ngIf="isAdmin">
+                <button
+                  type="button"
+                  class="btn btn-primary ms-3"
+                  data-bs-toggle="modal"
+                  (click)="enableTimesheet(row.contractId)"
+                  data-bs-target="#exampleModalToggle2"
+                >
+                  Enable TimeSheet
+                </button>
+              </div>
             </td>
           </tr>
         </tbody>
