@@ -13,6 +13,19 @@ const moment = _moment;
   styleUrls: ['./newcontract.component.css'],
 })
 export class NewcontractComponent implements OnInit {
+  templates = [
+    {
+      entity: 'nishtech',
+      template: ['NISH-Evere', 'NISH-Kraainem'],
+    },
+    {
+      entity: 'nish',
+      template: ['NISH Technologies-Evere', 'NISH Technologies-Sterrebeek'],
+    },
+  ];
+
+  filteredTemplates: any = [];
+  selectedEntity: string;
   nishContractId: number;
   successFlag: Boolean = false;
   errorFlag: Boolean = false;
@@ -54,12 +67,18 @@ export class NewcontractComponent implements OnInit {
       updatedBy: [''],
       contractReference: [''],
       vosReference: [''],
-      entity: [''],
-      tsFlag: [''],
-      invoicesDH: [''],
+      entity: ['', Validators.required],
+      template: ['', Validators.required],
+      tsFlag: ['', Validators.required],
+      invoicesDH: ['', Validators.required],
       invoiceDueDate: [''],
       customerId: [''],
     });
+  }
+
+  onEntitySelect(val: any) {
+    var temp: any = this.templates.filter((i) => i.entity === val);
+    this.filteredTemplates = temp[0].template;
   }
 
   dateOfJoiningFilter = (m: Moment | null): boolean => {
@@ -113,6 +132,7 @@ export class NewcontractComponent implements OnInit {
           contractReference: this.contract.contractReference,
           vosReference: this.contract.vosReference,
           entity: this.contract.entity,
+          template: this.contract.template,
           tsFlag: this.contract.tsFlag,
           invoicesDH: this.contract.invoicesDH,
           invoiceDueDate: this.contract.invoiceDueDate,

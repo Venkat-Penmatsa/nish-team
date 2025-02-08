@@ -74,19 +74,39 @@ export class FillEmpTimesheetComponent implements OnInit {
     });
   }
 
-  createCreditNote(contract: any) {
+  downloadCreditNote(contractId) {
+    console.log('Downloading the credit Note ');
     this.status = '';
+    const user: any = JSON.parse(localStorage.getItem('user') || '{}');
+    let contract = contractId.split(' >>');
     let emp = this.empName.split('-');
-    let contractID = contract.split('>>');
-    const body = {
-      contractId: contractID[0],
-      employeeId: emp[0],
-      selectedDate: moment(this.selectedDate).format('DD-MM-YYYY'),
-    };
+    let fileName =
+      'Invoice_' +
+      emp[0] +
+      '_' +
+      moment(this.selectedDate).format('DD-MM-YYYY') +
+      '.xls';
+    this.timesheetService
+      .downloadCreditNote(
+        contract[0],
+        emp[0],
+        moment(this.selectedDate).format('DD-MM-YYYY')
+      )
+      .subscribe((data: any) => {
+        console.log(data);
 
-    this.timesheetService.updateTSInvoiceFlag(body).subscribe((data) => {
-      this.status = data.responseStatus;
-    });
+        let blob: any = new Blob([data], {
+          type: 'text/json; charset=utf-8',
+        });
+        console.log(blob);
+        const size = blob.size;
+        if (size > 0) {
+          importedSaveAs(blob, fileName);
+        } else {
+          this.status = 'invoiceFailed';
+        }
+      });
+    this.fetchTimesheet();
   }
 
   checkNumber(num: any) {
@@ -192,6 +212,7 @@ export class FillEmpTimesheetComponent implements OnInit {
           this.status = 'invoiceFailed';
         }
       });
+    this.fetchTimesheet();
   }
 
   download(filename): void {

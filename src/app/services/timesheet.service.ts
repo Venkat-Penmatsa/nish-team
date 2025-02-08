@@ -146,6 +146,16 @@ export class TimesheetService {
     );
   }
 
+  downloadCreditNote(
+    nishContractId: any,
+    empId: any,
+    date: any
+  ): Observable<any> {
+    return this.http.get(
+      `${this.baseUrl}/invoice/download/creditNote/${nishContractId}/${empId}/${date}`,
+      { responseType: 'blob' }
+    );
+  }
   download(filename: any, empId: any, date: any): Observable<any> {
     return this.http.get(
       `${this.baseUrl}/timesheet/download/${filename}/${empId}/${date}`,

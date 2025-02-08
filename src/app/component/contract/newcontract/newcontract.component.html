@@ -192,9 +192,25 @@
         <div class="col">
           <mat-form-field>
             <mat-label>Invoice Entity </mat-label>
-            <select matNativeControl required formControlName="entity">
+            <select
+              matNativeControl
+              [(ngModel)]="selectedEntity"
+              (ngModelChange)="onEntitySelect($event)"
+              required
+              formControlName="entity"
+            >
               <option value="nishtech">NISH Tech</option>
               <option value="nish">NISH Technologies</option>
+            </select>
+          </mat-form-field>
+        </div>
+        <div class="col" style="width: 100%">
+          <mat-form-field>
+            <mat-label>Invoice Entity Template </mat-label>
+            <select matNativeControl required formControlName="template">
+              <option *ngFor="let s of filteredTemplates" value="{{ s }}">
+                {{ s }}
+              </option>
             </select>
           </mat-form-field>
         </div>
@@ -216,22 +232,22 @@
             </select>
           </mat-form-field>
         </div>
-        <div class="col">
-          <mat-form-field>
-            <mat-label>Invoice Due Date </mat-label>
-            <select matNativeControl required formControlName="invoiceDueDate">
-              <option value="1">15</option>
-              <option value="2">30</option>
-              <option value="3">45</option>
-              <option value="4">60</option>
-              <option value="5">90</option>
-              <option value="6">7</option>
-            </select>
-          </mat-form-field>
-        </div>
       </div>
     </div>
     <div class="row">
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Invoice Due Date </mat-label>
+          <select matNativeControl required formControlName="invoiceDueDate">
+            <option value="1">15</option>
+            <option value="2">30</option>
+            <option value="3">45</option>
+            <option value="4">60</option>
+            <option value="5">90</option>
+            <option value="6">7</option>
+          </select>
+        </mat-form-field>
+      </div>
       <div class="col-6" style="width: 80%">
         <app-customer-name
           [filterCustomerName]="filterCustomerName"

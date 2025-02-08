@@ -103,16 +103,17 @@
                 mat-raised-button
                 (click)="downloadInvoice(row.contractId)"
               >
-                Download
+                Invoice Download
               </button>
             </td>
             <td style="padding-top: 20px">
               <button
                 mat-raised-button
-                (click)="createCreditNote(row.contractId)"
+                (click)="downloadCreditNote(row.contractId)"
               >
-                Download
+                CN Download <br />
               </button>
+              <label>{{ row.cancelledInvoice }}</label>
             </td>
             <td
               *ngFor="let timeData of row.contractTimeSheetList; let i = index"
