@@ -81,10 +81,10 @@ export class FillEmpTimesheetComponent implements OnInit {
     let contract = contractId.split(' >>');
     let emp = this.empName.split('-');
     let fileName =
-      'Invoice_' +
-      emp[0] +
+      'CreditNote' +
+      moment(this.selectedDate).format('MM-YYYY') +
       '_' +
-      moment(this.selectedDate).format('DD-MM-YYYY') +
+      emp[0] +
       '.xls';
     this.timesheetService
       .downloadCreditNote(
@@ -186,11 +186,12 @@ export class FillEmpTimesheetComponent implements OnInit {
     const user: any = JSON.parse(localStorage.getItem('user') || '{}');
     let contract = contractId.split(' >>');
     let emp = this.empName.split('-');
+
     let fileName =
       'Invoice_' +
-      emp[0] +
+      moment(this.selectedDate).format('MM-YYYY') +
       '_' +
-      moment(this.selectedDate).format('DD-MM-YYYY') +
+      emp[0] +
       '.xls';
     this.timesheetService
       .downloadInvoice(
