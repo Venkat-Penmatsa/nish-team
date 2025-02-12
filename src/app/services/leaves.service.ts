@@ -104,6 +104,14 @@ export class LeavesService {
     );
   }
 
+  freezeNEPtuneTSJob(date: any, user: string): Observable<any> {
+    const headers = { 'Content-type': 'application/json' };
+    return this.http.get(
+      `${this.baseUrl}/batchJob/freezeNEPtuneTS/` + date + '/' + user,
+      { headers }
+    );
+  }
+
   triggerSOYLeaves(date: any, user: string): Observable<any> {
     const headers = { 'Content-type': 'application/json' };
     return this.http.get(

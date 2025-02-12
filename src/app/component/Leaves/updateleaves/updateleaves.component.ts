@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, UntypedFormBuilder, Validators } from '@angular/forms';
-import { AssetsType } from 'src/app/constants/assetsType';
-import { map, startWith } from 'rxjs/operators';
-import { AssetsService } from 'src/app/services/assets.service';
 import { LeavesService } from 'src/app/services/leaves.service';
 import { User } from 'src/app/model/User';
 import {
@@ -97,6 +94,8 @@ export class UpdateleavesComponent implements OnInit {
             forwardedLeave: res.forwardedLeave,
             totalleavebalence: res.totalleavebalence,
             advanceLeaves: res.advanceLeaves,
+            parentalLeave: res.parentalLeave,
+            maternityLeave: res.maternityLeave,
             updatedBy: res.updatedBy,
             comments: res.comments,
           });
@@ -131,6 +130,8 @@ export class UpdateleavesComponent implements OnInit {
     forwardedLeave: [''],
     totalleavebalence: [''],
     advanceLeaves: [''],
+    parentalLeave: [''],
+    maternityLeave: [''],
     updatedBy: [''],
     comments: [],
   });
