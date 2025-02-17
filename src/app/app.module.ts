@@ -78,6 +78,7 @@ import { ContractDaysReportComponent } from './component/contract/contract-days-
 import { InvoiceReportComponent } from './component/invoice/invoice-report/invoice-report.component';
 import { InvoiceDetailsComponent } from './component/invoice/invoice-details/invoice-details.component';
 import { EmployeeExitComponent } from './component/employee/employee-exit/employee-exit.component';
+import { InvoiceComponent } from './component/invoice/invoice/invoice.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -138,6 +139,7 @@ import { EmployeeExitComponent } from './component/employee/employee-exit/employ
     InvoiceReportComponent,
     InvoiceDetailsComponent,
     EmployeeExitComponent,
+    InvoiceComponent,
   ],
   imports: [
     ReactiveFormsModule,

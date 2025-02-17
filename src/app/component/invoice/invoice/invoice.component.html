@@ -1,0 +1,45 @@
+<div class="page-layout-container">
+  <div *ngIf="successFlag" class="alert alert-success">
+    {{ successDescription }}
+  </div>
+
+  <div *ngIf="errorFlag" class="alert alert-warning">
+    {{ errorDescription }}
+  </div>
+  <div class="row">
+    <h1 class="title">Invoice Sequence</h1>
+  </div>
+  <form [formGroup]="invoiceSeqForm">
+    <div class="row">
+      <div class="col">
+        <mat-form-field class="example-full-width">
+          <mat-label>NISHTech Year</mat-label>
+          <input matInput formControlName="nishTechyear" />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field class="example-full-width">
+          <mat-label>NISHTech Month</mat-label>
+          <input matInput formControlName="nishTechMonth" />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field class="example-full-width">
+          <mat-label>NISHTechnologies Year</mat-label>
+          <input matInput formControlName="nishyear" />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field class="example-full-width">
+          <mat-label>NISHTechnologies Month</mat-label>
+          <input matInput formControlName="nishMonth" />
+        </mat-form-field>
+      </div>
+      <div class="col" style="text-align: center">
+        <button mat-button (click)="invoiceSeq()" type="submit">
+          Update Sequence
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

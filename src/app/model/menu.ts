@@ -206,6 +206,12 @@ export let menu: NavItem[] = [
     role: ['admin', 'finance', 'timesheet'],
     children: [
       {
+        displayName: 'Invoice',
+        iconName: 'business',
+        route: 'invoice/invoice',
+        role: ['admin', 'finance', 'timesheet'],
+      },
+      {
         displayName: 'Invoice Report',
         iconName: 'timer',
         route: 'invoice/invoiceReport',

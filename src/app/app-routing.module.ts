@@ -48,6 +48,7 @@ import { ContractDaysReportComponent } from './component/contract/contract-days-
 import { InvoiceDetailsComponent } from './component/invoice/invoice-details/invoice-details.component';
 import { InvoiceReportComponent } from './component/invoice/invoice-report/invoice-report.component';
 import { EmployeeExitComponent } from './component/employee/employee-exit/employee-exit.component';
+import { InvoiceComponent } from './component/invoice/invoice/invoice.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -124,6 +125,7 @@ const routes: Routes = [
       },
       { path: 'invoice/invoiceDetails', component: InvoiceDetailsComponent },
       { path: 'invoice/invoiceReport', component: InvoiceReportComponent },
+      { path: 'invoice/invoice', component: InvoiceComponent },
     ],
   },
 ];

@@ -35,6 +35,13 @@ export class InvoiceService {
     });
   }
 
+  updateInvoiceSeq(body: any): Observable<any> {
+    const headers = { 'Content-type': 'application/json' };
+    return this.http.post(`${this.baseUrl}/invoice/updateInvoiceSeq`, body, {
+      headers,
+    });
+  }
+
   downloadInvoiceReport(date: any): Observable<any> {
     return this.http
       .get(`${this.baseUrl}/invoice/download/invoiceReport/` + date, {
@@ -52,6 +59,12 @@ export class InvoiceService {
   fetchInvoice(invoiceId: string) {
     return this.http
       .get(`${this.baseUrl}/invoice/invoiceDetails/` + invoiceId)
+      .pipe(catchError(this.errorHandler));
+  }
+
+  getInvoiceSeq() {
+    return this.http
+      .get(`${this.baseUrl}/invoice/invoiceSequence`)
       .pipe(catchError(this.errorHandler));
   }
 
