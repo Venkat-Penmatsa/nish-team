@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as _moment from 'moment';
@@ -37,6 +36,7 @@ export class NewcontractComponent implements OnInit {
   filterCustomerName: string;
   user: User;
   loading$: any;
+  showOverTimeSection: boolean = false;
 
   newContractForm: FormGroup = new FormGroup({});
 
@@ -73,6 +73,21 @@ export class NewcontractComponent implements OnInit {
       invoicesDH: ['', Validators.required],
       invoiceDueDate: [''],
       customerId: [''],
+      isOverTime: [],
+      contractOverTime: this.fb.group({
+        otWeekEnds: [0, !Validators.required],
+        otWeekEndsDH: ['H', !Validators.required],
+        otSaturdays: [0, !Validators.required],
+        otSaturdaysDH: ['H', !Validators.required],
+        otSundayPH: [0],
+        otSundayPHDH: ['H', !Validators.required],
+        onCallWK: [0, !Validators.required],
+        onCallWKDH: ['D', !Validators.required],
+        onCallSaturday: [0, !Validators.required],
+        onCallSaturdayDH: ['D', !Validators.required],
+        onCallSunPH: [0, !Validators.required],
+        onCallSunPHDH: ['D', !Validators.required],
+      }),
     });
   }
 
@@ -88,6 +103,11 @@ export class NewcontractComponent implements OnInit {
 
   empNameSelected(emp: any) {
     this.empName = emp;
+  }
+
+  overTimeSection(status: any) {
+    console.log(status);
+    this.showOverTimeSection = status;
   }
 
   custNameSelected(custId: any) {
@@ -136,6 +156,8 @@ export class NewcontractComponent implements OnInit {
           tsFlag: this.contract.tsFlag,
           invoicesDH: this.contract.invoicesDH,
           invoiceDueDate: this.contract.invoiceDueDate,
+          isOverTime: this.contract.isOverTime,
+          contractOverTime: this.contract.contractOverTime,
         });
         this.filterEmpName = this.contract.employeeId;
         this.empName = this.contract.employeeId;
@@ -143,6 +165,9 @@ export class NewcontractComponent implements OnInit {
         this.newContractForm.controls['employeeId'].disable();
         this.filterCustomerName = this.contract.customerId;
         this.customerName = this.contract.customerId;
+        if (this.contract.isOverTime) {
+          this.showOverTimeSection = true;
+        }
       });
     }
   }

@@ -255,6 +255,148 @@
         >
         </app-customer-name>
       </div>
+      <div class="col">
+        <section class="example-section">
+          <mat-checkbox
+            #isOverTime
+            checked="isOverTime"
+            formControlName="isOverTime"
+            (change)="overTimeSection(isOverTime.checked)"
+          >
+            OverTime *</mat-checkbox
+          >
+        </section>
+      </div>
+    </div>
+    <div
+      class="section"
+      *ngIf="showOverTimeSection"
+      formGroupName="contractOverTime"
+    >
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="field-style">
+            <mat-label>OverTime Weekends</mat-label>
+            <input
+              matInput
+              placeholder="Rate in Euros"
+              formControlName="otWeekEnds"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <mat-label>OverTime Weekends in Days/Hours </mat-label>
+            <select matNativeControl required formControlName="otWeekEndsDH">
+              <option value="D">Days</option>
+              <option value="H">Hours</option>
+            </select>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="field-style">
+            <mat-label>OverTime Saturdays</mat-label>
+            <input
+              matInput
+              placeholder="Rate in Euros"
+              formControlName="otSaturdays"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <mat-label>OverTime Saturdays Days/Hours </mat-label>
+            <select matNativeControl required formControlName="otSaturdaysDH">
+              <option value="D">Days</option>
+              <option value="H">Hours</option>
+            </select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="field-style">
+            <mat-label>OverTime Sundays PH</mat-label>
+            <input
+              matInput
+              placeholder="Rate in Euros"
+              formControlName="otSundayPH"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <mat-label>OverTime Sundays PH in Days/Hours </mat-label>
+            <select matNativeControl required formControlName="otSundayPHDH">
+              <option value="D">Days</option>
+              <option value="H">Hours</option>
+            </select>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="field-style">
+            <mat-label>On Call WeekDays</mat-label>
+            <input
+              matInput
+              placeholder="Rate in Euros"
+              formControlName="onCallWK"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <mat-label>On Call WeekDays in Days/Hours </mat-label>
+            <select matNativeControl required formControlName="onCallWKDH">
+              <option value="D">Days</option>
+              <option value="H">Hours</option>
+            </select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="field-style">
+            <mat-label>On Call Saturday</mat-label>
+            <input
+              matInput
+              placeholder="Rate in Euros"
+              formControlName="onCallSaturday"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <mat-label>On Call Saturday in Days/Hours </mat-label>
+            <select
+              matNativeControl
+              required
+              formControlName="onCallSaturdayDH"
+            >
+              <option value="D">Days</option>
+              <option value="H">Hours</option>
+            </select>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="field-style">
+            <mat-label>On Call Sunday Public Holiday</mat-label>
+            <input
+              matInput
+              placeholder="Rate in Euros"
+              formControlName="onCallSunPH"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <mat-label>On Call Sunday Public Holiday in Days/Hours </mat-label>
+            <select matNativeControl required formControlName="onCallSunPHDH">
+              <option value="D">Days</option>
+              <option value="H">Hours</option>
+            </select>
+          </mat-form-field>
+        </div>
+      </div>
     </div>
   </form>
   &nbsp;&nbsp;
