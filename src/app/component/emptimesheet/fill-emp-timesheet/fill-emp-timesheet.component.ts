@@ -92,7 +92,8 @@ export class FillEmpTimesheetComponent implements OnInit {
       .downloadCreditNote(
         contract[0],
         emp[0],
-        moment(this.selectedDate).format('DD-MM-YYYY')
+        moment(this.selectedDate).format('DD-MM-YYYY'),
+        user.empId
       )
       .subscribe((data: any) => {
         console.log(data);
@@ -230,7 +231,8 @@ export class FillEmpTimesheetComponent implements OnInit {
       .downloadInvoice(
         contract[0],
         emp[0],
-        moment(this.selectedDate).format('DD-MM-YYYY')
+        moment(this.selectedDate).format('DD-MM-YYYY'),
+        user.empId
       )
       .subscribe((data: any) => {
         console.log(data);

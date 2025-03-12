@@ -139,9 +139,14 @@ export class TimesheetService {
       .pipe(catchError(this.errorHandler));
   }
 
-  downloadInvoice(nishContractId: any, empId: any, date: any): Observable<any> {
+  downloadInvoice(
+    nishContractId: any,
+    empId: any,
+    date: any,
+    userBy: any
+  ): Observable<any> {
     return this.http.get(
-      `${this.baseUrl}/invoice/download/invoice/${nishContractId}/${empId}/${date}`,
+      `${this.baseUrl}/invoice/download/invoice/${nishContractId}/${empId}/${date}/${userBy}`,
       { responseType: 'blob' }
     );
   }
@@ -149,10 +154,11 @@ export class TimesheetService {
   downloadCreditNote(
     nishContractId: any,
     empId: any,
-    date: any
+    date: any,
+    user: any
   ): Observable<any> {
     return this.http.get(
-      `${this.baseUrl}/invoice/download/creditNote/${nishContractId}/${empId}/${date}`,
+      `${this.baseUrl}/invoice/download/creditNote/${nishContractId}/${empId}/${date}/${user}`,
       { responseType: 'blob' }
     );
   }
