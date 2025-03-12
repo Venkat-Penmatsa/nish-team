@@ -20,10 +20,12 @@ export class FillEmpTimesheetComponent implements OnInit {
   timesheetDataSource: Timesheet[] = [];
   timesheetHeader: any[] = [];
   timeSheetDetails: any;
+  overTimeList: any[] = [];
   selectedDate = new Date();
   filterEmpName: string;
   empName: any = undefined;
   dataLoaded: boolean = false;
+  overTimeFlag: boolean = false;
   status: string = '';
   documentList: any;
   public file: File[];
@@ -132,7 +134,23 @@ export class FillEmpTimesheetComponent implements OnInit {
     console.log(' rows........' + this.rows);
   }
 
+  updateOTTimeSheet() {
+    this.status = '';
+    let user: any = JSON.parse(localStorage.getItem('userDetails') || '{}');
+    this.timeSheetDetails.timeSheetRow = this.rows;
+    this.timeSheetDetails.updatedBy = user.empId;
+
+    this.timesheetService
+      .updateTimeSheet(this.timeSheetDetails)
+      .subscribe((data) => {
+        this.status = data.responseStatus;
+      });
+
+    console.log(' rows........' + this.rows);
+  }
+
   fetchTimesheet(): void {
+    this.overTimeList = [];
     console.log(' fetching timesheet ' + this.empName);
     this.status = '';
     let user: any = JSON.parse(localStorage.getItem('userDetails') || '{}');
@@ -152,9 +170,24 @@ export class FillEmpTimesheetComponent implements OnInit {
         this.header = data.timeSheetHeader;
         this.timesheetHeader = data.timeSheetHeader;
         this.rows = data.timeSheetRow;
+        this.overTimeFlag = data.overTimeFlag;
+        //this.overTimeList = data.timeSheetRow[0].overTimeList;
+        for (let i = 0; i < data.timeSheetRow.length; i++) {
+          if (data.timeSheetRow[i].overTimeList != null) {
+            this.overTimeList.push(...data.timeSheetRow[i].overTimeList);
+          }
+        }
         console.log(' this.leaves .........' + data);
         this.dataLoaded = true;
       });
+  }
+
+  calculateOT(data: any, row: any) {
+    let item = this.overTimeList[row];
+    var overTimeQty = data.target.value;
+    var val = overTimeQty * item.overTimeRate;
+    item.overTimeAmount = val;
+    this.overTimeList[row] = item;
   }
 
   upload(): any {
