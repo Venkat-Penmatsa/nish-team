@@ -2,11 +2,11 @@
   <h1 class="title">Fill Employee TimeSheet</h1>
   <div class="row">
     <div class="col">
-      <app-active-emp
+      <app-emp-name
         [filterEmpName]="filterEmpName"
         (empName)="empNameSelected($event)"
       >
-      </app-active-emp>
+      </app-emp-name>
     </div>
     <div class="col">
       <mat-form-field>
@@ -100,6 +100,7 @@
             </td>
             <td style="padding-top: 20px">
               <button
+                *ngIf="row.contractType == 'Billing'"
                 mat-raised-button
                 (click)="downloadInvoice(row.contractId)"
               >
