@@ -17,7 +17,11 @@ export let AssetsDocs = [
   { code: 'OO', name: 'Others' },
 ];
 
-export let CategoryDocs = [{ code: 'OO', name: 'Others' }];
+export let CategoryDocs = [
+  { code: 'DB', name: 'Database Backup' },
+  { code: 'IN', name: 'Invoice' },
+  { code: 'OO', name: 'Others' },
+];
 
 export let UploadDocs = [
   { code: 'EU', name: 'Employees' },
