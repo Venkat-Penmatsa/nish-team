@@ -237,6 +237,14 @@ export class AddemployeeComponent implements OnInit, OnChanges {
               this.employee.empBasicInfo.empLastDate,
               'DD/MM/YYYYT00:00:00'
             ),
+            contractStartDate: moment(
+              this.employee.empBasicInfo.contractStartDate,
+              'DD/MM/YYYYT00:00:00'
+            ),
+            contractEndDate: moment(
+              this.employee.empBasicInfo.contractEndDate,
+              'DD/MM/YYYYT00:00:00'
+            ),
           },
         });
       });
@@ -275,6 +283,9 @@ export class AddemployeeComponent implements OnInit, OnChanges {
       hrSpoc: [],
       designation: [],
       nishEmail: [],
+      contractType: [],
+      contractStartDate: [],
+      contractEndDate: [],
     }),
     employeeAddress: this.fb.group({
       addressId: [],
