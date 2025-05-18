@@ -79,7 +79,7 @@ export class FillEmpTimesheetComponent implements OnInit {
   downloadCreditNote(contractId) {
     console.log('Downloading the credit Note ');
     this.status = '';
-    const user: any = JSON.parse(localStorage.getItem('user') || '{}');
+    const user: any = JSON.parse(localStorage.getItem('userDetails') || '{}');
     let contract = contractId.split(' >>');
     let emp = this.empName.split('-');
     let fileName =
@@ -217,7 +217,7 @@ export class FillEmpTimesheetComponent implements OnInit {
   downloadInvoice(contractId) {
     console.log('Downloading the invoice ');
     this.status = '';
-    const user: any = JSON.parse(localStorage.getItem('user') || '{}');
+    const user: any = JSON.parse(localStorage.getItem('userDetails') || '{}');
     let contract = contractId.split(' >>');
     let emp = this.empName.split('-');
 
@@ -225,7 +225,7 @@ export class FillEmpTimesheetComponent implements OnInit {
       'Invoice_' +
       moment(this.selectedDate).format('MM-YYYY') +
       '_' +
-      emp[0] +
+      emp[1] +
       '.xls';
     this.timesheetService
       .downloadInvoice(
