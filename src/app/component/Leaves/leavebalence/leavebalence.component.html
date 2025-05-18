@@ -93,8 +93,8 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Actions</th>
         <td mat-cell *matCellDef="let element" (click)="deleteLeave(element)">
-          <div *ngIf="!leaveFreezed">
-            <button mat-button>Delete</button>
+          <div>
+            <button [disabled]="leaveFreezed" mat-button>Delete</button>
           </div>
         </td>
       </ng-container>
