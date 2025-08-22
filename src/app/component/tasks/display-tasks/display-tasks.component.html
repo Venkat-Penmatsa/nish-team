@@ -27,7 +27,7 @@
     </table>
   </div>
 
-  <div class="card-section">
+  <div class="card-section" *ngIf="data!.employeesOnBench!.length > 0">
     <div class="section-header">
       <span class="icon">&#128105;</span>
       <h2 class="section-title">Employees on Bench</h2>
@@ -39,7 +39,7 @@
     </div>
   </div>
 
-  <div class="card-section">
+  <div class="card-section" *ngIf="data!.employeesWithOutContracts!.length > 0">
     <div class="section-header">
       <span class="icon">&#128100;</span>
       <h2 class="section-title">Employees Without Contracts</h2>
@@ -51,7 +51,7 @@
     </div>
   </div>
 
-  <div class="card-section">
+  <div class="card-section" *ngIf="data?.dateOfBirthList">
     <div class="section-header">
       <span class="icon">&#127874;</span>
       <h2 class="section-title">Employees celebrating birthdays</h2>
@@ -94,7 +94,7 @@
 
   -->
 
-  <div class="card-section">
+  <div class="card-section" *ngIf="data?.workAnniversaryList">
     <div class="section-header">
       <span class="icon">&#127881;</span>
       <h2 class="section-title">Employees celebrating work anniversary</h2>
@@ -112,7 +112,7 @@
     </div>
   </div>
 
-  <div class="card-section">
+  <div class="card-section" *ngIf="data?.rpExpiryList">
     <div class="section-header">
       <span class="icon">&#127807;</span>
       <h2 class="section-title">
@@ -130,7 +130,7 @@
     </div>
   </div>
 
-  <div class="card-section">
+  <div class="card-section" *ngIf="data?.freezeTimesheet">
     <div class="section-header">
       <span class="icon">&#128197;</span>
       <h2 class="section-title">Timesheet</h2>
@@ -145,7 +145,7 @@
     </div>
   </div>
 
-  <div class="card-section">
+  <div class="card-section" *ngIf="data?.generateRtt">
     <div class="section-header">
       <span class="icon">&#128200;</span>
       <h2 class="section-title">RTT Calculation Batch</h2>
