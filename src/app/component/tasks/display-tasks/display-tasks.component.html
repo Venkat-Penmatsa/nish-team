@@ -1,51 +1,162 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-3">
-      <img [src]="'./assets/images/notification.png'" />
+<div class="header-container-text-align">
+  <img src="./assets/images/notification.png" class="hot-list-icon-inline" />
+  <h2 class="hot-list-title-inline">Hot List</h2>
+</div>
+
+<div class="page-container">
+  <div class="container contract-section">
+    <table class="contract-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>NISH Contract ID</th>
+          <th>client</th>
+          <th>Expiry Date</th>
+          <th>Days Left</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of expiringContracts">
+          <td>{{ item.name }}</td>
+          <td>{{ item.contractId }}</td>
+          <td>{{ item.client }}</td>
+          <td>{{ item.expiryDate }}</td>
+          <td>{{ item.daysLeft }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card-section">
+    <div class="section-header">
+      <span class="icon">&#128105;</span>
+      <h2 class="section-title">Employees on Bench</h2>
     </div>
-    <div class="col">
-      <h2 class="title">HOT LIST</h2>
+    <div class="content-list">
+      <span *ngFor="let name of data.employeesOnBench" class="item">{{
+        name
+      }}</span>
     </div>
   </div>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>NISH Contract ID</th>
-        <th>client</th>
-        <th>Expiry Date</th>
-        <th>Days Left</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of tableData">
-        <td>{{ item.name }}</td>
-        <td>{{ item.contractId }}</td>
-        <td>{{ item.client }}</td>
-        <td>{{ item.expiryDate }}</td>
-        <td>{{ item.daysLeft }}</td>
-      </tr>
-    </tbody>
-  </table>
-  <mat-list>
-    <mat-list-item *ngFor="let task of tasks">
-      <img [src]="'./assets/images/' + task.taskImage" matListAvatar alt="" />
-      <div mat-line></div>
-      <div mat-line></div>
+
+  <div class="card-section">
+    <div class="section-header">
+      <span class="icon">&#128100;</span>
+      <h2 class="section-title">Employees Without Contracts</h2>
+    </div>
+    <div class="content-list">
+      <span *ngFor="let name of data.employeesWithOutContracts" class="item">{{
+        name
+      }}</span>
+    </div>
+  </div>
+
+  <div class="card-section">
+    <div class="section-header">
+      <span class="icon">&#127874;</span>
+      <h2 class="section-title">Employees celebrating birthdays</h2>
+    </div>
+    <div class="content-grid">
+      <div *ngFor="let person of data.dateOfBirthList" class="birthday-card">
+        <div class="card-name">{{ person.empName }}</div>
+        <div class="card-date">
+          {{ person.date[2] }} / {{ getMonthName(person.date[1]) }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 
+
+  <div class="card-section">
+    <div class="section-header">
+      <span class="icon">&#128198;</span>
+      <h2 class="section-title">Expiring Contracts</h2>
+    </div>
+    <div class="content-grid">
       <div
-        matLine
-        style="
-          font-weight: bold;
-          font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
-            sans-serif;
-          color: rgb(255, 162, 0);
-        "
+        *ngFor="let contract of data.expiringContractsList"
+        class="contract-card"
+        [ngClass]="{
+          'expired-contract': contract.daysLeft < 0,
+          'expiring-soon': contract.daysLeft > 0 && contract.daysLeft <= 30
+        }"
       >
-        {{ task.taskType }}
+        <div class="card-name">{{ contract.name }}</div>
+        <div class="card-date">
+          <strong>ID:</strong> {{ contract.contractId }}<br />
+          <strong>Client:</strong> {{ contract.client }}<br />
+          <strong>Expires:</strong> {{ contract.expiryDate }}
+        </div>
       </div>
-      <div matLine>
-        <p>{{ task.taskDescription }}</p>
+    </div>
+  </div>
+
+  -->
+
+  <div class="card-section">
+    <div class="section-header">
+      <span class="icon">&#127881;</span>
+      <h2 class="section-title">Employees celebrating work anniversary</h2>
+    </div>
+    <div class="content-grid">
+      <div
+        *ngFor="let person of data.workAnniversaryList"
+        class="anniversary-card"
+      >
+        <div class="card-name">{{ person.empName }}</div>
+        <div class="card-date">
+          {{ person.date[2] }} / {{ getMonthName(person.date[1]) }}
+        </div>
       </div>
-    </mat-list-item>
-  </mat-list>
+    </div>
+  </div>
+
+  <div class="card-section">
+    <div class="section-header">
+      <span class="icon">&#127807;</span>
+      <h2 class="section-title">
+        Resident Permit is expiring for the employees
+      </h2>
+    </div>
+    <div class="content-grid">
+      <div *ngFor="let person of data.rpExpiryList" class="permit-card">
+        <div class="card-name">{{ person.empName }}</div>
+        <div class="card-date">
+          {{ person.date[2] }} / {{ getMonthName(person.date[1]) }} /
+          {{ person.date[0] }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-section">
+    <div class="section-header">
+      <span class="icon">&#128197;</span>
+      <h2 class="section-title">Timesheet</h2>
+    </div>
+    <div class="content-details">
+      <p>Time sheets are frozen for the following months:</p>
+      <div class="content-list">
+        <span *ngFor="let month of data.freezeTimesheet" class="item">{{
+          month
+        }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-section">
+    <div class="section-header">
+      <span class="icon">&#128200;</span>
+      <h2 class="section-title">RTT Calculation Batch</h2>
+    </div>
+    <div class="content-details">
+      <p>RTT Days are calculated for the following months:</p>
+      <div class="content-list">
+        <span *ngFor="let month of data.generateRtt" class="item">{{
+          month
+        }}</span>
+      </div>
+    </div>
+  </div>
 </div>
