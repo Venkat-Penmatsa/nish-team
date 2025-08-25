@@ -3,37 +3,37 @@ import { NavItem } from './nav-item';
 export let menu: NavItem[] = [
   {
     displayName: 'ADMINSTRATION',
-    iconName: 'dashboard',
+    iconName: 'admin_panel_settings', // More specific icon for admin settings
     route: 'dashboard',
     role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
   },
   {
     displayName: 'Employee',
-    iconName: 'face',
+    iconName: 'group', // Represents a group of people/employees
     route: 'employee',
     role: ['contract', 'admin', 'hr', 'finance'],
     children: [
       {
         displayName: 'Manage Employees',
-        iconName: 'person',
+        iconName: 'person_add', // Icon for adding/managing individuals
         route: 'employee/NewEmployee',
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
       {
         displayName: 'All Employees',
-        iconName: 'groups',
+        iconName: 'groups', // Represents the entire group
         route: 'employee/allEmployees',
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
       {
         displayName: 'Employee OffBoarding',
-        iconName: 'person_search',
+        iconName: 'person_remove', // A clear icon for removing a person
         route: 'employee/empOffBoarding',
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
       {
         displayName: 'Batch Upload',
-        iconName: 'person_search',
+        iconName: 'cloud_upload', // Standard icon for uploading files
         route: 'employee/empManagement',
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
@@ -41,13 +41,13 @@ export let menu: NavItem[] = [
   },
   {
     displayName: 'Simulation',
-    iconName: 'business',
+    iconName: 'data_usage', // Represents data or a simulation process
     route: 'contracts',
     role: ['admin', 'recruiter'],
     children: [
       {
         displayName: 'Simulation',
-        iconName: 'list_alt',
+        iconName: 'scatter_plot', // A graph-like icon for simulation/data
         route: 'finance/simulation',
         role: ['admin', 'recruiter'],
       },
@@ -55,31 +55,31 @@ export let menu: NavItem[] = [
   },
   {
     displayName: 'Finance',
-    iconName: 'business',
+    iconName: 'account_balance', // Represents finance/banking
     route: 'contracts',
     role: ['admin', 'finance'],
     children: [
       {
         displayName: 'Employee Outlay',
-        iconName: 'list',
+        iconName: 'payments', // Icon for payments or outlays
         route: 'finance/empOffer',
         role: ['admin', 'finance'],
       },
       {
         displayName: 'Employee Yearly Report',
-        iconName: 'list',
+        iconName: 'analytics', // Standard icon for a report with analytics
         route: 'finance/empYearlyReport',
         role: ['admin', 'finance'],
       },
       {
         displayName: 'Revenue Report',
-        iconName: 'business',
+        iconName: 'paid', // An icon representing revenue or being paid
         route: 'finance/revenueReport',
         role: ['admin', 'finance'],
       },
       {
         displayName: 'Simulation',
-        iconName: 'list_alt',
+        iconName: 'scatter_plot', // A graph-like icon for simulation/data
         route: 'finance/simulation',
         role: ['admin', 'finance'],
       },
@@ -87,37 +87,37 @@ export let menu: NavItem[] = [
   },
   {
     displayName: 'Contracts',
-    iconName: 'business',
+    iconName: 'work', // Represents contracts or business work
     route: 'contracts',
     role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
     children: [
       {
         displayName: 'Manage Contracts',
-        iconName: 'add_business',
+        iconName: 'assignment', // Icon for managing assignments/contracts
         route: 'contracts/newContract',
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
       {
         displayName: 'All Contracts',
-        iconName: 'list',
+        iconName: 'fact_check', // A list with checkmark for all contracts
         route: 'contracts/allContracts',
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
       {
         displayName: 'Manage Customer',
-        iconName: 'add_business',
+        iconName: 'diversity_3', // Represents managing a diverse group of customers
         route: 'client/manageClient',
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
       {
         displayName: 'All Customers',
-        iconName: 'list',
+        iconName: 'people', // Represents all people/customers
         route: 'client/allClients',
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
       {
         displayName: 'Contract Report',
-        iconName: 'list',
+        iconName: 'description', // Standard icon for a document or report
         route: 'contracts/contractReport',
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
@@ -125,55 +125,43 @@ export let menu: NavItem[] = [
   },
   {
     displayName: 'HR',
-    iconName: 'manage_accounts',
+    iconName: 'handshake', // Represents a human resources handshake/agreement
     route: 'hr',
     role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
     children: [
       {
         displayName: 'Apply Leaves',
-        iconName: 'person_off',
+        iconName: 'flight_takeoff', // A plane icon for taking time off
         route: 'hr/applyLeaves',
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
       {
         displayName: 'Monthly Leaves Report',
-        iconName: 'person_off',
+        iconName: 'calendar_month', // A calendar icon for a monthly report
         route: 'hr/leavesBalence',
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
       {
         displayName: 'Update Leaves',
-        iconName: 'timer',
+        iconName: 'event_note', // Represents notes on an event/leave
         route: 'hr/updateLeaves',
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
       {
         displayName: 'Monthly Timesheet',
-        iconName: 'calendar_view_month',
+        iconName: 'calendar_month', // A calendar for monthly tracking
         route: 'hr/monthlyTimesheet',
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
       {
         displayName: 'Yearly Timesheet',
-        iconName: 'timer',
+        iconName: 'event_note', // A more generic note icon for a yearly sheet
         route: 'hr/yearlyTimesheet',
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
-      } /*,
-      {
-        displayName: 'Monthly TimeSheet Report',
-        iconName: 'report',
-        route: 'hr/generateMontlyTimeSheetReports',
-        role:['All','Admin','HR','Finance'],
       },
       {
-        displayName: 'Contract Based Monthly TimeSheet',
-        iconName: 'report',
-        route: 'hr/generateContractBasedTimeSheetReport',
-        role:['All','Admin','HR','Finance'],
-      }*/,
-      {
         displayName: 'Leaves Generation Batch',
-        iconName: 'list_alt',
+        iconName: 'batch_prediction', // Represents a batch or process
         route: 'hr/batchJob',
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
@@ -181,19 +169,19 @@ export let menu: NavItem[] = [
   },
   {
     displayName: 'Emp TimeSheet',
-    iconName: 'access_time',
+    iconName: 'access_time', // Standard for time-related tasks
     route: 'emptimesheet',
     role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
     children: [
       {
         displayName: 'Fill Timesheet',
-        iconName: 'timer',
+        iconName: 'edit_calendar', // An icon for filling/editing a calendar
         route: 'emptimesheet/filltimesheet',
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
       {
         displayName: 'All Emp TimeSheet Report',
-        iconName: 'select_all',
+        iconName: 'bar_chart', // A chart for a report
         route: 'emptimesheet/allemptimesheet',
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
@@ -201,78 +189,57 @@ export let menu: NavItem[] = [
   },
   {
     displayName: 'Invoice',
-    iconName: 'business',
+    iconName: 'receipt_long', // Represents a receipt or invoice
     route: 'invoice',
     role: ['admin', 'finance', 'timesheet'],
     children: [
       {
         displayName: 'Invoice Sequence',
-        iconName: 'business',
+        iconName: 'auto_mode', // Represents an automated sequence
         route: 'invoice/invoice',
         role: ['admin', 'finance', 'timesheet'],
       },
       {
         displayName: 'Invoice Report',
-        iconName: 'timer',
+        iconName: 'description', // Standard for a document or report
         route: 'invoice/invoiceReport',
         role: ['admin', 'finance', 'timesheet'],
       },
       {
         displayName: 'Invoice Details',
-        iconName: 'select_all',
+        iconName: 'list_alt', // A checklist icon for details
         route: 'invoice/invoiceDetails',
         role: ['admin', 'finance', 'timesheet'],
       },
     ],
   },
-
-  /*
   {
-    displayName: 'Notification',
-    iconName: 'access_time',
-    route: 'notification',
-    role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
-    children: [
-      {
-        displayName: 'New Notification',
-        iconName: 'timer',
-        route: 'notification/newNotification',
-        role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
-      },
-      {
-        displayName: 'All Notification',
-        iconName: 'select_all',
-        route: 'notification/allNotification',
-        role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
-      },
-    ],
-  },*/ {
     displayName: 'Mobility',
-    iconName: 'card_travel',
+    iconName: 'directions_car', // A car icon for mobility/travel
     route: 'mobility',
     role: ['contract', 'admin', 'hr'],
     children: [
       {
         displayName: 'Manage Mobility',
-        iconName: 'directions_railway',
+        iconName: 'map', // A map icon for managing routes
         route: 'mobility/manageMobility',
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
       {
         displayName: 'Monthly Mobility',
-        iconName: 'shopping_cart',
+        iconName: 'calendar_month', // Calendar for monthly details
         route: 'mobility/monthMobility',
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
       {
         displayName: 'Monthly Mobility Report',
-        iconName: 'list',
+        iconName: 'description', // A document for the report
         route: 'mobility/mobilityReport',
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
       {
         displayName: 'Mobility Batch',
-        iconName: 'list_alt',
+        iconName: 'batch_prediction', // Batch process icon
         route: 'mobility/mobilityBatch',
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
@@ -280,31 +247,31 @@ export let menu: NavItem[] = [
   },
   {
     displayName: 'Assets',
-    iconName: 'web_asset',
+    iconName: 'category', // A box/category icon for assets
     route: 'assets',
     role: ['contract', 'admin', 'hr'],
     children: [
       {
         displayName: 'New Asset',
-        iconName: 'add',
+        iconName: 'add_box', // An icon for adding a new asset/item
         route: 'assets/newAsset',
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
       {
         displayName: 'All Assets',
-        iconName: 'list',
+        iconName: 'inventory_2', // A box with contents for all assets
         route: 'assets/allAssets',
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
       {
         displayName: 'Update Asset',
-        iconName: 'security_update_good',
+        iconName: 'published_with_changes', // An icon for updating or changes
         route: 'assets/updateAssets',
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
       {
         displayName: 'Asset History',
-        iconName: 'history',
+        iconName: 'history', // The standard icon for history
         route: 'assets/assetHistory',
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
@@ -312,13 +279,13 @@ export let menu: NavItem[] = [
   },
   {
     displayName: 'Documents',
-    iconName: 'file_copy',
+    iconName: 'folder_shared', // A folder icon for documents
     route: 'document',
     role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
     children: [
       {
         displayName: 'Manage Documents',
-        iconName: 'attach_file',
+        iconName: 'upload_file', // A clear icon for managing/uploading documents
         route: 'document/manageDocuments',
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
@@ -326,25 +293,25 @@ export let menu: NavItem[] = [
   },
   {
     displayName: 'User Management',
-    iconName: 'settings',
+    iconName: 'manage_accounts', // A specific icon for managing user accounts
     route: 'user',
     role: ['contract', 'admin', 'hr', 'finance'],
     children: [
       {
         displayName: 'Manage User',
-        iconName: 'person_add',
+        iconName: 'person_add', // Represents adding/managing an individual user
         route: 'user/newUser',
         role: ['admin', 'finance'],
       },
       {
         displayName: 'Users List',
-        iconName: 'people',
+        iconName: 'people', // Represents a list of people/users
         route: 'user/usersList',
         role: ['contract', 'admin', 'hr', 'finance'],
       },
       {
         displayName: 'Manage Employees',
-        iconName: 'people',
+        iconName: 'group', // Represents a group of employees to manage
         route: 'user/empManage',
         role: ['contract', 'admin', 'hr'],
       },

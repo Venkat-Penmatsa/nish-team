@@ -1,7 +1,8 @@
 <div id="menu" class="main-menu">
+  <!-- Nav item using an anchor tag -->
   <a
     mat-list-item
-    [ngStyle]="{ 'padding-left': depth * 12 + 'px' }"
+    [ngStyle]="{ 'padding-left': depth * 16 + 'px' }"
     (click)="onItemSelected(item)"
     [ngClass]="{
       active: item.route ? router.isActive(item.route, true) : false,
@@ -10,14 +11,20 @@
     *ngIf="item.role.includes(role)"
     class="menu-list-item"
   >
-    <div>
+    <!-- Content container -->
+    <div style="display: flex; align-items: center; width: 100%">
+      <!-- Icon and display name -->
       <mat-icon class="routeIcon">{{ item.iconName }}</mat-icon>
       <span class="menu-item-text">{{ item.displayName }}</span>
-      <span fxflex class="twistie-separator"></span>
+      <span style="flex-grow: 1"></span>
+      <!-- Spacer to push twistie to the right -->
+
+      <!-- Twistie for sub-menus -->
       <span *ngIf="item.children && item.children.length">
         <mat-icon
           class="menu-twistie"
           [@indicatorRotate]="expanded ? 'expanded' : 'collapsed'"
+          [ngClass]="{ expanded: expanded }"
         >
           expand_more
         </mat-icon>
@@ -25,6 +32,8 @@
     </div>
   </a>
 </div>
+
+<!-- Recursive sub-menu component -->
 <div *ngIf="expanded">
   <app-menu
     *ngFor="let child of item.children"

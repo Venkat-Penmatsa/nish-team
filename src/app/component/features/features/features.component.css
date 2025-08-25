@@ -1,45 +1,47 @@
-mat-sidenav-container, mat-sidenav-content, mat-sidenav {
+mat-sidenav-container,
+mat-sidenav-content,
+mat-sidenav {
   height: 100% !important;
-  }
+}
 
-  .mat-sidenav {
-    width: 220px;
-  }
+.mat-sidenav {
+  width: 220px;
+}
 
-  .mat-drawer-content {
-    overflow-x:hidden !important;
-  }
+.mat-drawer-content {
+  overflow-x: hidden !important;
+}
 
-  .toolbar{
-   /* height: 15%;*/
-    background :#15293f;
-    height: 50px;
-    padding: 50px 0 !important;
-   /* border-radius: 10px;*/
-  }
+.toolbar {
+  /* height: 15%;*/
+  background: #15293f;
+  height: 50px;
+  padding: 50px 0 !important;
+  /* border-radius: 10px;*/
+}
 
-  button.menu-button {
-    color: white;
-    background: transparent;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    width: 60px;
-    align-items: center;
-  }
+button.menu-button {
+  color: white;
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  width: 60px;
+  align-items: center;
+}
 
-  #close.side-menu-close{
-    position: absolute;
-    right: 0px;
-  }
+#close.side-menu-close {
+  position: absolute;
+  right: 0px;
+}
 
-  .side-menu {
-    box-shadow: 1cm;
-    min-height: 100%;
-   /*border-radius: 10px;*/
-    background-color: #15293f !important;
-    padding: 20px;
-    width: 300px;
+.side-menu {
+  box-shadow: 1cm;
+  min-height: 100%;
+  /*border-radius: 10px;*/
+  background-color: #15293f !important;
+  padding: 20px;
+  width: 300px;
 }
 
 :host {
@@ -77,14 +79,14 @@ mat-sidenav-container, mat-sidenav-content, mat-sidenav {
 }
 
 .toolbar-filler {
-  flex: 1 1 auto
+  flex: 1 1 auto;
 }
 
-.side-menu-logo{
+.side-menu-logo {
   width: 125px;
   margin: 0 25px;
 }
 
-.header-padding{
+.header-padding {
   padding-left: 190px;
 }
