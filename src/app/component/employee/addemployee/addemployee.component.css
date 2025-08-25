@@ -1,77 +1,78 @@
-
-.div1{
-	border: 10px;
-    border-color:#FFFFFF;
-    border-style: solid;
-    border-width:thin;
+.div1 {
+  border: 10px;
+  border-color: #ffffff;
+  border-style: solid;
+  border-width: thin;
 }
 
 .emp-image {
-
   border-radius: 50%;
-   border: 1px solid black;
-   height:90px!important;
-   width:90px!important;
+  border: 1px solid black;
+  height: 90px !important;
+  width: 90px !important;
 }
 
 p {
-    font-size: 1.5rem;
-    color: green;
-    font-family: Helvetica, Arial, sans-serif;
-  }
-  .form-col{
-      width:90%
-  }
-  .mat-label {
-      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  }
-  .address {
-    border-radius: 25px;
-    border: 1px solid #4a148c;
-    padding: 20px;
-  }
-  .permanent-address {
+  font-size: 1.5rem;
+  color: green;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.form-col {
+  width: 90%;
+}
+.mat-label {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+.address {
+  border-radius: 25px;
+  border: 1px solid #4a148c;
+  padding: 20px;
+}
+.permanent-address {
+  outline: 2px solid black;
+  padding: 10px;
+  text-align: center;
+}
+.main-content {
+  background-color: white;
+}
+.main-container {
+  padding-right: 10px;
+  padding-left: 10px;
+}
 
-    outline: 2px solid black;
-    padding: 10px;
-    text-align: center;
-  }
-  .main-content {
-      background-color: white;
-  }
-  .main-container {
-    padding-right: 10px;
-    padding-left: 10px;
-  }
+.expansion-panel {
+  background-color: #e3f2fd;
+  border-bottom: 1px solid #4a148c;
+}
 
-  .expansion-panel {
-    background-color: #e3f2fd ;
-    border-bottom: 1px solid #4a148c;
-  }
+.panel-title {
+  color: #4a148c;
+  font-size: 17px;
+  font-family: "Signika", sans-serif;
+  padding-bottom: 10px;
+}
 
-  .panel-title {
-    color: #4a148c; 
-    font-size: 17px; 
-    font-family: 'Signika', sans-serif;
-    padding-bottom: 10px;
-  }
+.panel-desc {
+  color: #4a148c;
+  font-size: 15px;
+  font-family: "Signika", sans-serif;
+  padding-bottom: 10px;
+  text-align: right;
+}
 
-  .panel-desc{
-    color: #4a148c; 
-    font-size: 15px; 
-    font-family: 'Signika', sans-serif; 
-    padding-bottom: 10px;
-    text-align: right;
-  }
+.address-header {
+  color: #4a148c;
+  font-size: 15px;
+  font-family: "Signika", sans-serif;
+  padding-bottom: 10px;
+  text-align: center;
+}
 
-  .address-header {
-    color: #4a148c; 
-    font-size: 15px; 
-    font-family: 'Signika', sans-serif; 
-    padding-bottom: 10px;
-    text-align: center;
-  }
+.onboardingDate {
+  color: #4a148c;
+}
 
-  .onboardingDate {
-    color: #4a148c; 
-  }
+.card mat-accordion {
+  width: 100%;
+}

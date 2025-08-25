@@ -80,6 +80,8 @@ import { InvoiceDetailsComponent } from './component/invoice/invoice-details/inv
 import { EmployeeExitComponent } from './component/employee/employee-exit/employee-exit.component';
 import { InvoiceComponent } from './component/invoice/invoice/invoice.component';
 import { NewInvoiceComponent } from './component/invoice/new-invoice/new-invoice.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -160,6 +162,7 @@ import { NewInvoiceComponent } from './component/invoice/new-invoice/new-invoice
     NgbModule,
     NgxSpinnerModule,
     NgSelectModule,
+    MatGridListModule,
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },

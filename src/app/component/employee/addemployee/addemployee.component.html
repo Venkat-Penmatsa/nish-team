@@ -1,643 +1,681 @@
-<div class="page-layout-container">
-  <div *ngIf="successFlag" class="alert alert-success">
-    Employee Adminstrated successfully !! Employee id is {{ employeeId }}
+<div class="container-fluid my-4">
+  <div *ngIf="successFlag" class="alert alert-success text-center">
+    Employee Administered successfully!! Employee id is
+    <strong>{{ employeeId }}</strong>
   </div>
 
   <form [formGroup]="empCreationForm">
-    <app-progress [loading$]="loading$"> </app-progress>
-    <div class="row">
-      <div class="col">
+    <app-progress [loading$]="loading$"></app-progress>
+
+    <div class="row align-items-center mb-4">
+      <div class="col-md-6 col-lg-4 mb-3 mb-md-0">
         <app-emp-name
           [filterEmpName]="filterEmpName"
           (empName)="empNameSelected($event)"
-        >
-        </app-emp-name>
+        ></app-emp-name>
       </div>
-      <div class="col">
-        <div style="text-align: center">
-          <button
-            mat-button
-            [disabled]="empName === undefined"
-            (click)="searchEmployees()"
-            type="submit"
-          >
-            Search Employee
-          </button>
-        </div>
-      </div>
-      <div class="col">
-        <div *ngIf="retrievedImage">
-          <img class="emp-image" [src]="retrievedImage" />
-        </div>
-      </div>
-    </div>
-    <div class="main-container">
-      <mat-accordion>
-        <mat-expansion-panel
-          [expanded]="step === 0"
-          (opened)="setStep(0)"
-          hideToggle
-        >
-          <mat-expansion-panel-header class="expansion-panel">
-            <mat-panel-title class="panel-title">
-              Employee Basic info
-            </mat-panel-title>
-            <mat-panel-description class="panel-desc">
-              Fill Employee name , age , ...
-              <mat-icon>account_circle</mat-icon>
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          &nbsp;&nbsp;
-          <div formGroupName="empBasicInfo">
-            <div class="row no-gutters">
-              <div class="col-3">
-                <mat-form-field class="form-col">
-                  <mat-label>First Name</mat-label>
-                  <input
-                    matInput
-                    placeholder="Name"
-                    formControlName="firstName"
-                  />
-                </mat-form-field>
-              </div>
-              <div class="col">
-                <mat-form-field class="form-col">
-                  <mat-label>Last Name</mat-label>
-                  <input
-                    matInput
-                    placeholder="Name"
-                    formControlName="lastName"
-                  />
-                </mat-form-field>
-              </div>
-              <div class="col -0">
-                <mat-form-field class="form-col">
-                  <mat-label>Gender </mat-label>
-                  <select matNativeControl required formControlName="sex">
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                  </select>
-                </mat-form-field>
-              </div>
-              <div class="col">
-                <mat-form-field class="form-col">
-                  <mat-label>Date of Birth *</mat-label>
-                  <input
-                    matInput
-                    [matDatepicker]="dob"
-                    name="dob"
-                    formControlName="dob"
-                    [max]="dobFilter"
-                  />
-                  <mat-datepicker-toggle
-                    matSuffix
-                    [for]="dob"
-                  ></mat-datepicker-toggle>
-                  <mat-datepicker #dob></mat-datepicker>
-                </mat-form-field>
-              </div>
-              <div class="col">
-                <mat-form-field class="example-full-width">
-                  <mat-label>INSZ</mat-label>
-                  <input matInput placeholder="text" formControlName="ssn" />
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col">
-                <mat-form-field>
-                  <mat-label>Date of Joining</mat-label>
-                  <input
-                    matInput
-                    [matDatepicker]="onboardingDate"
-                    [matDatepickerFilter]="dateOfJoiningFilter"
-                    formControlName="onboardingDate"
-                  />
-                  <mat-datepicker-toggle
-                    matSuffix
-                    [for]="onboardingDate"
-                  ></mat-datepicker-toggle>
-                  <mat-datepicker #onboardingDate></mat-datepicker>
-                </mat-form-field>
-              </div>
-              <div class="col">
-                <mat-form-field>
-                  <mat-label>Date of RP Expiry</mat-label>
-                  <input
-                    matInput
-                    [matDatepicker]="rpExpiryDate"
-                    formControlName="rpExpiryDate"
-                  />
-                  <mat-datepicker-toggle
-                    matSuffix
-                    [for]="rpExpiryDate"
-                  ></mat-datepicker-toggle>
-                  <mat-datepicker #rpExpiryDate></mat-datepicker>
-                </mat-form-field>
-              </div>
-              <div class="col">
-                <mat-form-field>
-                  <mat-label>Onbarding Status</mat-label>
-                  <select
-                    matNativeControl
-                    required
-                    formControlName="onboardingStatus"
-                    [(ngModel)]="onboardingStatus"
-                  >
-                    <option value="onGoing">On Going</option>
-                    <option value="active">Active</option>
-                    <option value="inActive">InActive</option>
-                    <option value="FreeLancer">FreeLancer</option>
-                  </select>
-                </mat-form-field>
-              </div>
-              <div class="col" *ngIf="onboardingStatus === 'inActive'">
-                <mat-form-field>
-                  <mat-label>Employee last Day</mat-label>
-                  <input
-                    matInput
-                    [matDatepicker]="empLastDate"
-                    formControlName="empLastDate"
-                  />
-                  <mat-datepicker-toggle
-                    matSuffix
-                    [for]="empLastDate"
-                  ></mat-datepicker-toggle>
-                  <mat-datepicker #empLastDate></mat-datepicker>
-                </mat-form-field>
-              </div>
-              <div class="col">
-                <mat-form-field class="form-col">
-                  <mat-label>Email *</mat-label>
-                  <input matInput placeholder="email" formControlName="email" />
-                </mat-form-field>
-              </div>
-              <div class="col">
-                <mat-form-field class="example-full-width">
-                  <mat-label>Mobile *</mat-label>
-                  <input
-                    matInput
-                    placeholder="mobile"
-                    formControlName="mobile"
-                  />
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col">
-                <mat-form-field class="example-full-width">
-                  <mat-label>Passport Number</mat-label>
-                  <input
-                    matInput
-                    placeholder="text"
-                    formControlName="passportId"
-                  />
-                </mat-form-field>
-              </div>
-              <div class="col">
-                <mat-form-field class="example-full-width">
-                  <mat-label>Data of Passport Expiry</mat-label>
-                  <input
-                    matInput
-                    placeholder="mobile"
-                    formControlName="landline"
-                  />
-                </mat-form-field>
-              </div>
-
-              <div class="col">
-                <mat-form-field class="example-full-width">
-                  <mat-label>Bank Acc Number</mat-label>
-                  <input
-                    matInput
-                    placeholder="text"
-                    formControlName="ibannumber"
-                  />
-                </mat-form-field>
-              </div>
-              <div class="col">
-                <mat-form-field class="example-full-width">
-                  <mat-label>Bank Bic Code</mat-label>
-                  <input
-                    matInput
-                    placeholder="text"
-                    formControlName="bicCode"
-                  />
-                </mat-form-field>
-              </div>
-              <div class="col">
-                <mat-form-field class="example-full-width">
-                  <mat-label>HR Spoc</mat-label>
-                  <input matInput placeholder="text" formControlName="hrSpoc" />
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col">
-                <mat-form-field class="form-col">
-                  <mat-label>NISH Email *</mat-label>
-                  <input
-                    matInput
-                    placeholder="nishEmail"
-                    formControlName="nishEmail"
-                  />
-                </mat-form-field>
-              </div>
-              <div class="col">
-                <mat-form-field class="example-full-width">
-                  <mat-label>Designation</mat-label>
-                  <input
-                    matInput
-                    placeholder="name"
-                    formControlName="designation"
-                  />
-                </mat-form-field>
-              </div>
-              <div class="col">
-                <mat-form-field>
-                  <mat-label>Entity </mat-label>
-                  <select matNativeControl required formControlName="entity">
-                    <option value="nishtech">NISH Tech</option>
-                    <option value="nish">NISH Technologies</option>
-                  </select>
-                </mat-form-field>
-              </div>
-              <div class="col">
-                <mat-form-field class="example-full-width">
-                  <mat-label>Emergency Contact Name</mat-label>
-                  <input
-                    matInput
-                    placeholder="name"
-                    formControlName="emergencyContactPerson"
-                  />
-                </mat-form-field>
-              </div>
-              <div class="col">
-                <mat-form-field class="example-full-width">
-                  <mat-label>Emergency Contact Number</mat-label>
-                  <input
-                    matInput
-                    placeholder="mobile"
-                    type="text"
-                    formControlName="emergencyContactNumber"
-                  />
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col">
-                <mat-form-field>
-                  <mat-label>Contract Type </mat-label>
-                  <select
-                    matNativeControl
-                    required
-                    formControlName="contractType"
-                  >
-                    <option value="OE">Open Ended</option>
-                    <option value="FT">Fixed Term</option>
-                  </select>
-                </mat-form-field>
-              </div>
-              <div
-                class="col"
-                *ngIf="
-                  this.empCreationForm.value.empBasicInfo.contractType === 'FT'
-                "
-              >
-                <mat-form-field>
-                  <mat-label>Contract Start Date</mat-label>
-                  <input
-                    matInput
-                    [matDatepicker]="contractStartDate"
-                    formControlName="contractStartDate"
-                  />
-                  <mat-datepicker-toggle
-                    matSuffix
-                    [for]="contractStartDate"
-                  ></mat-datepicker-toggle>
-                  <mat-datepicker #contractStartDate></mat-datepicker>
-                </mat-form-field>
-              </div>
-              <div
-                class="col"
-                *ngIf="
-                  this.empCreationForm.value.empBasicInfo.contractType === 'FT'
-                "
-              >
-                <mat-form-field>
-                  <mat-label>Contract End Date</mat-label>
-                  <input
-                    matInput
-                    [matDatepicker]="contractEndDate"
-                    formControlName="contractEndDate"
-                  />
-                  <mat-datepicker-toggle
-                    matSuffix
-                    [for]="contractEndDate"
-                  ></mat-datepicker-toggle>
-                  <mat-datepicker #contractEndDate></mat-datepicker>
-                </mat-form-field>
-              </div>
-              <div class="col">
-                <section class="example-section">
-                  <mat-checkbox
-                    #martialStatus
-                    [checked]="martialStatusChecked"
-                    formControlName="martialStatus"
-                    (change)="enableDependentSection(martialStatus.checked)"
-                  >
-                    Family Status *</mat-checkbox
-                  >
-                </section>
-              </div>
-            </div>
-          </div>
-          <div formGroupName="empBasicInfo" *ngIf="showMarriageSectionFlag">
-            <div class="address">
-              <app-dependant
-                [savedEmployeeDependant]="savedEmpDependants"
-                [empId]="empId"
-                (employeeDependant)="dependantSubmitted($event)"
-              >
-              </app-dependant>
-            </div>
-          </div>
-          <mat-action-row>
-            <button mat-button (click)="employeeDetailsValidation()">
-              Next
-            </button>
-          </mat-action-row>
-        </mat-expansion-panel>
-
-        <mat-expansion-panel
-          [expanded]="step === 1"
-          (opened)="setStep(1)"
-          hideToggle
-        >
-          <!-- [disabled]="!empCreationForm.get('empBasicInfo')?.valid" -->
-          <mat-expansion-panel-header class="expansion-panel">
-            <mat-panel-title class="panel-title">
-              Employee Address Details
-            </mat-panel-title>
-            <mat-panel-description class="panel-desc">
-              Fill the Employee Residence Address
-              <mat-icon>date_range</mat-icon>
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          &nbsp;&nbsp;
-          <div formGroupName="employeeAddress">
-            <div class="address">
-              <div class="address-header">Address Section</div>
-              <div class="row no-gutters">
-                <div class="col">
-                  <mat-form-field class="form-col">
-                    <mat-label>Street name & house/apartment number</mat-label>
-                    <textarea
-                      matInput
-                      formControlName="currentAddress1"
-                    ></textarea>
-                  </mat-form-field>
-                </div>
-                <div class="col">
-                  <mat-form-field class="form-col">
-                    <mat-label>Mail box</mat-label>
-                    <textarea
-                      matInput
-                      formControlName="currentAddress2"
-                    ></textarea>
-                  </mat-form-field>
-                </div>
-                <div class="col">
-                  <mat-form-field class="form-col">
-                    <mat-label>Commune</mat-label>
-                    <input matInput formControlName="currentCity" />
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row no-gutters">
-                <div class="col">
-                  <mat-form-field class="example-full-width">
-                    <mat-label>City</mat-label>
-                    <input matInput formControlName="currentState" />
-                  </mat-form-field>
-                </div>
-                <div class="col">
-                  <mat-form-field class="example-full-width">
-                    <mat-label>Country</mat-label>
-                    <input matInput formControlName="currentCountry" />
-                  </mat-form-field>
-                </div>
-                <div class="col">
-                  <mat-form-field class="example-full-width">
-                    <mat-label>Postal Code</mat-label>
-                    <input
-                      matInput
-                      #postalCode
-                      maxlength="5"
-                      formControlName="currentPincode"
-                    />
-                    <mat-hint align="end"
-                      >{{ postalCode.value.length }} / 5</mat-hint
-                    >
-                  </mat-form-field>
-                </div>
-                <div class="col">
-                  <mat-form-field>
-                    <mat-label>Nationality</mat-label>
-                    <select
-                      matNativeControl
-                      required
-                      formControlName="nationality"
-                      #mySelect
-                      (change)="onNationalitySelected(mySelect.value)"
-                    >
-                      <option value="Belgium">Belgian</option>
-                      <option value="India">Indian</option>
-                      <option value="Moroccan">Moroccan</option>
-                      <option value="Tunisian">Tunisian</option>
-                      <option value="Senegalese">Senegalese</option>
-                      <option value="Egyptian">Egyptian</option>
-                      <option value="Russian">Russian</option>
-                      <option value="french">French</option>
-                      <option value="german">German</option>
-                      <option value="singapore">Singapore</option>
-                      <option value="luxembourg ">Luxembourg</option>
-                    </select>
-                  </mat-form-field>
-                </div>
-                <div>
-                  <mat-form-field class="example-full-width" hidden="true">
-                    <input matInput formControlName="addressId" />
-                  </mat-form-field>
-                </div>
-              </div>
-            </div>
-          </div>
-          &nbsp;&nbsp;
-          <div
-            formGroupName="employeeAddress"
-            *ngIf="disablePermanentSectionFlag"
-          >
-            <div class="address">
-              <div class="address-header">Permanent Address Section</div>
-              <div class="row no-gutters">
-                <div class="col">
-                  <mat-form-field class="form-col">
-                    <mat-label>Door-NO & Appartment Details</mat-label>
-                    <textarea
-                      matInput
-                      formControlName="permanentAddress1"
-                    ></textarea>
-                  </mat-form-field>
-                </div>
-                <div class="col">
-                  <mat-form-field class="form-col">
-                    <mat-label>Street And Post Box</mat-label>
-                    <textarea
-                      matInput
-                      formControlName="permanentAddress2"
-                    ></textarea>
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row no-gutters">
-                <div class="col">
-                  <mat-form-field class="form-col">
-                    <mat-label>City</mat-label>
-                    <input matInput formControlName="permanentAddcity" />
-                  </mat-form-field>
-                </div>
-                <div class="col">
-                  <mat-form-field class="form-col">
-                    <mat-label>State</mat-label>
-                    <input matInput formControlName="permanentAddstate" />
-                  </mat-form-field>
-                </div>
-                <div class="col">
-                  <mat-form-field class="form-col">
-                    <mat-label>Country</mat-label>
-                    <input matInput formControlName="permanentAddcountry" />
-                  </mat-form-field>
-                </div>
-                <div class="col">
-                  <mat-form-field class="form-col">
-                    <mat-label>Postal Code</mat-label>
-                    <input
-                      matInput
-                      #postalCode
-                      maxlength="6"
-                      formControlName="permanentAddpincode"
-                    />
-                    <mat-hint align="end"
-                      >{{ postalCode.value.length }} / 6</mat-hint
-                    >
-                  </mat-form-field>
-                </div>
-              </div>
-            </div>
-          </div>
-          <mat-action-row>
-            <button mat-button color="warn" (click)="prevStep()">
-              Previous
-            </button>
-            <button
-              mat-button
-              color="primary"
-              (click)="addressDetailsValidation()"
-            >
-              Next
-            </button>
-          </mat-action-row>
-        </mat-expansion-panel>
-        <!-- [disabled]="!this.empCreationForm.get('currentAddress')?.valid" -->
-        <mat-expansion-panel
-          [expanded]="step === 2"
-          (opened)="setStep(2)"
-          hideToggle
-        >
-          <mat-expansion-panel-header class="expansion-panel">
-            <mat-panel-title class="panel-title">
-              Employee Skillset
-            </mat-panel-title>
-            <mat-panel-description class="panel-desc">
-              Skillset of the employee
-              <mat-icon>date_range</mat-icon>
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          &nbsp;&nbsp;
-          <div class="row">
-            <div class="col-10">
-              <div formGroupName="skillset" style="width: 100%">
-                <mat-form-field style="width: 100%">
-                  <mat-label>Skillset</mat-label>
-                  <mat-select formControlName="skillset" multiple>
-                    <mat-option
-                      *ngFor="let skillsetval of skillsetList"
-                      [value]="skillsetval"
-                    >
-                      {{ skillsetval }}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-            </div>
-          </div>
-          <mat-action-row>
-            <button mat-button color="warn" (click)="prevStep()">
-              Previous
-            </button>
-            <button mat-button color="primary" (click)="nextStep()">
-              Next
-            </button>
-          </mat-action-row>
-        </mat-expansion-panel>
-        <!-- [disabled]="!this.empCreationForm.get('skillset')?.valid" -->
-
-        <mat-expansion-panel
-          [expanded]="step === 3"
-          (opened)="setStep(3)"
-          hideToggle
-        >
-          <mat-expansion-panel-header class="expansion-panel">
-            <mat-panel-title class="panel-title">
-              Employee Documents
-            </mat-panel-title>
-            <mat-panel-description class="panel-desc">
-              Upload all the Employee signed and compliance documentss
-              <mat-icon>date_range</mat-icon>
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          &nbsp;&nbsp;
-          <div *ngIf="!uploadDocuments" class="panel-title">
-            <h1>Documents can be uploaded once employee id is created</h1>
-          </div>
-          <div>
-            <div *ngIf="uploadDocuments">
-              <app-upload [fileList]="fileList" [category]="empId">
-              </app-upload>
-            </div>
-          </div>
-          <mat-action-row>
-            <button mat-button color="warn" (click)="prevStep()">
-              Previous
-            </button>
-            <button mat-button color="primary" (click)="nextStep()">End</button>
-          </mat-action-row>
-        </mat-expansion-panel>
-      </mat-accordion>
-      &nbsp;&nbsp;
-      <div style="text-align: center">
+      <div class="col-md-3 col-lg-2 d-grid mb-3 mb-md-0">
         <button
           mat-button
-          [disabled]="
-            !empCreationForm.get('empBasicInfo')?.valid &&
-            !empCreationForm.get('employeeAddress')?.valid
-          "
-          (click)="onSubmit()"
-          type="submit"
+          class="btn btn-primary"
+          [disabled]="empName === undefined"
+          (click)="searchEmployees()"
+          type="button"
         >
-          Submit
+          Search Employee
         </button>
+      </div>
+    </div>
+
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <mat-accordion>
+          <mat-expansion-panel
+            [expanded]="step === 0"
+            (opened)="setStep(0)"
+            hideToggle
+          >
+            <mat-expansion-panel-header class="expansion-panel">
+              <mat-panel-title class="panel-title">
+                <mat-icon class="me-2">account_circle</mat-icon>
+                <h5 class="m-0 section-title">Employee Basic Info</h5>
+              </mat-panel-title>
+              <mat-panel-description class="panel-desc">
+                Fill out the employee's name, age, and other details.
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <div class="p-3">
+              <div formGroupName="empBasicInfo">
+                <div class="row g-3">
+                  <div class="col-md-6 col-lg-4">
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>First Name</mat-label>
+                      <input
+                        matInput
+                        placeholder="First Name"
+                        formControlName="firstName"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 col-lg-4">
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>Last Name</mat-label>
+                      <input
+                        matInput
+                        placeholder="Last Name"
+                        formControlName="lastName"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 col-lg-4">
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>Gender</mat-label>
+                      <select matNativeControl required formControlName="sex">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                      </select>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 col-lg-4">
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>Date of Birth</mat-label>
+                      <input
+                        matInput
+                        [matDatepicker]="dob"
+                        formControlName="dob"
+                        [max]="dobFilter"
+                      />
+                      <mat-datepicker-toggle
+                        matSuffix
+                        [for]="dob"
+                      ></mat-datepicker-toggle>
+                      <mat-datepicker #dob></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 col-lg-4">
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>INSZ</mat-label>
+                      <input
+                        matInput
+                        placeholder="INSZ"
+                        formControlName="ssn"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 col-lg-4">
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>Date of Joining</mat-label>
+                      <input
+                        matInput
+                        [matDatepicker]="onboardingDate"
+                        [matDatepickerFilter]="dateOfJoiningFilter"
+                        formControlName="onboardingDate"
+                      />
+                      <mat-datepicker-toggle
+                        matSuffix
+                        [for]="onboardingDate"
+                      ></mat-datepicker-toggle>
+                      <mat-datepicker #onboardingDate></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 col-lg-4">
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>Date of RP Expiry</mat-label>
+                      <input
+                        matInput
+                        [matDatepicker]="rpExpiryDate"
+                        formControlName="rpExpiryDate"
+                      />
+                      <mat-datepicker-toggle
+                        matSuffix
+                        [for]="rpExpiryDate"
+                      ></mat-datepicker-toggle>
+                      <mat-datepicker #rpExpiryDate></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 col-lg-4">
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>Onboarding Status</mat-label>
+                      <select
+                        matNativeControl
+                        required
+                        formControlName="onboardingStatus"
+                        [(ngModel)]="onboardingStatus"
+                      >
+                        <option value="onGoing">On Going</option>
+                        <option value="active">Active</option>
+                        <option value="inActive">InActive</option>
+                        <option value="FreeLancer">FreeLancer</option>
+                      </select>
+                    </mat-form-field>
+                  </div>
+                  <div
+                    class="col-md-6 col-lg-4"
+                    *ngIf="onboardingStatus === 'inActive'"
+                  >
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>Employee Last Day</mat-label>
+                      <input
+                        matInput
+                        [matDatepicker]="empLastDate"
+                        formControlName="empLastDate"
+                      />
+                      <mat-datepicker-toggle
+                        matSuffix
+                        [for]="empLastDate"
+                      ></mat-datepicker-toggle>
+                      <mat-datepicker #empLastDate></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 col-lg-4">
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>Email</mat-label>
+                      <input
+                        matInput
+                        placeholder="Email"
+                        formControlName="email"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 col-lg-4">
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>Mobile</mat-label>
+                      <input
+                        matInput
+                        placeholder="Mobile"
+                        formControlName="mobile"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 col-lg-4">
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>Passport Number</mat-label>
+                      <input
+                        matInput
+                        placeholder="Passport Number"
+                        formControlName="passportId"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 col-lg-4">
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>Date of Passport Expiry</mat-label>
+                      <input
+                        matInput
+                        placeholder="Date of Passport Expiry"
+                        formControlName="landline"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 col-lg-4">
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>Bank Account Number</mat-label>
+                      <input
+                        matInput
+                        placeholder="Bank Account Number"
+                        formControlName="ibannumber"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 col-lg-4">
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>Bank BIC Code</mat-label>
+                      <input
+                        matInput
+                        placeholder="Bank BIC Code"
+                        formControlName="bicCode"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 col-lg-4">
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>HR SPOC</mat-label>
+                      <input
+                        matInput
+                        placeholder="HR SPOC"
+                        formControlName="hrSpoc"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 col-lg-4">
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>NISH Email</mat-label>
+                      <input
+                        matInput
+                        placeholder="NISH Email"
+                        formControlName="nishEmail"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 col-lg-4">
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>Designation</mat-label>
+                      <input
+                        matInput
+                        placeholder="Designation"
+                        formControlName="designation"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 col-lg-4">
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>Entity</mat-label>
+                      <select
+                        matNativeControl
+                        required
+                        formControlName="entity"
+                      >
+                        <option value="nishtech">NISH Tech</option>
+                        <option value="nish">NISH Technologies</option>
+                      </select>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 col-lg-4">
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>Emergency Contact Name</mat-label>
+                      <input
+                        matInput
+                        placeholder="Emergency Contact Name"
+                        formControlName="emergencyContactPerson"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 col-lg-4">
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>Emergency Contact Number</mat-label>
+                      <input
+                        matInput
+                        placeholder="Emergency Contact Number"
+                        type="text"
+                        formControlName="emergencyContactNumber"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 col-lg-4">
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>Contract Type</mat-label>
+                      <select
+                        matNativeControl
+                        required
+                        formControlName="contractType"
+                      >
+                        <option value="OE">Open Ended</option>
+                        <option value="FT">Fixed Term</option>
+                      </select>
+                    </mat-form-field>
+                  </div>
+                  <div
+                    class="col-md-6 col-lg-4"
+                    *ngIf="
+                      this.empCreationForm.value.empBasicInfo.contractType ===
+                      'FT'
+                    "
+                  >
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>Contract Start Date</mat-label>
+                      <input
+                        matInput
+                        [matDatepicker]="contractStartDate"
+                        formControlName="contractStartDate"
+                      />
+                      <mat-datepicker-toggle
+                        matSuffix
+                        [for]="contractStartDate"
+                      ></mat-datepicker-toggle>
+                      <mat-datepicker #contractStartDate></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                  <div
+                    class="col-md-6 col-lg-4"
+                    *ngIf="
+                      this.empCreationForm.value.empBasicInfo.contractType ===
+                      'FT'
+                    "
+                  >
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>Contract End Date</mat-label>
+                      <input
+                        matInput
+                        [matDatepicker]="contractEndDate"
+                        formControlName="contractEndDate"
+                      />
+                      <mat-datepicker-toggle
+                        matSuffix
+                        [for]="contractEndDate"
+                      ></mat-datepicker-toggle>
+                      <mat-datepicker #contractEndDate></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 col-lg-4">
+                    <mat-checkbox
+                      #martialStatus
+                      [checked]="martialStatusChecked"
+                      formControlName="martialStatus"
+                      (change)="enableDependentSection(martialStatus.checked)"
+                    >
+                      Family Status
+                    </mat-checkbox>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div formGroupName="empBasicInfo" *ngIf="showMarriageSectionFlag">
+              <div class="p-3 border-top mt-3">
+                <app-dependant
+                  [savedEmployeeDependant]="savedEmpDependants"
+                  [empId]="empId"
+                  (employeeDependant)="dependantSubmitted($event)"
+                ></app-dependant>
+              </div>
+            </div>
+
+            <mat-action-row class="d-flex justify-content-end p-3">
+              <button
+                mat-button
+                class="btn btn-primary"
+                (click)="employeeDetailsValidation()"
+              >
+                Next
+              </button>
+            </mat-action-row>
+          </mat-expansion-panel>
+
+          ---
+
+          <mat-expansion-panel
+            [expanded]="step === 1"
+            (opened)="setStep(1)"
+            hideToggle
+          >
+            <mat-expansion-panel-header class="expansion-panel">
+              <mat-panel-title class="panel-title">
+                <mat-icon class="me-2">location_on</mat-icon>
+                <h5 class="m-0 section-title">Employee Address Details</h5>
+              </mat-panel-title>
+              <mat-panel-description class="panel-desc">
+                Enter the employee's residence address.
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <div class="p-3">
+              <div formGroupName="employeeAddress">
+                <h6 class="text-secondary mb-3">Current Address</h6>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label
+                        >Street name & house/apartment number</mat-label
+                      >
+                      <textarea
+                        matInput
+                        formControlName="currentAddress1"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>Mail box</mat-label>
+                      <textarea
+                        matInput
+                        formControlName="currentAddress2"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 col-lg-4">
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>Commune</mat-label>
+                      <input matInput formControlName="currentCity" />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 col-lg-4">
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>City</mat-label>
+                      <input matInput formControlName="currentState" />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 col-lg-4">
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>Country</mat-label>
+                      <input matInput formControlName="currentCountry" />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 col-lg-4">
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>Postal Code</mat-label>
+                      <input
+                        matInput
+                        #postalCode
+                        maxlength="5"
+                        formControlName="currentPincode"
+                      />
+                      <mat-hint align="end"
+                        >{{ postalCode.value.length }} / 5</mat-hint
+                      >
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 col-lg-4">
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>Nationality</mat-label>
+                      <select
+                        matNativeControl
+                        required
+                        formControlName="nationality"
+                        #mySelect
+                        (change)="onNationalitySelected(mySelect.value)"
+                      >
+                        <option value="Belgium">Belgian</option>
+                        <option value="India">Indian</option>
+                        <option value="Moroccan">Moroccan</option>
+                        <option value="Tunisian">Tunisian</option>
+                        <option value="Senegalese">Senegalese</option>
+                        <option value="Egyptian">Egyptian</option>
+                        <option value="Russian">Russian</option>
+                        <option value="french">French</option>
+                        <option value="german">German</option>
+                        <option value="singapore">Singapore</option>
+                        <option value="luxembourg ">Luxembourg</option>
+                      </select>
+                    </mat-form-field>
+                  </div>
+                  <div>
+                    <mat-form-field class="example-full-width" hidden="true">
+                      <input matInput formControlName="addressId" />
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div *ngIf="disablePermanentSectionFlag">
+                  <h6 class="text-secondary mt-4 mb-3">Permanent Address</h6>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <mat-form-field class="form-control-lg w-100">
+                        <mat-label>Door-NO & Appartment Details</mat-label>
+                        <textarea
+                          matInput
+                          formControlName="permanentAddress1"
+                        ></textarea>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                      <mat-form-field class="form-control-lg w-100">
+                        <mat-label>Street And Post Box</mat-label>
+                        <textarea
+                          matInput
+                          formControlName="permanentAddress2"
+                        ></textarea>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                      <mat-form-field class="form-control-lg w-100">
+                        <mat-label>City</mat-label>
+                        <input matInput formControlName="permanentAddcity" />
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                      <mat-form-field class="form-control-lg w-100">
+                        <mat-label>State</mat-label>
+                        <input matInput formControlName="permanentAddstate" />
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                      <mat-form-field class="form-control-lg w-100">
+                        <mat-label>Country</mat-label>
+                        <input matInput formControlName="permanentAddcountry" />
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                      <mat-form-field class="form-control-lg w-100">
+                        <mat-label>Postal Code</mat-label>
+                        <input
+                          matInput
+                          #postalCode
+                          maxlength="6"
+                          formControlName="permanentAddpincode"
+                        />
+                        <mat-hint align="end"
+                          >{{ postalCode.value.length }} / 6</mat-hint
+                        >
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <mat-action-row class="d-flex justify-content-between p-3">
+                <button
+                  mat-button
+                  class="btn btn-outline-secondary"
+                  (click)="prevStep()"
+                >
+                  Previous
+                </button>
+                <button
+                  mat-button
+                  class="btn btn-primary"
+                  (click)="addressDetailsValidation()"
+                >
+                  Next
+                </button>
+              </mat-action-row>
+            </div>
+          </mat-expansion-panel>
+
+          ---
+
+          <mat-expansion-panel
+            [expanded]="step === 2"
+            (opened)="setStep(2)"
+            hideToggle
+          >
+            <mat-expansion-panel-header class="expansion-panel">
+              <mat-panel-title class="panel-title">
+                <mat-icon class="me-2">code</mat-icon>
+                <h5 class="m-0 section-title">Employee Skillset</h5>
+              </mat-panel-title>
+              <mat-panel-description class="panel-desc">
+                Select the employee's skillset.
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <div class="p-3">
+              <div class="row g-3">
+                <div class="col-12">
+                  <div formGroupName="skillset" class="w-100">
+                    <mat-form-field class="form-control-lg w-100">
+                      <mat-label>Skillset</mat-label>
+                      <mat-select formControlName="skillset" multiple>
+                        <mat-option
+                          *ngFor="let skillsetval of skillsetList"
+                          [value]="skillsetval"
+                        >
+                          {{ skillsetval }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <mat-action-row class="d-flex justify-content-between p-3">
+              <button
+                mat-button
+                class="btn btn-outline-secondary"
+                color="warn"
+                (click)="prevStep()"
+              >
+                Previous
+              </button>
+              <button mat-button class="btn btn-primary" (click)="nextStep()">
+                Next
+              </button>
+            </mat-action-row>
+          </mat-expansion-panel>
+
+          ---
+
+          <mat-expansion-panel
+            [expanded]="step === 3"
+            (opened)="setStep(3)"
+            hideToggle
+          >
+            <mat-expansion-panel-header class="expansion-panel">
+              <mat-panel-title class="panel-title">
+                <mat-icon class="me-2">folder_open</mat-icon>
+                <h5 class="m-0 section-title">Employee Documents</h5>
+              </mat-panel-title>
+              <mat-panel-description class="panel-desc">
+                Upload all the employee's signed and compliance documents.
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <div class="p-3">
+              <div
+                *ngIf="!uploadDocuments"
+                class="alert alert-info text-center"
+              >
+                Documents can be uploaded once the employee ID is created.
+              </div>
+              <div *ngIf="uploadDocuments">
+                <app-upload
+                  [fileList]="fileList"
+                  [category]="empId"
+                ></app-upload>
+              </div>
+            </div>
+
+            <mat-action-row class="d-flex justify-content-between p-3">
+              <button
+                mat-button
+                class="btn btn-outline-secondary"
+                color="warn"
+                (click)="prevStep()"
+              >
+                Previous
+              </button>
+              <button mat-button class="btn btn-primary" (click)="nextStep()">
+                End
+              </button>
+            </mat-action-row>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        <div class="text-center mt-4">
+          <button
+            mat-button
+            class="btn btn-success btn-lg"
+            [disabled]="
+              !empCreationForm.get('empBasicInfo')?.valid &&
+              !empCreationForm.get('employeeAddress')?.valid
+            "
+            (click)="onSubmit()"
+            type="submit"
+          >
+            Submit
+          </button>
+        </div>
       </div>
     </div>
   </form>
