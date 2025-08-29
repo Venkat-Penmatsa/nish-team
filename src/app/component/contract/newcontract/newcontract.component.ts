@@ -72,6 +72,7 @@ export class NewcontractComponent implements OnInit {
       tsFlag: ['', Validators.required],
       invoicesDH: ['', Validators.required],
       invoiceDueDate: [''],
+      billingDays: ['', Validators.required],
       customerId: [''],
       isOverTime: [],
       contractOverTime: this.fb.group({
@@ -156,6 +157,7 @@ export class NewcontractComponent implements OnInit {
           tsFlag: this.contract.tsFlag,
           invoicesDH: this.contract.invoicesDH,
           invoiceDueDate: this.contract.invoiceDueDate,
+          billingDays: this.contract.billingDays,
           isOverTime: this.contract.isOverTime,
           contractOverTime: this.contract.contractOverTime,
         });

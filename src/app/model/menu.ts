@@ -89,37 +89,37 @@ export let menu: NavItem[] = [
     displayName: 'Contracts',
     iconName: 'work', // Represents contracts or business work
     route: 'contracts',
-    role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
+    role: ['contract', 'admin', 'hr', 'finance'],
     children: [
       {
         displayName: 'Manage Contracts',
         iconName: 'assignment', // Icon for managing assignments/contracts
         route: 'contracts/newContract',
-        role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
+        role: ['contract', 'admin', 'hr', 'finance'],
       },
       {
         displayName: 'All Contracts',
         iconName: 'fact_check', // A list with checkmark for all contracts
         route: 'contracts/allContracts',
-        role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
+        role: ['contract', 'admin', 'hr', 'finance'],
       },
       {
         displayName: 'Manage Customer',
         iconName: 'diversity_3', // Represents managing a diverse group of customers
         route: 'client/manageClient',
-        role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
+        role: ['contract', 'admin', 'hr', 'finance'],
       },
       {
         displayName: 'All Customers',
         iconName: 'people', // Represents all people/customers
         route: 'client/allClients',
-        role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
+        role: ['contract', 'admin', 'hr', 'finance'],
       },
       {
         displayName: 'Contract Report',
         iconName: 'description', // Standard icon for a document or report
         route: 'contracts/contractReport',
-        role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
+        role: ['contract', 'admin', 'hr', 'finance'],
       },
     ],
   },
@@ -127,43 +127,43 @@ export let menu: NavItem[] = [
     displayName: 'HR',
     iconName: 'handshake', // Represents a human resources handshake/agreement
     route: 'hr',
-    role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
+    role: ['contract', 'admin', 'hr', 'finance'],
     children: [
       {
         displayName: 'Apply Leaves',
         iconName: 'flight_takeoff', // A plane icon for taking time off
         route: 'hr/applyLeaves',
-        role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
+        role: ['contract', 'admin', 'hr', 'finance'],
       },
       {
         displayName: 'Monthly Leaves Report',
         iconName: 'calendar_month', // A calendar icon for a monthly report
         route: 'hr/leavesBalence',
-        role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
+        role: ['contract', 'admin', 'hr', 'finance'],
       },
       {
         displayName: 'Update Leaves',
         iconName: 'event_note', // Represents notes on an event/leave
         route: 'hr/updateLeaves',
-        role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
+        role: ['contract', 'admin', 'hr', 'finance'],
       },
       {
         displayName: 'Monthly Timesheet',
         iconName: 'calendar_month', // A calendar for monthly tracking
         route: 'hr/monthlyTimesheet',
-        role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
+        role: ['contract', 'admin', 'hr', 'finance'],
       },
       {
         displayName: 'Yearly Timesheet',
         iconName: 'event_note', // A more generic note icon for a yearly sheet
         route: 'hr/yearlyTimesheet',
-        role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
+        role: ['contract', 'admin', 'hr', 'finance'],
       },
       {
         displayName: 'Leaves Generation Batch',
         iconName: 'batch_prediction', // Represents a batch or process
         route: 'hr/batchJob',
-        role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
+        role: ['contract', 'admin', 'hr', 'finance'],
       },
     ],
   },

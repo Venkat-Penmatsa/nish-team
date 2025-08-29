@@ -4,7 +4,7 @@
   --text-color: #e5e7eb;
   --text-color-active: #d1d5db;
   --highlight-color: #60a5fa;
-  --border-radius-menu: 8px;
+  --border-radius-menu: 4px;
   --transition-speed: 0.3s;
 }
 
@@ -25,8 +25,8 @@
   display: flex; /* Use flexbox for alignment */
   align-items: center; /* Vertically center icon and text */
   justify-content: space-between;
-  padding: 12px 16px;
-  margin-bottom: 8px;
+  padding: 8px 8%;
+  margin-bottom: 4px;
   border-radius: var(--border-radius-menu);
   color: var(--text-color);
   text-decoration: none;
