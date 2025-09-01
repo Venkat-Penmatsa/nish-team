@@ -6,6 +6,7 @@ import { SharedService } from 'src/app/services/shared.service';
 import { ChangePwdComponent } from '../../login/change-pwd/change-pwd.component';
 import { Observable } from 'rxjs';
 import { NotificationService } from 'src/app/services/notification.service';
+import { PolicyComponent } from '../policy/policy.component';
 
 @Component({
   selector: 'app-header',
@@ -16,6 +17,7 @@ export class HeaderComponent implements OnInit {
   dataFromServer: Observable<any> | undefined;
   notification: any;
   notificationCount: string | undefined;
+  policies: any;
 
   constructor(
     private router: Router,
@@ -34,6 +36,18 @@ export class HeaderComponent implements OnInit {
       }
     });
     this.getDataServer();
+  }
+
+  openPolicyDialog() {
+    const dialogRef = this.dialog.open(PolicyComponent, {
+      height: '100%',
+      width: '100%',
+      data: this.policies,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   openDialog() {

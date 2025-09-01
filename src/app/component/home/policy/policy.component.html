@@ -1,0 +1,40 @@
+<div class="popUpboxWrap borTop6 p-3">
+  <div class="Leavemodal-body">
+    <div class="modal-header">
+      <h5>Policies</h5>
+
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="close()"
+      ></button>
+    </div>
+
+    <div>
+      <ngx-extended-pdf-viewer
+        [src]="carPolicySource"
+        [showToolbar]="true"
+        [showSidebarButton]="true"
+        [showFindButton]="true"
+        [showPagingButtons]="false"
+        [showDrawEditor]="false"
+        [showStampEditor]="false"
+        [showTextEditor]="false"
+        [showZoomButtons]="true"
+        [showPresentationModeButton]="false"
+        [showOpenFileButton]="false"
+        [showPrintButton]="false"
+        [showDownloadButton]="false"
+        [showSecondaryToolbarButton]="false"
+        [showRotateButton]="false"
+        [showHandToolButton]="false"
+        [showScrollingButton]="false"
+        [showSpreadButton]="false"
+        [showPropertiesButton]="false"
+      >
+        >
+      </ngx-extended-pdf-viewer>
+    </div>
+  </div>
+</div>
