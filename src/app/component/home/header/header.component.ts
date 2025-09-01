@@ -40,8 +40,8 @@ export class HeaderComponent implements OnInit {
 
   openPolicyDialog() {
     const dialogRef = this.dialog.open(PolicyComponent, {
-      height: '100%',
-      width: '100%',
+      height: '80%',
+      width: '80%',
       data: this.policies,
     });
 

@@ -61,7 +61,6 @@ import { PolicyComponent } from './component/home/policy/policy.component';
     FillTimesheetComponent,
     UploadrSelectDirective,
     CarPolicyComponent,
-    PolicyComponent,
   ],
   imports: [
     FormsModule,
