@@ -1,22 +1,47 @@
 <div class="main-container">
   <div class="popup-box-wrap">
     <div class="modal-body">
+      <div class="modal-header">
+        <h5 class="header-title">Policies</h5>
+        <!-- Close button for the modal -->
+        <button mat-icon-button (click)="close()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
       <!-- Angular Material Tab Group -->
-      <mat-tab-group class="tab-container">
-        <!-- Loop through each policy in the array -->
+      <mat-tab-group
+        class="tab-container"
+        (selectedTabChange)="onTabChange($event)"
+      >
+        <!-- Loop through each policy in the array to create tabs -->
         <mat-tab *ngFor="let policy of policies" [label]="policy.name">
-          <ng-template matTabContent>
-            <div class="pdf-viewer-container">
-              <!-- Using an iframe as a replacement for the external PDF viewer library -->
-              <iframe
-                [src]="getSafeUrl(policy.source)"
-                class="pdf-iframe"
-                frameborder="0"
-              ></iframe>
-            </div>
-          </ng-template>
         </mat-tab>
       </mat-tab-group>
+
+      <!-- The ngx-extended-pdf-viewer component is used here as requested -->
+      <div class="pdf-viewer-container">
+        <ngx-extended-pdf-viewer
+          [src]="selectedPolicy.source"
+          [showToolbar]="true"
+          [showSidebarButton]="true"
+          [showFindButton]="true"
+          [showPagingButtons]="true"
+          [showDrawEditor]="false"
+          [showStampEditor]="false"
+          [showTextEditor]="false"
+          [showZoomButtons]="true"
+          [showPresentationModeButton]="false"
+          [showOpenFileButton]="false"
+          [showPrintButton]="false"
+          [showDownloadButton]="false"
+          [showSecondaryToolbarButton]="false"
+          [showRotateButton]="false"
+          [showHandToolButton]="false"
+          [showScrollingButton]="false"
+          [showSpreadButton]="false"
+          [showPropertiesButton]="false"
+        ></ngx-extended-pdf-viewer>
+      </div>
     </div>
   </div>
 </div>

@@ -52,8 +52,8 @@ export class HeaderComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(ChangePwdComponent, {
-      height: '70%',
-      width: '50%',
+      height: '100%',
+      width: '100%',
       data: this.userDet,
     });
 
