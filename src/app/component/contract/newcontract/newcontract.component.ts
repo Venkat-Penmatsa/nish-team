@@ -123,7 +123,7 @@ export class NewcontractComponent implements OnInit {
 
   searchContractId($event: Event) {
     this.successFlag = false;
-    const contractID = ($event.target as HTMLTextAreaElement).value;
+    const contractID = this.newContractForm.controls['nishContractId'].value;
     this.getContractInfo(contractID);
   }
   getContractInfo(contractID) {

@@ -1,54 +1,66 @@
 <div class="page-layout-container">
-    <div class="row">
-        <h1 class="title"> Manage Documents </h1>
+  <div class="row">
+    <h1 class="title">Manage Documents</h1>
+  </div>
+  <div class="row">
+    <div class="col">
+      <mat-form-field class="example-full-width">
+        <mat-label>Create new Category</mat-label>
+        <input matInput [(ngModel)]="newCategory" name="newCategory" />
+      </mat-form-field>
     </div>
-    <div class="row">
-        <div class="col">
-            <mat-form-field class="example-full-width">
-                <mat-label>Create new Category </mat-label>
-                <input matInput [(ngModel)]="newCategory" name='newCategory' [value]='newCategory'>
-            </mat-form-field>
-        </div>
-
-        <div class="col">
-            <button mat-button (click)="createDocsCategory(newCategory)" type="submit">Create
-                Category</button>
-        </div>
-
+    <div class="col">
+      <button
+        mat-button
+        (click)="createDocsCategory(newCategory)"
+        type="submit"
+      >
+        Create Category
+      </button>
     </div>
-    <div class="row" *ngIf="category">
-        <div class="col">
-            <mat-form-field class="example-full-width">
-                <mat-label>Create new sub Category </mat-label>
-                <input matInput [(ngModel)]="newSubCategory" name='newSubCategory' [value]='newSubCategory'>
-            </mat-form-field>
-        </div>
+  </div>
 
-        <div class="col">
-            <button mat-button (click)="createSubDocsCategory(newSubCategory)" type="submit">Create Sub Category for {{category }}
-                </button>
-        </div>
-
+  <div class="row" *ngIf="category">
+    <div class="col">
+      <mat-form-field class="example-full-width">
+        <mat-label>Create new sub Category</mat-label>
+        <input matInput [(ngModel)]="newSubCategory" name="newSubCategory" />
+      </mat-form-field>
     </div>
-
-
-    <div class="row">
-        <div class="col">
-            <mat-form-field style="width: 30%;">
-                <mat-label>Documents Category *</mat-label>
-                <input type="text" matInput [formControl]="assetAssignedToEmp" [matAutocomplete]="auto" />
-                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectionChange($event)" >
-                    <mat-option *ngFor="let option of empList | async" [value]="option">
-                        {{option}}
-                    </mat-option>
-                  </mat-autocomplete>
-            </mat-form-field>
-        </div>
+    <div class="col">
+      <button
+        mat-button
+        (click)="createSubDocsCategory(newSubCategory)"
+        type="submit"
+      >
+        Create Sub Category for {{ category }}
+      </button>
     </div>
+  </div>
 
-    <div *ngIf="category">
-        <app-upload [fileList]="fileList" [category]="category">
-
-        </app-upload>
+  <div class="row">
+    <div class="col">
+      <mat-form-field style="width: 30%">
+        <mat-label>Documents Category *</mat-label>
+        <input
+          type="text"
+          matInput
+          [formControl]="assetAssignedToEmp"
+          [matAutocomplete]="auto"
+        />
+        <mat-autocomplete
+          #auto="matAutocomplete"
+          (optionSelected)="onSelectionChange($event)"
+        >
+          <mat-option *ngFor="let option of empList | async" [value]="option">
+            {{ option }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
     </div>
+  </div>
+
+  <div *ngIf="category">
+    <app-upload [fileList]="fileList" [category]="category"></app-upload>
+  </div>
 </div>

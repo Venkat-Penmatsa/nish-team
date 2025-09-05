@@ -14,6 +14,9 @@
           (empName)="empNameSelected($event)"
         ></app-emp-name>
       </div>
+      <div *ngIf="retrievedImage">
+        <img class="emp-image" [src]="retrievedImage" />
+      </div>
       <div class="col-md-3 col-lg-2 d-grid mb-3 mb-md-0">
         <button
           mat-button

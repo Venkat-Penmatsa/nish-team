@@ -36,10 +36,10 @@
       <span class="icon">&#128105;</span>
       <h2 class="section-title">Employees on Bench</h2>
     </div>
-    <div class="content-list">
-      <span *ngFor="let name of data.employeesOnBench" class="item">{{
-        name
-      }}</span>
+    <div class="content-grid">
+      <div *ngFor="let person of data.employeesOnBench" class="birthday-card">
+        <div class="card-name">{{ person }}</div>
+      </div>
     </div>
   </div>
 
@@ -48,10 +48,13 @@
       <span class="icon">&#128100;</span>
       <h2 class="section-title">Employees Without Contracts</h2>
     </div>
-    <div class="content-list">
-      <span *ngFor="let name of data.employeesWithOutContracts" class="item">{{
-        name
-      }}</span>
+    <div class="content-grid">
+      <div
+        *ngFor="let person of data.employeesWithOutContracts"
+        class="birthday-card"
+      >
+        <div class="card-name">{{ person }}</div>
+      </div>
     </div>
   </div>
 
@@ -141,10 +144,10 @@
     </div>
     <div class="content-details">
       <p>Time sheets are frozen for the following months:</p>
-      <div class="content-list">
-        <span *ngFor="let month of data.freezeTimesheet" class="item">{{
-          month
-        }}</span>
+      <div class="content-grid">
+        <div *ngFor="let person of data.freezeTimesheet" class="birthday-card">
+          <div class="card-name">{{ person }}</div>
+        </div>
       </div>
     </div>
   </div>
@@ -156,10 +159,10 @@
     </div>
     <div class="content-details">
       <p>RTT Days are calculated for the following months:</p>
-      <div class="content-list">
-        <span *ngFor="let month of data.generateRtt" class="item">{{
-          month
-        }}</span>
+      <div class="content-grid">
+        <div *ngFor="let person of data.generateRtt" class="birthday-card">
+          <div class="card-name">{{ person }}</div>
+        </div>
       </div>
     </div>
   </div>

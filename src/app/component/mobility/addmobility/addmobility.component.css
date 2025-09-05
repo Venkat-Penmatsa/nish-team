@@ -1,0 +1,109 @@
+/* General Page Layout and Typography */
+body {
+  font-family: Roboto, sans-serif;
+  background-color: #f5f5f5;
+}
+
+.page-container {
+  padding: 24px;
+}
+
+.title {
+  color: #673ab7; /* Purple color */
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+/* Form Sections and Layout */
+.form-section {
+  padding: 16px 0;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.col {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* Specific component layout adjustments */
+.employee-select {
+  flex: 2; /* Adjust width to fit the component */
+}
+
+.month-select {
+  flex: 1; /* Adjust width for the date picker */
+}
+
+/* Material Design Components */
+mat-form-field {
+  width: 100%;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+}
+
+/* Messages and Alerts */
+.message-container {
+  margin-bottom: 24px;
+}
+
+.alert {
+  padding: 12px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}
+
+.alert-warning {
+  background-color: #fff3cd;
+  border-color: #ffeeba;
+  color: #856404;
+}
+
+/* Submit Button */
+.submit-button-container {
+  text-align: center;
+  margin-top: 24px;
+}
+
+button[mat-button] {
+  background-color: #673ab7; /* Purple background */
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+button[mat-button]:hover {
+  background-color: #512da8; /* Darker purple on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+}

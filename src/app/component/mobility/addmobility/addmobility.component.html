@@ -1,77 +1,105 @@
-<div id="mobility" class="page-layout-container">
-    <div class="row">
-        <h1 class="title"> Manage Employees Mobility Budget </h1>
+<div id="m" class="page-layout-container">
+  <div id="mobility" class="page-container">
+    <div class="header-section">
+      <h1 class="title">Manage Employees Mobility Budget</h1>
     </div>
-    <div class="row">
-        <div class="col-6" style="width: 80%;">
-            <app-emp-name [filterEmpName]="filterEmpName" (empName)="empNameSelected($event)">
-            </app-emp-name>
+
+    <div class="form-section">
+      <div class="row form-row">
+        <div class="col-6 employee-select">
+          <app-emp-name
+            [filterEmpName]="filterEmpName"
+            (empName)="empNameSelected($event)"
+          ></app-emp-name>
+        </div>
+        <div class="col month-select">
+          <mat-form-field appearance="fill">
+            <input
+              matInput
+              [matDatepicker]="dp"
+              placeholder="Select Year"
+              [formControl]="yearSelected"
+            />
+            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+            <mat-datepicker
+              #dp
+              startView="multi-year"
+              (yearSelected)="chosenYearHandler($event, dp)"
+              panelClass="example-month-picker"
+            ></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div class="message-container">
+      <div *ngIf="message" class="alert alert-success">{{ messageDesc }}</div>
+      <div *ngIf="error" class="alert alert-danger">{{ errorDesc }}</div>
+      <div *ngIf="warningDesc" class="alert alert-warning">
+        {{ warningDesc }}
+      </div>
+    </div>
+
+    <form [formGroup]="mobilityForm" class="form-section">
+      <div class="row form-row">
+        <div class="col-4">
+          <div class="checkbox-group">
+            <mat-checkbox
+              #mobilityStatus
+              [checked]="mobilityStatusChecked"
+              formControlName="isMobilityOpted"
+              (change)="enableMobilitySection(mobilityStatus.checked)"
+            >
+              Mobility Opted *
+            </mat-checkbox>
+          </div>
+        </div>
+        <div class="col-6">
+          <mat-form-field appearance="fill" class="form-col">
+            <mat-label>Comments *</mat-label>
+            <textarea matInput formControlName="comments"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row form-row" *ngIf="mobilitySecFlag">
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>Mobility Start Date</mat-label>
+            <input
+              matInput
+              [matDatepicker]="mobilityStartDate"
+              [matDatepickerFilter]="dateFilter"
+              formControlName="mobilityEffectiveDate"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="mobilityStartDate"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #mobilityStartDate></mat-datepicker>
+          </mat-form-field>
         </div>
         <div class="col">
-            <mat-form-field>
-                <input matInput [matDatepicker]="dp" placeholder="Select Year" [formControl]="yearSelected">
-                <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-                <mat-datepicker #dp startView="multi-year" (yearSelected)="chosenYearHandler($event, dp)"
-                    panelClass="example-month-picker">
-                </mat-datepicker>
-            </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Applicable Mobility Budget*</mat-label>
+            <input
+              matInput
+              placeholder="In Euros"
+              formControlName="applicableBudget"
+            />
+          </mat-form-field>
         </div>
+      </div>
+    </form>
+
+    <div class="submit-button-container">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onSubmit()"
+        type="submit"
+      >
+        Submit
+      </button>
     </div>
-
-    <div *ngIf="message" class="alert alert-success">{{ messageDesc }}</div>
-    <div *ngIf="error" class="alert alert-danger">{{ errorDesc }}</div>
-    <div *ngIf="warningDesc" class="alert alert-warning">{{ warningDesc }}</div>
-    
-    &nbsp;&nbsp;
-    &nbsp;&nbsp;
-    &nbsp;&nbsp;
-    <div>
-        <form [formGroup]="mobilityForm">
-            <div class="row">
-                <div class="col-4">
-                    <section class="example-section">
-                        <mat-checkbox #mobilityStatus [checked]="mobilityStatusChecked"
-                            formControlName="isMobilityOpted" (change)="enableMobilitySection(mobilityStatus.checked)">
-                            Mobility Opted *</mat-checkbox>
-                    </section>
-                </div>
-                <div class="col-6">
-                    <mat-form-field class="form-col" style="width: 80%;">
-                        <mat-label>Comments *</mat-label>
-                        <textarea matInput formControlName="comments"></textarea>
-                    </mat-form-field>
-                </div>
-            </div>
-            &nbsp;&nbsp;
-            &nbsp;&nbsp;
-            &nbsp;&nbsp;
-            <div class="row" *ngIf="mobilitySecFlag">
-                <div class="col">
-                    <mat-form-field>
-                        <mat-label>Mobility Start Date</mat-label>
-                        <input matInput [matDatepicker]="mobilityStartDate" [matDatepickerFilter]="dateFilter"
-                            formControlName="mobilityEffectiveDate">
-                        <mat-datepicker-toggle matSuffix [for]="mobilityStartDate"></mat-datepicker-toggle>
-                        <mat-datepicker #mobilityStartDate></mat-datepicker>
-                    </mat-form-field>
-                </div>
-                <div class="col">
-                    <mat-form-field class="field-style">
-                        <mat-label>Applicable Mobility Budget*</mat-label>
-                        <input matInput placeholder="In Euros" formControlName="applicableBudget">
-                    </mat-form-field>
-                </div>
-            </div>
-        </form>
-    </div>
-
-
-    &nbsp;&nbsp;
-    &nbsp;&nbsp;
-    &nbsp;&nbsp;
-
-
-    <div style="text-align: center">
-        <button mat-button  (click)="onSubmit()" type="submit">Submit</button>
-    </div>
+  </div>
 </div>

@@ -1,190 +1,265 @@
-<div id="mobility" class="page-layout-container">
-    <div class="row">
-        <h1 class="title"> Update Employees Monthly Mobility Allowance</h1>
+<div id="m" class="page-layout-container">
+  <div id="mobility" class="page-container">
+    <div class="header-section">
+      <h1 class="title">Update Employees Monthly Mobility Allowance</h1>
     </div>
-    <div class="row">
-        <div class="col-6" style="width: 80%;">
-            <app-emp-name [filterEmpName]="filterEmpName" (empName)="empNameSelected($event)">
-            </app-emp-name>
-        </div>
-        <div class="col">
+
+    <div class="input-row">
+      <div class="input-col-left">
+        <app-emp-name
+          [filterEmpName]="filterEmpName"
+          (empName)="empNameSelected($event)"
+        ></app-emp-name>
+      </div>
+      <div class="input-col-right">
+        <mat-form-field>
+          <input
+            matInput
+            [matDatepicker]="dp"
+            (dateChange)="fetchMobilityDetails($event)"
+            placeholder="Select Month for applying Mobility"
+            [formControl]="yearSelected"
+          />
+          <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+          <mat-datepicker
+            #dp
+            panelClass="example-month-picker"
+          ></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="message-container">
+      <div *ngIf="message" class="alert alert-success">{{ messageDesc }}</div>
+      <div *ngIf="error" class="alert alert-danger">{{ errorDesc }}</div>
+      <div *ngIf="warningDesc" class="alert alert-warning">
+        {{ warningDesc }}
+      </div>
+    </div>
+
+    <div class="form-section">
+      <form [formGroup]="mobilityForm">
+        <div class="form-row">
+          <div class="form-col">
+            <section class="checkbox-section">
+              <mat-checkbox
+                #mobilityStatus
+                [checked]="mobilityStatusChecked"
+                formControlName="isMobilityOpted"
+                (change)="enableMobilitySection(mobilityStatus.checked)"
+              >
+                Mobility Opted *
+              </mat-checkbox>
+            </section>
+          </div>
+          <div class="form-col" *ngIf="mobilitySecFlag">
             <mat-form-field>
-                <input matInput [matDatepicker]="dp" (dateChange)="fetchMobilityDetails($event)"
-                    placeholder="Select Month for applying Mobility" [formControl]="yearSelected">
-                <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-                <mat-datepicker #dp panelClass="example-month-picker">
-                </mat-datepicker>
+              <mat-label>Mobility Start Date</mat-label>
+              <input
+                matInput
+                [matDatepicker]="mobilityStartDate"
+                [matDatepickerFilter]="dateFilter"
+                formControlName="mobilityEffectiveDate"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="mobilityStartDate"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #mobilityStartDate></mat-datepicker>
             </mat-form-field>
-        </div>
-    </div>
-
-    <div *ngIf="message" class="alert alert-success">{{ messageDesc }}</div>
-    <div *ngIf="error" class="alert alert-danger">{{ errorDesc }}</div>
-    <div *ngIf="warningDesc" class="alert alert-warning">{{ warningDesc }}</div>
-
-    &nbsp;&nbsp;
-    &nbsp;&nbsp;
-    &nbsp;&nbsp;
-    <div>
-        <form [formGroup]="mobilityForm">
-            <div class="row">
-                <div class="col">
-                    <section class="example-section">
-                        <mat-checkbox #mobilityStatus [checked]="mobilityStatusChecked"
-                            formControlName="isMobilityOpted" (change)="enableMobilitySection(mobilityStatus.checked)">
-                            Mobility Opted *</mat-checkbox>
-                    </section>
-                </div>
-                <div class="col" *ngIf="mobilitySecFlag">
-                    <mat-form-field>
-                        <mat-label>Mobility Start Date</mat-label>
-                        <input matInput [matDatepicker]="mobilityStartDate" [matDatepickerFilter]="dateFilter"
-                            formControlName="mobilityEffectiveDate">
-                        <mat-datepicker-toggle matSuffix [for]="mobilityStartDate"></mat-datepicker-toggle>
-                        <mat-datepicker #mobilityStartDate></mat-datepicker>
-                    </mat-form-field>
-                </div>
-                <div class="col" *ngIf="mobilitySecFlag">
-                    <mat-form-field class="field-style">
-                        <mat-label>Applicable Mobility Budget*</mat-label>
-                        <input matInput placeholder="In Euros" formControlName="applicableBudget">
-                    </mat-form-field>
-                </div>
-                <div class="col" *ngIf="mobilitySecFlag">
-                    <mat-form-field class="field-style">
-                        <mat-label>Consumed Mobility Budget*</mat-label>
-                        <input matInput placeholder="In Euros" formControlName="consumedBudget">
-                    </mat-form-field>
-                </div>
-                <div class="col" *ngIf="mobilitySecFlag">
-                    <mat-form-field class="field-style">
-                        <mat-label>Available Mobility Budget*</mat-label>
-                        <input matInput placeholder="In Euros" formControlName="availableBudget">
-                    </mat-form-field>
-                </div>
-            </div>
-        </form>
-    </div>
-
-    &nbsp;&nbsp;
-    &nbsp;&nbsp;
-    &nbsp;&nbsp;
-
-    <div *ngIf="mobilitySecFlag">
-
-
-        <div class="divider">
-            <span></span>
-            <span>Apply Monthly Mobility Allowance</span><span></span>
-        </div>
-
-        <form [formGroup]="monthMobilityForm">
-            <div class="row">
-                <div class="col">
-                    <mat-form-field class="field-style">
-                        <mat-label> House Allowance </mat-label>
-                        <input matInput placeholder="In Euros" type="number" defaultValue="0.0"
-                            (change)="calculateTotalAllowance()" formControlName="compHouse">
-                    </mat-form-field>
-                </div>
-                <div class="col">
-                    <mat-form-field class="field-style">
-                        <mat-label> Travel Allowance </mat-label>
-                        <input matInput placeholder="In Euros" type="number" (change)="calculateTotalAllowance()"
-                            defaultValue="0.0" formControlName="compTravelPass">
-                    </mat-form-field>
-                </div>
-                <div class="col">
-                    <mat-form-field class="field-style">
-                        <mat-label> Other Allowance </mat-label>
-                        <input matInput placeholder="In Euros" type="number" (change)="calculateTotalAllowance()"
-                            defaultValue="0.0" formControlName="compOthers">
-                    </mat-form-field>
-                </div>
-
-                <div class="col">
-                    <mat-form-field class="field-style">
-                        <mat-label> Total Allowance </mat-label>
-                        <input matInput placeholder="In Euros" type="number" defaultValue="0.0"
-                            formControlName="totalAllowanceApplied">
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-6">
-                    <mat-form-field class="form-col" style="width: 80%;">
-                        <mat-label>Comments *</mat-label>
-                        <textarea matInput formControlName="comments"></textarea>
-                    </mat-form-field>
-                </div>
-            </div>
-        </form>
-
-        <div style="text-align: center">
-            <button mat-button [disabled]="!mobilityForm.valid" (click)="onSubmit()" type="submit">Submit</button>
-        </div>
-
-
-        <div class="divider">
-            <span></span>
-            <span>Applied Mobility Allowance History </span><span></span>
-        </div>
-
-        <div class="table-responsive">
-            <mat-form-field appearance="standard">
-                <mat-label>Filter</mat-label>
-                <input matInput (keyup)="applyFilter($event)" placeholder="search with Employee id, name,.." #input>
+          </div>
+          <div class="form-col" *ngIf="mobilitySecFlag">
+            <mat-form-field class="field-style">
+              <mat-label>Applicable Mobility Budget*</mat-label>
+              <input
+                matInput
+                placeholder="In Euros"
+                formControlName="applicableBudget"
+              />
             </mat-form-field>
-            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-                <ng-container matColumnDef="monthName" sticky>
-                    <th mat-header-cell *matHeaderCellDef>Month</th>
-                    <td mat-cell *matCellDef="let element"> {{element.monthName}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="compHouse" sticky>
-                    <th mat-header-cell *matHeaderCellDef> Composition House </th>
-                    <td mat-cell *matCellDef="let element" class="tab-col"> {{element.compHouse}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="compTravelPass">
-                    <th mat-header-cell *matHeaderCellDef> Composition Travel</th>
-                    <td mat-cell *matCellDef="let element"> {{element.compTravelPass}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="compOthers">
-                    <th mat-header-cell *matHeaderCellDef> Composition Others </th>
-                    <td mat-cell *matCellDef="let element"> {{element.compOthers}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="totalAllowanceApplied">
-                    <th mat-header-cell *matHeaderCellDef> Total Allowance Applied </th>
-                    <td mat-cell *matCellDef="let element"> {{element.totalAllowanceApplied}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="comments">
-                    <th mat-header-cell *matHeaderCellDef> Comments </th>
-                    <td mat-cell *matCellDef="let element"> {{element.comments}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="uploadedBy">
-                    <th mat-header-cell *matHeaderCellDef> Applied By </th>
-                    <td mat-cell *matCellDef="let element"> {{element.updatedBy}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="updateDate">
-                    <th mat-header-cell *matHeaderCellDef>Applied Date </th>
-                    <td mat-cell *matCellDef="let element"> {{element.updateDate | date:'dd/MMMM/yyyy' }} </td>
-                </ng-container>
-                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
-
-            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+          </div>
+          <div class="form-col" *ngIf="mobilitySecFlag">
+            <mat-form-field class="field-style">
+              <mat-label>Consumed Mobility Budget*</mat-label>
+              <input
+                matInput
+                placeholder="In Euros"
+                formControlName="consumedBudget"
+              />
+            </mat-form-field>
+          </div>
+          <div class="form-col" *ngIf="mobilitySecFlag">
+            <mat-form-field class="field-style">
+              <mat-label>Available Mobility Budget*</mat-label>
+              <input
+                matInput
+                placeholder="In Euros"
+                formControlName="availableBudget"
+              />
+            </mat-form-field>
+          </div>
         </div>
-
+      </form>
     </div>
 
+    <div class="divider">
+      <span></span>
+      <span>Apply Monthly Mobility Allowance</span>
+      <span></span>
+    </div>
 
+    <div class="form-section">
+      <form [formGroup]="monthMobilityForm">
+        <div class="form-row">
+          <div class="form-col">
+            <mat-form-field class="field-style">
+              <mat-label>House Allowance</mat-label>
+              <input
+                matInput
+                placeholder="In Euros"
+                type="number"
+                defaultValue="0.0"
+                (change)="calculateTotalAllowance()"
+                formControlName="compHouse"
+              />
+            </mat-form-field>
+          </div>
+          <div class="form-col">
+            <mat-form-field class="field-style">
+              <mat-label>Travel Allowance</mat-label>
+              <input
+                matInput
+                placeholder="In Euros"
+                type="number"
+                (change)="calculateTotalAllowance()"
+                defaultValue="0.0"
+                formControlName="compTravelPass"
+              />
+            </mat-form-field>
+          </div>
+          <div class="form-col">
+            <mat-form-field class="field-style">
+              <mat-label>Other Allowance</mat-label>
+              <input
+                matInput
+                placeholder="In Euros"
+                type="number"
+                (change)="calculateTotalAllowance()"
+                defaultValue="0.0"
+                formControlName="compOthers"
+              />
+            </mat-form-field>
+          </div>
+          <div class="form-col">
+            <mat-form-field class="field-style">
+              <mat-label>Total Allowance</mat-label>
+              <input
+                matInput
+                placeholder="In Euros"
+                type="number"
+                defaultValue="0.0"
+                formControlName="totalAllowanceApplied"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-col-comments">
+            <mat-form-field class="form-col">
+              <mat-label>Comments *</mat-label>
+              <textarea matInput formControlName="comments"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
 
+      <div class="button-section">
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="!mobilityForm.valid"
+          (click)="onSubmit()"
+          type="submit"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+
+    <div class="divider">
+      <span></span>
+      <span>Applied Mobility Allowance History</span>
+      <span></span>
+    </div>
+
+    <div class="table-container">
+      <mat-form-field appearance="standard">
+        <mat-label>Filter</mat-label>
+        <input
+          matInput
+          (keyup)="applyFilter($event)"
+          placeholder="search with Employee id, name,.."
+          #input
+        />
+      </mat-form-field>
+      <div class="table-responsive">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <ng-container matColumnDef="monthName" sticky>
+            <th mat-header-cell *matHeaderCellDef>Month</th>
+            <td mat-cell *matCellDef="let element">{{ element.monthName }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="compHouse" sticky>
+            <th mat-header-cell *matHeaderCellDef>Composition House</th>
+            <td mat-cell *matCellDef="let element">{{ element.compHouse }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="compTravelPass">
+            <th mat-header-cell *matHeaderCellDef>Composition Travel</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.compTravelPass }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="compOthers">
+            <th mat-header-cell *matHeaderCellDef>Composition Others</th>
+            <td mat-cell *matCellDef="let element">{{ element.compOthers }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="totalAllowanceApplied">
+            <th mat-header-cell *matHeaderCellDef>Total Allowance Applied</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.totalAllowanceApplied }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="comments">
+            <th mat-header-cell *matHeaderCellDef>Comments</th>
+            <td mat-cell *matCellDef="let element">{{ element.comments }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="uploadedBy">
+            <th mat-header-cell *matHeaderCellDef>Applied By</th>
+            <td mat-cell *matCellDef="let element">{{ element.updatedBy }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="updateDate">
+            <th mat-header-cell *matHeaderCellDef>Applied Date</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.updateDate | date : "dd/MMMM/yyyy" }}
+            </td>
+          </ng-container>
+          <tr
+            mat-header-row
+            *matHeaderRowDef="displayedColumns; sticky: true"
+          ></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+      ></mat-paginator>
+    </div>
+  </div>
 </div>

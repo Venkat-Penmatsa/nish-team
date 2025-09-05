@@ -13,17 +13,21 @@
 
     <div class="form-section">
       <div class="form-row">
-        <mat-form-field class="form-field">
-          <mat-label>Search with NISH Contract ID *</mat-label>
-          <input
-            matInput
-            formControlName="nishContractId"
-            (change)="searchContractId($event)"
-          />
+        <mat-form-field class="form-field" style="width: 80%">
+          <mat-label>Search NISH Contract ID *</mat-label>
+          <input matInput formControlName="nishContractId" />
         </mat-form-field>
-        <div class="form-row-group">
+        <button
+          type="button"
+          style="width: 60%"
+          class="btn btn-clone"
+          (click)="searchContractId($event)"
+        >
+          Search NISH Contract
+        </button>
+        <div class="form-row-group" style="width: 100%">
           <mat-form-field class="form-field flex-grow">
-            <mat-label>Enter NISH Contract ID *</mat-label>
+            <mat-label>Clone NISH Contract ID *</mat-label>
             <input
               matInput
               formControlName="searchNishContractId"
@@ -354,8 +358,9 @@
         mat-button
         (click)="onSubmit()"
         [disabled]="!newContractForm.valid"
-        type="submit"
+        type="button"
         class="btn btn-submit"
+        (keydown.enter)="$event.preventDefault()"
       >
         Manage Contract
       </button>

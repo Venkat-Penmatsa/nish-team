@@ -1,0 +1,34 @@
+/*
+This CSS file is specifically for styling the Angular Material components
+that don't have direct Bootstrap class equivalents.
+*/
+
+:host {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+}
+
+.mat-mdc-form-field {
+  --mat-form-field-container-background-color: transparent;
+  --mat-form-field-focus-state-background-color: transparent;
+  --mat-form-field-outline-color: #495057; /* Bootstrap gray /
+--mat-form-field-label-text-color: #f8f9fa; / Bootstrap light text */
+}
+
+.mat-mdc-button.mat-mdc-button-base {
+  border-radius: 0.75rem;
+}
+
+.mat-mdc-text-field-wrapper {
+  background-color: transparent !important;
+}
+
+.mat-mdc-option.mdc-list-item {
+  background-color: #343a40 !important;
+  color: #f8f9fa !important;
+}
+
+.mat-mdc-option:hover:not(.mdc-list-item--disabled) {
+  background-color: #495057 !important;
+}
