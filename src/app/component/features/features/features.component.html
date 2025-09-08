@@ -58,13 +58,32 @@
     </div>
     <div class="col-3" style="float: right">
       <button
-        style="font-size: 14px; color: white; margin: 0"
+        style="
+          font-size: 14px;
+          color: white;
+          margin: 0;
+          display: flex;
+          align-items: center;
+        "
         mat-button
         [matMenuTriggerFor]="menuI"
       >
+        <div style="display: flex; align-items: center">
+          <img
+            [src]="retrievedImage"
+            (load)="imageLoading = false"
+            (error)="imageLoading = false"
+            style="
+              width: 60px;
+              height: 60px;
+              border-radius: 50%;
+              object-fit: cover;
+              margin-right: 12px;
+            "
+          />
+        </div>
         Hello,{{ shared.loggedUsername }}
       </button>
-      <!-- #enddocregion mat-menu-trigger-for -->
       <mat-menu #menuI="matMenu">
         <p mat-menu-item>Role: {{ shared.userRole }}</p>
         <a mat-menu-item (click)="changePwd()" style="text-decoration: none"

@@ -15,7 +15,13 @@
         ></app-emp-name>
       </div>
       <div *ngIf="retrievedImage">
-        <img class="emp-image" [src]="retrievedImage" />
+        <img
+          class="emp-image"
+          [src]="retrievedImage"
+          (load)="imageLoading = false"
+          (error)="onImageError()"
+          [hidden]="imageLoading"
+        />
       </div>
       <div class="col-md-3 col-lg-2 d-grid mb-3 mb-md-0">
         <button

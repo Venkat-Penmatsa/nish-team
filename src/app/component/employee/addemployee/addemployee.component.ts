@@ -30,7 +30,7 @@ const moment = _moment;
   styleUrls: ['./addemployee.component.css'],
   providers: [DatePipe],
 })
-export class AddemployeeComponent implements OnInit, OnChanges {
+export class AddemployeeComponent implements OnInit {
   public employeeId: number;
   public successFlag: Boolean = false;
   showMarriageSectionFlag = false;
@@ -57,6 +57,7 @@ export class AddemployeeComponent implements OnInit, OnChanges {
   loading$: any;
   onboardingStatus: any;
   user: User;
+  imageLoading = false;
 
   @ViewChild('marriageCheckbox') marriageCheckbox: ElementRef;
 
@@ -68,10 +69,6 @@ export class AddemployeeComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit(): void {
-    this.loading$ = this.loader.loading$;
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
     this.loading$ = this.loader.loading$;
   }
 
@@ -188,6 +185,27 @@ export class AddemployeeComponent implements OnInit, OnChanges {
     (event.target as HTMLImageElement).style.display = 'none';
   }
 
+  loadEmployeeImage(empName: string) {
+    console.log('loadEmployeeImage...' + empName);
+    this.imageLoading = true;
+    this.retrievedImage = null;
+    this.employeeService.getEmployeeImage(empName).subscribe({
+      next: (imgUrl: string) => {
+        this.retrievedImage = imgUrl;
+        // imageLoading will be set to false in (load) event in HTML
+      },
+      error: () => {
+        this.imageLoading = false;
+        this.retrievedImage = null;
+      },
+    });
+  }
+
+  onImageError() {
+    this.imageLoading = false;
+    this.retrievedImage = 'assets/images/default.jpg'; // fallback image
+  }
+
   searchEmployees() {
     this.successFlag = false;
     if (this.empName != '') {
@@ -219,8 +237,8 @@ export class AddemployeeComponent implements OnInit, OnChanges {
           this.disablePermanentSectionFlag = true;
         }
 
-        this.base64Data = this.employee.empImage;
-        this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+        // this.base64Data = this.employee.empImage;
+        //  this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
 
         this.empCreationForm.patchValue({
           empBasicInfo: {
@@ -248,6 +266,7 @@ export class AddemployeeComponent implements OnInit, OnChanges {
           },
         });
       });
+      this.loadEmployeeImage(emparr[0]);
     }
   }
 
