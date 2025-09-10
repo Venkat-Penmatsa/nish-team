@@ -70,7 +70,9 @@
       >
         <div style="display: flex; align-items: center">
           <img
-            [src]="retrievedImage"
+            [src]="
+              retrievedImage ? retrievedImage : 'assets/images/default.jpg'
+            "
             (load)="imageLoading = false"
             (error)="imageLoading = false"
             style="
