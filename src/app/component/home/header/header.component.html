@@ -6,7 +6,7 @@
           <img src="assets/images/nishtechlogo.png" alt="" title="" />
         </div>
       </div>
-      <div class="col-md-9" align="center">
+      <div class="col-md-9" style="width: 70%; flex: 0 auto" align="center">
         <h1>NEPtune</h1>
       </div>
       <div class="col-md-1" style="float: right; text-align: center">
@@ -16,6 +16,20 @@
           mat-button
           [matMenuTriggerFor]="menuI"
         >
+          <img
+            [src]="
+              retrievedImage ? retrievedImage : 'assets/images/default.jpg'
+            "
+            (load)="imageLoading = false"
+            (error)="imageLoading = false"
+            style="
+              width: 60px;
+              height: 60px;
+              border-radius: 50%;
+              object-fit: cover;
+              margin-right: 12px;
+            "
+          />
           Hello {{ userName }}
         </button>
         <!-- #enddocregion mat-menu-trigger-for -->

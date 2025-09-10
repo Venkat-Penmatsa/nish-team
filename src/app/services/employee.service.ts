@@ -24,4 +24,11 @@ export class EmployeeService {
       { headers }
     );
   }
+
+  getEmployeeImage(employee: String): Observable<any> {
+    const headers = { 'Content-type': 'application/json' };
+    return this.http.get(`${this.baseUrl}/employee/employeeImage/` + employee, {
+      headers,
+    });
+  }
 }
