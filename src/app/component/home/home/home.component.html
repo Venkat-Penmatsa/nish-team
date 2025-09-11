@@ -11,7 +11,13 @@
             <div class="boxCont">
               <div class="row">
                 <div class="col pt-2">
-                  <img src="assets/user_image.png" alt="" title="" />
+                  <img
+                    [src]="
+                      retrievedImage ? retrievedImage : 'assets/user_image.png'
+                    "
+                    (load)="imageLoading = false"
+                    (error)="imageLoading = false"
+                  />
                 </div>
                 <div class="col">
                   <div class="table-responsive mt-3 customScroll">
