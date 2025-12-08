@@ -151,6 +151,34 @@ export class TimesheetService {
     );
   }
 
+  downloadiniFlowInvoice(payload: any): Observable<any> {
+    const headers = {
+      'Content-type': 'application/pdf',
+      Accept: 'application/pdf',
+    };
+    return this.http.post(
+      `${this.baseUrl}/invoice/generateIniFlowPdf`,
+      payload,
+      {
+        responseType: 'arraybuffer',
+      }
+    );
+  }
+
+  sendInvoiceToIniFlow(payload: any): Observable<any> {
+    const headers = {
+      'Content-type': 'application/pdf',
+      Accept: 'application/pdf',
+    };
+    return this.http.post(
+      `${this.baseUrl}/invoice/sendInvoiceToIniFlow`,
+      payload,
+      {
+        responseType: 'arraybuffer',
+      }
+    );
+  }
+
   downloadCreditNote(
     nishContractId: any,
     empId: any,

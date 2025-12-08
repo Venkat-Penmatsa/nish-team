@@ -49,6 +49,7 @@ import { InvoiceDetailsComponent } from './component/invoice/invoice-details/inv
 import { InvoiceReportComponent } from './component/invoice/invoice-report/invoice-report.component';
 import { EmployeeExitComponent } from './component/employee/employee-exit/employee-exit.component';
 import { InvoiceComponent } from './component/invoice/invoice/invoice.component';
+import { TimeSheetInvoiceComponent } from './component/emptimesheet/time-sheet-invoice/time-sheet-invoice.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -108,6 +109,10 @@ const routes: Routes = [
       {
         path: 'emptimesheet/filltimesheet',
         component: FillEmpTimesheetComponent,
+      },
+      {
+        path: 'emptimesheet/timeSheetInvoice',
+        component: TimeSheetInvoiceComponent,
       },
       {
         path: 'emptimesheet/allemptimesheet',

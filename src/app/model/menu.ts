@@ -180,6 +180,12 @@ export let menu: NavItem[] = [
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
       {
+        displayName: 'Fill New Timesheet',
+        iconName: 'edit_calendar', // An icon for filling/editing a calendar
+        route: 'emptimesheet/timeSheetInvoice',
+        role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
+      },
+      {
         displayName: 'All Emp TimeSheet Report',
         iconName: 'bar_chart', // A chart for a report
         route: 'emptimesheet/allemptimesheet',

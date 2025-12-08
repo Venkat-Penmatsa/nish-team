@@ -21,6 +21,7 @@ export class ManageClientComponent implements OnInit {
   clientDetails: any;
   user: User;
   loading$: any;
+  isActive: boolean = true;
 
   newClientForm: FormGroup = new FormGroup({});
 
@@ -51,6 +52,11 @@ export class ManageClientComponent implements OnInit {
       box: [''],
       floor: [''],
       vat: ['', Validators.required],
+      iniFlowCustomerId: [''],
+      currency: ['', Validators.required],
+      language: ['', Validators.required],
+      isActive: ['', Validators.required],
+      paymentTermsCode: ['', Validators.required],
     });
   }
 
@@ -79,6 +85,11 @@ export class ManageClientComponent implements OnInit {
             box: res.box,
             floor: res.floor,
             vat: res.vat,
+            iniFlowCustomerId: res.iniFlowCustomerId,
+            currency: res.currency,
+            language: res.language,
+            isActive: res.isActive,
+            paymentTermsCode: res.paymentTermsCode,
           });
         });
     }

@@ -81,6 +81,7 @@ import { EmployeeExitComponent } from './component/employee/employee-exit/employ
 import { InvoiceComponent } from './component/invoice/invoice/invoice.component';
 import { NewInvoiceComponent } from './component/invoice/new-invoice/new-invoice.component';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { TimeSheetInvoiceComponent } from './component/emptimesheet/time-sheet-invoice/time-sheet-invoice.component';
 
 @NgModule({
   declarations: [
@@ -144,6 +145,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     EmployeeExitComponent,
     InvoiceComponent,
     NewInvoiceComponent,
+    TimeSheetInvoiceComponent,
   ],
   imports: [
     ReactiveFormsModule,
