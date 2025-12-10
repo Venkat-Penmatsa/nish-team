@@ -174,7 +174,7 @@ export class TimesheetService {
       `${this.baseUrl}/invoice/sendInvoiceToIniFlow`,
       payload,
       {
-        responseType: 'arraybuffer',
+        responseType: 'json',
       }
     );
   }

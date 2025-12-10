@@ -39,10 +39,10 @@
   </div>
 
   <div *ngIf="status === 'Success'" class="alert alert-success">
-    Timesheet saved successfully
+    {{ successMessage }}
   </div>
   <div *ngIf="status === 'Failed'" class="alert alert-danger">
-    Due to technical error timesheet is not saved
+    Failed -- {{ errorDesc }}
   </div>
   <div *ngIf="status === 'invoiceFailed'" class="alert alert-danger">
     Invoice generation failed, please contact technical team for the issue
@@ -101,7 +101,7 @@
             <td style="width: 10%" scope="row" [(ngModel)]="row.noOfHrs">
               {{ row.noOfHrs }}
             </td>
-            <td style="padding-top: 20px">
+            <td class="button-container-vertical" style="padding-top: 20px">
               <button
                 *ngIf="row.contractType == 'Billing'"
                 mat-raised-button
@@ -109,16 +109,24 @@
               >
                 Invoice Download
               </button>
+
               <button
-                *ngIf="row.contractType == 'Billing'"
+                *ngIf="
+                  row.contractType == 'Billing' && row.enitity == 'nishtech'
+                "
                 mat-raised-button
                 (click)="SendInvoiceToIniFlow(row.contractId)"
               >
-                Send to IniFlow
+                Send to Peppol
               </button>
             </td>
             <td style="padding-top: 20px">
               <button
+                *ngIf="
+                  row.contractType == 'Billing' &&
+                  row.enitity == 'nishtech' &&
+                  row.iniFlowInvoiceId
+                "
                 mat-raised-button
                 (click)="downloadCreditNote(row.contractId)"
               >
@@ -227,6 +235,7 @@
         <thead class="thead-light">
           <tr>
             <th>Select file</th>
+            <th>File Id</th>
             <th>File Name</th>
             <th>File Type</th>
             <th>Status</th>
@@ -246,13 +255,17 @@
               />
             </td>
             <td>
+              {{ doc?.timeSheetDocId }}
+            </td>
+
+            <td>
               {{ doc?.fileName }}
             </td>
             <td>
-              {{ doc?.docStatus }}
+              {{ doc?.documentType }}
             </td>
             <td>
-              {{ doc?.documentType }}
+              {{ doc?.docStatus }}
             </td>
             <td>
               {{ doc?.uploadedBy }}

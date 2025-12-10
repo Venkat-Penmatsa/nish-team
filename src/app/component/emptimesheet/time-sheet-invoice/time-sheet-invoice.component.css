@@ -109,3 +109,14 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+/* In your CSS file */
+td button {
+  display: block; /* Forces the button to take up the full width */
+  margin-bottom: 10px; /* Adds space below each button */
+}
+
+/* Optional: To remove the bottom margin on the last button */
+td button:last-child {
+  margin-bottom: 0;
+}

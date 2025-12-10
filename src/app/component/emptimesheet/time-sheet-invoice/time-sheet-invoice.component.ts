@@ -27,6 +27,8 @@ export class TimeSheetInvoiceComponent implements OnInit {
   dataLoaded: boolean = false;
   overTimeFlag: boolean = false;
   status: string = '';
+  errorDesc: string = '';
+  successMessage: string = '';
   documentList: any;
   public file: File[];
   isAdmin: boolean = false;
@@ -130,6 +132,7 @@ export class TimeSheetInvoiceComponent implements OnInit {
       .updateTimeSheet(this.timeSheetDetails)
       .subscribe((data) => {
         this.status = data.responseStatus;
+        this.successMessage = 'Timesheet saved successfully';
       });
 
     console.log(' rows........' + this.rows);
@@ -216,6 +219,7 @@ export class TimeSheetInvoiceComponent implements OnInit {
 
   downloadInvoice(contractId) {
     console.log('Downloading the invoice ');
+    this.spinner.show();
     this.status = '';
     const user: any = JSON.parse(localStorage.getItem('userDetails') || '{}');
     let contract = contractId.split(' >>');
@@ -235,18 +239,25 @@ export class TimeSheetInvoiceComponent implements OnInit {
       '_' +
       emp[1] +
       '.pdf';
-    this.timesheetService
-      .downloadiniFlowInvoice(payload)
-      .subscribe((data: Blob) => {
-        console.log(data);
-
+    this.timesheetService.downloadiniFlowInvoice(payload).subscribe({
+      next: (data: Blob) => {
         let blob: any = new Blob([data], { type: 'application/pdf' });
-        importedSaveAs(blob, 'invoice.pdf');
-      });
+        importedSaveAs(blob, fileName);
+        this.fetchTimesheet();
+      },
+      error: (error) => {
+        console.error('Error downloading invoice:', error);
+        this.status = 'Failed';
+      },
+      complete: () => {
+        this.spinner.hide();
+      },
+    });
   }
 
   SendInvoiceToIniFlow(contractId) {
-    console.log('Downloading the invoice ');
+    console.log('sending the invoice to IniFlow ');
+    this.spinner.show();
     this.status = '';
     const user: any = JSON.parse(localStorage.getItem('userDetails') || '{}');
     let contract = contractId.split(' >>');
@@ -264,14 +275,16 @@ export class TimeSheetInvoiceComponent implements OnInit {
 
     if (!invoiceFileId) {
       this.status = 'validationFailed';
+      this.spinner.hide();
       return;
     }
     let tsRequiredFlag = this.rows.find(
       (item: any) => item.contractId.split(' >>')[0] === contract[0]
     )?.tsRequiredFlag;
 
-    if (!attachmentsFileId && tsRequiredFlag === 'Yes') {
+    if (attachmentsFileId.length == 0 && tsRequiredFlag === 'YES') {
       this.status = 'validationFailed';
+      this.spinner.hide();
       return;
     }
 
@@ -286,9 +299,22 @@ export class TimeSheetInvoiceComponent implements OnInit {
       additionalInvoiceFileIds: attachmentsFileId,
     };
 
-    this.timesheetService.sendInvoiceToIniFlow(payload).subscribe((data) => {
-      console.log(data);
-    });
+    this.timesheetService
+      .sendInvoiceToIniFlow(payload)
+      .subscribe((data: any) => {
+        console.log(data);
+        if (data.responseStatus === 'Failed') {
+          this.status = 'Failed';
+          this.errorDesc = data.errorDescription;
+        }
+        if (data.responseStatus === 'Success') {
+          this.status = 'Success';
+          this.successMessage =
+            'Invoice sent to IniFlow successfully, generated peppol invoice id is ' +
+            data.peppolInvoiceId;
+        }
+        this.spinner.hide();
+      });
   }
 
   download(filename): void {
