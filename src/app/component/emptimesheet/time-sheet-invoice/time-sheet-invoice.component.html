@@ -120,7 +120,18 @@
                 Send to Peppol
               </button>
             </td>
-            <td style="padding-top: 20px">
+            <td class="button-container-vertical" style="padding-top: 20px">
+              <button
+                *ngIf="
+                  row.contractType == 'Billing' && row.enitity == 'nishtech'
+                "
+                mat-raised-button
+                (click)="downloadCreditNote(row.contractId)"
+              >
+                CreditNote Download <br />
+              </button>
+              <label>{{ row.cancelledInvoice }}</label>
+
               <button
                 *ngIf="
                   row.contractType == 'Billing' &&
@@ -128,11 +139,10 @@
                   row.iniFlowInvoiceId
                 "
                 mat-raised-button
-                (click)="downloadCreditNote(row.contractId)"
+                (click)="SendInvoiceToIniFlow(row.contractId)"
               >
-                CN Download <br />
+                Send CN to Peppol
               </button>
-              <label>{{ row.cancelledInvoice }}</label>
             </td>
             <td
               *ngFor="let timeData of row.contractTimeSheetList; let i = index"

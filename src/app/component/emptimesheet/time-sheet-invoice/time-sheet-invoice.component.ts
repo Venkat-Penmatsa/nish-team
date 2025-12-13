@@ -78,42 +78,6 @@ export class TimeSheetInvoiceComponent implements OnInit {
     });
   }
 
-  downloadCreditNote(contractId) {
-    console.log('Downloading the credit Note ');
-    this.status = '';
-    const user: any = JSON.parse(localStorage.getItem('userDetails') || '{}');
-    let contract = contractId.split(' >>');
-    let emp = this.empName.split('-');
-    let fileName =
-      'CreditNote' +
-      moment(this.selectedDate).format('MM-YYYY') +
-      '_' +
-      emp[0] +
-      '.xls';
-    this.timesheetService
-      .downloadCreditNote(
-        contract[0],
-        emp[0],
-        moment(this.selectedDate).format('DD-MM-YYYY'),
-        user.empId
-      )
-      .subscribe((data: any) => {
-        console.log(data);
-
-        let blob: any = new Blob([data], {
-          type: 'text/json; charset=utf-8',
-        });
-        console.log(blob);
-        const size = blob.size;
-        if (size > 0) {
-          importedSaveAs(blob, fileName);
-        } else {
-          this.status = 'invoiceFailed';
-        }
-      });
-    this.fetchTimesheet();
-  }
-
   checkNumber(num: any) {
     return (
       (typeof num.filledData === 'number' ||
@@ -255,6 +219,105 @@ export class TimeSheetInvoiceComponent implements OnInit {
     });
   }
 
+  downloadCreditNote(contractId) {
+    console.log('Downloading the invoice ');
+    this.spinner.show();
+    this.status = '';
+    const user: any = JSON.parse(localStorage.getItem('userDetails') || '{}');
+    let contract = contractId.split(' >>');
+    let emp = this.empName.split('-');
+    const payload: any = {
+      contractId: contract[0],
+      employeeId: emp[0],
+      requestedDate: moment(this.selectedDate).format('DD-MM-YYYY'),
+      requestedBy: user.empId,
+      language: 'EN',
+      invoiceType: 'creditNote',
+    };
+
+    let fileName =
+      'CreditNote_' +
+      moment(this.selectedDate).format('MM-YYYY') +
+      '_' +
+      emp[1] +
+      '.pdf';
+    this.timesheetService.downloadiniFlowInvoice(payload).subscribe({
+      next: (data: Blob) => {
+        let blob: any = new Blob([data], { type: 'application/pdf' });
+        importedSaveAs(blob, fileName);
+        this.fetchTimesheet();
+      },
+      error: (error) => {
+        console.error('Error downloading credit note:', error);
+        this.status = 'Failed';
+        this.errorDesc = error.message;
+        this.spinner.hide();
+      },
+      complete: () => {
+        this.spinner.hide();
+      },
+    });
+  }
+
+  SendCNToIniFlow(contractId) {
+    console.log('sending the CN to IniFlow ');
+    this.spinner.show();
+    this.status = '';
+    const user: any = JSON.parse(localStorage.getItem('userDetails') || '{}');
+    let contract = contractId.split(' >>');
+    let emp = this.empName.split('-');
+    let invoiceFileId =
+      this.documentList.find(
+        (item: any) =>
+          item.selectedFile && item.documentType === 'INVOICE_GENERATED'
+      )?.timeSheetDocId || '';
+
+    if (!invoiceFileId) {
+      this.status = 'validationFailed';
+      this.spinner.hide();
+      return;
+    }
+
+    let cnFileId =
+      this.documentList.find(
+        (item: any) => item.selectedFile && item.documentType === 'CREDIT_NOTE'
+      )?.timeSheetDocId || '';
+
+    if (!cnFileId) {
+      this.status = 'validationFailed';
+      this.spinner.hide();
+      return;
+    }
+
+    const payload: any = {
+      contractId: contract[0],
+      employeeId: emp[0],
+      requestedDate: moment(this.selectedDate).format('DD-MM-YYYY'),
+      requestedBy: user.empId,
+      language: 'EN',
+      invoiceType: 'invoice',
+      invoiceFileId: invoiceFileId,
+      creditNoteFileId: cnFileId,
+    };
+
+    this.timesheetService
+      .sendInvoiceToIniFlow(payload)
+      .subscribe((data: any) => {
+        console.log(data);
+        if (data.responseStatus === 'Failed') {
+          this.status = 'Failed';
+          this.errorDesc = data.errorDescription;
+        }
+        if (data.responseStatus === 'Success') {
+          this.status = 'Success';
+          this.successMessage =
+            'Invoice sent to IniFlow successfully, generated peppol invoice id is ' +
+            data.peppolInvoiceId;
+        }
+        this.spinner.hide();
+      });
+  }
+
   SendInvoiceToIniFlow(contractId) {
     console.log('sending the invoice to IniFlow ');
     this.spinner.show();
@@ -264,7 +327,8 @@ export class TimeSheetInvoiceComponent implements OnInit {
     let emp = this.empName.split('-');
     let invoiceFileId =
       this.documentList.find(
-        (item: any) => item.selectedFile && item.documentType === 'Invoice'
+        (item: any) =>
+          item.selectedFile && item.documentType === 'INVOICE_GENERATED'
       )?.timeSheetDocId || '';
 
     let attachmentsFileId: [] = this.documentList
