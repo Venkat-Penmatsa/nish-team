@@ -181,6 +181,27 @@ export class TimeSheetInvoiceComponent implements OnInit {
     });
   }
 
+  getInvoice(contractId: string): Boolean {
+    let contract = contractId.split(' >>');
+    let invoiceFileName = 'Invoice_' + contract[0] + '.pdf';
+    let invoiceFile = this.documentList.find(
+      (item: any) =>
+        item.documentType === 'INVOICE_GENERATED' &&
+        item.fileName === invoiceFileName
+    );
+    return invoiceFile ? true : false;
+  }
+
+  getCreditNote(contractId: string): Boolean {
+    let contract = contractId.split(' >>');
+    let invoiceFileName = 'CreditNote_' + contract[0] + '.pdf';
+    let invoiceFile = this.documentList.find(
+      (item: any) =>
+        item.documentType === 'CREDIT_NOTE' && item.fileName === invoiceFileName
+    );
+    return invoiceFile ? true : false;
+  }
+
   downloadInvoice(contractId) {
     console.log('Downloading the invoice ');
     this.spinner.show();
@@ -226,6 +247,21 @@ export class TimeSheetInvoiceComponent implements OnInit {
     const user: any = JSON.parse(localStorage.getItem('userDetails') || '{}');
     let contract = contractId.split(' >>');
     let emp = this.empName.split('-');
+    let invoiceFileName = 'Invoice_' + contract[0] + '.pdf';
+    let invoiceFileId =
+      this.documentList.find(
+        (item: any) =>
+          item.selectedFile &&
+          item.documentType === 'INVOICE_GENERATED' &&
+          item.fileName === invoiceFileName
+      )?.timeSheetDocId || '';
+
+    if (!invoiceFileId) {
+      this.status = 'validationFailed';
+      this.spinner.hide();
+      return;
+    }
+
     const payload: any = {
       contractId: contract[0],
       employeeId: emp[0],
@@ -233,6 +269,7 @@ export class TimeSheetInvoiceComponent implements OnInit {
       requestedBy: user.empId,
       language: 'EN',
       invoiceType: 'creditNote',
+      invoiceFileId: invoiceFileId,
     };
 
     let fileName =
@@ -266,17 +303,6 @@ export class TimeSheetInvoiceComponent implements OnInit {
     const user: any = JSON.parse(localStorage.getItem('userDetails') || '{}');
     let contract = contractId.split(' >>');
     let emp = this.empName.split('-');
-    let invoiceFileId =
-      this.documentList.find(
-        (item: any) =>
-          item.selectedFile && item.documentType === 'INVOICE_GENERATED'
-      )?.timeSheetDocId || '';
-
-    if (!invoiceFileId) {
-      this.status = 'validationFailed';
-      this.spinner.hide();
-      return;
-    }
 
     let cnFileId =
       this.documentList.find(
@@ -295,8 +321,7 @@ export class TimeSheetInvoiceComponent implements OnInit {
       requestedDate: moment(this.selectedDate).format('DD-MM-YYYY'),
       requestedBy: user.empId,
       language: 'EN',
-      invoiceType: 'invoice',
-      invoiceFileId: invoiceFileId,
+      invoiceType: 'creditNote',
       creditNoteFileId: cnFileId,
     };
 

@@ -64,6 +64,7 @@ export class InvoiceReportComponent implements OnInit {
 
   displayedColumns: string[] = [
     'invoiceId',
+    'iniFlowInvoiceId',
     'employeeId',
     'nishContractId',
     'clientName',
@@ -149,6 +150,7 @@ export class InvoiceReportComponent implements OnInit {
             new InvoiceReport(
               e.employeeId,
               e.invoiceId,
+              e.iniFlowInvoiceId,
               e.nishContractId,
               e.clientName,
               e.vendorName,
@@ -198,6 +200,7 @@ export class InvoiceReport {
   constructor(
     private employeeId: string,
     private invoiceId: string,
+    private iniFlowInvoiceId: string,
     private nishContractId: string,
     private clientName: string,
     private vendorName: string,

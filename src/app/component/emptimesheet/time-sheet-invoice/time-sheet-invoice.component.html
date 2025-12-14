@@ -112,7 +112,9 @@
 
               <button
                 *ngIf="
-                  row.contractType == 'Billing' && row.enitity == 'nishtech'
+                  row.contractType == 'Billing' &&
+                  row.enitity == 'nishtech' &&
+                  getInvoice(row.contractId)
                 "
                 mat-raised-button
                 (click)="SendInvoiceToIniFlow(row.contractId)"
@@ -123,26 +125,29 @@
             <td class="button-container-vertical" style="padding-top: 20px">
               <button
                 *ngIf="
-                  row.contractType == 'Billing' && row.enitity == 'nishtech'
+                  row.contractType == 'Billing' &&
+                  row.enitity == 'nishtech' &&
+                  getInvoice(row.contractId)
                 "
                 mat-raised-button
                 (click)="downloadCreditNote(row.contractId)"
               >
                 CreditNote Download <br />
               </button>
-              <label>{{ row.cancelledInvoice }}</label>
-
               <button
                 *ngIf="
                   row.contractType == 'Billing' &&
                   row.enitity == 'nishtech' &&
-                  row.iniFlowInvoiceId
+                  getCreditNote(row.contractId)
                 "
                 mat-raised-button
-                (click)="SendInvoiceToIniFlow(row.contractId)"
+                (click)="SendCNToIniFlow(row.contractId)"
               >
                 Send CN to Peppol
               </button>
+              <label *ngIf="row.cancelledInvoice">{{
+                row.cancelledInvoice
+              }}</label>
             </td>
             <td
               *ngFor="let timeData of row.contractTimeSheetList; let i = index"
