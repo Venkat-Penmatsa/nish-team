@@ -127,6 +127,7 @@
                 *ngIf="
                   row.contractType == 'Billing' &&
                   row.enitity == 'nishtech' &&
+                  row.iniFlowInvoiceId &&
                   getInvoice(row.contractId)
                 "
                 mat-raised-button
