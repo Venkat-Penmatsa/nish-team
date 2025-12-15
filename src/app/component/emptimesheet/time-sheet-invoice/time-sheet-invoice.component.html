@@ -107,7 +107,7 @@
                 mat-raised-button
                 (click)="downloadInvoice(row.contractId)"
               >
-                Invoice Download
+                Invoice
               </button>
 
               <button
@@ -119,7 +119,7 @@
                 mat-raised-button
                 (click)="SendInvoiceToIniFlow(row.contractId)"
               >
-                Send to Peppol
+                IN Peppol
               </button>
             </td>
             <td class="button-container-vertical" style="padding-top: 20px">
@@ -133,7 +133,7 @@
                 mat-raised-button
                 (click)="downloadCreditNote(row.contractId)"
               >
-                CreditNote Download <br />
+                CreditNote<br />
               </button>
               <button
                 *ngIf="
@@ -144,7 +144,7 @@
                 mat-raised-button
                 (click)="SendCNToIniFlow(row.contractId)"
               >
-                Send CN to Peppol
+                CN Peppol
               </button>
               <label *ngIf="row.cancelledInvoice">{{
                 row.cancelledInvoice
