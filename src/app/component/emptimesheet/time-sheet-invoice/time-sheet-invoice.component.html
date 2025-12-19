@@ -252,13 +252,13 @@
           <tr>
             <th>Select file</th>
             <th>File Id</th>
+            <th>Peppol ID</th>
             <th>File Name</th>
             <th>File Type</th>
             <th>Status</th>
             <th>Uploaded By</th>
             <th>Uploaded Date</th>
             <th>Download Timesheet</th>
-            <th>Delete Timesheet</th>
           </tr>
         </thead>
         <tbody>
@@ -273,7 +273,9 @@
             <td>
               {{ doc?.timeSheetDocId }}
             </td>
-
+            <td>
+              {{ doc?.peppolId }}
+            </td>
             <td>
               {{ doc?.fileName }}
             </td>
@@ -312,6 +314,7 @@
                 </svg>
               </button>
             </td>
+            <!-- Delete Button
             <td>
               <Button
                 type="button"
@@ -334,7 +337,7 @@
                   />
                 </svg>
               </Button>
-            </td>
+            </td> -->
           </tr>
         </tbody>
       </table>

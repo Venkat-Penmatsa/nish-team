@@ -227,7 +227,14 @@
             formControlName="billingDays"
           />
         </mat-form-field>
-        <div class="form-field-span-2">
+        <mat-form-field class="form-field">
+          <mat-label>Send to Peppol</mat-label>
+          <select matNativeControl required formControlName="peppolFlag">
+            <option value="Y">Yes</option>
+            <option value="N">No</option>
+          </select>
+        </mat-form-field>
+        <div class="form-field-span">
           <app-customer-name
             [filterCustomerName]="filterCustomerName"
             (custName)="custNameSelected($event)"

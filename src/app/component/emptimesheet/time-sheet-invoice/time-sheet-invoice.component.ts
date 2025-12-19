@@ -194,12 +194,14 @@ export class TimeSheetInvoiceComponent implements OnInit {
 
   getCreditNote(contractId: string): Boolean {
     let contract = contractId.split(' >>');
-    let invoiceFileName = 'CreditNote_' + contract[0] + '.pdf';
-    let invoiceFile = this.documentList.find(
+    let creditNoteFileName = 'CreditNote_' + contract[0] + '.pdf';
+    let creditNoteG = this.documentList.find(
       (item: any) =>
-        item.documentType === 'CREDIT_NOTE' && item.fileName === invoiceFileName
+        item.documentType === 'CREDIT_NOTE' &&
+        item.fileName === creditNoteFileName &&
+        !item.peppolId
     );
-    return invoiceFile ? true : false;
+    return creditNoteG ? true : false;
   }
 
   downloadInvoice(contractId) {
@@ -325,14 +327,14 @@ export class TimeSheetInvoiceComponent implements OnInit {
       creditNoteFileId: cnFileId,
     };
 
-    this.timesheetService
-      .sendInvoiceToIniFlow(payload)
-      .subscribe((data: any) => {
+    this.timesheetService.sendInvoiceToIniFlow(payload).subscribe({
+      next: (data: any) => {
         console.log(data);
         if (data.responseStatus === 'Failed') {
           this.status = 'Failed';
           this.errorDesc = data.errorDescription;
         }
+        this.fetchTimesheet();
         if (data.responseStatus === 'Success') {
           this.status = 'Success';
           this.successMessage =
@@ -340,7 +342,14 @@ export class TimeSheetInvoiceComponent implements OnInit {
             data.peppolInvoiceId;
         }
         this.spinner.hide();
-      });
+      },
+      error: (error) => {
+        console.error('Error sending credit note to IniFlow:', error);
+        this.status = 'Failed';
+        this.errorDesc = error.message;
+        this.spinner.hide();
+      },
+    });
   }
 
   SendInvoiceToIniFlow(contractId) {
@@ -388,14 +397,14 @@ export class TimeSheetInvoiceComponent implements OnInit {
       additionalInvoiceFileIds: attachmentsFileId,
     };
 
-    this.timesheetService
-      .sendInvoiceToIniFlow(payload)
-      .subscribe((data: any) => {
+    this.timesheetService.sendInvoiceToIniFlow(payload).subscribe({
+      next: (data: any) => {
         console.log(data);
         if (data.responseStatus === 'Failed') {
           this.status = 'Failed';
           this.errorDesc = data.errorDescription;
         }
+        this.fetchTimesheet();
         if (data.responseStatus === 'Success') {
           this.status = 'Success';
           this.successMessage =
@@ -403,7 +412,14 @@ export class TimeSheetInvoiceComponent implements OnInit {
             data.peppolInvoiceId;
         }
         this.spinner.hide();
-      });
+      },
+      error: (error) => {
+        console.error('Error sending invoice to IniFlow:', error);
+        this.status = 'Failed';
+        this.errorDesc = error.message;
+        this.spinner.hide();
+      },
+    });
   }
 
   download(filename): void {
