@@ -187,6 +187,19 @@
           </section>
         </div>
         <div class="col">
+          <section class="example-section">
+            <mat-checkbox
+              #dav
+              [checked]="isActive"
+              formControlName="supportsPeppol"
+            >
+              Supports Peppol</mat-checkbox
+            >
+          </section>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
           <mat-form-field>
             <mat-label>Payment Terms code</mat-label>
             <select

@@ -208,7 +208,7 @@
 
     <div class="form-section">
       <div class="form-row form-row-4">
-        <mat-form-field class="form-field">
+        <mat-form-field>
           <mat-label>Invoice Due Date</mat-label>
           <select matNativeControl required formControlName="invoiceDueDate">
             <option value="1">15</option>
@@ -219,7 +219,8 @@
             <option value="6">7</option>
           </select>
         </mat-form-field>
-        <mat-form-field class="form-field">
+
+        <mat-form-field>
           <mat-label>Max contract days/hours</mat-label>
           <input
             matInput
@@ -227,14 +228,7 @@
             formControlName="billingDays"
           />
         </mat-form-field>
-        <mat-form-field class="form-field">
-          <mat-label>Send to Peppol</mat-label>
-          <select matNativeControl required formControlName="peppolFlag">
-            <option value="Y">Yes</option>
-            <option value="N">No</option>
-          </select>
-        </mat-form-field>
-        <div class="form-field-span">
+        <div class="span-two">
           <app-customer-name
             [filterCustomerName]="filterCustomerName"
             (custName)="custNameSelected($event)"

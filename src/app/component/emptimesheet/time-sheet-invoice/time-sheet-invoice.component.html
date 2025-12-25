@@ -103,7 +103,9 @@
             </td>
             <td class="button-container-vertical" style="padding-top: 20px">
               <button
-                *ngIf="row.contractType == 'Billing'"
+                *ngIf="
+                  row.contractType == 'Billing' && !getInvoice(row.contractId)
+                "
                 mat-raised-button
                 (click)="downloadInvoice(row.contractId)"
               >
@@ -119,10 +121,21 @@
                 mat-raised-button
                 (click)="SendInvoiceToIniFlow(row.contractId)"
               >
-                IN Peppol
+                To Peppol
               </button>
             </td>
             <td class="button-container-vertical" style="padding-top: 20px">
+              <button
+                *ngIf="
+                  row.contractType == 'Billing' &&
+                  row.enitity == 'nish' &&
+                  getInvoice(row.contractId)
+                "
+                mat-raised-button
+                (click)="downloadCreditNote(row.contractId)"
+              >
+                CreditNote<br />
+              </button>
               <button
                 *ngIf="
                   row.contractType == 'Billing' &&
@@ -258,7 +271,7 @@
             <th>Status</th>
             <th>Uploaded By</th>
             <th>Uploaded Date</th>
-            <th>Download Timesheet</th>
+            <th>Download</th>
           </tr>
         </thead>
         <tbody>

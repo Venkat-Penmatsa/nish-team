@@ -305,10 +305,13 @@ export class TimeSheetInvoiceComponent implements OnInit {
     const user: any = JSON.parse(localStorage.getItem('userDetails') || '{}');
     let contract = contractId.split(' >>');
     let emp = this.empName.split('-');
-
+    let fileName = 'CreditNote_' + contract[0] + '.pdf';
     let cnFileId =
       this.documentList.find(
-        (item: any) => item.selectedFile && item.documentType === 'CREDIT_NOTE'
+        (item: any) =>
+          item.selectedFile &&
+          item.documentType === 'CREDIT_NOTE' &&
+          item.fileName === fileName
       )?.timeSheetDocId || '';
 
     if (!cnFileId) {
@@ -337,9 +340,7 @@ export class TimeSheetInvoiceComponent implements OnInit {
         this.fetchTimesheet();
         if (data.responseStatus === 'Success') {
           this.status = 'Success';
-          this.successMessage =
-            'Invoice sent to IniFlow successfully, generated peppol invoice id is ' +
-            data.peppolInvoiceId;
+          this.successMessage = 'CreditNote successfully sent to IniFlow.';
         }
         this.spinner.hide();
       },
@@ -359,10 +360,13 @@ export class TimeSheetInvoiceComponent implements OnInit {
     const user: any = JSON.parse(localStorage.getItem('userDetails') || '{}');
     let contract = contractId.split(' >>');
     let emp = this.empName.split('-');
+    let fileName = 'Invoice_' + contract[0] + '.pdf';
     let invoiceFileId =
       this.documentList.find(
         (item: any) =>
-          item.selectedFile && item.documentType === 'INVOICE_GENERATED'
+          item.selectedFile &&
+          item.documentType === 'INVOICE_GENERATED' &&
+          item.fileName === fileName
       )?.timeSheetDocId || '';
 
     let attachmentsFileId: [] = this.documentList
@@ -407,9 +411,7 @@ export class TimeSheetInvoiceComponent implements OnInit {
         this.fetchTimesheet();
         if (data.responseStatus === 'Success') {
           this.status = 'Success';
-          this.successMessage =
-            'Invoice sent to IniFlow successfully, generated peppol invoice id is ' +
-            data.peppolInvoiceId;
+          this.successMessage = 'Invoice successfully sent to IniFlow.';
         }
         this.spinner.hide();
       },

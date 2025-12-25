@@ -56,6 +56,7 @@ export class ManageClientComponent implements OnInit {
       currency: ['', Validators.required],
       language: ['', Validators.required],
       isActive: ['', Validators.required],
+      supportsPeppol: ['', Validators.required],
       paymentTermsCode: ['', Validators.required],
     });
   }
@@ -89,6 +90,7 @@ export class ManageClientComponent implements OnInit {
             currency: res.currency,
             language: res.language,
             isActive: res.isActive,
+            supportsPeppol: res.supportsPeppol,
             paymentTermsCode: res.paymentTermsCode,
           });
         });
