@@ -12,6 +12,7 @@ import { LoaderService } from 'src/app/services/loader.service';
 export class ListAllClientsComponent implements AfterViewInit, OnInit {
   displayedColumns: string[] = [
     'clientId',
+    'iniFlowCustomerId',
     'clientName',
     'address1',
     'address2',

@@ -181,6 +181,18 @@ export class TimeSheetInvoiceComponent implements OnInit {
     });
   }
 
+  getPeppolInvoice(contractId: string): Boolean {
+    let contract = contractId.split(' >>');
+    let invoiceFileName = 'Invoice_' + contract[0] + '.pdf';
+    let invoiceFile = this.documentList.find(
+      (item: any) =>
+        item.documentType === 'INVOICE_GENERATED' &&
+        item.fileName === invoiceFileName &&
+        item.peppolId
+    );
+    return invoiceFile ? true : false;
+  }
+
   getInvoice(contractId: string): Boolean {
     let contract = contractId.split(' >>');
     let invoiceFileName = 'Invoice_' + contract[0] + '.pdf';
@@ -337,8 +349,8 @@ export class TimeSheetInvoiceComponent implements OnInit {
           this.status = 'Failed';
           this.errorDesc = data.errorDescription;
         }
-        this.fetchTimesheet();
         if (data.responseStatus === 'Success') {
+          this.fetchTimesheet();
           this.status = 'Success';
           this.successMessage = 'CreditNote successfully sent to IniFlow.';
         }
@@ -408,8 +420,9 @@ export class TimeSheetInvoiceComponent implements OnInit {
           this.status = 'Failed';
           this.errorDesc = data.errorDescription;
         }
-        this.fetchTimesheet();
+
         if (data.responseStatus === 'Success') {
+          this.fetchTimesheet();
           this.status = 'Success';
           this.successMessage = 'Invoice successfully sent to IniFlow.';
         }

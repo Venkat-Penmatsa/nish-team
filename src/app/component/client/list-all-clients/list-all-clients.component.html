@@ -20,6 +20,13 @@
         <td mat-cell *matCellDef="let element">{{ element.clientId }}</td>
       </ng-container>
 
+      <ng-container matColumnDef="iniFlowCustomerId">
+        <th mat-header-cell *matHeaderCellDef>IniFlow Customer Id</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.iniFlowCustomerId }}
+        </td>
+      </ng-container>
+
       <ng-container matColumnDef="clientName">
         <th mat-header-cell *matHeaderCellDef>Client Name</th>
         <td mat-cell *matCellDef="let element">{{ element.clientName }}</td>

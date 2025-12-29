@@ -1,5 +1,5 @@
 <div class="page-layout-container">
-  <h1 class="title">Fill Employee TimeSheet</h1>
+  <h1 class="title">TimeSheet-Iniflow Invoice</h1>
   <div class="row">
     <div class="col">
       <app-emp-name
@@ -104,7 +104,8 @@
             <td class="button-container-vertical" style="padding-top: 20px">
               <button
                 *ngIf="
-                  row.contractType == 'Billing' && !getInvoice(row.contractId)
+                  row.contractType == 'Billing' &&
+                  !getPeppolInvoice(row.contractId)
                 "
                 mat-raised-button
                 (click)="downloadInvoice(row.contractId)"
