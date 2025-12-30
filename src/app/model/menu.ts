@@ -181,13 +181,13 @@ export let menu: NavItem[] = [
       },
       {
         displayName: 'Timesheet-Invoice',
-        iconName: 'edit_calendar', // An icon for filling/editing a calendar
+        iconName: 'edit_calendar',
         route: 'emptimesheet/timeSheetInvoice',
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
       {
-        displayName: 'All Emp TimeSheet Report',
-        iconName: 'bar_chart', // A chart for a report
+        displayName: 'Timesheet Summary',
+        iconName: 'bar_chart',
         route: 'emptimesheet/allemptimesheet',
         role: ['contract', 'admin', 'hr', 'finance', 'timesheet'],
       },
@@ -206,9 +206,15 @@ export let menu: NavItem[] = [
         role: ['admin', 'finance', 'timesheet'],
       },
       {
-        displayName: 'Invoice Report',
+        displayName: 'Invoice Summary',
         iconName: 'description', // Standard for a document or report
         route: 'invoice/invoiceReport',
+        role: ['admin', 'finance', 'timesheet'],
+      },
+      {
+        displayName: 'Iniflow Invoices',
+        iconName: 'bar_chart',
+        route: 'invoice/iniflowInvoices',
         role: ['admin', 'finance', 'timesheet'],
       },
       {

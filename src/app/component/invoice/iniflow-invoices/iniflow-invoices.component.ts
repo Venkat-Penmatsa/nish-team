@@ -1,40 +1,23 @@
-import {
-  AfterViewInit,
-  Component,
-  OnInit,
-  SimpleChanges,
-  ViewChild,
-} from '@angular/core';
-import { TimesheetService } from 'src/app/services/timesheet.service';
-import {
-  MomentDateAdapter,
-  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
-} from '@angular/material-moment-adapter';
-import {
-  DateAdapter,
-  MAT_DATE_FORMATS,
-  MAT_DATE_LOCALE,
-} from '@angular/material/core';
+import { Component, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+
 import { MatDatepicker } from '@angular/material/datepicker';
 import * as _moment from 'moment';
 import { default as _rollupMoment, Moment } from 'moment';
 import { LoaderService } from 'src/app/services/loader.service';
-import { saveAs as importedSaveAs } from 'file-saver';
 import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { LeavesService } from 'src/app/services/leaves.service';
 import { MatSort, Sort } from '@angular/material/sort';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import moment from 'moment';
 import { InvoiceService } from 'src/app/services/invoice.service';
 
 @Component({
-  selector: 'app-invoice-report',
-  templateUrl: './invoice-report.component.html',
-  styleUrls: ['./invoice-report.component.css'],
+  selector: 'app-iniflow-invoices',
+  templateUrl: './iniflow-invoices.component.html',
+  styleUrls: ['./iniflow-invoices.component.css'],
 })
-export class InvoiceReportComponent implements OnInit {
+export class IniflowInvoicesComponent implements OnInit {
   date = new FormControl(moment());
   message = false;
   messageDesc = '';
@@ -63,31 +46,16 @@ export class InvoiceReportComponent implements OnInit {
   }
 
   displayedColumns: string[] = [
+    'peppolInvoiceId',
     'invoiceId',
-    'iniFlowInvoiceId',
-    'employeeId',
-    'nishContractId',
-    'clientName',
-    'vendorName',
-    'invoiceType',
-    'month',
-    'year',
-    'generatedBy',
-    'daysOrHours',
-    'rate',
-    'amt',
-    'vat',
-    'total',
-    'status',
-    'tsFlag',
-    'generatedDate',
-    'submittedDate',
+    'iniflowCustomerId',
+    'reference',
+    'totalAmount',
+    'invoiceDate',
     'dueDate',
-    'billReceivedDate',
-    'billRejectedDate',
-    'billOnHoldDate',
-    'comments',
-    'accComments',
+    'invoiceType',
+    'sentOn',
+    'sentBy',
   ];
 
   invoiceReport: InvoiceReport[] = [];
@@ -120,16 +88,6 @@ export class InvoiceReportComponent implements OnInit {
     }
   }
 
-  downloadInvoiceReport() {
-    this.invoiceService
-      .downloadInvoiceReport(this.selectedDate)
-      .subscribe((res) => {
-        console.log(res);
-        let blob: any = new Blob([res], { type: 'text/json; charset=utf-8' });
-        importedSaveAs(blob, this.selectedDate + '-InvoiceReport.xls');
-      });
-  }
-
   fetchInvoiceReport(event) {
     this.message = false;
     this.invoiceReport = [];
@@ -138,40 +96,25 @@ export class InvoiceReportComponent implements OnInit {
     );
     this.selectedDate = moment(event.value).format('DD-MM-YYYY');
     this.invoiceService
-      .generateInvoiceReport(this.selectedDate)
+      .fetchIniflowInvoices(this.selectedDate)
       .subscribe((res) => {
         if (res.validationMessage != null) {
           this.message = true;
           this.messageDesc = res.validationMessage;
         }
-        res.allInvoiceReport.forEach((e) => {
+        res.forEach((e) => {
           this.invoiceReport.push(
             new InvoiceReport(
-              e.employeeId,
+              e.peppolInvoiceId,
               e.invoiceId,
-              e.iniFlowInvoiceId,
-              e.nishContractId,
-              e.clientName,
-              e.vendorName,
-              e.invoiceType,
-              e.month,
-              e.year,
-              e.generatedBy,
-              e.daysOrHours,
-              e.rate,
-              e.amt,
-              e.vat,
-              e.total,
-              e.status,
-              e.tsFlag,
-              e.generatedDate,
-              e.submittedDate,
+              e.iniflowCustomerId,
+              e.reference,
+              e.totalAmount,
+              e.invoiceDate,
               e.dueDate,
-              e.billReceivedDate,
-              e.billRejectedDate,
-              e.billOnHoldDate,
-              e.comments,
-              e.accComments
+              e.invoiceType,
+              e.sentOn,
+              e.sentBy
             )
           );
         });
@@ -197,30 +140,15 @@ export class InvoiceReportComponent implements OnInit {
 
 export class InvoiceReport {
   constructor(
-    private employeeId: string,
+    private peppolInvoiceId: string,
     private invoiceId: string,
-    private iniFlowInvoiceId: string,
-    private nishContractId: string,
-    private clientName: string,
-    private vendorName: string,
-    private invoiceType: string,
-    private month: string,
-    private year: string,
-    private generatedBy: string,
-    private daysOrHours: number,
-    private rate: number,
-    private amt: number,
-    private vat: number,
-    private total: number,
-    private status: string,
-    private tsFlag: string,
-    private generatedDate: string,
-    private submittedDate: string,
+    private iniflowCustomerId: string,
+    private reference: string,
+    private totalAmount: number,
+    private invoiceDate: string,
     private dueDate: string,
-    private billReceivedDate: string,
-    private billRejectedDate: string,
-    private billOnHoldDate: string,
-    private comments: string,
-    private accComments: string
+    private invoiceType: string,
+    private sentOn: string,
+    private sentBy: string
   ) {}
 }

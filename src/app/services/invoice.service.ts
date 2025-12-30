@@ -56,6 +56,12 @@ export class InvoiceService {
       .pipe(catchError(this.errorHandler));
   }
 
+  fetchIniflowInvoices(date: any): Observable<any> {
+    return this.http
+      .get(`${this.baseUrl}/invoice/iniFlowInvoicesList/` + date)
+      .pipe(catchError(this.errorHandler));
+  }
+
   fetchInvoice(invoiceId: string) {
     return this.http
       .get(`${this.baseUrl}/invoice/invoiceDetails/` + invoiceId)

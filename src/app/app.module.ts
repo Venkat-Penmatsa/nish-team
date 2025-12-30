@@ -82,6 +82,7 @@ import { InvoiceComponent } from './component/invoice/invoice/invoice.component'
 import { NewInvoiceComponent } from './component/invoice/new-invoice/new-invoice.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { TimeSheetInvoiceComponent } from './component/emptimesheet/time-sheet-invoice/time-sheet-invoice.component';
+import { IniflowInvoicesComponent } from './component/invoice/iniflow-invoices/iniflow-invoices.component';
 
 @NgModule({
   declarations: [
@@ -146,6 +147,7 @@ import { TimeSheetInvoiceComponent } from './component/emptimesheet/time-sheet-i
     InvoiceComponent,
     NewInvoiceComponent,
     TimeSheetInvoiceComponent,
+    IniflowInvoicesComponent,
   ],
   imports: [
     ReactiveFormsModule,
