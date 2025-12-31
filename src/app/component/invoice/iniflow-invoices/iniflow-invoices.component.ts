@@ -82,7 +82,6 @@ export class IniflowInvoicesComponent implements OnInit {
   }
 
   announceSortChange(sortState: any) {
-    console.log('sorted');
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
     } else {
@@ -133,7 +132,6 @@ export class IniflowInvoicesComponent implements OnInit {
 
   ngOnInit(): void {
     this.message = false;
-    console.log('this.loading$...' + this.loading$);
     this.loading$ = this.loader.loading$;
   }
 

@@ -112,7 +112,6 @@ export class InvoiceReportComponent implements OnInit {
   }
 
   announceSortChange(sortState: any) {
-    console.log('sorted');
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
     } else {
@@ -124,7 +123,6 @@ export class InvoiceReportComponent implements OnInit {
     this.invoiceService
       .downloadInvoiceReport(this.selectedDate)
       .subscribe((res) => {
-        console.log(res);
         let blob: any = new Blob([res], { type: 'text/json; charset=utf-8' });
         importedSaveAs(blob, this.selectedDate + '-InvoiceReport.xls');
       });
@@ -185,7 +183,6 @@ export class InvoiceReportComponent implements OnInit {
 
   ngOnInit(): void {
     this.message = false;
-    console.log('this.loading$...' + this.loading$);
     this.loading$ = this.loader.loading$;
   }
 
