@@ -48,7 +48,9 @@ export class IniflowInvoicesComponent implements OnInit {
   displayedColumns: string[] = [
     'peppolInvoiceId',
     'invoiceId',
-    'iniflowCustomerId',
+    'empName',
+    'clientName',
+    'contractCompanyName',
     'reference',
     'totalAmount',
     'invoiceDate',
@@ -114,7 +116,10 @@ export class IniflowInvoicesComponent implements OnInit {
               e.dueDate,
               e.invoiceType,
               e.sentOn,
-              e.sentBy
+              e.sentBy,
+              e.empName,
+              e.clientName,
+              e.contractCompanyName
             )
           );
         });
@@ -149,6 +154,9 @@ export class InvoiceReport {
     private dueDate: string,
     private invoiceType: string,
     private sentOn: string,
-    private sentBy: string
+    private sentBy: string,
+    private empName: string,
+    private clientName: string,
+    private contractCompanyName: string
   ) {}
 }
