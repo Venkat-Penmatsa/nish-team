@@ -65,6 +65,7 @@
             </th>
             <th scope="col" style="color: rgb(62, 0, 128)">Invoice</th>
             <th scope="col" style="color: rgb(62, 0, 128)">Credit Note</th>
+            <th scope="col" style="color: rgb(62, 0, 128)">Mail</th>
             <!---->
             <th
               *ngFor="let hd of header"
@@ -117,6 +118,7 @@
                 *ngIf="
                   row.contractType == 'Billing' &&
                   row.enitity == 'nishtech' &&
+                  !row.otherAccSystem &&
                   getInvoice(row.contractId)
                 "
                 mat-raised-button
@@ -141,7 +143,7 @@
                 *ngIf="
                   row.contractType == 'Billing' &&
                   row.enitity == 'nishtech' &&
-                  row.iniFlowInvoiceId &&
+                  getCustomerType(row.iniFlowInvoiceId, row.otherAccSystem) &&
                   getInvoice(row.contractId)
                 "
                 mat-raised-button
@@ -153,6 +155,7 @@
                 *ngIf="
                   row.contractType == 'Billing' &&
                   row.enitity == 'nishtech' &&
+                  !row.otherAccSystem &&
                   getCreditNote(row.contractId)
                 "
                 mat-raised-button
@@ -164,6 +167,12 @@
                 row.cancelledInvoice
               }}</label>
             </td>
+            <td style="width: 10%" scope="row">
+              <button mat-raised-button (click)="sendMail(row.contractId)">
+                Email
+              </button>
+            </td>
+
             <td
               *ngFor="let timeData of row.contractTimeSheetList; let i = index"
             >
@@ -303,13 +312,13 @@
               {{ doc?.uploadedBy }}
             </td>
             <td>
-              {{ doc?.uploadedDate | date : "dd/MMM/yyyy" }}
+              {{ doc?.uploadedDate | date: "dd/MMM/yyyy" }}
             </td>
             <td>
               <button
                 type="button"
                 class="btn btn-secondary"
-                (click)="download(doc?.fileName)"
+                (click)="downloadFile(doc?.fileName, doc?.timeSheetDocId)"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

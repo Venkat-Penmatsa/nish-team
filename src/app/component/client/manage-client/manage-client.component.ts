@@ -22,6 +22,8 @@ export class ManageClientComponent implements OnInit {
   user: User;
   loading$: any;
   isActive: boolean = true;
+  supportsPeppol: boolean = true;
+  otherAccSystem: boolean = false;
 
   newClientForm: FormGroup = new FormGroup({});
 
@@ -29,7 +31,7 @@ export class ManageClientComponent implements OnInit {
     private fb: FormBuilder,
     private clientDetailsService: ClientDetailsService,
     private http: HttpClient,
-    public loader: LoaderService
+    public loader: LoaderService,
   ) {}
 
   ngOnInit(): void {
@@ -58,6 +60,7 @@ export class ManageClientComponent implements OnInit {
       isActive: ['', Validators.required],
       supportsPeppol: ['', Validators.required],
       paymentTermsCode: ['', Validators.required],
+      otherAccSystem: ['', Validators.required],
     });
   }
 
@@ -92,6 +95,7 @@ export class ManageClientComponent implements OnInit {
             isActive: res.isActive,
             supportsPeppol: res.supportsPeppol,
             paymentTermsCode: res.paymentTermsCode,
+            otherAccSystem: res.otherAccSystem,
           });
         });
     }

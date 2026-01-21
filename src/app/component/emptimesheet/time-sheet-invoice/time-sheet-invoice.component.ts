@@ -8,6 +8,7 @@ import {
 } from '@iplab/ngx-file-upload';
 import { saveAs as importedSaveAs } from 'file-saver';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { User } from 'src/app/model/User';
 
 @Component({
   selector: 'app-time-sheet-invoice',
@@ -37,7 +38,7 @@ export class TimeSheetInvoiceComponent implements OnInit {
 
   constructor(
     private timesheetService: TimesheetService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
   ) {}
 
   ngOnInit(): void {}
@@ -129,7 +130,7 @@ export class TimeSheetInvoiceComponent implements OnInit {
     this.timesheetService
       .fetchTimeSheet(
         this.empName,
-        moment(this.selectedDate).format('DD-MM-YYYY')
+        moment(this.selectedDate).format('DD-MM-YYYY'),
       )
       .subscribe((data) => {
         console.log('data ==========> ' + data);
@@ -171,7 +172,7 @@ export class TimeSheetInvoiceComponent implements OnInit {
     data.append('empId', emp[0]);
     data.append(
       'selectedTimeSheetDate',
-      moment(this.selectedDate).format('DD-MM-YYYY')
+      moment(this.selectedDate).format('DD-MM-YYYY'),
     );
 
     this.timesheetService.upload(data).subscribe((res: any) => {
@@ -188,7 +189,7 @@ export class TimeSheetInvoiceComponent implements OnInit {
       (item: any) =>
         item.documentType === 'INVOICE_GENERATED' &&
         item.fileName === invoiceFileName &&
-        item.peppolId
+        item.peppolId,
     );
     return invoiceFile ? true : false;
   }
@@ -199,9 +200,18 @@ export class TimeSheetInvoiceComponent implements OnInit {
     let invoiceFile = this.documentList.find(
       (item: any) =>
         item.documentType === 'INVOICE_GENERATED' &&
-        item.fileName === invoiceFileName
+        item.fileName === invoiceFileName,
     );
     return invoiceFile ? true : false;
+  }
+
+  getCustomerType(iniFlowInvoiceId: string, otherAccSystem: Boolean): Boolean {
+    if (otherAccSystem) {
+      return true;
+    } else if (iniFlowInvoiceId && !otherAccSystem) {
+      return true;
+    }
+    return false;
   }
 
   getCreditNote(contractId: string): Boolean {
@@ -211,7 +221,7 @@ export class TimeSheetInvoiceComponent implements OnInit {
       (item: any) =>
         item.documentType === 'CREDIT_NOTE' &&
         item.fileName === creditNoteFileName &&
-        !item.peppolId
+        !item.peppolId,
     );
     return creditNoteG ? true : false;
   }
@@ -267,7 +277,7 @@ export class TimeSheetInvoiceComponent implements OnInit {
         (item: any) =>
           item.selectedFile &&
           item.documentType === 'INVOICE_GENERATED' &&
-          item.fileName === invoiceFileName
+          item.fileName === invoiceFileName,
       )?.timeSheetDocId || '';
 
     if (!invoiceFileId) {
@@ -323,7 +333,7 @@ export class TimeSheetInvoiceComponent implements OnInit {
         (item: any) =>
           item.selectedFile &&
           item.documentType === 'CREDIT_NOTE' &&
-          item.fileName === fileName
+          item.fileName === fileName,
       )?.timeSheetDocId || '';
 
     if (!cnFileId) {
@@ -378,12 +388,12 @@ export class TimeSheetInvoiceComponent implements OnInit {
         (item: any) =>
           item.selectedFile &&
           item.documentType === 'INVOICE_GENERATED' &&
-          item.fileName === fileName
+          item.fileName === fileName,
       )?.timeSheetDocId || '';
 
     let attachmentsFileId: [] = this.documentList
       .filter(
-        (item: any) => item.selectedFile && item.documentType === 'TimeSheet'
+        (item: any) => item.selectedFile && item.documentType === 'TimeSheet',
       )
       .map((item: any) => item.timeSheetDocId);
 
@@ -393,7 +403,7 @@ export class TimeSheetInvoiceComponent implements OnInit {
       return;
     }
     let tsRequiredFlag = this.rows.find(
-      (item: any) => item.contractId.split(' >>')[0] === contract[0]
+      (item: any) => item.contractId.split(' >>')[0] === contract[0],
     )?.tsRequiredFlag;
 
     if (attachmentsFileId.length == 0 && tsRequiredFlag === 'YES') {
@@ -437,6 +447,54 @@ export class TimeSheetInvoiceComponent implements OnInit {
     });
   }
 
+  downloadFile(filename, fileId): void {
+    const user: any = JSON.parse(localStorage.getItem('user') || '{}');
+    let emp = this.empName.split('-');
+    this.timesheetService.downloadFile(fileId, filename).subscribe((data) => {
+      window.open(data.url);
+      let blob: any = new Blob([data], { type: 'text/json; charset=utf-8' });
+      importedSaveAs(blob, filename);
+    });
+  }
+
+  sendMail(contractId): void {
+    this.spinner.show();
+    const user: User = JSON.parse(
+      localStorage.getItem('userDetails') || '{}',
+    ) as User;
+
+    let contract = contractId.split(' >>');
+
+    let emp = this.empName.split('-');
+    this.timesheetService
+      .sendMail(
+        contract[0],
+        user.empId,
+        moment(this.selectedDate).format('DD-MM-YYYY'),
+        emp[0],
+      )
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data.responseStatus === 'Failed') {
+            this.status = 'Failed';
+            this.errorDesc = data.errorDescription;
+          }
+          if (data.responseStatus === 'Success') {
+            this.status = 'Success';
+            this.successMessage = 'Mail sent successfully.';
+          }
+          this.spinner.hide();
+        },
+        error: (error) => {
+          console.error('Error sending email :', error);
+          this.status = 'Failed';
+          this.errorDesc = error.message;
+          this.spinner.hide();
+        },
+      });
+  }
+
   download(filename): void {
     const user: any = JSON.parse(localStorage.getItem('user') || '{}');
     let emp = this.empName.split('-');
@@ -444,7 +502,7 @@ export class TimeSheetInvoiceComponent implements OnInit {
       .download(
         filename,
         emp[0],
-        moment(this.selectedDate).format('DD-MM-YYYY')
+        moment(this.selectedDate).format('DD-MM-YYYY'),
       )
       .subscribe((data) => {
         window.open(data.url);

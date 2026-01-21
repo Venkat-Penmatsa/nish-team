@@ -23,7 +23,7 @@ export class TimesheetService {
   constructor(
     private http: HttpClient,
     private hostNameServiceService: HostNameServiceService,
-    @Inject(DOCUMENT) private document: Document
+    @Inject(DOCUMENT) private document: Document,
   ) {
     this.baseUrl = hostNameServiceService.getHostname();
   }
@@ -67,7 +67,7 @@ export class TimesheetService {
           employeeNo +
           '/' +
           year,
-        { responseType: 'blob' }
+        { responseType: 'blob' },
       )
       .pipe(catchError(this.errorHandler));
   }
@@ -78,7 +78,7 @@ export class TimesheetService {
         `${this.baseUrl}/finance/generateEmpRevenueReport/` +
           employeeNo +
           '/' +
-          year
+          year,
       )
       .pipe(catchError(this.errorHandler));
   }
@@ -134,7 +134,7 @@ export class TimesheetService {
     return this.http
       .get(
         `${this.baseUrl}/timesheet/generateOldContractBasedTimeSheetReport/` +
-          date
+          date,
       )
       .pipe(catchError(this.errorHandler));
   }
@@ -143,11 +143,11 @@ export class TimesheetService {
     nishContractId: any,
     empId: any,
     date: any,
-    userBy: any
+    userBy: any,
   ): Observable<any> {
     return this.http.get(
       `${this.baseUrl}/invoice/download/invoice/${nishContractId}/${empId}/${date}/${userBy}`,
-      { responseType: 'blob' }
+      { responseType: 'blob' },
     );
   }
 
@@ -161,7 +161,7 @@ export class TimesheetService {
       payload,
       {
         responseType: 'arraybuffer',
-      }
+      },
     );
   }
 
@@ -175,7 +175,7 @@ export class TimesheetService {
       payload,
       {
         responseType: 'json',
-      }
+      },
     );
   }
 
@@ -183,23 +183,43 @@ export class TimesheetService {
     nishContractId: any,
     empId: any,
     date: any,
-    user: any
+    user: any,
   ): Observable<any> {
     return this.http.get(
       `${this.baseUrl}/invoice/download/creditNote/${nishContractId}/${empId}/${date}/${user}`,
-      { responseType: 'blob' }
+      { responseType: 'blob' },
     );
   }
   download(filename: any, empId: any, date: any): Observable<any> {
     return this.http.get(
       `${this.baseUrl}/timesheet/download/${filename}/${empId}/${date}`,
-      { responseType: 'blob' }
+      { responseType: 'blob' },
     );
+  }
+
+  downloadFile(fileId: any, fileName: any): Observable<any> {
+    return this.http.get(
+      `${this.baseUrl}/timesheet/downloadFile/${fileId}/${fileName}`,
+      { responseType: 'blob' },
+    );
+  }
+
+  sendMail(
+    contractId: any,
+    requestedBy: any,
+    date: any,
+    empId: any,
+  ): Observable<any> {
+    return this.http
+      .get(
+        `${this.baseUrl}/timesheet/sendDocsMail/${contractId}/${requestedBy}/${date}/${empId}`,
+      )
+      .pipe(catchError(this.errorHandler));
   }
 
   delete(filename: any, empId: any, date: any): Observable<any> {
     return this.http.get(
-      `${this.baseUrl}/timesheet/delete/${filename}/${empId}/${date}`
+      `${this.baseUrl}/timesheet/delete/${filename}/${empId}/${date}`,
     );
   }
 
@@ -207,7 +227,7 @@ export class TimesheetService {
     const req = new HttpRequest(
       'POST',
       `${this.baseUrl}/timesheet/uploadTimeSheet`,
-      formData
+      formData,
     );
 
     return this.http.request(req);
