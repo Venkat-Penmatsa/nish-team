@@ -6,6 +6,7 @@ import { HomeComponent } from './component/home/home/home.component';
 import { ApplyLeavesComponent } from './component/leaves/apply-leaves/apply-leaves.component';
 import { LeavesHistoryComponent } from './component/leaves/leaves-history/leaves-history.component';
 import { ForbiddenComponent } from './component/login/forbidden/forbidden.component';
+import { FaqComponent } from './component/faq/faq.component';
 import { LoginComponent } from './component/login/login/login.component';
 import { TimesheetComponent } from './component/timesheet/timesheet/timesheet.component';
 import { AuthGuard } from './services/authguard';
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'faq', component: FaqComponent, canActivate: [AuthGuard] },
   { path: 'user', component: EmpInfoComponent, canActivate: [AuthGuard] },
   {
     path: 'forbidden',

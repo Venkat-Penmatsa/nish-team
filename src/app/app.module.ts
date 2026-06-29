@@ -37,6 +37,7 @@ import { CarPolicyComponent } from './component/mobility/car-policy/car-policy.c
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { PolicyComponent } from './component/home/policy/policy.component';
+import { FaqComponent } from './component/faq/faq.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { PolicyComponent } from './component/home/policy/policy.component';
     FillTimesheetComponent,
     UploadrSelectDirective,
     CarPolicyComponent,
+    FaqComponent,
   ],
   imports: [
     FormsModule,

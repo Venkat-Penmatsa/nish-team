@@ -1,0 +1,2453 @@
+﻿<div class="page-faq innerMainWrap">
+  <app-header></app-header>
+
+  <section class="contentWrap">
+    <div class="container-fluid">
+      <style>
+        :root {
+          --ink: #14224c;
+          --ink2: #1e2e63;
+          --teal: #0e97a6;
+          --teal-d: #0b7a86;
+          --orange: #f0801e;
+          --light: #f3f5fa;
+          --card: #ffffff;
+          --tx: #1b2440;
+          --mut: #5c6680;
+          --hair: #e3e7f1;
+          --soft: #eaf1f4;
+          --sans:
+            "Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial,
+            sans-serif;
+          --serif: "Cambria", "Georgia", "Times New Roman", serif;
+        }
+        * {
+          box-sizing: border-box;
+        }
+        html {
+          scroll-behavior: smooth;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          html {
+            scroll-behavior: auto;
+          }
+          * {
+            transition: none !important;
+          }
+        }
+        body {
+          margin: 0;
+          font-family: var(--sans);
+          color: var(--tx);
+          background: var(--light);
+          line-height: 1.55;
+          -webkit-font-smoothing: antialiased;
+        }
+        a {
+          color: var(--teal-d);
+          text-decoration: none;
+        }
+        a:hover {
+          text-decoration: underline;
+        }
+        .wrap {
+          max-width: 1180px;
+          margin: 0 auto;
+          padding: 0 20px;
+        }
+        header {
+          background: linear-gradient(135deg, var(--ink), var(--ink2));
+          color: #fff;
+          position: relative;
+          overflow: hidden;
+        }
+        header .blob {
+          position: absolute;
+          border-radius: 42px;
+          background: rgba(255, 255, 255, 0.04);
+          transform: rotate(18deg);
+        }
+        .b1 {
+          width: 460px;
+          height: 460px;
+          right: -140px;
+          top: -180px;
+        }
+        .b2 {
+          width: 320px;
+          height: 320px;
+          left: -130px;
+          bottom: -200px;
+        }
+        .head-top {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 18px 0 4px;
+          position: relative;
+          z-index: 2;
+          gap: 12px;
+          flex-wrap: wrap;
+        }
+        .logo-chip {
+          background: #fff;
+          border-radius: 12px;
+          padding: 8px 13px;
+          display: inline-flex;
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+        }
+        .logo-chip img {
+          height: 28px;
+          display: block;
+        }
+        .portal-tag {
+          font-size: 11.5px;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          color: #8fe0e8;
+          font-weight: 700;
+        }
+        .head-main {
+          padding: 18px 0 34px;
+          position: relative;
+          z-index: 2;
+        }
+        .eyebrow {
+          text-transform: uppercase;
+          letter-spacing: 0.18em;
+          font-size: 11.5px;
+          font-weight: 700;
+          color: #8fe0e8;
+        }
+        h1 {
+          font-family: var(--serif);
+          font-weight: 700;
+          font-size: clamp(26px, 5vw, 40px);
+          margin: 0.18em 0 0.12em;
+          line-height: 1.06;
+        }
+        .sub {
+          color: #c9d3ec;
+          max-width: 64ch;
+          font-size: 15px;
+          margin: 0;
+        }
+        .search {
+          position: relative;
+          margin-top: 18px;
+          max-width: 560px;
+        }
+        .search input {
+          width: 100%;
+          padding: 13px 14px 13px 44px;
+          border-radius: 11px;
+          border: 1px solid transparent;
+          font-size: 16px;
+          font-family: inherit;
+          background: #fff;
+          color: var(--tx);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+        }
+        .search input:focus {
+          outline: 3px solid var(--teal);
+          outline-offset: 1px;
+        }
+        .search > svg {
+          position: absolute;
+          left: 15px;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 19px;
+          height: 19px;
+          stroke: var(--mut);
+          fill: none;
+          stroke-width: 2;
+        }
+        .search .clear {
+          position: absolute;
+          right: 9px;
+          top: 50%;
+          transform: translateY(-50%);
+          border: 0;
+          background: var(--light);
+          color: var(--mut);
+          width: 28px;
+          height: 28px;
+          border-radius: 7px;
+          cursor: pointer;
+          font-size: 15px;
+          display: none;
+        }
+        /* compact directory */
+        .dirwrap {
+          margin-top: -22px;
+          position: relative;
+          z-index: 3;
+        }
+        .dirhead {
+          display: flex;
+          align-items: baseline;
+          justify-content: space-between;
+          gap: 10px;
+          margin: 0 0 9px;
+          flex-wrap: wrap;
+        }
+        .dirhead h2 {
+          font-family: var(--serif);
+          color: #fff;
+          font-size: 16px;
+          margin: 0;
+        }
+        .dirhead .hint {
+          color: #aeb9d6;
+          font-size: 12px;
+        }
+        .directory {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(248px, 1fr));
+          gap: 9px;
+        }
+        .dcard {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          background: #fff;
+          border-radius: 11px;
+          padding: 9px 11px;
+          box-shadow: 0 5px 16px rgba(34, 48, 90, 0.1);
+          color: var(--tx);
+          border: 1px solid transparent;
+          transition:
+            transform 0.14s,
+            box-shadow 0.14s;
+        }
+        .dcard:hover {
+          text-decoration: none;
+          transform: translateY(-2px);
+          box-shadow: 0 10px 22px rgba(34, 48, 90, 0.16);
+          border-color: var(--soft);
+        }
+        .dic {
+          width: 34px;
+          height: 34px;
+          border-radius: 9px;
+          background: var(--soft);
+          display: grid;
+          place-items: center;
+          flex: 0 0 auto;
+        }
+        .dic svg {
+          width: 18px;
+          height: 18px;
+          fill: none;
+          stroke: var(--teal-d);
+          stroke-width: 1.9;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+        .dtext {
+          min-width: 0;
+          display: flex;
+          flex-direction: column;
+          line-height: 1.25;
+        }
+        .dname {
+          font-family: var(--serif);
+          font-weight: 700;
+          font-size: 14px;
+          color: var(--ink);
+        }
+        .dhandle {
+          font-size: 11px;
+          color: var(--mut);
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .dmail {
+          font-size: 11.5px;
+          color: var(--teal-d);
+          font-weight: 700;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .escnote {
+          margin: 11px 0 0;
+          font-size: 12px;
+          color: #aeb9d6;
+        }
+        .escnote a {
+          color: #8fe0e8;
+        }
+        /* layout */
+        .main {
+          display: grid;
+          grid-template-columns: 212px 1fr;
+          gap: 30px;
+          padding: 34px 0 60px;
+          align-items: start;
+        }
+        nav.side {
+          position: sticky;
+          top: 14px;
+        }
+        .navlink {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 8px 11px;
+          border-radius: 10px;
+          color: var(--mut);
+          font-weight: 600;
+          font-size: 13.5px;
+          white-space: nowrap;
+          border: 1px solid transparent;
+        }
+        .navlink svg {
+          width: 17px;
+          height: 17px;
+          fill: none;
+          stroke: currentColor;
+          stroke-width: 1.9;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+          flex: 0 0 auto;
+        }
+        .navlink:hover {
+          background: #fff;
+          color: var(--ink);
+          text-decoration: none;
+        }
+        .navlink.active {
+          background: #fff;
+          color: var(--ink);
+          box-shadow: 0 5px 16px rgba(34, 48, 90, 0.1);
+          border-color: var(--hair);
+        }
+        .navlink.active svg {
+          stroke: var(--teal-d);
+        }
+        .sec {
+          scroll-margin-top: 14px;
+          margin-bottom: 30px;
+        }
+        .sechead {
+          display: flex;
+          align-items: center;
+          gap: 11px;
+          margin: 0 0 9px;
+        }
+        .secic {
+          width: 38px;
+          height: 38px;
+          border-radius: 10px;
+          background: var(--soft);
+          display: grid;
+          place-items: center;
+          flex: 0 0 auto;
+        }
+        .secic svg {
+          width: 20px;
+          height: 20px;
+          fill: none;
+          stroke: var(--teal-d);
+          stroke-width: 1.9;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+        h2 {
+          font-family: var(--serif);
+          font-weight: 700;
+          font-size: 22px;
+          color: var(--ink);
+          margin: 0;
+        }
+        .cbar {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 5px 16px;
+          align-items: center;
+          background: var(--soft);
+          border: 1px solid var(--hair);
+          border-radius: 11px;
+          padding: 10px 14px;
+          margin: 16px 0 4px;
+          font-size: 13px;
+        }
+        .cbar-main {
+          font-weight: 700;
+          color: var(--ink);
+          display: flex;
+          align-items: center;
+          gap: 7px;
+        }
+        .cbic {
+          width: 16px;
+          height: 16px;
+          stroke: var(--teal-d);
+          fill: none;
+          stroke-width: 1.8;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+        .cbar-esc {
+          color: var(--mut);
+          font-size: 12px;
+        }
+        .subh {
+          font-size: 11.5px;
+          font-weight: 800;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: var(--teal-d);
+          margin: 16px 0 8px;
+        }
+        .qa {
+          background: #fff;
+          border: 1px solid var(--hair);
+          border-radius: 12px;
+          margin-bottom: 9px;
+          overflow: hidden;
+          transition:
+            box-shadow 0.18s,
+            border-color 0.18s;
+        }
+        .qa[open] {
+          box-shadow: 0 9px 26px rgba(34, 48, 90, 0.1);
+          border-color: transparent;
+        }
+        .qa summary {
+          list-style: none;
+          cursor: pointer;
+          padding: 13px 46px 13px 16px;
+          font-weight: 650;
+          font-size: 15px;
+          color: var(--ink);
+          position: relative;
+          display: block;
+        }
+        .qa summary::-webkit-details-marker {
+          display: none;
+        }
+        .qa summary:focus-visible {
+          outline: 3px solid var(--teal);
+          outline-offset: -3px;
+          border-radius: 12px;
+        }
+        .qa summary::after {
+          content: "";
+          position: absolute;
+          right: 18px;
+          top: 18px;
+          width: 8px;
+          height: 8px;
+          border-right: 2.4px solid var(--teal-d);
+          border-bottom: 2.4px solid var(--teal-d);
+          transform: rotate(45deg);
+          transition: transform 0.2s;
+        }
+        .qa[open] summary::after {
+          transform: rotate(-135deg);
+          top: 21px;
+        }
+        .qa .a {
+          padding: 0 16px 15px;
+          color: var(--tx);
+          font-size: 14px;
+        }
+        .qa .a b {
+          color: var(--ink);
+        }
+        .no-results {
+          display: none;
+          background: #fff;
+          border: 1px dashed var(--hair);
+          border-radius: 12px;
+          padding: 28px;
+          text-align: center;
+          color: var(--mut);
+        }
+        footer {
+          background: var(--ink);
+          color: #c9d3ec;
+          padding: 34px 0;
+        }
+        .foot-grid {
+          display: grid;
+          grid-template-columns: 1.5fr 1fr 1fr;
+          gap: 24px;
+        }
+        footer h3 {
+          color: #fff;
+          font-family: var(--serif);
+          font-size: 17px;
+          margin: 0 0 7px;
+        }
+        footer .ct {
+          font-size: 13px;
+          margin: 2px 0;
+          color: #c9d3ec;
+        }
+        footer a {
+          color: #8fe0e8;
+        }
+        .tagline {
+          font-style: italic;
+          color: #8fe0e8;
+          margin-top: 7px;
+        }
+        .disclaimer {
+          border-top: 1px solid var(--ink2);
+          margin-top: 22px;
+          padding-top: 16px;
+          font-size: 11.5px;
+          color: #8893b8;
+          max-width: 100ch;
+        }
+        /* responsive */
+        @media (max-width: 860px) {
+          .main {
+            grid-template-columns: 1fr;
+            gap: 6px;
+          }
+          nav.side {
+            position: static;
+            display: flex;
+            gap: 7px;
+            overflow-x: auto;
+            padding-bottom: 6px;
+            -webkit-overflow-scrolling: touch;
+          }
+          .navlink {
+            flex: 0 0 auto;
+          }
+        }
+        @media (max-width: 560px) {
+          .directory {
+            grid-template-columns: 1fr;
+          }
+          .foot-grid {
+            grid-template-columns: 1fr;
+          }
+          .head-main {
+            padding: 14px 0 30px;
+          }
+          .qa summary {
+            font-size: 14.5px;
+          }
+        }
+      </style>
+      <header>
+        <span class="blob b1"></span><span class="blob b2"></span>
+        <div class="wrap">
+          <div class="head-top">
+            <button class="home-button" type="button" routerLink="/home">Home</button>
+            <span class="portal-tag">NEPtune &middot; Internal Portal</span>
+          </div>
+          <div class="head-main">
+            <div class="eyebrow">Help &amp; Support</div>
+            <h1>Who to contact, and how things work</h1>
+            <p class="sub">
+              Find the right team for your question, plus quick answers on pay,
+              holidays, IT and working at NISH in Belgium. Every desk has an
+              escalation route if your query isn't resolved.
+            </p>
+          </div>
+        </div>
+      </header>
+      <div class="wrap">
+        <div class="dirwrap">
+          <div class="dirhead">
+            <h2>Service desks</h2>
+            <span class="hint"
+              >Pick the team that owns your topic - tap a card to jump to its
+              FAQs.</span
+            >
+          </div>
+          <div class="directory">
+            <a class="dcard" href="#hr"
+              ><span class="dic"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2M10 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM21 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"
+                  /></svg></span
+              ><span class="dtext"
+                ><span class="dname">Human Resources</span
+                ><span class="dhandle">Employee, holidays & well-being</span
+                ><span class="dmail">hr@nishtech.be</span></span
+              ></a
+            >
+            <a class="dcard" href="#comp"
+              ><span class="dic"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                  /></svg></span
+              ><span class="dtext"
+                ><span class="dname">Compensation & Benefits</span
+                ><span class="dhandle">Payroll, insurance & benefits</span
+                ><span class="dmail">payroll@nishtech.be</span></span
+              ></a
+            >
+            <a class="dcard" href="#asset"
+              ><span class="dic"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M3 5a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v10H3zM1 19h22M9 8h6"
+                  /></svg></span
+              ><span class="dtext"
+                ><span class="dname">Assets</span
+                ><span class="dhandle">Laptop, access & support</span
+                ><span class="dmail">hr@nishtech.be</span></span
+              ></a
+            >
+            <a class="dcard" href="#timesheets"
+              ><span class="dic"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 7v5l3 2M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z"
+                  /></svg></span
+              ><span class="dtext"
+                ><span class="dname">Timesheets</span
+                ><span class="dhandle">Monthly submission</span
+                ><span class="dmail">timesheets@nishtech.be</span></span
+              ></a
+            >
+            <a class="dcard" href="#lnd"
+              ><span class="dic"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2zM4 19a2 2 0 0 0 2 2h12M9 7h6"
+                  /></svg></span
+              ><span class="dtext"
+                ><span class="dname">Learning & Development</span
+                ><span class="dhandle">Knowledge, trainings & skills</span
+                ><span class="dmail">lnd@nishtech.be</span></span
+              ></a
+            >
+            <a class="dcard" href="#fleet"
+              ><span class="dic"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M5 13l1.5-4.5A2 2 0 0 1 8.4 7h7.2a2 2 0 0 1 1.9 1.5L19 13M5 13h14v4H5zM7.5 17v1.6M16.5 17v1.6"
+                  /></svg></span
+              ><span class="dtext"
+                ><span class="dname">Fleet & Mobility</span
+                ><span class="dhandle">Car & fuel card</span
+                ><span class="dmail">fleet@nishtech.be</span></span
+              ></a
+            >
+            <a class="dcard" href="#contracts"
+              ><span class="dic"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h5M8 17h8"
+                  /></svg></span
+              ><span class="dtext"
+                ><span class="dname">Contracts</span
+                ><span class="dhandle">Contracts & attestations</span
+                ><span class="dmail">contracts@nishtech.be</span></span
+              ></a
+            >
+            <a class="dcard" href="#invoicing"
+              ><span class="dic"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M5 2h14v20l-2.3-1.5L14.3 22 12 20.5 9.7 22 7.3 20.5 5 22V2zM9 7h6M9 11h6M9 15h4"
+                  /></svg></span
+              ><span class="dtext"
+                ><span class="dname">Invoicing</span
+                ><span class="dhandle">Billing, expenses & POs</span
+                ><span class="dmail">invoices@nishtech.be</span></span
+              ></a
+            >
+            <a class="dcard" href="#sales"
+              ><span class="dic"
+                ><svg viewBox="0 0 24 24">
+                  <path d="M3 3v18h18M7 14l3.5-3.5L14 14l5-6" /></svg></span
+              ><span class="dtext"
+                ><span class="dname">Sales</span
+                ><span class="dhandle">Client opportunities</span
+                ><span class="dmail">sales@nishtech.be</span></span
+              ></a
+            >
+            <a class="dcard" href="#jobs"
+              ><span class="dic"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M20 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2M2 12h20"
+                  /></svg></span
+              ><span class="dtext"
+                ><span class="dname">Jobs & Referrals</span
+                ><span class="dhandle">Referrals & open roles</span
+                ><span class="dmail">jobs@nishtech.eu</span></span
+              ></a
+            >
+            <a class="dcard" href="#start"
+              ><span class="dic"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M9 18h6M10 21h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"
+                  /></svg></span
+              ><span class="dtext"
+                ><span class="dname">Innovation</span
+                ><span class="dhandle">Ideas & innovation</span
+                ><span class="dmail">info@nishtech.be</span></span
+              ></a
+            >
+          </div>
+          <p class="escnote">
+            No reply within 48 business hours? Escalate to
+            <a href="mailto:info@nishtech.be">info@nishtech.be</a>.
+          </p>
+        </div>
+      </div>
+      <div class="wrap">
+        <div class="main">
+          <nav class="side" aria-label="Sections">
+            <a class="navlink" href="#start" data-cat="start"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM15.5 8.5l-2 5-5 2 2-5 5-2z"
+                /></svg
+              ><span>Getting Started</span></a
+            >
+            <a class="navlink" href="#hr" data-cat="hr"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2M10 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM21 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"
+                /></svg
+              ><span>Human Resources</span></a
+            >
+            <a class="navlink" href="#comp" data-cat="comp"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                /></svg
+              ><span>Compensation &amp; Benefits</span></a
+            >
+            <a class="navlink" href="#asset" data-cat="asset"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M3 5a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v10H3zM1 19h22M9 8h6"
+                /></svg
+              ><span>Assets (IT &amp; Equipment)</span></a
+            >
+            <a class="navlink" href="#lnd" data-cat="lnd"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2zM4 19a2 2 0 0 0 2 2h12M9 7h6"
+                /></svg
+              ><span>Learning &amp; Development</span></a
+            >
+            <a class="navlink" href="#timesheets" data-cat="timesheets"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M12 7v5l3 2M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z"
+                /></svg
+              ><span>Timesheets</span></a
+            >
+            <a class="navlink" href="#contracts" data-cat="contracts"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h5M8 17h8"
+                /></svg
+              ><span>Contracts</span></a
+            >
+            <a class="navlink" href="#invoicing" data-cat="invoicing"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M5 2h14v20l-2.3-1.5L14.3 22 12 20.5 9.7 22 7.3 20.5 5 22V2zM9 7h6M9 11h6M9 15h4"
+                /></svg
+              ><span>Invoicing</span></a
+            >
+            <a class="navlink" href="#fleet" data-cat="fleet"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M5 13l1.5-4.5A2 2 0 0 1 8.4 7h7.2a2 2 0 0 1 1.9 1.5L19 13M5 13h14v4H5zM7.5 17v1.6M16.5 17v1.6"
+                /></svg
+              ><span>Fleet &amp; Mobility</span></a
+            >
+            <a class="navlink" href="#sales" data-cat="sales"
+              ><svg viewBox="0 0 24 24">
+                <path d="M3 3v18h18M7 14l3.5-3.5L14 14l5-6" /></svg
+              ><span>Sales</span></a
+            >
+            <a class="navlink" href="#jobs" data-cat="jobs"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M20 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2M2 12h20"
+                /></svg
+              ><span>Jobs &amp; Referrals</span></a
+            >
+          </nav>
+          <div id="content">
+            <section id="start" class="sec">
+              <div class="sechead">
+                <span class="secic"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM15.5 8.5l-2 5-5 2 2-5 5-2z"
+                    /></svg
+                ></span>
+                <h2>Getting Started</h2>
+              </div>
+              <div class="subgroup">
+                <details
+                  class="qa"
+                  data-q="i'm new here - where do i begin? welcome to nish! onboarding follows a simple path, and a team owns each step:1. sign & return your contract hr@nishtech.be2. receive & review your onboarding kit hr@nishtech.be3. complete & share your personal details form (address, bank account, dependants…) hr@nishtech.be4. get your neptune access hr@nishtech.be5. receive your laptop (from the client or nish) hr@nishtech.be6. submit your first monthly timesheet by the 23rd timesheets@nishtech.benewly arrived in belgium? see the dedicated question below. not sure who to ask? start with hr@nishtech.be."
+                >
+                  <summary>I'm new here - where do I begin?</summary>
+                  <div class="a">
+                    Welcome to NISH! Onboarding follows a simple path, and a
+                    team owns each step:<br /><b>1.</b> Sign &amp; return your
+                    contract &rarr;
+                    <a href="mailto:hrcontracts@nishtech.be">hr@nishtech.be</a
+                    ><br /><b>2.</b> Receive &amp; review your
+                    <b>Onboarding Kit</b> &rarr;
+                    <a href="mailto:hr@nishtech.be">hr@nishtech.be</a><br /><b
+                      >3.</b
+                    >
+                    Complete &amp; share your
+                    <b>Personal Details Form</b> (address, bank account,
+                    dependants…) &rarr;
+                    <a href="mailto:hr@nishtech.be">hr@nishtech.be</a><br /><b
+                      >4.</b
+                    >
+                    Get your <b>NEPtune</b> access &rarr;
+                    <a href="mailto:hr@nishtech.be">hr@nishtech.be</a><br /><b
+                      >5.</b
+                    >
+                    Receive your <b>laptop</b> (from the client or NISH) &rarr;
+                    <a href="mailto:hr@nishtech.be">hr@nishtech.be</a><br /><b
+                      >6.</b
+                    >
+                    Submit your first <b>monthly timesheet</b> by the 23rd
+                    &rarr;
+                    <a href="mailto:timesheets@nishtech.be"
+                      >timesheets@nishtech.be</a
+                    ><br />Newly arrived in Belgium? See the dedicated question
+                    below. Not sure who to ask? Start with
+                    <a href="mailto:hr@nishtech.be">hr@nishtech.be</a>.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="what is neptune? neptune is your employee portal. you'll use it mainly to log your monthly timesheets and to apply for holidays and time off, plus day-to-day employee tasks. your login is shared when you join."
+                >
+                  <summary>What is NEPtune?</summary>
+                  <div class="a">
+                    <b>NEPtune</b> is your employee portal. You'll use it mainly
+                    to log your <b>monthly timesheets</b> and to
+                    <b>apply for holidays and time off</b>, plus day-to-day
+                    employee tasks. Your login is shared when you join.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="what other internal applications are there? (nconnect & more) besides neptune, the portals used: nconnect - the admin & contracts portal: manage the contract details, documents and administrative requests. sd worx / mysdworx - for payslips and pay documents. cat - for client-approved timesheets, where your assignment uses it.login help hr@nishtech.be."
+                >
+                  <summary>
+                    What other internal applications are there? (NConnect &amp;
+                    more)
+                  </summary>
+                  <div class="a">
+                    Besides NEPtune, the Portals used:<br />&bull;
+                    <b>NConnect</b> - the <b>admin &amp; contracts portal</b>:
+                    manage the contract details, documents and administrative
+                    requests.<br />&bull; <b>SD Worx / mySDWorx</b> - for
+                    payslips and pay documents.<br />&bull; <b>CAT</b> - for
+                    client-approved timesheets, where your assignment uses
+                    it.<br />Login help &rarr;
+                    <a href="mailto:hr@nishtech.be">hr@nishtech.be</a>.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="who do i contact for what? use the team that owns your topic - each desk is shown above, and there's an escalation route if you don't get a reply: employee matters, holidays & well-being hr@nishtech.be payroll, payslip, insurance & benefits payroll@nishtech.be laptop, access & equipment hr@nishtech.be timesheets timesheets@nishtech.be learning & development lnd@nishtech.be company car & fuel card fleet@nishtech.be contracts & attestations contracts@nishtech.be invoicing, expenses & pos invoices@nishtech.be client opportunities sales@nishtech.be referrals & open roles jobs@nishtech.eu anything else / ideas info@nishtech.be - +32 (0)22 30 99 99"
+                >
+                  <summary>Who do I contact for what?</summary>
+                  <div class="a">
+                    Use the team that owns your topic - each desk is shown
+                    above, and there's an escalation route if you don't get a
+                    reply:<br /><br />&bull;
+                    <b>Employee matters, holidays &amp; well-being</b>
+                    &rarr; <a href="mailto:hr@nishtech.be">hr@nishtech.be</a
+                    ><br />&bull;
+                    <b>Payroll, payslip, insurance &amp; benefits</b> &rarr;
+                    <a href="mailto:payroll@nishtech.be">payroll@nishtech.be</a
+                    ><br />&bull; <b>Laptop, access &amp; equipment</b> &rarr;
+                    <a href="mailto:hr@nishtech.be">hr@nishtech.be</a
+                    ><br />&bull; <b>Timesheets</b> &rarr;
+                    <a href="mailto:timesheets@nishtech.be"
+                      >timesheets@nishtech.be</a
+                    ><br />&bull; <b>Learning &amp; development</b> &rarr;
+                    <a href="mailto:lnd@nishtech.be">lnd@nishtech.be</a
+                    ><br />&bull; <b>Company car &amp; fuel card</b> &rarr;
+                    <a href="mailto:fleet@nishtech.be">fleet@nishtech.be</a
+                    ><br />&bull; <b>Contracts &amp; attestations</b> &rarr;
+                    <a href="mailto:contracts@nishtech.be"
+                      >contracts@nishtech.be</a
+                    ><br />&bull; <b>Invoicing, expenses &amp; POs</b> &rarr;
+                    <a href="mailto:invoices@nishtech.be"
+                      >invoices@nishtech.be</a
+                    ><br />&bull; <b>Client opportunities</b> &rarr;
+                    <a href="mailto:sales@nishtech.be">sales@nishtech.be</a
+                    ><br />&bull; <b>Referrals &amp; open roles</b> &rarr;
+                    <a href="mailto:jobs@nishtech.eu">jobs@nishtech.eu</a
+                    ><br />&bull; <b>Anything else / ideas</b> &rarr;
+                    <a href="mailto:info@nishtech.be">info@nishtech.be</a>
+                    &middot; +32 (0)22 30 99 99
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="i'm new to belgium - how do i get set up? most colleagues already know belgium - this quick-start is for anyone newly arrived. hr can guide you: hr@nishtech.be.in your first week register at your local commune (gemeente / commune) open a belgian bank account set up a phone / sim get your public-transport / bus pass (stib/mivb, de lijn or tec; national rail sncb/nmbs)in your first month join a mutuality (health fund) register with a gp - and a paediatrician & one if you have children sort your rental contract & address registrationalso good to know your national registration number, hospital insurance vs. mutuality, cost of living & where to stay belgium has three languages (dutch, french, german); english is widely used at work a welcoming, multilingual society with rich restaurant/café culture, festivals & local traditions"
+                >
+                  <summary>I'm new to Belgium - how do I get set up?</summary>
+                  <div class="a">
+                    Most colleagues already know Belgium - this quick-start is
+                    for anyone newly arrived. HR can guide you:
+                    <a href="mailto:hr@nishtech.be">hr@nishtech.be</a
+                    >.<br /><br /><b>In your first week</b><br />&bull; Register
+                    at your local <b>commune</b> (gemeente / commune)<br />&bull;
+                    Open a <b>Belgian bank account</b><br />&bull; Set up a
+                    <b>phone / SIM</b><br />&bull; Get your
+                    <b>public-transport / bus pass</b> (STIB/MIVB, De Lijn or
+                    TEC; national rail SNCB/NMBS)<br /><br /><b
+                      >In your first month</b
+                    ><br />&bull; Join a <b>mutuality</b> (health fund)<br />&bull;
+                    Register with a <b>GP</b> - and a
+                    <b>paediatrician &amp; ONE</b> if you have children<br />&bull;
+                    Sort your <b>rental contract &amp; address registration</b
+                    ><br /><br /><b>Also good to know</b><br />&bull; Your
+                    <b>national registration number</b>,
+                    <b>hospital insurance vs. mutuality</b>,
+                    <b>cost of living &amp; where to stay</b><br />&bull;
+                    Belgium has three languages (Dutch, French, German);
+                    <b>English is widely used at work</b><br />&bull; A
+                    welcoming, multilingual society with rich restaurant/café
+                    culture, festivals &amp; local traditions
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="i have an idea or innovation to share. great - nish welcomes ideas. send them to info@nishtech.be (innovation) and we'll take it forward."
+                >
+                  <summary>I have an idea or innovation to share.</summary>
+                  <div class="a">
+                    Great - NISH welcomes ideas. Send them to
+                    <a href="mailto:info@nishtech.be">info@nishtech.be</a>
+                    (Innovation) and we'll take it forward.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="my question isn't covered here - what now? email the closest team above, or contact hr@nishtech.be / +32 (0)22 30 99 99 and we'll route you. no reply within 48 business hours? escalate to info@nishtech.be."
+                >
+                  <summary>My question isn't covered here - what now?</summary>
+                  <div class="a">
+                    Email the closest team above, or contact
+                    <a href="mailto:hr@nishtech.be">hr@nishtech.be</a> / +32
+                    (0)22 30 99 99 and we'll route you. No reply within 48
+                    business hours? Escalate to
+                    <a href="mailto:info@nishtech.be">info@nishtech.be</a>.
+                  </div>
+                </details>
+              </div>
+              <div class="cbar">
+                <span class="cbar-main"
+                  ><svg viewBox="0 0 24 24" class="cbic">
+                    <rect
+                      x="2"
+                      y="4"
+                      width="20"
+                      height="16"
+                      rx="2"
+                      fill="none"
+                    />
+                    <path d="M22 6l-10 7L2 6" fill="none" /></svg
+                  >Contact
+                  <a href="mailto:hr@nishtech.be">hr@nishtech.be</a></span
+                ><span class="cbar-esc"
+                  >No reply in 48 business hours? Escalate &middot;
+                  <a href="mailto:info@nishtech.be">info@nishtech.be</a></span
+                >
+              </div>
+            </section>
+            <section id="hr" class="sec">
+              <div class="sechead">
+                <span class="secic"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2M10 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM21 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"
+                    /></svg
+                ></span>
+                <h2>Human Resources</h2>
+              </div>
+              <div class="subgroup">
+                <h3 class="subh">General HR</h3>
+                <details
+                  class="qa"
+                  data-q="how do i share or update my personal details (address, bank, family situation)? when you join, complete the personal details form in your onboarding kit (address, bank account, dependants, etc.) and send it to hr@nishtech.be. for later changes, email hr (some updates can also be made in nconnect). keep your bank details current so salary isn't delayed."
+                >
+                  <summary>
+                    How do I share or update my personal details (address, bank,
+                    family situation)?
+                  </summary>
+                  <div class="a">
+                    When you join, complete the
+                    <b>Personal Details Form</b> in your Onboarding Kit
+                    (address, bank account, dependants, etc.) and send it to
+                    <a href="mailto:hr@nishtech.be">hr@nishtech.be</a>. For
+                    later changes, email HR (some updates can also be made in
+                    NEPtune). Keep your bank details current so salary isn't
+                    delayed. <br />Family Situation: Newly married, New born
+                    baby / child or Spouse relocated long term
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="i need a proof of employment / salary attestation. request it from hr@nishtech.be (for contract-specific documents, contracts@nishtech.be can also help)."
+                >
+                  <summary>
+                    I need a proof of employment / salary attestation.
+                  </summary>
+                  <div class="a">
+                    Request it from
+                    <a href="mailto:hr@nishtech.be">hr@nishtech.be</a> (for
+                    contract-specific documents,
+                    <a href="mailto:contracts@nishtech.be"
+                      >contracts@nishtech.be</a
+                    >
+                    can also help).
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="can i work from home (telework)? structural telework is possible by agreement with nish, in line with your individual arrangement and base schedule. nish supports the equipment needed; you stay reachable during working hours and keep company data secure. it isn't an automatic right - if your presence is needed at the office or client on a planned home-working day, you attend. arrange it via hr@nishtech.be."
+                >
+                  <summary>Can I work from home (telework)?</summary>
+                  <div class="a">
+                    Structural telework is possible <b>by agreement</b> with
+                    NISH, in line with your individual arrangement and base
+                    schedule. NISH supports the equipment needed; you stay
+                    reachable during working hours and keep company data secure.
+                    It isn't an automatic right - if your presence is needed at
+                    the office or client on a planned home-working day, you
+                    attend. Arrange it via
+                    <a href="mailto:hr@nishtech.be">hr@nishtech.be</a>.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="how does the performance appraisal work? appraisals are held annually in 1-to-1 meetings - reviewing achievements, setting objectives, identifying training needs and supporting career development. salary reviews and promotions may be considered as part of the process. hr@nishtech.be."
+                >
+                  <summary>How does the performance appraisal work?</summary>
+                  <div class="a">
+                    Appraisals are held <b>annually in 1-to-1 meetings</b> -
+                    reviewing achievements, setting objectives, identifying
+                    training needs and supporting career development. Salary
+                    reviews and promotions may be considered as part of the
+                    process. &rarr;
+                    <a href="mailto:hr@nishtech.be">hr@nishtech.be</a>.
+                  </div>
+                </details>
+              </div>
+              <div class="subgroup">
+                <h3 class="subh">Holidays &amp; time off</h3>
+                <details
+                  class="qa"
+                  data-q="how much annual holiday do i get? 20 paid holidays for a full-time, five-day week, plus 12 rtt/adv days, plus belgium's Public & National holidays. Paid H	olidays are accrued on the previous year's work and credited in january; at nish they should be used within the year. if you didn't work a full previous calendar year, paid holidays are pro-rated (about 5 days per quarter worked)."
+                >
+                  <summary>How much annual holidays do I get?</summary>
+                  <div class="a">
+                    <b>20 Paid Holidays</b> for a full-time, five-day week, plus
+                    <b>12 RTT/ADV days</b>, plus Belgium's
+                    <b>Public &amp; National Holidays</b>. Paid holidays are
+                    <b>accrued on the previous year's work</b> and credited in
+                    January; at NISH they should be used within the year. If you
+                    didn't work a full previous calendar year, paid holidays are
+                    pro-rated (about 5 days per quarter worked).
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="what are rtt / adv days? rtt/adv days compensate for working beyond the standard 38-hour week (e.g. a 40-hour week earns about one rtt day per month). they're calculated through the year; any unused rtt days are paid out with the december payslip and reset at year-end (no carry-forward)."
+                >
+                  <summary>What are RTT / ADV days?</summary>
+                  <div class="a">
+                    <b>RTT/ADV days</b> compensate for working beyond the
+                    standard 38-hour week (e.g. a 40-hour week for 20 working
+                    days in a month earns about one RTT day per month). They're
+                    calculated through the year; any
+                    <b
+                      >unused RTT days are paid out with the December payslip</b
+                    >
+                    and reset at year-end (no carry-forward).
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="how do i apply leave? apply directly in neptune (“apply leaves”). choose the type - paid holidays, rtt/adv days, comp off or forwarded days - your balance is shown for each. add the start/end dates (or tick half-day) and a comment, then submit. sick day: leave it blank and add a comment; send your medical certificate to hr@nishtech.be. client/customer holidays: apply in the order rtt comp off paid holidays. request your main holiday ~1 month in advance and other days at least 1 week ahead. for special leave types, contact hr@nishtech.be."
+                >
+                  <summary>How do I apply Leave?</summary>
+                  <div class="a">
+                    Apply <b>directly in NEPtune</b> (“Apply Leaves”). Choose
+                    the type - <b>Paid Holidays</b>, <b>RTT/ADV Days</b>,
+                    <b>Comp off</b> or <b>Forwarded days</b> - your balance is
+                    shown for each. Add the start/end dates (or tick
+                    <b>Half-day</b>) and a comment, then submit.<br />&bull;
+                    <b>Sick day:</b> leave it blank and add a comment; send your
+                    medical certificate to
+                    <a href="mailto:hr@nishtech.be">hr@nishtech.be</a
+                    >.<br />&bull; <b>Client/customer holidays:</b> apply in the
+                    order
+                    <b>RTT &rarr; Comp off &rarr; Paid holidays</b>.<br />&bull;
+                    Request your <b>main holiday ~1 month</b> in advance and
+                    other days <b>at least 1 week</b> ahead. For special leave
+                    types, contact
+                    <a href="mailto:hr@nishtech.be">hr@nishtech.be</a>.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="can i carry forward unused holidays for next year? you may carry forward up to 5 unused paid holidays to the next calendar year; these must be used by 31 march or they lapse. rtt/adv days cannot be carried forward (they're paid out at year-end)."
+                >
+                  <summary>
+                    Can I carry forward unused holidays for next year?
+                  </summary>
+                  <div class="a">
+                    You may carry forward
+                    <b>up to 5 unused paid holidays</b> to the next calendar
+                    year; these must be used by <b>31 March</b> or they lapse.
+                    RTT/ADV days cannot be carried forward (they're paid out at
+                    year-end).
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="how do public holidays and comp-off work? belgium has 10 public holidays. if one falls on a weekend, you receive a compensatory day (comp-off)."
+                >
+                  <summary>How do Public holidays and comp-off work?</summary>
+                  <div class="a">
+                    Belgium has <b>10 Public holidays</b>. If one falls on a
+                    weekend, you receive a <b>compensatory day (comp-off)</b>.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="why do i need to apply for leave on a client holiday? client holidays aren't automatically belgian public holidays. if the client is closed but nish is operational, apply for leave using your rtt days (or an arrangement approved by your manager). you can also use up to 5 training days a year during client holidays, with manager approval."
+                >
+                  <summary>
+                    Why do I need to apply for leave on a client holiday?
+                  </summary>
+                  <div class="a">
+                    Client holidays aren't automatically Belgian public
+                    holidays. If the client is closed but NISH is operational,
+                    apply for leave using your
+                    <b>RTT days</b> (or an arrangement approved by your
+                    manager). You can also use up to <b>5 training days</b> a
+                    year during client holidays, with manager approval.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="i have no holiday balance left - what are my options? options include unpaid leave, parental leave or european leave (subject to eligibility). discuss with your manager and hr@nishtech.be before committing to travel."
+                >
+                  <summary>
+                    I have no holiday balance left - what are my options?
+                  </summary>
+                  <div class="a">
+                    Options include <b>unpaid leave</b>,
+                    <b>parental leave</b> or <b>European leave</b> (subject to
+                    eligibility). Discuss with your manager and
+                    <a href="mailto:hr@nishtech.be">hr@nishtech.be</a>
+                    before committing to travel.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="how do i report sick leave? notify nish (and your client manager) immediately by phone - not by sms or e-mail - at the latest at your normal start time, and send a medical certificate to hr@nishtech.be within 24 hours. during the first 14 days stay reachable for a control doctor at your address, in principle 10:00-14:00 (you may go out for medical care). nish pays guaranteed salary for the first period; for longer absence the mutuality takes over and hr initiates the process. full rules are in the work regulations (english translation available)."
+                >
+                  <summary>How do I report sick leave?</summary>
+                  <div class="a">
+                    Notify NISH (and your client manager)
+                    <b>immediately by phone</b> - not by SMS or e-mail - at the
+                    latest at your normal start time, and send a
+                    <b
+                      >medical certificate to
+                      <a href="mailto:hr@nishtech.be">hr@nishtech.be</a>
+                      within 24 hours</b
+                    >. During the <b>first 14 days</b> stay reachable for a
+                    control doctor at your address, in principle
+                    <b>10:00-14:00</b> (you may go out for medical care). NISH
+                    pays guaranteed salary for the first period; for longer
+                    absence the mutuality takes over and HR initiates the
+                    process. Full rules are in the
+                    <b>Work Regulations</b> (English translation available).
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="what about parental or educational leave? parental leave lets eligible employees reduce or suspend work to care for a child - hr helps with eligibility, application and duration. educational leave may apply for recognised training/studies (prior approval and documentation required) - contact hr before enrolling. hr@nishtech.be."
+                >
+                  <summary>What about parental or educational leave?</summary>
+                  <div class="a">
+                    <b>Parental leave</b> lets eligible employees reduce or
+                    suspend work to care for a child - HR helps with
+                    eligibility, application and duration.
+                    <b>Educational leave</b> may apply for recognised
+                    training/studies (prior approval and documentation required)
+                    - contact HR <b>before</b> enrolling. &rarr;
+                    <a href="mailto:hr@nishtech.be">hr@nishtech.be</a>.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="short leave for life events (marriage, birth, bereavement)? belgian “short leave” (klein verlet) gives paid time off for certain events, e.g. your marriage (3 days), birth of your child (20 days), death of your spouse/partner, child or a parent (3 days), and others. you may also take leave for compelling family reasons - generally up to 10 working days/year, unpaid. full list & how to apply hr@nishtech.be."
+                >
+                  <summary>
+                    Short leave for life events (marriage, birth, bereavement)?
+                  </summary>
+                  <div class="a">
+                    Belgian “short leave” (klein verlet) gives paid time off for
+                    certain events, e.g. <b>your marriage</b> (3 days),
+                    <b>birth of your child</b> (20 days),
+                    <b>death of your spouse/partner, child or a parent</b>
+                    (3 days), and others. You may also take
+                    <b>leave for compelling family reasons</b> - generally up to
+                    <b>10 working days/year, unpaid</b>. Full list &amp; how to
+                    apply &rarr;
+                    <a href="mailto:hr@nishtech.be">hr@nishtech.be</a>.
+                  </div>
+                </details>
+              </div>
+              <div class="subgroup">
+                <h3 class="subh">Well-being</h3>
+                <details
+                  class="qa"
+                  data-q="what well-being support is available? a seasonal flu vaccination through our prevention partner mensura, plus health checks, awareness drives, community/csr and sustainability initiatives across the year."
+                >
+                  <summary>What well-being support is available?</summary>
+                  <div class="a">
+                    A seasonal <b>flu vaccination</b> through our prevention
+                    partner <b>Mensura</b>, plus health checks, awareness
+                    drives, community/CSR and sustainability initiatives across
+                    the year.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="i'm struggling and need confidential support. reach out to hr@nishtech.be in confidence - they can direct you to the right support, including services via mensura. you're never on your own here."
+                >
+                  <summary>
+                    I'm struggling and need confidential support.
+                  </summary>
+                  <div class="a">
+                    Reach out to
+                    <a href="mailto:hr@nishtech.be">hr@nishtech.be</a> in
+                    confidence - they can direct you to the right support,
+                    including services via Mensura. You're never on your own
+                    here.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="i've had a work accident - what should i do? get any necessary medical care first - you are free to choose your doctor or hospital. then report the accident to hr@nishtech.be as soon as possible so it can be declared. nish's work-accident insurer is axa belgium. keep all medical and expense documents."
+                >
+                  <summary>
+                    I've had a work accident - what should I do?
+                  </summary>
+                  <div class="a">
+                    Get any necessary medical care first - you are
+                    <b>free to choose</b> your doctor or hospital. Then report
+                    the accident to
+                    <a href="mailto:hr@nishtech.be">hr@nishtech.be</a> as soon
+                    as possible so it can be declared. NISH's work-accident
+                    insurer is <b>AXA Belgium</b>. Keep all medical and expense
+                    documents.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="are there sports and team activities? yes - nish runs sports tournaments and team events (badminton, cricket, football, team outings and festive celebrations). join in via hr or your team channel."
+                >
+                  <summary>Are there sports and team activities?</summary>
+                  <div class="a">
+                    Yes - NISH runs sports tournaments and team events
+                    (badminton, cricket, football, team outings and festive
+                    celebrations). Join in via HR or your team channel.
+                  </div>
+                </details>
+              </div>
+              <div class="cbar">
+                <span class="cbar-main"
+                  ><svg viewBox="0 0 24 24" class="cbic">
+                    <rect
+                      x="2"
+                      y="4"
+                      width="20"
+                      height="16"
+                      rx="2"
+                      fill="none"
+                    />
+                    <path d="M22 6l-10 7L2 6" fill="none" /></svg
+                  >Contact
+                  <a href="mailto:hr@nishtech.be">hr@nishtech.be</a></span
+                ><span class="cbar-esc"
+                  >No reply in 48 business hours? Escalate &middot;
+                  <a href="mailto:info@nishtech.be">info@nishtech.be</a></span
+                >
+              </div>
+            </section>
+            <section id="comp" class="sec">
+              <div class="sechead">
+                <span class="secic"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                    /></svg
+                ></span>
+                <h2>Compensation &amp; Benefits</h2>
+              </div>
+              <div class="subgroup">
+                <h3 class="subh">Payroll &amp; payslip</h3>
+                <details
+                  class="qa"
+                  data-q="when and how am i paid? salary is paid monthly by bank transfer, at the latest on the 5th working day of the month following the work performed. to be paid on time, keep your bank details on file and submit your timesheet by the 23rd."
+                >
+                  <summary>When and how am I paid?</summary>
+                  <div class="a">
+                    Salary is paid <b>monthly by bank transfer</b>, at the
+                    latest on the
+                    <b>5th working day of the month following</b> the work
+                    performed. To be paid on time, keep your
+                    <b>bank details on file</b> and
+                    <b>submit your timesheet by the 23rd</b>.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="my salary hasn't been credited - what should i do? first check: your bank details are correct, you've received your payslip, and your timesheet was submitted. belgian transfers can be delayed by weekends/holidays. if you still haven't been paid by the 5th of the following month, contact payroll@nishtech.be (or hr@nishtech.be)."
+                >
+                  <summary>
+                    My salary hasn't been credited - what should I do?
+                  </summary>
+                  <div class="a">
+                    First check: your <b>bank details</b> are correct, you've
+                    <b>received your payslip</b>, and your
+                    <b>timesheet was submitted</b>. Belgian transfers can be
+                    delayed by weekends/holidays. If you still haven't been paid
+                    by the <b>5th of the following month</b>, contact
+                    <a href="mailto:payroll@nishtech.be">payroll@nishtech.be</a>
+                    (or <a href="mailto:hr@nishtech.be">hr@nishtech.be</a>).
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="where can i see or download my payslip? payslips and payroll documents are in the sd worx portal / mysdworx app. you'll get a login email when you join, and a monthly email when each payslip is generated. sd worx employee portal. access issues payroll@nishtech.be."
+                >
+                  <summary>Where can I see or download my payslip?</summary>
+                  <div class="a">
+                    Payslips and payroll documents are in the
+                    <b>SD Worx</b> portal / <b>mySDWorx</b> app. You'll get a
+                    login email when you join, and a monthly email when each
+                    payslip is generated.
+                    <a
+                      href="https://auth.sdworx.com/cia/identitystore.web.loginpages/main/login"
+                      target="_blank"
+                      rel="noopener"
+                      >SD Worx employee portal</a
+                    >. Access issues &rarr;
+                    <a href="mailto:payroll@nishtech.be">payroll@nishtech.be</a
+                    >.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="what does “13.92” mean? your annual package equals about 13.92 × your monthly salary: 12 monthly salaries + a 13th month (year-end bonus) + double holiday pay (~0.92 of a month). it's paid out across the year, with the two extra elements in july and december."
+                >
+                  <summary>What does “13.92” mean?</summary>
+                  <div class="a">
+                    Your annual package equals about
+                    <b>13.92 × your monthly salary</b>: 12 monthly salaries + a
+                    <b>13th month</b> (year-end bonus) +
+                    <b>double holiday pay</b> (~0.92 of a month). It's paid out
+                    across the year, with the two extra elements in July and
+                    December.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="when is the year-end bonus (13th month) paid? in december, one month's gross salary. at nish this applies where your joining date is before 30 june; it's set via the applicable sector agreement / trade union / company policy (pro-rata for that first year)."
+                >
+                  <summary>
+                    When is the year-end bonus (13th month) paid?
+                  </summary>
+                  <div class="a">
+                    In <b>December</b>, one month's gross salary. At NISH this
+                    applies where your <b>joining date is before 30 June</b>;
+                    it's set via the applicable
+                    <b>sector agreement / trade union / company policy</b>
+                    (pro-rata for that first year).
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="when is double holiday pay paid? usually in july. it's a supplement of about 92% of your gross monthly salary, separate from your normal salary while on holiday. it's based on the days you worked in the previous calendar year (full or pro-rata by joining date)."
+                >
+                  <summary>When is double holiday pay paid?</summary>
+                  <div class="a">
+                    Usually in <b>July</b>. It's a supplement of about
+                    <b>92% of your gross monthly salary</b>, separate from your
+                    normal salary while on holiday. It's based on the days you
+                    worked in the previous calendar year (full or pro-rata by
+                    joining date).
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="what is indexation? wages under joint committee 200 are indexed annually on 1 january to reflect the cost of living, protecting your purchasing power. a performance-based increase may also apply."
+                >
+                  <summary>What is indexation?</summary>
+                  <div class="a">
+                    Wages under <b>Joint Committee 200</b> are
+                    <b>indexed annually on 1 January</b> to reflect the cost of
+                    living, protecting your purchasing power. A
+                    performance-based increase may also apply.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="can i request a salary advance? salary advances are exceptional and need management approval - include the reason, amount and repayment expectation. if approved, you sign a repayment undertaking. ask payroll@nishtech.be / hr@nishtech.be."
+                >
+                  <summary>Can I request a salary advance?</summary>
+                  <div class="a">
+                    Salary advances are <b>exceptional</b> and need management
+                    approval - include the reason, amount and repayment
+                    expectation. If approved, you sign a repayment undertaking.
+                    Ask
+                    <a href="mailto:payroll@nishtech.be">payroll@nishtech.be</a>
+                    / <a href="mailto:hr@nishtech.be">hr@nishtech.be</a>.
+                  </div>
+                </details>
+              </div>
+              <div class="subgroup">
+                <h3 class="subh">Vouchers &amp; allowances</h3>
+                <details
+                  class="qa"
+                  data-q="how do meal vouchers work? loaded onto your meal-voucher card for food and groceries - up to €8 per worked day."
+                >
+                  <summary>How do meal vouchers work?</summary>
+                  <div class="a">
+                    Loaded onto your <b>meal-voucher card</b> for food and
+                    groceries - <b>up to €8 per worked day</b>
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="how do eco vouchers work? for eco-friendly products and services from an official list. up to €250 per year, valid 2 years. issued via your benefits-card provider (credited to your card, typically with the july salary)."
+                >
+                  <summary>How do eco vouchers work?</summary>
+                  <div class="a">
+                    For eco-friendly products and services from an official
+                    list. <b>Up to €250 per year</b>, valid <b>2 years</b>.
+                    Issued via your benefits-card provider (credited to your
+                    card, typically with the July salary).
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="my meal/eco voucher card is lost or stolen - what do i do? block the card with your provider straight away (your balance is protected), then a replacement is ordered - you can do this yourself, directly: monizze - block via the app or my.monizze.be, or call +32 (0)78 05 33 77 (mon-sat, 8:30-18:00). website: monizze.be. pluxee - block by calling 02 547 55 02 (24/7) or via the pluxee be app; a new card arrives in 5-10 working days. website: pluxee.be.tip: register on your provider's app/portal so you can manage the card and get support directly. not sure which provider you have? check your card or ask hr@nishtech.be. per the work regulations, the replacement cost (at most the value of one meal voucher, or €5 for an eco card) may be deducted from your next net pay."
+                >
+                  <summary>
+                    My meal/eco voucher card is lost or stolen - what do I do?
+                  </summary>
+                  <div class="a">
+                    Block the card with your provider straight away (your
+                    balance is protected), then a replacement is ordered - you
+                    can do this yourself, directly:<br />&bull; <b>Monizze</b> -
+                    block via the app or
+                    <a
+                      href="https://my.monizze.be"
+                      target="_blank"
+                      rel="noopener"
+                      >my.monizze.be</a
+                    >, or call <b>+32 (0)78 05 33 77</b> (Mon-Sat, 8:30-18:00).
+                    Website:
+                    <a
+                      href="https://www.monizze.be"
+                      target="_blank"
+                      rel="noopener"
+                      >monizze.be</a
+                    >.<br />&bull; <b>Pluxee</b> - block by calling
+                    <b>02 547 55 02</b> (24/7) or via the Pluxee BE app; a new
+                    card arrives in 5-10 working days. Website:
+                    <a
+                      href="https://www.pluxee.be"
+                      target="_blank"
+                      rel="noopener"
+                      >pluxee.be</a
+                    >.<br />Tip: register on your provider's app/portal so you
+                    can manage the card and get support directly. Not sure which
+                    provider you have? Check your card or ask
+                    <a href="mailto:hr@nishtech.be">hr@nishtech.be</a>. Per the
+                    work regulations, the replacement cost (at most the value of
+                    one meal voucher, or €5 for an eco card) may be deducted
+                    from your next net pay.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="what is the mobility allowance / mobility budget? the belgian mobility budget lets eligible employees choose sustainable alternatives to a company car - public transport, sustainable transport, housing near work, or a remaining cash balance. your budget/category is based on your package and grade. more info: mobiliteitsbudget.be. to set it up payroll@nishtech.be / fleet@nishtech.be."
+                >
+                  <summary>
+                    What is the mobility allowance / mobility budget?
+                  </summary>
+                  <div class="a">
+                    The Belgian <b>mobility budget</b> lets eligible employees
+                    choose sustainable alternatives to a company car - public
+                    transport, sustainable transport, housing near work, or a
+                    remaining cash balance. Your budget/category is based on
+                    your package and grade. More info:
+                    <a
+                      href="https://mobiliteitsbudget.be"
+                      target="_blank"
+                      rel="noopener"
+                      >mobiliteitsbudget.be</a
+                    >. To set it up &rarr;
+                    <a href="mailto:payroll@nishtech.be">payroll@nishtech.be</a>
+                    /
+                    <a href="mailto:fleet@nishtech.be">fleet@nishtech.be</a>.
+                  </div>
+                </details>
+              </div>
+              <div class="subgroup">
+                <h3 class="subh">Insurance &amp; healthcare</h3>
+                <details
+                  class="qa"
+                  data-q="what insurance does nish provide, and what do i arrange myself? nish provides hospitalisation insurance through dkv belgium (premium corporate plan) for eligible employees. you apply for your mutuality (health fund) and, for families, child benefits (e.g. kidslife, famiris, parentia, myfamily)."
+                >
+                  <summary>
+                    What insurance does NISH provide, and what do I arrange
+                    myself?
+                  </summary>
+                  <div class="a">
+                    <b>NISH provides</b> hospitalisation insurance through
+                    <b>DKV Belgium</b> (Premium Corporate plan) for eligible
+                    employees. <b>You apply</b> for your
+                    <b>mutuality</b> (health fund) and, for families,
+                    <b>child benefits</b> (e.g. KidsLife, Famiris, Parentia,
+                    MyFamily).
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="how do i declare or follow up a hospitalisation (dkv)? manage everything in mydkv (mydkv.be) or the dkv app - declare a hospitalisation, submit medical costs and follow up reimbursements; payment can go directly to the hospital via the medi-card. customer service: +32 (0)2 287 64 11. hospitalised or in difficulty abroad? call dkv assistance +32 (0)2 230 31 32 and declare within 24 hours. website: dkv.be. policy questions hr@nishtech.be."
+                >
+                  <summary>
+                    How do I declare or follow up a hospitalisation (DKV)?
+                  </summary>
+                  <div class="a">
+                    Manage everything in <b>MyDKV</b> (<a
+                      href="https://www.mydkv.be"
+                      target="_blank"
+                      rel="noopener"
+                      >mydkv.be</a
+                    >) or the DKV app - declare a hospitalisation, submit
+                    medical costs and follow up reimbursements; payment can go
+                    directly to the hospital via the Medi-Card. Customer
+                    service: <b>+32 (0)2 287 64 11</b>. Hospitalised or in
+                    difficulty <b>abroad</b>? Call
+                    <b>DKV Assistance +32 (0)2 230 31 32</b> and declare within
+                    24 hours. Website:
+                    <a href="https://www.dkv.be" target="_blank" rel="noopener"
+                      >dkv.be</a
+                    >. Policy questions &rarr;
+                    <a href="mailto:hr@nishtech.be">hr@nishtech.be</a>.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="what is mutuality, and is it mandatory? mutuality is belgium's public health insurance. joining a recognised fund is mandatory for anyone living or working in belgium - you pay a small contribution and it reimburses most medical costs and gives access to public healthcare. options include caami/hziv (free but basic), solidaris, mutualia or partenamut."
+                >
+                  <summary>What is mutuality, and is it mandatory?</summary>
+                  <div class="a">
+                    Mutuality is Belgium's <b>public health insurance</b>.
+                    Joining a recognised fund is <b>mandatory</b> for anyone
+                    living or working in Belgium - you pay a small contribution
+                    and it reimburses most medical costs and gives access to
+                    public healthcare. Options include <b>CAAMI/HZIV</b> (free
+                    but basic), <b>Solidaris</b>, <b>Mutualia</b> or
+                    <b>Partenamut</b>.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="does nish provide dental insurance? no - nish doesn't provide dental insurance. check dental options with your mutuality."
+                >
+                  <summary>Does NISH provide dental insurance?</summary>
+                  <div class="a">
+                    No - NISH doesn't provide dental insurance. Check dental
+                    options with your <b>mutuality</b>.
+                  </div>
+                </details>
+              </div>
+              <div class="cbar">
+                <span class="cbar-main"
+                  ><svg viewBox="0 0 24 24" class="cbic">
+                    <rect
+                      x="2"
+                      y="4"
+                      width="20"
+                      height="16"
+                      rx="2"
+                      fill="none"
+                    />
+                    <path d="M22 6l-10 7L2 6" fill="none" /></svg
+                  >Contact
+                  <a href="mailto:payroll@nishtech.be"
+                    >payroll@nishtech.be</a
+                  ></span
+                ><span class="cbar-esc"
+                  >No reply in 48 business hours? Escalate &middot;
+                  <a href="mailto:nivia@nishtech.be">nivia@nishtech.be</a></span
+                >
+              </div>
+            </section>
+            <section id="asset" class="sec">
+              <div class="sechead">
+                <span class="secic"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M3 5a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v10H3zM1 19h22M9 8h6"
+                    /></svg
+                ></span>
+                <h2>Assets (IT &amp; Equipment)</h2>
+              </div>
+              <div class="subgroup">
+                <details
+                  class="qa"
+                  data-q="who provides my laptop? if you work on a client's systems, the client usually provides your laptop and accounts - follow their it setup and security policies. if the client runs a byod model or doesn't provide a device, nish provides a laptop for your assignment. questions hr@nishtech.be."
+                >
+                  <summary>Who provides my laptop?</summary>
+                  <div class="a">
+                    The client usually provides your laptop and relavant
+                    accesses - follow their IT setup and security policies. If
+                    the client runs a <b>BYOD</b> model or doesn't provide a
+                    device, <b>NISH provides</b> a laptop for your assignment.
+                    Questions &rarr;
+                    <a href="mailto:hr@nishtech.be">hr@nishtech.be</a>.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="i have an access or login issue (neptune, nconnect, email). the assets/it team helps you get set up and restore access to neptune, nconnect, email and accounts. contact hr@nishtech.be (copy hr@nishtech.be for neptune timesheet access)."
+                >
+                  <summary>
+                    I have an access or login issue (NEPtune, NConnect, email).
+                  </summary>
+                  <div class="a">
+                    The Assets/IT team helps you get set up and restore access
+                    to NEPtune, NConnect (HR/Admin), email and accesses. Contact
+                    <a href="mailto:hr@nishtech.be">hr@nishtech.be</a> for any
+                    question on access.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="i have a hardware, software or security problem. reach the assets/it desk at hr@nishtech.be for anything hardware, software, security or access related."
+                >
+                  <summary>
+                    I have a hardware, software or security problem.
+                  </summary>
+                  <div class="a">
+                    Reach the Assets/IT desk at
+                    <a href="mailto:hr@nishtech.be">hr@nishtech.be</a> for
+                    anything hardware, software, security or access related.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="i lost my work sim card (proximus) - what do i do? block the sim immediately, 24/7, so it can't be misused: via the block-your-sim page on proximus.be, or call proximus (free on 6000 from a proximus line). a corporate sim is part of your onboarding kit where your contract provides one. then tell hr@nishtech.be so a replacement can be arranged."
+                >
+                  <summary>
+                    I lost my work SIM card (Proximus) - what do I do?
+                  </summary>
+                  <div class="a">
+                    Block the SIM <b>immediately, 24/7</b>, so it can't be
+                    misused: via the
+                    <a
+                      href="https://www.proximus.be/support/en/id_sfaqr_device_stolen_phone/personal/support/telephony/mobile-phone-and-sim-card/broken-lost-or-stolen-device/block-your-mobile-and-sim-card-in-case-of-loss-or-theft.html"
+                      target="_blank"
+                      rel="noopener"
+                      >block-your-SIM page</a
+                    >
+                    on
+                    <a
+                      href="https://www.proximus.be"
+                      target="_blank"
+                      rel="noopener"
+                      >proximus.be</a
+                    >, or call Proximus (free on <b>6000</b> from a Proximus
+                    line). A corporate SIM is part of your onboarding kit where
+                    your contract provides one. Then tell
+                    <a href="mailto:hr@nishtech.be">hr@nishtech.be</a> so a
+                    replacement can be arranged.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="how do i return my equipment? return any nish-provided device when your assignment or employment ends. arrange the return with hr@nishtech.be."
+                >
+                  <summary>How do I return my equipment?</summary>
+                  <div class="a">
+                    For Client provided assests, return directly to the Client's
+                    IT help desk and inform HR. <br />Return any NISH-provided
+                    device when your assignment or employment ends. Arrange the
+                    return with
+                    <a href="mailto:hr@nishtech.be">hr@nishtech.be</a>.
+                  </div>
+                </details>
+              </div>
+              <div class="cbar">
+                <span class="cbar-main"
+                  ><svg viewBox="0 0 24 24" class="cbic">
+                    <rect
+                      x="2"
+                      y="4"
+                      width="20"
+                      height="16"
+                      rx="2"
+                      fill="none"
+                    />
+                    <path d="M22 6l-10 7L2 6" fill="none" /></svg
+                  >Contact
+                  <a href="mailto:hr@nishtech.be">hr@nishtech.be</a></span
+                ><span class="cbar-esc"
+                  >No reply in 48 business hours? Escalate &middot;
+                  <a href="mailto:info@nishtech.be">info@nishtech.be</a></span
+                >
+              </div>
+            </section>
+            <section id="lnd" class="sec">
+              <div class="sechead">
+                <span class="secic"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2zM4 19a2 2 0 0 0 2 2h12M9 7h6"
+                    /></svg
+                ></span>
+                <h2>Learning &amp; Development</h2>
+              </div>
+              <div class="subgroup">
+                <details
+                  class="qa"
+                  data-q="can i get a certification or training reimbursed? yes - one certification per year reimbursed up to €500, plus support for trainings and seminars. check eligibility with lnd@nishtech.be / hr@nishtech.be. any questions, ask hr@nishtech.be."
+                >
+                  <summary>
+                    Can I get a certification or training reimbursed?
+                  </summary>
+                  <div class="a">
+                    Yes -
+                    <b>one certification per year reimbursed up to €500</b>,
+                    plus support for trainings and seminars. Check eligibility
+                    with <a href="mailto:lnd@nishtech.be">lnd@nishtech.be</a> /
+                    <a href="mailto:hr@nishtech.be">hr@nishtech.be</a>. Any
+                    questions, ask
+                    <a href="mailto:hr@nishtech.be">hr@nishtech.be</a>.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="what learning & development support is there? nish supports t-shaped growth (deepen core skills while broadening into new areas), knowledge sharing across the group, corporate trainings, seminars and classroom/online learning. lnd@nishtech.be."
+                >
+                  <summary>
+                    What learning &amp; development support is there?
+                  </summary>
+                  <div class="a">
+                    NISH supports <b>T-shaped growth</b> (deepen core skills
+                    while broadening into new areas),
+                    <b>knowledge sharing</b> across the group, corporate
+                    trainings, seminars and classroom/online learning. &rarr;
+                    <a href="mailto:lnd@nishtech.be">lnd@nishtech.be</a>.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="can i become a trainer? yes - you can step up to teach and share expertise, with monetary benefits for doing so. express your interest to lnd@nishtech.be."
+                >
+                  <summary>Can I become a trainer?</summary>
+                  <div class="a">
+                    Yes - you can step up to teach and share expertise, with
+                    monetary benefits for doing so. Express your interest to
+                    <a href="mailto:lnd@nishtech.be">lnd@nishtech.be</a>.
+                  </div>
+                </details>
+              </div>
+              <div class="cbar">
+                <span class="cbar-main"
+                  ><svg viewBox="0 0 24 24" class="cbic">
+                    <rect
+                      x="2"
+                      y="4"
+                      width="20"
+                      height="16"
+                      rx="2"
+                      fill="none"
+                    />
+                    <path d="M22 6l-10 7L2 6" fill="none" /></svg
+                  >Contact
+                  <a href="mailto:lnd@nishtech.be">lnd@nishtech.be</a></span
+                ><span class="cbar-esc"
+                  >No reply in 48 business hours? Escalate &middot;
+                  <a href="mailto:info@nishtech.be">info@nishtech.be</a></span
+                >
+              </div>
+            </section>
+            <section id="timesheets" class="sec">
+              <div class="sechead">
+                <span class="secic"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 7v5l3 2M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z"
+                    /></svg
+                ></span>
+                <h2>Timesheets</h2>
+              </div>
+              <div class="subgroup">
+                <details
+                  class="qa"
+                  data-q="how do i fill in my timesheet? record your actual hours each day in neptune, upload the client-approved timesheet (apts) at month-end, and ensure manager approval where required. timely submission drives payroll, client invoicing and project reporting."
+                >
+                  <summary>How do I fill in my timesheet?</summary>
+                  <div class="a">
+                    Record your actual hours each day in <b>NEPtune</b>, upload
+                    the <b>client-approved timesheet (APTS)</b> at month-end,
+                    and ensure manager approval where required. Timely
+                    submission drives
+                    <b>payroll, client invoicing and project reporting</b>.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="when are timesheets due, and where? submit in the neptune portal by the 23rd of every month, then submit the client-approved timesheet by the 1st of the following month. you're notified by email before the freeze each month."
+                >
+                  <summary>When are timesheets due, and where?</summary>
+                  <div class="a">
+                    Submit in the
+                    <b>NEPtune portal by the 23rd of every month</b>, then
+                    submit the
+                    <b
+                      >client-approved timesheet by the 1st of the following
+                      month</b
+                    >. You're notified by email before the freeze each month.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="what is a frozen timesheet? a frozen timesheet is locked after the monthly deadline. after freezing, corrections need hr operations approval, and late submissions can delay payroll and client invoicing. timesheets@nishtech.be."
+                >
+                  <summary>What is a frozen timesheet?</summary>
+                  <div class="a">
+                    A frozen timesheet is
+                    <b>locked after the monthly deadline</b>. After freezing,
+                    corrections need <b>HR Operations approval</b>, and late
+                    submissions can delay payroll and client invoicing. &rarr;
+                    <a href="mailto:timesheets@nishtech.be"
+                      >timesheets@nishtech.be</a
+                    >.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="i made a mistake or need a correction. email timesheets@nishtech.be with the period and the correction needed."
+                >
+                  <summary>I made a mistake or need a correction.</summary>
+                  <div class="a">
+                    Email
+                    <a href="mailto:timesheets@nishtech.be"
+                      >timesheets@nishtech.be</a
+                    >
+                    with the period and the correction needed.
+                  </div>
+                </details>
+              </div>
+              <div class="cbar">
+                <span class="cbar-main"
+                  ><svg viewBox="0 0 24 24" class="cbic">
+                    <rect
+                      x="2"
+                      y="4"
+                      width="20"
+                      height="16"
+                      rx="2"
+                      fill="none"
+                    />
+                    <path d="M22 6l-10 7L2 6" fill="none" /></svg
+                  >Contact
+                  <a href="mailto:timesheets@nishtech.be"
+                    >timesheets@nishtech.be</a
+                  ></span
+                ><span class="cbar-esc"
+                  >No reply in 48 business hours? Escalate &middot;
+                  <a href="mailto:info@nishtech.be">info@nishtech.be</a></span
+                >
+              </div>
+            </section>
+            <section id="contracts" class="sec">
+              <div class="sechead">
+                <span class="secic"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h5M8 17h8"
+                    /></svg
+                ></span>
+                <h2>Contracts</h2>
+              </div>
+              <div class="subgroup">
+                <details
+                  class="qa"
+                  data-q="i have a question about my employment contract. the contracts team handles employment and assignment contracts - contracts@nishtech.be."
+                >
+                  <summary>
+                    I have a question about my employment contract.
+                  </summary>
+                  <div class="a">
+                    The <b>Contracts</b> team handles employment and assignment
+                    contracts -
+                    <a href="mailto:contracts@nishtech.be"
+                      >contracts@nishtech.be</a
+                    >.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="my assignment is being extended or changed. let contracts@nishtech.be know so the paperwork is updated correctly."
+                >
+                  <summary>My assignment is being extended or changed.</summary>
+                  <div class="a">
+                    Let
+                    <a href="mailto:contracts@nishtech.be"
+                      >contracts@nishtech.be</a
+                    >
+                    know so the paperwork is updated correctly.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="i need a contract amendment or addendum. request it from contracts@nishtech.be."
+                >
+                  <summary>I need a contract amendment or addendum.</summary>
+                  <div class="a">
+                    Request it from
+                    <a href="mailto:contracts@nishtech.be"
+                      >contracts@nishtech.be</a
+                    >.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="i need a document for a landlord, bank or authority. contact contracts@nishtech.be (or hr@nishtech.be) and we'll provide the right attestation."
+                >
+                  <summary>
+                    I need a document for a landlord, bank or authority.
+                  </summary>
+                  <div class="a">
+                    Contact
+                    <a href="mailto:contracts@nishtech.be"
+                      >contracts@nishtech.be</a
+                    >
+                    (or <a href="mailto:hr@nishtech.be">hr@nishtech.be</a>) and
+                    we'll provide the right attestation.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="what notice period applies if i or nish end the contract? for open-ended contracts, either party may end the contract by giving notice under the belgian employment contracts act of 3 july 1978; the notice period depends mainly on your seniority. for your situation contracts@nishtech.be."
+                >
+                  <summary>
+                    What notice period applies if I or NISH end the contract?
+                  </summary>
+                  <div class="a">
+                    For open-ended contracts, either party may end the contract
+                    by giving notice under the Belgian
+                    <b>Employment Contracts Act of 3 July 1978</b>; the notice
+                    period depends mainly on your seniority. For your situation
+                    &rarr;
+                    <a href="mailto:contracts@nishtech.be"
+                      >contracts@nishtech.be</a
+                    >.
+                  </div>
+                </details>
+              </div>
+              <div class="cbar">
+                <span class="cbar-main"
+                  ><svg viewBox="0 0 24 24" class="cbic">
+                    <rect
+                      x="2"
+                      y="4"
+                      width="20"
+                      height="16"
+                      rx="2"
+                      fill="none"
+                    />
+                    <path d="M22 6l-10 7L2 6" fill="none" /></svg
+                  >Contact
+                  <a href="mailto:contracts@nishtech.be"
+                    >contracts@nishtech.be</a
+                  ></span
+                ><span class="cbar-esc"
+                  >No reply in 48 business hours? Escalate &middot;
+                  <a href="mailto:info@nishtech.be">info@nishtech.be</a></span
+                >
+              </div>
+            </section>
+            <section id="invoicing" class="sec">
+              <div class="sechead">
+                <span class="secic"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M5 2h14v20l-2.3-1.5L14.3 22 12 20.5 9.7 22 7.3 20.5 5 22V2zM9 7h6M9 11h6M9 15h4"
+                    /></svg
+                ></span>
+                <h2>Invoicing</h2>
+              </div>
+              <div class="subgroup">
+                <details
+                  class="qa"
+                  data-q="how does invoicing work at nish? nish invoices the client monthly based on your approved timesheet - so timely, accurate timesheets get billing right. as an employee you don't invoice the client yourself."
+                >
+                  <summary>How does invoicing work at NISH?</summary>
+                  <div class="a">
+                    NISH invoices the <b>client monthly</b> based on your
+                    <b>approved timesheet</b> - so timely, accurate timesheets
+                    get billing right. As an employee you don't invoice the
+                    client yourself.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="when are client invoices raised, and what are the payment terms? after timesheet approval each month; payment terms follow the client contract. questions invoices@nishtech.be."
+                >
+                  <summary>
+                    When are client invoices raised, and what are the payment
+                    terms?
+                  </summary>
+                  <div class="a">
+                    After timesheet approval each month; payment terms follow
+                    the client contract. Questions &rarr;
+                    <a href="mailto:invoices@nishtech.be"
+                      >invoices@nishtech.be</a
+                    >.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="how do i claim an expense or reimbursement? send your expense/reimbursement request with supporting receipts to invoices@nishtech.be."
+                >
+                  <summary>How do I claim an expense or reimbursement?</summary>
+                  <div class="a">
+                    Send your expense/reimbursement request with supporting
+                    receipts to
+                    <a href="mailto:invoices@nishtech.be"
+                      >invoices@nishtech.be</a
+                    >.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="i'm a freelance / contractor partner - how do i send my invoice? follow the agreed po and reference details and send your invoice to invoices@nishtech.be."
+                >
+                  <summary>
+                    I'm a freelance / contractor partner - how do I send my
+                    invoice?
+                  </summary>
+                  <div class="a">
+                    Follow the agreed PO and reference details and send your
+                    invoice to
+                    <a href="mailto:invoices@nishtech.be"
+                      >invoices@nishtech.be</a
+                    >.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="there's a billing or po discrepancy. flag it to invoices@nishtech.be with the invoice/po number."
+                >
+                  <summary>There's a billing or PO discrepancy.</summary>
+                  <div class="a">
+                    Flag it to
+                    <a href="mailto:invoices@nishtech.be"
+                      >invoices@nishtech.be</a
+                    >
+                    with the invoice/PO number.
+                  </div>
+                </details>
+              </div>
+              <div class="cbar">
+                <span class="cbar-main"
+                  ><svg viewBox="0 0 24 24" class="cbic">
+                    <rect
+                      x="2"
+                      y="4"
+                      width="20"
+                      height="16"
+                      rx="2"
+                      fill="none"
+                    />
+                    <path d="M22 6l-10 7L2 6" fill="none" /></svg
+                  >Contact
+                  <a href="mailto:invoices@nishtech.be"
+                    >invoices@nishtech.be</a
+                  ></span
+                ><span class="cbar-esc"
+                  >No reply in 48 business hours? Escalate &middot;
+                  <a href="mailto:info@nishtech.be">info@nishtech.be</a></span
+                >
+              </div>
+            </section>
+            <section id="fleet" class="sec">
+              <div class="sechead">
+                <span class="secic"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M5 13l1.5-4.5A2 2 0 0 1 8.4 7h7.2a2 2 0 0 1 1.9 1.5L19 13M5 13h14v4H5zM7.5 17v1.6M16.5 17v1.6"
+                    /></svg
+                ></span>
+                <h2>Fleet &amp; Mobility</h2>
+              </div>
+              <div class="subgroup">
+                <details
+                  class="qa"
+                  data-q="company car, fuel/charge card or maintenance question? the fleet team handles all of it - fleet@nishtech.be."
+                >
+                  <summary>
+                    Company car, fuel/charge card or maintenance question?
+                  </summary>
+                  <div class="a">
+                    The <b>Fleet</b> team handles all of it -
+                    <a href="mailto:fleet@nishtech.be">fleet@nishtech.be</a>.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="what should i do when receiving a company car? before accepting: inspect the vehicle thoroughly, review all documents, check accessories, record existing damage and report discrepancies immediately, sign the lease agreement, take your fuel card (and learn how to use it), and take photos of the car as handed over. fleet@nishtech.be."
+                >
+                  <summary>
+                    What should I do when receiving a company car?
+                  </summary>
+                  <div class="a">
+                    Before accepting: <b>inspect the vehicle</b> thoroughly,
+                    review all documents, check accessories,
+                    <b>record existing damage</b> and report discrepancies
+                    immediately, sign the lease agreement, take your fuel card
+                    (and learn how to use it), and <b>take photos</b> of the car
+                    as handed over. &rarr;
+                    <a href="mailto:fleet@nishtech.be">fleet@nishtech.be</a>.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="what should i do when returning a company car? return the keys, registration documents, fuel cards and accessories, with the vehicle in acceptable condition per the lease standards. fleet@nishtech.be."
+                >
+                  <summary>
+                    What should I do when returning a company car?
+                  </summary>
+                  <div class="a">
+                    Return the
+                    <b
+                      >keys, registration documents, fuel cards and
+                      accessories</b
+                    >, with the vehicle in acceptable condition per the lease
+                    standards. &rarr;
+                    <a href="mailto:fleet@nishtech.be">fleet@nishtech.be</a>.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="who pays traffic fines and penalties? you are personally responsible for speeding fines, parking penalties and traffic violations; leasing-provider administrative fees may also apply."
+                >
+                  <summary>Who pays traffic fines and penalties?</summary>
+                  <div class="a">
+                    You are <b>personally responsible</b> for speeding fines,
+                    parking penalties and traffic violations; leasing-provider
+                    administrative fees may also apply.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="i've had an accident or damage to the car. follow the insurer/assistance steps in your car pack, then notify fleet@nishtech.be immediately."
+                >
+                  <summary>I've had an accident or damage to the car.</summary>
+                  <div class="a">
+                    Follow the insurer/assistance steps in your car pack, then
+                    notify
+                    <a href="mailto:fleet@nishtech.be">fleet@nishtech.be</a>
+                    <b>immediately</b>.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="mobility budget vs. company car? the mobility budget is a sustainable alternative to a company car (see compensation & benefits mobility allowance). official info: mobiliteitsbudget.be. to choose fleet@nishtech.be."
+                >
+                  <summary>Mobility budget vs. company car?</summary>
+                  <div class="a">
+                    The mobility budget is a sustainable alternative to a
+                    company car (see
+                    <b>Compensation &amp; Benefits &rarr; mobility allowance</b
+                    >). Official info:
+                    <a
+                      href="https://mobiliteitsbudget.be"
+                      target="_blank"
+                      rel="noopener"
+                      >mobiliteitsbudget.be</a
+                    >. To choose &rarr;
+                    <a href="mailto:fleet@nishtech.be">fleet@nishtech.be</a>.
+                  </div>
+                </details>
+              </div>
+              <div class="cbar">
+                <span class="cbar-main"
+                  ><svg viewBox="0 0 24 24" class="cbic">
+                    <rect
+                      x="2"
+                      y="4"
+                      width="20"
+                      height="16"
+                      rx="2"
+                      fill="none"
+                    />
+                    <path d="M22 6l-10 7L2 6" fill="none" /></svg
+                  >Contact
+                  <a href="mailto:fleet@nishtech.be">fleet@nishtech.be</a></span
+                ><span class="cbar-esc"
+                  >No reply in 48 business hours? Escalate &middot;
+                  <a href="mailto:info@nishtech.be">info@nishtech.be</a></span
+                >
+              </div>
+            </section>
+            <section id="sales" class="sec">
+              <div class="sechead">
+                <span class="secic"
+                  ><svg viewBox="0 0 24 24">
+                    <path d="M3 3v18h18M7 14l3.5-3.5L14 14l5-6" /></svg
+                ></span>
+                <h2>Sales</h2>
+              </div>
+              <div class="subgroup">
+                <details
+                  class="qa"
+                  data-q="i have a client lead or business opportunity. send it to sales@nishtech.be - every lead helps nish grow."
+                >
+                  <summary>
+                    I have a client lead or business opportunity.
+                  </summary>
+                  <div class="a">
+                    Send it to
+                    <a href="mailto:sales@nishtech.be">sales@nishtech.be</a>
+                    - every lead helps NISH grow.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="a client wants to start or expand work with nish. connect them with sales@nishtech.be and we'll take it from there."
+                >
+                  <summary>
+                    A client wants to start or expand work with NISH.
+                  </summary>
+                  <div class="a">
+                    Connect them with
+                    <a href="mailto:sales@nishtech.be">sales@nishtech.be</a>
+                    and we'll take it from there.
+                  </div>
+                </details>
+              </div>
+              <div class="cbar">
+                <span class="cbar-main"
+                  ><svg viewBox="0 0 24 24" class="cbic">
+                    <rect
+                      x="2"
+                      y="4"
+                      width="20"
+                      height="16"
+                      rx="2"
+                      fill="none"
+                    />
+                    <path d="M22 6l-10 7L2 6" fill="none" /></svg
+                  >Contact
+                  <a href="mailto:sales@nishtech.be">sales@nishtech.be</a></span
+                ><span class="cbar-esc"
+                  >No reply in 48 business hours? Escalate &middot;
+                  <a href="mailto:info@nishtech.be">info@nishtech.be</a></span
+                >
+              </div>
+            </section>
+            <section id="jobs" class="sec">
+              <div class="sechead">
+                <span class="secic"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M20 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2M2 12h20"
+                    /></svg
+                ></span>
+                <h2>Jobs &amp; Referrals</h2>
+              </div>
+              <div class="subgroup">
+                <details
+                  class="qa"
+                  data-q="is there a referral bonus? yes - refer great people and you'll earn a referral bonus (up to €750) when we hire someone you refer. send referrals to jobs@nishtech.eu."
+                >
+                  <summary>Is there a referral bonus?</summary>
+                  <div class="a">
+                    Yes - refer great people and you'll earn a
+                    <b>referral bonus (up to €750)</b> when we hire someone you
+                    refer. Send referrals to
+                    <a href="mailto:jobs@nishtech.eu">jobs@nishtech.eu</a>.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="are there internal job opportunities? yes, from time to time. discuss your career goals with your hr manager and explore openings. internal mobility depends on business needs and project commitments. jobs@nishtech.eu / hr@nishtech.be."
+                >
+                  <summary>Are there internal job opportunities?</summary>
+                  <div class="a">
+                    Yes, from time to time. Discuss your career goals with your
+                    HR manager and explore openings. Internal mobility depends
+                    on business needs and project commitments. &rarr;
+                    <a href="mailto:jobs@nishtech.eu">jobs@nishtech.eu</a> /
+                    <a href="mailto:hr@nishtech.be">hr@nishtech.be</a>.
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="i'm not satisfied with my current project - can i change? nish supports project mobility where possible. changes are weighed against client commitments, business needs, your aspirations and available opportunities. discuss with your hr manager (and in turn the sales team)."
+                >
+                  <summary>
+                    I'm not satisfied with my current project - can I change?
+                  </summary>
+                  <div class="a">
+                    NISH supports project mobility where possible. Changes are
+                    weighed against client commitments, business needs, your
+                    aspirations and available opportunities. Discuss with your
+                    HR manager (and in turn the Sales team).
+                  </div>
+                </details>
+                <details
+                  class="qa"
+                  data-q="someone asked for a reference about working at nish. direct reference requests to jobs@nishtech.eu."
+                >
+                  <summary>
+                    Someone asked for a reference about working at NISH.
+                  </summary>
+                  <div class="a">
+                    Direct reference requests to
+                    <a href="mailto:jobs@nishtech.eu">jobs@nishtech.eu</a>.
+                  </div>
+                </details>
+              </div>
+              <div class="cbar">
+                <span class="cbar-main"
+                  ><svg viewBox="0 0 24 24" class="cbic">
+                    <rect
+                      x="2"
+                      y="4"
+                      width="20"
+                      height="16"
+                      rx="2"
+                      fill="none"
+                    />
+                    <path d="M22 6l-10 7L2 6" fill="none" /></svg
+                  >Contact
+                  <a href="mailto:jobs@nishtech.eu">jobs@nishtech.eu</a></span
+                ><span class="cbar-esc"
+                  >No reply in 48 business hours? Escalate &middot;
+                  <a href="mailto:info@nishtech.be">info@nishtech.be</a></span
+                >
+              </div>
+            </section>
+            <div class="no-results" #nores id="nores">
+              No questions match that search. Try a different word, or email
+              <a href="mailto:hr@nishtech.be">hr@nishtech.be</a>.
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer>
+        <div class="wrap">
+          <div class="foot-grid">
+            <div>
+              <h3>NISH Tech BV</h3>
+              <p class="ct">Woluwedal 109, 1932 Sint-Stevens-Woluwe, Belgium</p>
+              <p class="ct">VAT: BE 0755.906.251</p>
+              <p class="ct">
+                <a href="mailto:hr@nishtech.be">hr@nishtech.be</a> &middot; +32
+                (0)22 30 99 99
+              </p>
+              <p class="tagline">Think Beyond Possibilities…</p>
+            </div>
+            <div>
+              <h3>Quick contacts</h3>
+              <p class="ct">
+                HR &middot;
+                <a href="mailto:hr@nishtech.be">hr@nishtech.be</a>
+              </p>
+              <p class="ct">
+                Compensation &amp; Benefits &middot;
+                <a href="mailto:payroll@nishtech.be">payroll@nishtech.be</a>
+              </p>
+              <p class="ct">
+                Assets / IT &middot;
+                <a href="mailto:hr@nishtech.be">hr@nishtech.be</a>
+              </p>
+              <p class="ct">
+                Timesheets &middot;
+                <a href="mailto:timesheets@nishtech.be"
+                  >timesheets@nishtech.be</a
+                >
+              </p>
+              <p class="ct">
+                Learning &amp; Development &middot;
+                <a href="mailto:lnd@nishtech.be">lnd@nishtech.be</a>
+              </p>
+            </div>
+            <div>
+              <h3>&nbsp;</h3>
+              <p class="ct">
+                Contracts &middot;
+                <a href="mailto:contracts@nishtech.be">contracts@nishtech.be</a>
+              </p>
+              <p class="ct">
+                Invoicing &middot;
+                <a href="mailto:invoices@nishtech.be">invoices@nishtech.be</a>
+              </p>
+              <p class="ct">
+                Fleet &amp; Mobility &middot;
+                <a href="mailto:fleet@nishtech.be">fleet@nishtech.be</a>
+              </p>
+              <p class="ct">
+                Sales &middot;
+                <a href="mailto:sales@nishtech.be">sales@nishtech.be</a>
+              </p>
+              <p class="ct">
+                Jobs &amp; Referrals &middot;
+                <a href="mailto:jobs@nishtech.eu">jobs@nishtech.eu</a>
+              </p>
+            </div>
+          </div>
+          <p class="disclaimer">
+            Internal guidance for NISH employees, reflecting Belgian rules as
+            understood in 2026. Statutory figures (voucher caps, holiday pay,
+            indexation, the mobility budget) can change and depend on the
+            applicable joint committee / collective labour agreement.
+            NISH-specific terms follow your individual employment contract and
+            the NISH work regulations (Arbeidsreglement), which take precedence.
+            For your personal situation, contact the relevant team above.
+          </p>
+        </div>
+      </footer>
+    </div>
+  </section>
+</div>

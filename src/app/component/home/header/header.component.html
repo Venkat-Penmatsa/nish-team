@@ -32,6 +32,9 @@
         </button>
         <!-- #enddocregion mat-menu-trigger-for -->
         <mat-menu #menuI="matMenu">
+          <a mat-menu-item [routerLink]="['/faq']" style="text-decoration: none"
+            >FAQ</a
+          >
           <a mat-menu-item (click)="openDialog()" style="text-decoration: none"
             >Change Password</a
           >
@@ -65,8 +68,8 @@
       class="news-scroll"
       behavior="scroll"
       direction="left"
-      onmouseover="this.stop();"
-      onmouseout="this.start();"
+      onmouseover="this.stop()"
+      onmouseout="this.start()"
     >
       <span *ngFor="let notifiy of notification; let i = index">
         <a href="#">{{ notifiy.title }}</a>

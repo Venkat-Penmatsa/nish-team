@@ -1,3 +1,33 @@
+:root {
+  --ink: #14224c;
+  --ink2: #1e2e63;
+  --teal: #0e97a6;
+  --teal-d: #0b7a86;
+  --orange: #f0801e;
+  --light: #f3f5fa;
+  --card: #ffffff;
+  --tx: #1b2440;
+  --mut: #5c6680;
+  --hair: #e3e7f1;
+  --soft: #eaf1f4;
+  --sans:
+    "Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+  --serif: "Cambria", "Georgia", "Times New Roman", serif;
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    transition: none !important;
+  }
+}
 html,
 body {
   height: 100%;
