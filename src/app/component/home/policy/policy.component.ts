@@ -29,6 +29,10 @@ export class PolicyComponent implements OnInit {
       name: 'Mobility Budget',
       source: '../../../../assets/pdf/Mobility.pdf',
     },
+    {
+      name: 'Teleworking Policy',
+      source: '../../../../assets/pdf/Teleworking-policy.pdf',
+    },
   ];
   selectedPolicy = this.policies[0];
   constructor(public dialogRef: MatDialogRef<PolicyComponent>) {}
