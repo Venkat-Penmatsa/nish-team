@@ -1,0 +1,280 @@
+[
+  {
+    "id": "start",
+    "title": "Getting Started",
+    "contact": "hr@nishtech.be",
+    "escalation": "info@nishtech.be",
+    "groups": [
+      {
+        "heading": "General HR",
+        "items": [
+          {
+            "question": "I'm new here - where do I begin?",
+            "answer": "<p>Welcome to NISH! Complete your onboarding steps, receive your equipment, and confirm your personal details. If you are unsure where to start, contact <a href='mailto:hr@nishtech.be'>hr@nishtech.be</a>.</p>",
+            "searchText": "I'm new here where do I begin onboarding contract equipment hr nish"
+          },
+          {
+            "question": "What is NEPtune?",
+            "answer": "<p><strong>NEPtune</strong> is the internal employee portal used for timesheets, leave applications, and day-to-day HR tasks. Your login is shared during onboarding.</p>",
+            "searchText": "what is neptune employee portal timesheets leave onboarding login"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hr",
+    "title": "Human Resources",
+    "contact": "hr@nishtech.be",
+    "escalation": "info@nishtech.be",
+    "groups": [
+      {
+        "heading": "General HR",
+        "items": [
+          {
+            "question": "How do I update my personal details?",
+            "answer": "<p>Complete the personal details form from your onboarding pack or email <a href='mailto:hr@nishtech.be'>hr@nishtech.be</a> with your updated address, bank details, or family information.</p>",
+            "searchText": "update personal details address bank family hr"
+          },
+          {
+            "question": "Can I work from home?",
+            "answer": "<p>Telework is possible by agreement with NISH and depends on your schedule, role, and client requirements. Coordinate with <a href='mailto:hr@nishtech.be'>hr@nishtech.be</a> before changing your working pattern.</p>",
+            "searchText": "work from home telework agreement schedule hr"
+          }
+        ]
+      },
+      {
+        "heading": "Holidays & time off",
+        "items": [
+          {
+            "question": "How much annual holiday do I get?",
+            "answer": "<p>Full-time employees receive 20 paid holidays, plus 12 RTT/ADV days and Belgian public holidays, depending on your contract and leave balance.</p>",
+            "searchText": "annual holiday paid days rtt public holidays"
+          },
+          {
+            "question": "How do I apply leave?",
+            "answer": "<p>Go to NEPtune and submit your leave request under <strong>Apply Leaves</strong>. Select the correct type, dates, and note any sick leave or medical certificate requirement.</p>",
+            "searchText": "apply leave neptune sick leave medical certificate"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "comp",
+    "title": "Compensation & Benefits",
+    "contact": "payroll@nishtech.be",
+    "escalation": "nivia@nishtech.be",
+    "groups": [
+      {
+        "heading": "Payroll & payslip",
+        "items": [
+          {
+            "question": "When and how am I paid?",
+            "answer": "<p>Salary is paid monthly by bank transfer. Keep your bank details updated and submit your timesheet on time so payroll can process your payment correctly.</p>",
+            "searchText": "when how paid monthly bank transfer payroll"
+          },
+          {
+            "question": "Where can I see my payslip?",
+            "answer": "<p>Payslips are available through the SD Worx or mySDWorx portal. If you have access issues, contact <a href='mailto:payroll@nishtech.be'>payroll@nishtech.be</a>.</p>",
+            "searchText": "where payslip sd worx mysdworx access payroll"
+          }
+        ]
+      },
+      {
+        "heading": "Vouchers & allowances",
+        "items": [
+          {
+            "question": "How do meal vouchers work?",
+            "answer": "<p>Meal vouchers are loaded onto your voucher card and can be used for food and groceries up to the monthly allowance set by your benefits provider.</p>",
+            "searchText": "meal vouchers benefits allowance food groceries"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "asset",
+    "title": "Assets (IT & Equipment)",
+    "contact": "hr@nishtech.be",
+    "escalation": "info@nishtech.be",
+    "groups": [
+      {
+        "heading": "IT support",
+        "items": [
+          {
+            "question": "Who provides my laptop?",
+            "answer": "<p>Depending on your assignment, the client or NISH may provide your laptop. If you have a device or access question, contact <a href='mailto:hr@nishtech.be'>hr@nishtech.be</a>.</p>",
+            "searchText": "who provides laptop client nish equipment"
+          },
+          {
+            "question": "I have a login problem.",
+            "answer": "<p>For access issues with NEPtune, NConnect, email, or your workstation, contact <a href='mailto:hr@nishtech.be'>hr@nishtech.be</a> and include the issue you are facing.</p>",
+            "searchText": "login problem neptune nconnect email access"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "lnd",
+    "title": "Learning & Development",
+    "contact": "lnd@nishtech.be",
+    "escalation": "hr@nishtech.be",
+    "groups": [
+      {
+        "heading": "Training",
+        "items": [
+          {
+            "question": "Can I get a certification reimbursed?",
+            "answer": "<p>Yes, continuing education and certified training may be supported with manager and HR approval. Contact <a href='mailto:lnd@nishtech.be'>lnd@nishtech.be</a> for guidance.</p>",
+            "searchText": "certification reimbursement training lnd approval"
+          },
+          {
+            "question": "What learning support is available?",
+            "answer": "<p>NISH encourages skill growth, knowledge sharing, and role-based learning. Ask your manager or contact <a href='mailto:lnd@nishtech.be'>lnd@nishtech.be</a> for training options.</p>",
+            "searchText": "learning support knowledge sharing training courses"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "timesheets",
+    "title": "Timesheets",
+    "contact": "timesheets@nishtech.be",
+    "escalation": "hr@nishtech.be",
+    "groups": [
+      {
+        "heading": "Monthly reporting",
+        "items": [
+          {
+            "question": "When do I submit my timesheet?",
+            "answer": "<p>Timesheets are generally submitted by the 23rd of the month. Make sure your working hours and assignment details are complete before you submit.</p>",
+            "searchText": "when submit timesheet monthly deadline 23rd"
+          },
+          {
+            "question": "What if my hours are incorrect?",
+            "answer": "<p>Update the entry in NEPtune if needed or contact <a href='mailto:timesheets@nishtech.be'>timesheets@nishtech.be</a> for support.</p>",
+            "searchText": "incorrect hours timesheet correction contact"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "contracts",
+    "title": "Contracts",
+    "contact": "contracts@nishtech.be",
+    "escalation": "info@nishtech.be",
+    "groups": [
+      {
+        "heading": "Employment documents",
+        "items": [
+          {
+            "question": "I need a proof of employment.",
+            "answer": "<p>Contact <a href='mailto:contracts@nishtech.be'>contracts@nishtech.be</a> or <a href='mailto:hr@nishtech.be'>hr@nishtech.be</a> for proof of employment and contract-related documents.</p>",
+            "searchText": "proof of employment contract documents"
+          },
+          {
+            "question": "Where can I find my contract details?",
+            "answer": "<p>Your active employment data is available in the contracts and HR systems. If you need a copy or change, contact the contracts mailbox.</p>",
+            "searchText": "contract details copy employment documents"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "invoicing",
+    "title": "Invoicing",
+    "contact": "invoices@nishtech.be",
+    "escalation": "info@nishtech.be",
+    "groups": [
+      {
+        "heading": "Billing",
+        "items": [
+          {
+            "question": "Who do I contact for billing questions?",
+            "answer": "<p>Use <a href='mailto:invoices@nishtech.be'>invoices@nishtech.be</a> for billing, expense, and invoicing questions.</p>",
+            "searchText": "billing invoicing expenses contact"
+          },
+          {
+            "question": "What if my invoice is wrong?",
+            "answer": "<p>Send the invoice number, issue, and relevant documents to <a href='mailto:invoices@nishtech.be'>invoices@nishtech.be</a> so the team can review it.</p>",
+            "searchText": "invoice wrong issue document review"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "fleet",
+    "title": "Fleet & Mobility",
+    "contact": "fleet@nishtech.be",
+    "escalation": "hr@nishtech.be",
+    "groups": [
+      {
+        "heading": "Mobility support",
+        "items": [
+          {
+            "question": "How do I request a company car or mobility support?",
+            "answer": "<p>Mobility requests are reviewed based on role, policy, and eligibility. Contact <a href='mailto:fleet@nishtech.be'>fleet@nishtech.be</a> for the process and documentation.</p>",
+            "searchText": "company car mobility support request fleet"
+          },
+          {
+            "question": "What is the mobility budget?",
+            "answer": "<p>The mobility budget allows eligible employees to choose a sustainable transport or alternative mobility arrangement, depending on policy and package.</p>",
+            "searchText": "mobility budget sustainable transport alternative"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sales",
+    "title": "Sales",
+    "contact": "sales@nishtech.be",
+    "escalation": "info@nishtech.be",
+    "groups": [
+      {
+        "heading": "Client opportunities",
+        "items": [
+          {
+            "question": "Who handles client opportunities?",
+            "answer": "<p>Client opportunities and sales-related questions are handled by <a href='mailto:sales@nishtech.be'>sales@nishtech.be</a>.</p>",
+            "searchText": "client opportunities sales contact"
+          },
+          {
+            "question": "How do I share a lead?",
+            "answer": "<p>Send the opportunity details, client context, and contact information to <a href='mailto:sales@nishtech.be'>sales@nishtech.be</a>.</p>",
+            "searchText": "share lead sales opportunity contact"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "jobs",
+    "title": "Jobs & Referrals",
+    "contact": "jobs@nishtech.eu",
+    "escalation": "info@nishtech.be",
+    "groups": [
+      {
+        "heading": "Recruitment",
+        "items": [
+          {
+            "question": "How do I refer someone for a role?",
+            "answer": "<p>Send the candidate details and role information to <a href='mailto:jobs@nishtech.eu'>jobs@nishtech.eu</a> so the recruitment team can review it.</p>",
+            "searchText": "refer candidate role recruitment jobs"
+          },
+          {
+            "question": "Where do I find open positions?",
+            "answer": "<p>Open roles are shared through the team communication channels and the recruitment mailbox. Contact <a href='mailto:jobs@nishtech.eu'>jobs@nishtech.eu</a> for more details.</p>",
+            "searchText": "open positions roles recruitment contact"
+          }
+        ]
+      }
+    ]
+  }
+]

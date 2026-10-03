@@ -29,19 +29,41 @@ export class HeaderComponent implements OnInit {
     private employeeService: EmployeeService,
     public dialog: MatDialog,
     public authService: AuthService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
   ) {}
 
   userDet: any;
   userName: any;
+
+  private updateUserName(dataSub?: any): void {
+    const fallbackUser = JSON.parse(localStorage.getItem('user') || '{}');
+    const fallbackEmpName = localStorage.getItem('empName') || '';
+
+    const firstName =
+      dataSub?.firstName ??
+      fallbackUser?.firstName ??
+      fallbackUser?.first_name ??
+      fallbackEmpName.split(' ')[0] ??
+      '';
+    const lastName =
+      dataSub?.lastName ??
+      fallbackUser?.lastName ??
+      fallbackUser?.last_name ??
+      fallbackEmpName.split(' ').slice(1).join(' ') ??
+      '';
+
+    this.userName = [firstName, lastName].filter(Boolean).join(' ') || 'User';
+  }
+
   ngOnInit(): void {
     this.shared.currentData.subscribe((dataSub: any) => {
       if (dataSub) {
-        this.userName = dataSub.firstName + ' ' + dataSub.lastName;
+        this.updateUserName(dataSub);
       }
     });
+
+    this.updateUserName();
     this.getDataServer();
-    let user: any = JSON.parse(localStorage.getItem('user') || '{}');
   }
 
   openPolicyDialog() {
