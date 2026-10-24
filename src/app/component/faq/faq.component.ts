@@ -41,7 +41,8 @@ export class FaqComponent implements OnInit, AfterViewInit, OnDestroy {
     private elementRef: ElementRef<HTMLElement>,
     private http: HttpClient,
   ) {}
-
+  // Loaded from JSON file, so no need to unsubscribe from the observable as it completes after emitting the data.
+  // Next we need to move json file to assets folder and load it from there. We can use HttpClient to load the JSON file.
   ngOnInit(): void {
     this.http.get<FaqSection[]>('assets/data/faqs.json').subscribe((data) => {
       this.faqData = data || [];
